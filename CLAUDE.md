@@ -95,7 +95,7 @@ Kurulu: monorepo iskeleti, docker-compose (db+cms+web+caddy profili), Strapi con
 - **Search Console meta yöntemi de hazır:** `layout.tsx` metadata `verification.google`, env `GOOGLE_SITE_VERIFICATION` doluysa `<head>`'e basar (`.env.example` + docker-compose'a eklendi). Şu an DNS yöntemi kullanıldığı için boş.
 - **Bağlı event:** yalnız `tool_calculated` (`CalculatorCard`). Diğer CTA'lar (`hero`, lead magnet formu, footer newsletter, calc-card CTA) henüz `track()`'e bağlı değil.
 
-**Bilinen sorun:** Çift `@types/react` (web@19 vs cms@18) `pnpm typecheck`'te dokunulmamış componentlerde (`BlocksRenderer`, `CalloutBox`, `FormulaCard`, `TrackedLink`) 16 hata üretiyor. Redesign dosyaları tip açısından temiz. Çözüm: root `package.json`'a `pnpm.overrides` ile tek `@types/react` sürümü sabitle + reinstall.
+**Çözülen sorun:** Çift `@types/react` (web@19 vs cms@18) tip hataları → root `package.json`'a `pnpm.overrides` ile `@types/react` 19.2.17 + `@types/react-dom` 19.2.3 sabitlendi (commit `ebe6bfa`).
 
 **Henüz YOK (sıradaki iş):**
 
@@ -104,8 +104,9 @@ Kurulu: monorepo iskeleti, docker-compose (db+cms+web+caddy profili), Strapi con
 - Launch içeriğinin (`../launch-icerik/`) Strapi'ye girilmesi.
 - Liste sorgusu (`listBlogPosts`) yalnız `kategori` populate ediyor; kart görsel/özet için `kapakGorseli`+`seo` populate eklenebilir (şimdilik placeholder).
 - Kalan analytics CTA'larının `track()`'e bağlanması (hero, lead magnet `lead_magnet_submit`, footer newsletter, calc-card CTA).
-- **Deploy (Coolify) — prod dosyaları HAZIR:** `apps/web/Dockerfile.prod` (multi-stage `next build`+`start`, `NEXT_PUBLIC_*` build ARG), `apps/cms/Dockerfile.prod` (`strapi build`+`start`), `docker-compose.prod.yml` (bind-mount yok, secret'lar env'den, `pgdata`+`strapi_uploads` kalıcı volume, caddy yok — Coolify Traefik). `next.config.mjs` prod Strapi host'unu `NEXT_PUBLIC_STRAPI_URL`'den türetir (next/image). Env referansı `.env.prod.example`.
-  - **Kalan (panel işi):** VPS + Coolify kurulumu; `stokoloji.com` A kaydı sunucu IP'sine çevrildi (park IP 93.89.226.17 değişti); Coolify'da web→`stokoloji.com`, cms→ayrı subdomain (örn. `cms.stokoloji.com`, medya URL'leri için şart); env + build variable'lar girilecek; `.xyz` ileride 301 → `.com`.
+- **Deploy (Coolify) — CANLI (2026-06-13).** db + cms + web ayakta. Kaynak: `docker-compose.prod.yml` (Docker Compose build pack), prod Dockerfile'lar (`next build`+`start` / `strapi build`+`start`), `pgdata`+`strapi_uploads` kalıcı volume, caddy yok (Coolify Traefik + otomatik SSL). `next.config.mjs` prod Strapi host'unu `NEXT_PUBLIC_STRAPI_URL`'den türetir (next/image). Env referansı `.env.prod.example`. Domain: web `stokoloji.com`, cms `cms.stokoloji.com`.
+  - **Deploy'da çıkan ve çözülen 4 tuzak (tekrar deploy'da bil):** (1) VPS 6 GB RAM yetmiyordu, eşzamanlı `next build`+`strapi build` OOM yapıyordu → sunucuya **8 GB swap** eklendi. (2) `strapi build`, fresh image'da `types/generated/` (gitignore) olmadan seed'deki `iliskiliYazilar`'da TS hatası veriyordu → cms Dockerfile'a `strapi ts:generate-types`. (3) O komut Strapi'yi boot ettiği için `public/uploads` aranıyordu → `mkdir -p public/uploads`. (4) Strapi `APP_KEYS` + diğer secret'lar Coolify env'de yoktu → boot crash-loop → secret'lar Coolify env'e girildi (runtime, build variable DEĞİL).
+  - **Kalan (post-deploy panel işi):** Strapi admin kullanıcısı; içerik tiplerine **public read** izni (Settings > Roles > Public) ya da API token üretip `STRAPI_API_TOKEN`'a koymak + web redeploy; içerik girişi (`../launch-icerik/` / seed). `.xyz` ileride 301 → `.com`.
 
 ## Launch kapsamı (ilk dalga)
 
