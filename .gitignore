@@ -38,3 +38,6 @@ pnpm-debug.log*
 .idea/
 .vscode/
 coverage/
+
+# strapi update-check cache
+apps/cms/.strapi-updater.json
