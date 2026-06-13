@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stokoloji">
+  <!-- Marka tile: petrol / koyu lacivert (--ink #0f2a43) -->
+  <rect width="32" height="32" rx="7" fill="#0f2a43"/>
+  <!-- Serif "s" — wordmark ile aynı display ailesi (Newsreader -> Georgia fallback) -->
+  <text x="11.5" y="23.5" text-anchor="middle"
+        font-family="Newsreader, Georgia, 'Times New Roman', serif"
+        font-weight="700" font-size="22" letter-spacing="-0.5"
+        fill="#ffffff">s</text>
+  <!-- Teal vurgu noktası (--teal #0ea5a4) — markanın "." imzası -->
+  <circle cx="23" cy="22" r="2.6" fill="#0ea5a4"/>
+</svg>
