@@ -1,3 +1,10 @@
+# OpenWolf
+
+@.wolf/OPENWOLF.md
+
+This project uses OpenWolf for context management. Read and follow .wolf/OPENWOLF.md every session. Check .wolf/cerebrum.md before generating code. Check .wolf/anatomy.md before reading files.
+
+
 # CLAUDE.md — Stokoloji
 
 Bu dosya bir Claude Code oturumunun projeye sıfırdan girdiğinde bilmesi gereken her şeyi içerir. Yeni bir konuşmaya başlarken önce bunu oku.
@@ -103,7 +110,8 @@ Kurulu: monorepo iskeleti, docker-compose (db+cms+web+caddy profili), Strapi con
 - `emniyet-stogu.ts` ve `rop.ts` tool mantığı + registry kayıtları (şu an yalnız EOQ'da calc-card + grafik var).
 - Launch içeriğinin (`../launch-icerik/`) Strapi'ye girilmesi.
 - Liste sorgusu (`listBlogPosts`) yalnız `kategori` populate ediyor; kart görsel/özet için `kapakGorseli`+`seo` populate eklenebilir (şimdilik placeholder).
-- Kalan analytics CTA'larının `track()`'e bağlanması (hero, lead magnet `lead_magnet_submit`, footer newsletter, calc-card CTA).
+- **Kalan analytics CTA'larını merkezi `track(event, payload)`'e bağla** (hero CTA'ları, lead magnet formu → `lead_magnet_submit`, footer newsletter, calc-card "Excel şablonuyla kaydet" → `cta_click`). ÖNEMLİ: CTA'lar doğrudan `gtag`/`clarity` çağırmaz; tek `track()` katmanı çağrılır, o consent'e göre **GA4 + Clarity ikisine de aynı event'i** dağıtır (mimari kural 5). Yani event'ler ortak; provider eklenir/çıkarsa component değişmez. `data-track` attribute'u tek başına event atmaz — `TrackedLink`/`track()` kullanılmalı. Event tipleri `lib/analytics/types.ts`'te (`AnalyticsEventMap`).
+- Favicon fix (`icon.svg` XML yorumundaki çift tire) push'landı (`b0038c6`); **web redeploy + hard refresh** sonrası sekmede görünür. GA4 canlıda doğrulandı (gtag 200), Clarity kurulu (kullanıcı uBlock'u engelliyordu, gerçek ziyaretçide yüklenir).
 - **Deploy (Coolify) — CANLI (2026-06-13).** db + cms + web ayakta. Kaynak: `docker-compose.prod.yml` (Docker Compose build pack), prod Dockerfile'lar (`next build`+`start` / `strapi build`+`start`), `pgdata`+`strapi_uploads` kalıcı volume, caddy yok (Coolify Traefik + otomatik SSL). `next.config.mjs` prod Strapi host'unu `NEXT_PUBLIC_STRAPI_URL`'den türetir (next/image). Env referansı `.env.prod.example`. Domain: web `stokoloji.com`, cms `cms.stokoloji.com`.
   - **Deploy'da çıkan ve çözülen 4 tuzak (tekrar deploy'da bil):** (1) VPS 6 GB RAM yetmiyordu, eşzamanlı `next build`+`strapi build` OOM yapıyordu → sunucuya **8 GB swap** eklendi. (2) `strapi build`, fresh image'da `types/generated/` (gitignore) olmadan seed'deki `iliskiliYazilar`'da TS hatası veriyordu → cms Dockerfile'a `strapi ts:generate-types`. (3) O komut Strapi'yi boot ettiği için `public/uploads` aranıyordu → `mkdir -p public/uploads`. (4) Strapi `APP_KEYS` + diğer secret'lar Coolify env'de yoktu → boot crash-loop → secret'lar Coolify env'e girildi (runtime, build variable DEĞİL).
   - **Kalan (post-deploy panel işi):** Strapi admin kullanıcısı; içerik tiplerine **public read** izni (Settings > Roles > Public) ya da API token üretip `STRAPI_API_TOKEN`'a koymak + web redeploy; içerik girişi (`../launch-icerik/` / seed). `.xyz` ileride 301 → `.com`.
