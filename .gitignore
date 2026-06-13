@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+.pnp.*
+.yarn/*
+
+# env
+.env
+.env.local
+.env.*.local
+
+# next.js
+apps/web/.next/
+apps/web/out/
+apps/web/next-env.d.ts
+
+# strapi
+apps/cms/.cache/
+apps/cms/build/
+apps/cms/dist/
+apps/cms/.strapi/
+apps/cms/.tmp/
+apps/cms/public/uploads/*
+!apps/cms/public/uploads/.gitkeep
+apps/cms/types/generated/
+
+# build artifacts
+**/dist/
+**/.turbo/
+*.tsbuildinfo
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
+coverage/

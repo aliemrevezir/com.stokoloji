@@ -1,0 +1,15 @@
+# Opsiyonel reverse proxy (proxy profili). Demo için zorunlu değildir.
+:80 {
+	handle /admin* {
+		reverse_proxy cms:1337
+	}
+	handle /api* {
+		reverse_proxy cms:1337
+	}
+	handle /uploads* {
+		reverse_proxy cms:1337
+	}
+	handle {
+		reverse_proxy web:3000
+	}
+}

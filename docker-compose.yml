@@ -1,0 +1,118 @@
+# Stokoloji — demo compose. `docker compose up` ile db + cms + web ayağa kalkar.
+# Gizli anahtarlar burada DEV amaçlı sabittir; üretimde .env üzerinden geçilmelidir.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-stokoloji}
+      POSTGRES_USER: ${DATABASE_USERNAME:-stokoloji}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-stokoloji}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-stokoloji} -d ${DATABASE_NAME:-stokoloji}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cms:
+    build:
+      context: .
+      dockerfile: apps/cms/Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+      PORT: 1337
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME:-stokoloji}
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-stokoloji}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-stokoloji}
+      DATABASE_SSL: "false"
+      APP_KEYS: ${APP_KEYS:-devKeyOne==,devKeyTwo==,devKeyThree==,devKeyFour==}
+      API_TOKEN_SALT: ${API_TOKEN_SALT:-devApiTokenSaltChangeMe==}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-devAdminJwtSecretChangeMe==}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-devTransferTokenSaltChangeMe==}
+      JWT_SECRET: ${JWT_SECRET:-devJwtSecretChangeMe==}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-devEncryptionKeyChangeMe16Byte==}
+    ports:
+      - "1337:1337"
+    volumes:
+      - strapi_uploads:/repo/apps/cms/public/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://localhost:1337/_health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 90s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      # macOS/Docker bind mount'larda dosya değişikliklerinin algılanması için
+      # webpack/next watcher'ı polling moduna al (HMR canlı çalışsın).
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+      # SSR/build içi internal çağrı:
+      STRAPI_INTERNAL_URL: http://cms:1337
+      # Tarayıcı çağrıları:
+      NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL:-http://localhost:1337}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      STRAPI_API_TOKEN: ${STRAPI_API_TOKEN:-}
+      NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID:-}
+      NEXT_PUBLIC_CLARITY_ID: ${NEXT_PUBLIC_CLARITY_ID:-}
+      GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION:-}
+    ports:
+      - "3000:3000"
+    # Canlı geliştirme: host kaynağı container'a bağla; node_modules ve .next'i
+    # anonymous volume ile koru (image içindeki kurulu bağımlılıklar gölgelenmesin).
+    volumes:
+      - ./apps/web:/repo/apps/web
+      - ./packages:/repo/packages
+      - /repo/node_modules
+      - /repo/apps/web/node_modules
+      - /repo/apps/web/.next
+      - /repo/packages/api-client/node_modules
+      - /repo/packages/ui/node_modules
+    depends_on:
+      cms:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://localhost:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+  # Opsiyonel reverse proxy — `docker compose --profile proxy up` ile etkinleşir.
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["proxy"]
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    depends_on:
+      - web
+      - cms
+
+volumes:
+  pgdata:
+  strapi_uploads:

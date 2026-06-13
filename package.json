@@ -1,0 +1,20 @@
+{
+  "name": "stokoloji",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @stokoloji/web dev",
+    "dev:cms": "pnpm --filter @stokoloji/cms develop",
+    "build:web": "pnpm --filter @stokoloji/web build",
+    "lint": "pnpm --filter @stokoloji/web lint",
+    "typecheck": "pnpm --filter @stokoloji/web typecheck",
+    "test": "pnpm --filter @stokoloji/web test"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

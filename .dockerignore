@@ -1,0 +1,13 @@
+**/node_modules
+**/.next
+**/.cache
+**/build
+**/dist
+**/.tmp
+**/.strapi
+apps/cms/public/uploads
+**/coverage
+.git
+.env
+*.log
+.DS_Store
