@@ -15,7 +15,12 @@ RUN pnpm install --filter @stokoloji/cms... --frozen-lockfile
 # 2) Kaynak + admin panel build'i.
 COPY apps/cms apps/cms
 WORKDIR /repo/apps/cms
-RUN pnpm build
+# upload klasoru fresh image'da yok (.dockerignore + gitignore); ts:generate-types
+# Strapi'yi boot ettigi icin upload plugin'i bu klasoru arar.
+RUN mkdir -p public/uploads
+# Strapi content-type type'larini uret: types/generated/ .gitignore'da, fresh
+# build'de yok. Olmadan seed/* gibi tipli dosyalar `strapi build` tsc'sinde patlar.
+RUN pnpm strapi ts:generate-types && pnpm build
 
 EXPOSE 1337
 # Üretim: admin panel statik, autoReload kapalı.
