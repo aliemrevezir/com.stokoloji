@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kategoriler",
+  "info": {
+    "singularName": "kategori",
+    "pluralName": "kategoriler",
+    "displayName": "Kategori",
+    "description": "Tool ve blog yazılarını gruplayan kategori"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "ad": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "ad",
+      "required": true
+    }
+  }
+}

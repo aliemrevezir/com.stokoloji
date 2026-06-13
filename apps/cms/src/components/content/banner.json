@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_content_banners",
+  "info": {
+    "displayName": "Banner",
+    "icon": "picture",
+    "description": "Anasayfa promosyon bannerı (başlık, açıklama, görsel, link, vurgu etiketi)"
+  },
+  "options": {},
+  "attributes": {
+    "baslik": {
+      "type": "string",
+      "required": true
+    },
+    "aciklama": {
+      "type": "text"
+    },
+    "vurguMetni": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "gorsel": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

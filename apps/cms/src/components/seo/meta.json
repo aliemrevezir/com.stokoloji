@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_seo_metas",
+  "info": {
+    "displayName": "Meta",
+    "icon": "search",
+    "description": "SEO meta verisi (title, description, OG görseli)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "ogImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

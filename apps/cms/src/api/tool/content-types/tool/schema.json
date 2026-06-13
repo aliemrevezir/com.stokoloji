@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tools",
+  "info": {
+    "singularName": "tool",
+    "pluralName": "tools",
+    "displayName": "Tool",
+    "description": "Hesaplayıcı tool'un METİNSEL içeriği. Hesaplama mantığı Next.js'te yaşar."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "ad": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "ad",
+      "required": true
+    },
+    "kisaAciklama": {
+      "type": "text"
+    },
+    "formulAciklamasi": {
+      "type": "blocks"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.meta"
+    },
+    "kategori": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::kategori.kategori"
+    },
+    "iliskiliYazilar": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog"
+    },
+    "sss": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.sss"
+    }
+  }
+}

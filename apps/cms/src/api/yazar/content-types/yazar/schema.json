@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "yazarlar",
+  "info": {
+    "singularName": "yazar",
+    "pluralName": "yazarlar",
+    "displayName": "Yazar",
+    "description": "E-E-A-T için yazar bilgisi (AuthorBox'ı besler)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "ad": {
+      "type": "string",
+      "required": true
+    },
+    "unvan": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

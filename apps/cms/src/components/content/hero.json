@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_content_heros",
+  "info": {
+    "displayName": "Hero",
+    "icon": "bulletList",
+    "description": "Anasayfa hero banner içeriği (başlık, vurgu, alt başlık, CTA'lar, görsel)"
+  },
+  "options": {},
+  "attributes": {
+    "baslik": {
+      "type": "string",
+      "required": true
+    },
+    "vurgu": {
+      "type": "string"
+    },
+    "altBaslik": {
+      "type": "text"
+    },
+    "birincilCtaMetni": {
+      "type": "string"
+    },
+    "birincilCtaLink": {
+      "type": "string"
+    },
+    "ikincilCtaMetni": {
+      "type": "string"
+    },
+    "ikincilCtaLink": {
+      "type": "string"
+    },
+    "gorsel": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

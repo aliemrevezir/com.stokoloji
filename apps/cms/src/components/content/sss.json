@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_content_ssses",
+  "info": {
+    "displayName": "SSS",
+    "icon": "question",
+    "description": "Sıkça sorulan soru — hem Tool hem Blog'a bağlanabilir"
+  },
+  "options": {},
+  "attributes": {
+    "soru": {
+      "type": "string",
+      "required": true
+    },
+    "cevap": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
