@@ -1,0 +1,22 @@
+# Strapi 5 — PRODUCTION (strapi build + strapi start). Coolify bu dosyayı kullanır.
+# Dev sürümü için apps/cms/Dockerfile (strapi develop). Debian slim → sharp/pg prebuilt.
+FROM node:22-slim AS runner
+ENV NODE_ENV=production
+ENV STRAPI_TELEMETRY_DISABLED=true
+RUN corepack enable
+WORKDIR /repo
+
+# 1) Manifest'ler → bağımlılık katmanı cache'lenir. (pnpm install NODE_ENV'e bakmaz,
+#    build için gereken paketler de gelir.)
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY apps/cms/package.json apps/cms/package.json
+RUN pnpm install --filter @stokoloji/cms... --frozen-lockfile
+
+# 2) Kaynak + admin panel build'i.
+COPY apps/cms apps/cms
+WORKDIR /repo/apps/cms
+RUN pnpm build
+
+EXPOSE 1337
+# Üretim: admin panel statik, autoReload kapalı.
+CMD ["pnpm", "start"]

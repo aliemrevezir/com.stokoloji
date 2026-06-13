@@ -104,7 +104,8 @@ Kurulu: monorepo iskeleti, docker-compose (db+cms+web+caddy profili), Strapi con
 - Launch içeriğinin (`../launch-icerik/`) Strapi'ye girilmesi.
 - Liste sorgusu (`listBlogPosts`) yalnız `kategori` populate ediyor; kart görsel/özet için `kapakGorseli`+`seo` populate eklenebilir (şimdilik placeholder).
 - Kalan analytics CTA'larının `track()`'e bağlanması (hero, lead magnet `lead_magnet_submit`, footer newsletter, calc-card CTA).
-- **Deploy (Coolify):** VPS + Coolify kurulumu; `caddy` profili Coolify'da kullanılmaz (Traefik var). A kaydı `stokoloji.com` → Coolify sunucu IP'sine çevrilecek (mevcut park IP 93.89.226.17 değişecek); `www` CNAME ve Google doğrulama CNAME kalır. `.xyz` ileride 301 → `.com`. Postgres + Strapi `uploads` kalıcı volume şart.
+- **Deploy (Coolify) — prod dosyaları HAZIR:** `apps/web/Dockerfile.prod` (multi-stage `next build`+`start`, `NEXT_PUBLIC_*` build ARG), `apps/cms/Dockerfile.prod` (`strapi build`+`start`), `docker-compose.prod.yml` (bind-mount yok, secret'lar env'den, `pgdata`+`strapi_uploads` kalıcı volume, caddy yok — Coolify Traefik). `next.config.mjs` prod Strapi host'unu `NEXT_PUBLIC_STRAPI_URL`'den türetir (next/image). Env referansı `.env.prod.example`.
+  - **Kalan (panel işi):** VPS + Coolify kurulumu; `stokoloji.com` A kaydı sunucu IP'sine çevrildi (park IP 93.89.226.17 değişti); Coolify'da web→`stokoloji.com`, cms→ayrı subdomain (örn. `cms.stokoloji.com`, medya URL'leri için şart); env + build variable'lar girilecek; `.xyz` ileride 301 → `.com`.
 
 ## Launch kapsamı (ilk dalga)
 

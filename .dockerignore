@@ -9,5 +9,7 @@ apps/cms/public/uploads
 **/coverage
 .git
 .env
+.env.local
+.env.*.local
 *.log
 .DS_Store

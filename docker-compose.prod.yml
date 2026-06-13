@@ -1,0 +1,114 @@
+# Stokoloji — PRODUCTION compose (Coolify hedefli).
+# Dev için docker-compose.yml kullan. Bu dosya:
+#   - prod Dockerfile'lar (build + start), NODE_ENV=production
+#   - host bind-mount YOK; kalıcı volume'lar (pgdata + strapi_uploads)
+#   - secret'lar Coolify env panelinden gelir (dev defaultları YOK)
+#   - reverse proxy/SSL Coolify (Traefik) tarafından sağlanır; caddy YOK
+#
+# Coolify notları:
+#   - Domain eşlemesi Coolify UI'dan yapılır (web:3000 → stokoloji.com,
+#     cms:1337 → cms.stokoloji.com). SSL otomatik (Let's Encrypt).
+#   - NEXT_PUBLIC_* değerleri build-time gömülür → Coolify'da "Build Variable"
+#     olarak da tanımlanmalı (sadece runtime env yetmez).
+#   - Sunucuda manuel test için `expose` yerine `ports` satırlarını aç.
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-stokoloji}
+      POSTGRES_USER: ${DATABASE_USERNAME:-stokoloji}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-stokoloji} -d ${DATABASE_NAME:-stokoloji}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cms:
+    build:
+      context: .
+      dockerfile: apps/cms/Dockerfile.prod
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 1337
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME:-stokoloji}
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-stokoloji}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_SSL: "false"
+      # ZORUNLU secret'lar — Coolify env panelinden (örn: openssl rand -base64 16).
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${JWT_SECRET}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+    expose:
+      - "1337"
+    # ports:
+    #   - "1337:1337"
+    volumes:
+      - strapi_uploads:/repo/apps/cms/public/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://localhost:1337/_health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 120s
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile.prod
+      # NEXT_PUBLIC_* build-time gömülür; Coolify build variable olarak geçer.
+      args:
+        NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+        NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID}
+        NEXT_PUBLIC_CLARITY_ID: ${NEXT_PUBLIC_CLARITY_ID}
+        GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      # SSR/build içi internal çağrı (aynı compose network'ü):
+      STRAPI_INTERNAL_URL: http://cms:1337
+      # Tarayıcı çağrıları (Strapi medya URL'leri) — PUBLIC cms domain'i:
+      NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+      STRAPI_API_TOKEN: ${STRAPI_API_TOKEN}
+      NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID}
+      NEXT_PUBLIC_CLARITY_ID: ${NEXT_PUBLIC_CLARITY_ID}
+      GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION}
+    expose:
+      - "3000"
+    # ports:
+    #   - "3000:3000"
+    depends_on:
+      cms:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://localhost:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+volumes:
+  pgdata:
+  strapi_uploads:
