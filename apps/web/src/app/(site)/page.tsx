@@ -264,7 +264,7 @@ export default async function HomePage() {
               <div>
                 <div className="a-name">Ali</div>
                 <div className="a-role">ODTÜ Endüstri Mühendisliği · Production Developer</div>
-                <p className="a-bio">Tedarik zinciri ve üretim planlama üzerine çalışan bir mühendis. Stokoloji'deki tüm hesap modellerini ve içerikleri yazıyor, sahadaki problemleri sadeleştirip araçlara dönüştürüyor.</p>
+                <p className="a-bio">Tedarik zinciri ve üretim planlama üzerine çalışan bir mühendis. Stokoloji&apos;deki tüm hesap modellerini ve içerikleri yazıyor, sahadaki problemleri sadeleştirip araçlara dönüştürüyor.</p>
                 <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
                   <span className="badge">E-E-A-T</span>
                   <span className="badge">8+ yıl saha</span>

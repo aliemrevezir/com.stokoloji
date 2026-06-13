@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { track } from '@/lib/analytics';
 import { getCalculator, type CalculatorOutput } from '@/lib/tools/registry';
 import { CostChart } from './tools/CostChart';
@@ -125,9 +126,9 @@ export function CalculatorCard({
           />
         )}
 
-        <a className="btn btn-primary btn-block" href="/#lead" data-track="cta_click">
+        <Link className="btn btn-primary btn-block" href="/#lead" data-track="cta_click">
           Excel şablonuyla kaydet
-        </a>
+        </Link>
       </div>
     </div>
   );

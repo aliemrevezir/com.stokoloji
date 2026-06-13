@@ -47,7 +47,7 @@ export default async function ToolsPage() {
           <span className="cat-tick" style={{ width: 36, height: 5, display: 'block', borderRadius: 3, background: 'var(--cat)', marginBottom: 'var(--s-4)' }} />
           <h1 className="h1" style={{ marginBottom: 'var(--s-3)' }}>Hesaplayıcı Araçlar</h1>
           <p className="lead" style={{ maxWidth: '60ch' }}>
-            Ne kadar, ne zaman ve hangi kalemden sipariş vereceğini hesapla. EOQ'dan emniyet stoğuna, stok ve üretim yönetiminin tüm araçları burada.
+            Ne kadar, ne zaman ve hangi kalemden sipariş vereceğini hesapla. EOQ&apos;dan emniyet stoğuna, stok ve üretim yönetiminin tüm araçları burada.
           </p>
           <div className="cat-tabs">
             {CATEGORIES.map((c, i) => (
