@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stokoloji — Stok ve Üretim Yönetimi Araçları ve Rehberleri</title>
+<meta name="description" content="EOQ, emniyet stoğu, yeniden sipariş noktası ve ABC analizi için hesaplayıcı araçlar; üretim planlama ve maliyet yönetimi rehberleri. Tahmin değil, hesap.">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main>
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" data-screen-label="Anasayfa Hero">
+    <div class="container">
+      <div class="hero-band">
+        <div class="hero-copy">
+          <span class="eyebrow">Stok &amp; Üretim Yönetimi Otoritesi</span>
+          <h1 class="display hero-title">Stok kararlarını tahminle değil, hesapla.</h1>
+          <p class="lead hero-sub">EOQ, emniyet stoğu, yeniden sipariş noktası ve ABC analizi için çalışan hesaplayıcılar; her aracı ne zaman ve nasıl kullanacağını öğreten mühendislik temelli rehberler. Slogan yerine formül.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="EOQ Hesaplayıcı.html">Araçları keşfet
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="btn btn-secondary btn-lg" href="#hakkinda">Neden Stokoloji?</a>
+          </div>
+          <ul class="hero-trust">
+            <li><b>5</b> hesaplayıcı araç</li>
+            <li><b>Türkçe</b> uygulamalı rehberler</li>
+            <li><b>Ücretsiz</b> Excel şablonu</li>
+          </ul>
+        </div>
+        <aside class="hero-signature">
+          <div class="sig-card-head">
+            <span class="chip" data-cat="stok">EOQ · Stok Yönetimi</span>
+            <span class="sig-live"><i></i>canlı önizleme</span>
+          </div>
+          <div class="sig-formula mono">EOQ = √( 2 · D · S / H )</div>
+          <div class="sig-result-row">
+            <div>
+              <div class="sig-r-label">Optimum sipariş miktarı</div>
+              <div class="sig-r-value mono">577<span>adet</span></div>
+            </div>
+            <canvas class="sig-spark" width="280" height="120" aria-hidden="true"></canvas>
+          </div>
+          <div class="sig-split">
+            <div class="sp"><span class="k">Sipariş mlyt.</span><span class="v mono">5.196&nbsp;₺</span></div>
+            <div class="sp"><span class="k">Elde tutma</span><span class="v mono">5.196&nbsp;₺</span></div>
+            <div class="sp"><span class="k">Toplam / yıl</span><span class="v mono total">10.392&nbsp;₺</span></div>
+          </div>
+          <a class="btn btn-primary btn-block" href="EOQ Hesaplayıcı.html">Kendi değerlerinle dene
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ ÖNE ÇIKAN BLOK ============================ -->
+  <section class="section-tight" data-screen-label="Öne Çıkan Blok">
+    <div class="container">
+      <div class="hero-eyebrow" style="display:flex;align-items:center;gap:12px;margin-bottom:var(--s-5)">
+        <span class="eyebrow">Editörün Seçtikleri</span>
+        <span style="flex:1;height:1px;background:var(--border)"></span>
+      </div>
+
+      <div class="hero-grid">
+        <!-- Featured -->
+        <article class="card card-hover featured-card reveal">
+          <a href="EOQ Hesaplayıcı.html" style="display:block">
+            <div class="ph thumb" data-label="eoq maliyet eğrisi görseli">
+              <span class="chip cat-corner" data-cat="stok">Stok Yönetimi</span>
+            </div>
+          </a>
+          <div class="body">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+              <span class="badge badge-teal">İnteraktif Araç</span>
+              <span class="small muted">8 dk okuma + canlı hesap</span>
+            </div>
+            <a href="EOQ Hesaplayıcı.html"><h2 class="title">Ekonomik sipariş miktarını tahminle değil, maliyet eğrisiyle bul</h2></a>
+            <p class="excerpt">Sipariş verme ve elde tutma maliyetleri ters yönde çalışır. EOQ hesaplayıcı ikisinin kesiştiği optimum noktayı bulur, toplam maliyeti tek grafikte gösterir. Örnek değerlerle saniyeler içinde dene.</p>
+            <div style="margin-top:var(--s-5)">
+              <a class="btn btn-primary" href="EOQ Hesaplayıcı.html">Hesaplamaya başla
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Side compact list -->
+        <aside class="hero-side reveal" style="animation-delay:.08s">
+          <div class="eyebrow" style="margin-bottom:var(--s-3)">Öne çıkanlar</div>
+          <a href="Blog.html" class="compact-card">
+            <div class="ph thumb" data-label="görsel"></div>
+            <div>
+              <span class="chip" data-cat="stok" style="font-size:.625rem;padding:3px 7px">Stok</span>
+              <div class="title" style="margin-top:6px">Emniyet stoğu formülü: servis seviyesini stoğa çevirmek</div>
+              <div class="meta">6 dk · Rehber</div>
+            </div>
+          </a>
+          <a href="#" class="compact-card">
+            <div class="ph thumb" data-label="görsel"></div>
+            <div>
+              <span class="chip" data-cat="analiz" style="font-size:.625rem;padding:3px 7px">Analiz</span>
+              <div class="title" style="margin-top:6px">ABC analizi ile stoklarını önceliklendir</div>
+              <div class="meta">7 dk · Rehber + Araç</div>
+            </div>
+          </a>
+          <a href="#" class="compact-card">
+            <div class="ph thumb" data-label="görsel"></div>
+            <div>
+              <span class="chip" data-cat="uretim" style="font-size:.625rem;padding:3px 7px">Üretim</span>
+              <div class="title" style="margin-top:6px">MRP nedir? Üretim planlamanın çekirdeği</div>
+              <div class="meta">9 dk · Rehber</div>
+            </div>
+          </a>
+        </aside>
+      </div>
+
+      <!-- Popular tool chips -->
+      <div class="popular-tools">
+        <span class="small muted" style="font-weight:600">Popüler araçlar:</span>
+        <a class="tool-chip" href="EOQ Hesaplayıcı.html"><span class="d" style="background:var(--cat-stok)"></span>EOQ</a>
+        <a class="tool-chip" href="#"><span class="d" style="background:var(--cat-stok)"></span>Emniyet Stoğu</a>
+        <a class="tool-chip" href="#"><span class="d" style="background:var(--cat-stok)"></span>Yeniden Sipariş Noktası</a>
+        <a class="tool-chip" href="#"><span class="d" style="background:var(--cat-analiz)"></span>ABC Analizi</a>
+        <a class="tool-chip" href="#"><span class="d" style="background:var(--cat-analiz)"></span>Stok Devir Hızı</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FEATURED TOOLS ============================ -->
+  <section class="section-tight" data-screen-label="Öne Çıkan Araçlar">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Hesaplayıcılar</span>
+          <h2 class="h2" style="margin-top:8px">Öne çıkan araçlar</h2>
+        </div>
+        <a class="link-arrow" href="EOQ Hesaplayıcı.html">Tüm araçlar
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="grid cols-4">
+        <a class="card card-hover tool-card" data-cat="stok" href="EOQ Hesaplayıcı.html">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 9l-5 5-4-4-3 3"/></svg>
+          </div>
+          <div class="name">EOQ Hesaplayıcı</div>
+          <p class="desc">Optimum sipariş miktarını ve toplam maliyeti eğriyle birlikte hesapla.</p>
+          <span class="link-arrow" style="font-size:.875rem">Hesapla →</span>
+        </a>
+        <a class="card card-hover tool-card" data-cat="stok" href="#">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="name">Emniyet Stoğu</div>
+          <p class="desc">Servis seviyesi ve talep değişkenliğinden güvenli stok tamponunu bul.</p>
+          <span class="link-arrow" style="font-size:.875rem">Hesapla →</span>
+        </a>
+        <a class="card card-hover tool-card" data-cat="stok" href="#">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg>
+          </div>
+          <div class="name">Yeniden Sipariş Noktası</div>
+          <p class="desc">Tedarik süresi içindeki talebi karşılayan ROP seviyesini belirle.</p>
+          <span class="link-arrow" style="font-size:.875rem">Hesapla →</span>
+        </a>
+        <a class="card card-hover tool-card" data-cat="analiz" href="#">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="14"/></svg>
+          </div>
+          <div class="name">ABC Analizi</div>
+          <p class="desc">Stok kalemlerini değer katkısına göre A, B, C sınıflarına ayır.</p>
+          <span class="link-arrow" style="font-size:.875rem">Hesapla →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CATEGORY STRIP: STOK ============================ -->
+  <section class="cat-strip" style="--cat:var(--cat-stok)" data-screen-label="Kategori Şeridi Stok">
+    <div class="container">
+      <div class="cat-strip-head">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="cat-tick"></span>
+          <h2 class="h2">Stok Yönetimi</h2>
+        </div>
+        <a class="link-arrow" href="Kategori.html" style="color:var(--cat-stok)">Tümü
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="grid cols-3">
+        <article class="card card-hover std-card">
+          <a href="Blog.html"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Stok Yönetimi</span></div></a>
+          <div class="body">
+            <a href="Blog.html"><h3 class="title">EOQ nedir ve elinizdeki verilerle nasıl hesaplanır?</h3></a>
+            <p class="muted small">Sipariş ve elde tutma maliyetinin dengesi, formülün mantığı ve sık yapılan üç hata.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>8 dk</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Araç</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Emniyet stoğu hesaplayıcı: servis seviyesi → tampon</h3></a>
+            <p class="muted small">Z skoru, tedarik süresi ve talep standart sapmasından güvenli stoğu çıkar.</p>
+            <div class="meta"><span class="badge badge-teal">İnteraktif</span><span>·</span><span>Araç</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Stok Yönetimi</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Yeniden sipariş noktasını doğru kurmanın 4 adımı</h3></a>
+            <p class="muted small">ROP = ortalama talep × tedarik süresi + emniyet stoğu. Pratik örneklerle.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>6 dk</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CATEGORY STRIP: ÜRETİM ============================ -->
+  <section class="cat-strip" style="--cat:var(--cat-uretim)" data-screen-label="Kategori Şeridi Üretim">
+    <div class="container">
+      <div class="cat-strip-head">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="cat-tick"></span>
+          <h2 class="h2">Üretim Planlama</h2>
+        </div>
+        <a class="link-arrow" href="Kategori.html" style="color:var(--cat-uretim)">Tümü
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="cat-strip-asym">
+        <article class="card card-hover featured-card">
+          <a href="#"><div class="ph thumb" data-label="mrp akış şeması görseli"><span class="chip cat-corner" data-cat="uretim">Üretim Planlama</span></div></a>
+          <div class="body">
+            <a href="#"><h2 class="title" style="font-size:1.5rem">MRP nedir? Malzeme ihtiyaç planlamasının çekirdek mantığı</h2></a>
+            <p class="excerpt small">Ana üretim çizelgesinden ürün ağacına, brüt ihtiyaçtan net ihtiyaca: üretim planlamanın iskeletini örnek bir tabloyla kuruyoruz.</p>
+            <div class="meta" style="display:flex;gap:10px;margin-top:16px;font-size:.8125rem;color:var(--text-3)"><span>Ali</span><span>·</span><span>9 dk okuma</span></div>
+          </div>
+        </article>
+        <div class="asym-list">
+          <a href="#" class="compact-card">
+            <div class="ph thumb" data-label="görsel"></div>
+            <div><div class="title">Üretim parti büyüklüğü nasıl belirlenir?</div><div class="meta">5 dk · Araç</div></div>
+          </a>
+          <a href="#" class="compact-card">
+            <div class="ph thumb" data-label="görsel"></div>
+            <div><div class="title">Kapasite planlamada darboğaz tespiti</div><div class="meta">7 dk</div></div>
+          </a>
+          <a href="#" class="compact-card">
+            <div class="ph thumb" data-label="görsel"></div>
+            <div><div class="title">İtme mi çekme mi? Üretim sistemleri</div><div class="meta">6 dk</div></div>
+          </a>
+          <a href="#" class="compact-card">
+            <div class="ph thumb" data-label="görsel"></div>
+            <div><div class="title">Çevrim süresi ve takt time farkı</div><div class="meta">4 dk</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ AUTHORITY STRIP ============================ -->
+  <section class="section" id="hakkinda" data-screen-label="Otorite Şeridi">
+    <div class="container">
+      <div class="authority">
+        <div class="authority-text">
+          <span class="eyebrow">Neden Stokoloji?</span>
+          <h2 class="h2" style="margin:14px 0">Magazin gibi zengin, mühendislik gibi disiplinli</h2>
+          <p class="lead">Stokoloji bir blog yığını değil. Her araç gerçek bir karar problemini çözer; her yazı o aracı ne zaman ve nasıl kullanacağını öğretir. Tahmin yerine hesap, slogan yerine formül.</p>
+          <ul class="why-list">
+            <li><span class="why-num mono">01</span><div><b>Çalışan araçlar.</b> EOQ, emniyet stoğu, ROP ve ABC analizini örnek değerlerle anında dene.</div></li>
+            <li><span class="why-num mono">02</span><div><b>Şeffaf formüller.</b> Her sonucun arkasındaki denklem ve varsayımlar açıkça gösterilir.</div></li>
+            <li><span class="why-num mono">03</span><div><b>Türkçe ve uygulanabilir.</b> Sektörden gerçekçi örnekler, indirilebilir Excel şablonları.</div></li>
+          </ul>
+        </div>
+        <div class="author-box" style="align-self:start">
+          <span class="avatar">A</span>
+          <div>
+            <div class="a-name">Ali</div>
+            <div class="a-role">ODTÜ Endüstri Mühendisliği · Production Developer</div>
+            <p class="a-bio">Tedarik zinciri ve üretim planlama üzerine çalışan bir mühendis. Stokoloji'deki tüm hesap modellerini ve içerikleri yazıyor, sahadaki problemleri sadeleştirip araçlara dönüştürüyor.</p>
+            <div style="display:flex;gap:8px;margin-top:14px">
+              <span class="badge">E-E-A-T</span>
+              <span class="badge">8+ yıl saha</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ LEAD MAGNET ============================ -->
+  <section class="section-tight" id="lead" data-screen-label="Lead Magnet">
+    <div class="container">
+      <div class="lead-magnet">
+        <div>
+          <span class="eyebrow" style="color:var(--teal-light)">Ücretsiz Şablon</span>
+          <h3>Stok takip ve EOQ Excel şablonu</h3>
+          <p>Hazır formüllü çalışma kitabı: kalem bazında EOQ, emniyet stoğu ve yeniden sipariş noktası tek dosyada. E-postanı bırak, hemen gönderelim.</p>
+        </div>
+        <form class="lm-form" onsubmit="return false">
+          <input class="input" type="email" placeholder="E-posta adresin" aria-label="E-posta">
+          <button class="btn btn-primary" type="submit">İndir</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<style>
+  /* Hero band */
+  .hero { padding-top: var(--s-8); padding-bottom: var(--s-7); }
+  .hero-band { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--s-8); align-items: center; }
+  .hero-title { font-size: clamp(2.5rem, 1.5rem + 4vw, 4.25rem); line-height: 1.02; margin: 18px 0 0; max-width: 15ch; }
+  .hero-sub { margin-top: var(--s-5); max-width: 52ch; font-size: 1.25rem; line-height: 1.55; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s-6); }
+  .hero-trust { display: flex; flex-wrap: wrap; gap: var(--s-6); margin-top: var(--s-6); padding-top: var(--s-5); border-top: 1px solid var(--border); }
+  .hero-trust li { font-size: 0.9375rem; color: var(--text-2); }
+  .hero-trust b { color: var(--ink); font-weight: 600; }
+
+  .hero-signature { background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow-2); padding: var(--s-5); }
+  .sig-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; white-space: nowrap; }
+  .sig-live { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; color: var(--text-3); }
+  .sig-live i { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 0 rgba(14,165,164,.5); animation: sigpulse 2.4s var(--ease) infinite; }
+  @keyframes sigpulse { 0% { box-shadow: 0 0 0 0 rgba(14,165,164,.45); } 70%,100% { box-shadow: 0 0 0 7px rgba(14,165,164,0); } }
+  .sig-formula { margin-top: var(--s-4); background: var(--ink-lightest); border-radius: var(--r-md); padding: 11px 14px; font-size: 0.9375rem; color: var(--ink-2); font-weight: 500; }
+  .sig-result-row { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-top: var(--s-5); }
+  .sig-r-label { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); font-weight: 600; }
+  .sig-r-value { font-size: 3rem; line-height: 1; font-weight: 700; color: var(--teal-hover); margin-top: 6px; font-feature-settings: "tnum" 1; }
+  .sig-r-value span { font-size: 0.875rem; color: var(--text-3); font-weight: 500; margin-left: 6px; }
+  .sig-spark { width: 150px; height: auto; flex-shrink: 0; }
+  .sig-split { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; margin-top: var(--s-5); }
+  .sig-split .sp { background: #fff; padding: 10px 12px; }
+  .sig-split .k { display: block; font-size: 0.625rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-3); }
+  .sig-split .v { display: block; font-weight: 600; font-size: 0.875rem; color: var(--ink); margin-top: 3px; }
+  .sig-split .v.total { color: var(--teal-hover); }
+  .hero-signature .btn { margin-top: var(--s-5); }
+  .sig-tool:hover .fx { color: var(--teal-hover); }
+
+  /* Magazine featured block */
+  .hero-grid { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s-6); align-items: start; }
+  .hero-side { display: flex; flex-direction: column; }
+  .popular-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: var(--s-6); padding-top: var(--s-5); border-top: 1px solid var(--border); }
+  .tool-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 100px; font-size: 0.875rem; font-weight: 600; color: var(--ink-2); background: #fff; transition: .15s; }
+  .tool-chip:hover { border-color: var(--ink-3); background: var(--ink-lightest); }
+  .tool-chip .d { width: 7px; height: 7px; border-radius: 50%; }
+
+  .cat-strip { padding-block: var(--s-8); border-top: 1px solid var(--border); }
+  .cat-strip-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-6); }
+  .cat-tick { width: 28px; height: 4px; border-radius: 2px; background: var(--cat); }
+  .cat-strip-head .h2 { color: var(--ink); }
+  .cat-strip-asym { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s-6); align-items: start; }
+  .asym-list { display: flex; flex-direction: column; }
+
+  .authority { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--s-7); align-items: center; }
+  .why-list { display: grid; gap: var(--s-4); margin-top: var(--s-5); }
+  .why-list li { display: flex; gap: var(--s-4); color: var(--text-2); }
+  .why-num { color: var(--teal); font-weight: 700; font-size: 0.875rem; padding-top: 3px; }
+  .why-list b { color: var(--ink); }
+
+  @media (max-width: 860px) {
+    .hero-band { grid-template-columns: 1fr; gap: var(--s-6); }
+    .hero-grid, .cat-strip-asym, .authority { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script src="assets/theme.js"></script>
+<script>
+/* Hero signature: mini EOQ cost curve (the brand's imza) */
+(function () {
+  const canvas = document.querySelector('.sig-spark');
+  if (!canvas) return;
+  const D = 12000, S = 250, H = 18;
+  const eoq = Math.sqrt((2 * D * S) / H);
+
+  function draw() {
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cssW = canvas.clientWidth || 150, cssH = cssW * 0.5;
+    canvas.width = cssW * dpr; canvas.height = cssH * dpr;
+    canvas.style.height = cssH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    const padT = 8, padB = 8, padL = 4, padR = 4;
+    const W = cssW - padL - padR, Hh = cssH - padT - padB;
+    const qMax = eoq * 2.4, qMin = qMax * 0.05;
+    const order = q => (D / q) * S, hold = q => (q / 2) * H, total = q => order(q) + hold(q);
+    const yMax = Math.max(total(qMin), total(qMax)) * 1.05;
+    const X = q => padL + ((q - qMin) / (qMax - qMin)) * W;
+    const Y = v => padT + Hh - (Math.min(v, yMax) / yMax) * Hh;
+
+    function curve(fn, color, width, dash) {
+      ctx.beginPath(); ctx.setLineDash(dash || []); ctx.strokeStyle = color; ctx.lineWidth = width;
+      for (let i = 0; i <= 90; i++) { const q = qMin + (qMax - qMin) * (i / 90); const x = X(q), y = Y(fn(q)); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    curve(order, '#9db4c8', 1.25, [3, 2]);
+    curve(hold, '#c2ccd6', 1.25, [3, 2]);
+    // total area fill
+    ctx.beginPath();
+    for (let i = 0; i <= 90; i++) { const q = qMin + (qMax - qMin) * (i / 90); const x = X(q), y = Y(total(q)); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+    ctx.lineTo(X(qMax), padT + Hh); ctx.lineTo(X(qMin), padT + Hh); ctx.closePath();
+    ctx.fillStyle = 'rgba(14,165,164,.08)'; ctx.fill();
+    curve(total, '#0ea5a4', 2.25);
+    // EOQ dot
+    const ex = X(eoq), ey = Y(total(eoq));
+    ctx.strokeStyle = 'rgba(14,165,164,.3)'; ctx.lineWidth = 1; ctx.setLineDash([2, 2]);
+    ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(ex, padT + Hh); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#0ea5a4'; ctx.beginPath(); ctx.arc(ex, ey, 3.5, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+  }
+  draw();
+  window.addEventListener('resize', draw);
+})();
+</script>
+</body>
+</html>

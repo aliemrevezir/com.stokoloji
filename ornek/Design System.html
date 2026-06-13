@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema Sistemi — Foundations &amp; Components | Stokoloji</title>
+<meta name="description" content="Stokoloji tema sistemi: renk, tipografi, grid, boşluk ve component kütüphanesi tüm durumlarıyla.">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main data-screen-label="Design System Showcase">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Ana Sayfa</a><span class="sep">/</span><span class="current" style="--cat:var(--ink-3)">Tema Sistemi</span></nav>
+  </div>
+
+  <!-- Intro -->
+  <section style="padding-block:var(--s-6) var(--s-7)">
+    <div class="container">
+      <span class="eyebrow">Stokoloji · Tema Sistemi</span>
+      <h1 class="display" style="margin:16px 0;max-width:18ch">Otorite, netlik, derinlik — tek bir sistemden</h1>
+      <p class="lead" style="max-width:60ch">Üç disiplin katmanı: petrol yapı kurar, teal yalnızca aksiyon ve sonucu vurgular, kategori renkleri yalnızca editoryal etiketlemede kullanılır. Bu üç katman asla birbirine karışmaz.</p>
+    </div>
+  </section>
+
+  <div class="container ds-body">
+
+    <!-- ===================== COLORS ===================== -->
+    <section class="ds-section" id="ds-colors">
+      <div class="ds-section-head"><span class="ds-num mono">01</span><h2 class="h2">Renk Sistemi</h2></div>
+
+      <h4 class="ds-label">Yapısal marka — petrol / koyu lacivert</h4>
+      <div class="swatch-row">
+        <div class="swatch"><span class="sw" style="background:#0f2a43"></span><b>ink</b><code>#0f2a43</code></div>
+        <div class="swatch"><span class="sw" style="background:#163a5c"></span><b>ink-2</b><code>#163a5c</code></div>
+        <div class="swatch"><span class="sw" style="background:#1e4e79"></span><b>ink-3</b><code>#1e4e79</code></div>
+        <div class="swatch"><span class="sw" style="background:#d6e4f0"></span><b>ink-light</b><code>#d6e4f0</code></div>
+        <div class="swatch"><span class="sw" style="background:#eef4fa;border:1px solid var(--border)"></span><b>ink-lightest</b><code>#eef4fa</code></div>
+      </div>
+
+      <h4 class="ds-label" style="margin-top:var(--s-6)">Aksiyon — teal (yalnızca buton, CTA, aktif, sonuç)</h4>
+      <div class="swatch-row">
+        <div class="swatch"><span class="sw" style="background:#0ea5a4"></span><b>teal</b><code>#0ea5a4</code></div>
+        <div class="swatch"><span class="sw" style="background:#0c8a89"></span><b>teal-hover</b><code>#0c8a89</code></div>
+        <div class="swatch"><span class="sw" style="background:#2cc3c0"></span><b>teal-light</b><code>#2cc3c0</code></div>
+        <div class="swatch"><span class="sw" style="background:#e7f6f6;border:1px solid var(--border)"></span><b>teal-tint</b><code>#e7f6f6</code></div>
+      </div>
+
+      <h4 class="ds-label" style="margin-top:var(--s-6)">Kategori aksanları — yalnızca editoryal etiketleme</h4>
+      <div class="swatch-row">
+        <div class="swatch"><span class="sw" style="background:#1e4e79"></span><b>Stok Yönetimi</b><code>#1e4e79</code></div>
+        <div class="swatch"><span class="sw" style="background:#b45309"></span><b>Üretim Planlama</b><code>#b45309</code></div>
+        <div class="swatch"><span class="sw" style="background:#9f1239"></span><b>Maliyet / Finans</b><code>#9f1239</code></div>
+        <div class="swatch"><span class="sw" style="background:#6d28d9"></span><b>Analiz / Veri</b><code>#6d28d9</code></div>
+        <div class="swatch"><span class="sw" style="background:#15803d"></span><b>Tedarik</b><code>#15803d</code></div>
+      </div>
+
+      <div class="callout" style="margin-top:var(--s-6);max-width:none">
+        <div class="callout-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Disiplin kuralı
+        </div>
+        <p class="muted" style="font-size:.9375rem">Petrol = yapı. Teal = aksiyon. Kategori renkleri = etiket. Magazin zenginliğini kategori katmanı verir; mühendislik ciddiyetini tek-aksiyon disiplini korur. Tüm metin/zemin kombinasyonları WCAG AA karşılar.</p>
+      </div>
+    </section>
+
+    <!-- ===================== TYPOGRAPHY ===================== -->
+    <section class="ds-section" id="ds-type">
+      <div class="ds-section-head"><span class="ds-num mono">02</span><h2 class="h2">Tipografi</h2></div>
+      <div class="type-fonts">
+        <div class="font-card"><div class="font-name" style="font-family:var(--font-display)">Newsreader</div><div class="small muted">Editoryal başlık · serif</div></div>
+        <div class="font-card"><div class="font-name">Geist</div><div class="small muted">UI &amp; gövde · grotesk</div></div>
+        <div class="font-card"><div class="font-name mono">JetBrains Mono</div><div class="small muted">Veri &amp; sonuç · monospace</div></div>
+      </div>
+
+      <div class="type-scale">
+        <div class="type-row"><span class="type-meta mono">Display · 64</span><span class="display">Stok değil, sistem</span></div>
+        <div class="type-row"><span class="type-meta mono">H1 · 44</span><span class="h1">Ekonomik sipariş miktarı</span></div>
+        <div class="type-row"><span class="type-meta mono">H2 · 32</span><span class="h2">Maliyet eğrisini oku</span></div>
+        <div class="type-row"><span class="type-meta mono">H3 · 22</span><span class="h3">Emniyet stoğu nedir?</span></div>
+        <div class="type-row"><span class="type-meta mono">Gövde · 17</span><span style="max-width:60ch">Sipariş verme ve elde tutma maliyetleri ters yönde çalışır; EOQ ikisinin dengelendiği noktadır. Editoryal gövde 65–75 karakterde tutulur.</span></div>
+        <div class="type-row"><span class="type-meta mono">Mono · veri</span><span class="mono" style="font-size:1.5rem;font-weight:700;color:var(--teal-hover)">577 adet</span></div>
+        <div class="type-row"><span class="type-meta mono">Etiket · 12</span><span class="eyebrow">Stok &amp; Üretim Yönetimi</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== SPACING / RADIUS / SHADOW ===================== -->
+    <section class="ds-section" id="ds-space">
+      <div class="ds-section-head"><span class="ds-num mono">03</span><h2 class="h2">Boşluk, Köşe, Gölge</h2></div>
+      <div class="grid cols-3">
+        <div>
+          <h4 class="ds-label">Spacing ölçeği (4 tabanlı)</h4>
+          <div class="space-demo">
+            <div><span class="sp" style="width:4px"></span><code>4</code></div>
+            <div><span class="sp" style="width:8px"></span><code>8</code></div>
+            <div><span class="sp" style="width:12px"></span><code>12</code></div>
+            <div><span class="sp" style="width:16px"></span><code>16</code></div>
+            <div><span class="sp" style="width:24px"></span><code>24</code></div>
+            <div><span class="sp" style="width:32px"></span><code>32</code></div>
+            <div><span class="sp" style="width:48px"></span><code>48</code></div>
+            <div><span class="sp" style="width:64px"></span><code>64</code></div>
+          </div>
+        </div>
+        <div>
+          <h4 class="ds-label">Köşe yarıçapı</h4>
+          <div class="radius-demo">
+            <div><span class="rd" style="border-radius:6px"></span><code>6</code></div>
+            <div><span class="rd" style="border-radius:8px"></span><code>8</code></div>
+            <div><span class="rd" style="border-radius:12px"></span><code>12</code></div>
+            <div><span class="rd" style="border-radius:16px"></span><code>16</code></div>
+          </div>
+        </div>
+        <div>
+          <h4 class="ds-label">Gölge (2 kademe)</h4>
+          <div class="shadow-demo">
+            <div class="shd" style="box-shadow:var(--shadow-1)">shadow-1</div>
+            <div class="shd" style="box-shadow:var(--shadow-2)">shadow-2</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BUTTONS & CONTROLS ===================== -->
+    <section class="ds-section" id="ds-buttons">
+      <div class="ds-section-head"><span class="ds-num mono">04</span><h2 class="h2">Butonlar &amp; Form</h2></div>
+      <h4 class="ds-label">Buton türleri ve durumları</h4>
+      <div class="btn-grid">
+        <div class="btn-cell"><button class="btn btn-primary">Primary</button><code>default</code></div>
+        <div class="btn-cell"><button class="btn btn-primary" style="background:var(--teal-hover)">Primary</button><code>hover</code></div>
+        <div class="btn-cell"><button class="btn btn-primary" disabled>Primary</button><code>disabled</code></div>
+        <div class="btn-cell"><button class="btn btn-secondary">Secondary</button><code>default</code></div>
+        <div class="btn-cell"><button class="btn btn-ghost">Ghost</button><code>default</code></div>
+        <div class="btn-cell"><a class="link-arrow" href="#">Bağlantı →</a><code>link</code></div>
+      </div>
+
+      <div class="grid cols-2" style="margin-top:var(--s-6);align-items:start">
+        <div class="stack">
+          <div class="field"><label>Standart input</label><input class="input" value="12000"></div>
+          <div class="field"><label>Birim sonek</label><div class="input-group"><input class="input" value="250"><span class="suffix">₺</span></div></div>
+          <div class="field is-error"><label>Hata durumu</label><input class="input error" value="-5"><span class="err-msg">Değer 0'dan büyük olmalı.</span></div>
+        </div>
+        <div class="stack">
+          <div class="field"><label>Select</label><select class="select"><option>En yeni</option><option>En çok okunan</option></select></div>
+          <div class="field"><label>Slider</label><input type="range" min="0" max="100" value="65"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span class="chip" data-cat="stok">Stok</span>
+            <span class="chip" data-cat="uretim">Üretim</span>
+            <span class="chip" data-cat="maliyet">Maliyet</span>
+            <span class="badge badge-teal">İnteraktif</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <span class="toast"><span class="dot"></span>Şablon e-postana gönderildi</span>
+            <span class="tooltip-demo"><button class="btn btn-secondary btn-sm">Tooltip</button><span class="tt">Sermaye + depo + fire</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CARDS ===================== -->
+    <section class="ds-section" id="ds-cards">
+      <div class="ds-section-head"><span class="ds-num mono">05</span><h2 class="h2">İçerik Kartları</h2></div>
+      <div class="grid cols-3">
+        <article class="card card-hover std-card">
+          <div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Stok Yönetimi</span></div>
+          <div class="body"><h3 class="title">StandardCard</h3><p class="muted small">Görsel + kategori rozeti + başlık + özet + meta satırı.</p><div class="meta"><span>Ali</span><span>·</span><span>6 dk</span></div></div>
+        </article>
+        <a class="card card-hover tool-card" data-cat="stok" href="#">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M19 9l-5 5-4-4-3 3"/></svg></div>
+          <div class="name">ToolCard</div>
+          <p class="desc">Tool adı + ne işe yarar + mikro-CTA. Üstte kategori-renkli accent.</p>
+          <span class="link-arrow" style="font-size:.875rem">Hesapla →</span>
+        </a>
+        <div class="card" style="padding:var(--s-4)">
+          <div class="ds-label" style="margin-bottom:8px">CompactCard</div>
+          <a href="#" class="compact-card" style="padding-top:0"><div class="ph thumb" data-label="g"></div><div><div class="title">Liste satırı kartı</div><div class="meta">4 dk · Rehber</div></div></a>
+          <a href="#" class="compact-card"><div class="ph thumb" data-label="g"></div><div><div class="title">İkinci satır örneği</div><div class="meta">6 dk · Araç</div></div></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESULT / FORMULA ===================== -->
+    <section class="ds-section" id="ds-result">
+      <div class="ds-section-head"><span class="ds-num mono">06</span><h2 class="h2">Sonuç &amp; Formül Bileşenleri</h2></div>
+      <div class="grid cols-2" style="align-items:start">
+        <div class="result">
+          <div class="result-label">Ekonomik Sipariş Miktarı</div>
+          <div class="result-value">577</div>
+          <div class="result-unit">adet / sipariş</div>
+          <div class="result-note">ResultDisplay: büyük monospace sonuç + birim + tek satır yorum.</div>
+        </div>
+        <div class="formula-card">
+          <div class="formula">EOQ = √( 2 × D × S / H )</div>
+          <div class="legend"><span><b>D</b> = Yıllık talep</span><span><b>S</b> = Sipariş maliyeti</span><span><b>H</b> = Elde tutma maliyeti</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TABS / PAGINATION / FAQ ===================== -->
+    <section class="ds-section" id="ds-nav">
+      <div class="ds-section-head"><span class="ds-num mono">07</span><h2 class="h2">Navigasyon &amp; Editoryal</h2></div>
+      <div class="grid cols-2" style="align-items:start">
+        <div class="stack">
+          <div>
+            <h4 class="ds-label">Tabs</h4>
+            <div class="tabs"><button class="active">Genel Bakış</button><button>Formül</button><button>Örnek</button></div>
+          </div>
+          <div>
+            <h4 class="ds-label" style="margin-top:var(--s-4)">Pagination</h4>
+            <nav class="pagination" style="justify-content:flex-start"><span class="current">1</span><a href="#">2</a><a href="#">3</a><span class="ellipsis">…</span><a href="#">6</a></nav>
+          </div>
+          <div>
+            <h4 class="ds-label" style="margin-top:var(--s-4)">Breadcrumb</h4>
+            <nav class="breadcrumb" style="--cat:var(--cat-stok);padding-block:0"><a href="#">Ana Sayfa</a><span class="sep">/</span><a href="#">Stok</a><span class="sep">/</span><span class="current">EOQ</span></nav>
+          </div>
+        </div>
+        <div>
+          <h4 class="ds-label">FAQ Accordion</h4>
+          <details class="faq-item" open><summary>EOQ ne zaman kullanılır?</summary><div class="faq-a">Sabit ve bilinen talep varsayımı altında, sipariş miktarını optimize etmek için.</div></details>
+          <details class="faq-item"><summary>Talep belirsizse?</summary><div class="faq-a">EOQ miktarı verir; belirsizliği emniyet stoğu ve ROP yönetir.</div></details>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<style>
+  .ds-body { padding-bottom: var(--s-9); }
+  .ds-section { padding-block: var(--s-7); border-top: 1px solid var(--border); }
+  .ds-section-head { display: flex; align-items: center; gap: 14px; margin-bottom: var(--s-6); }
+  .ds-num { color: var(--teal); font-weight: 700; font-size: 0.875rem; }
+  .ds-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); margin-bottom: var(--s-4); font-weight: 600; }
+
+  .swatch-row { display: flex; flex-wrap: wrap; gap: var(--s-4); }
+  .swatch { display: flex; flex-direction: column; gap: 6px; min-width: 110px; }
+  .swatch .sw { height: 56px; border-radius: var(--r-md); }
+  .swatch b { font-size: 0.8125rem; color: var(--ink); }
+  .swatch code, .space-demo code, .radius-demo code { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-3); }
+
+  .type-fonts { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-bottom: var(--s-6); }
+  .font-card { border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--s-4); flex: 1; min-width: 180px; }
+  .font-card .font-name { font-size: 1.75rem; color: var(--ink); margin-bottom: 4px; }
+  .type-scale { display: grid; gap: var(--s-4); }
+  .type-row { display: grid; grid-template-columns: 110px 1fr; gap: var(--s-5); align-items: baseline; padding-block: 8px; border-bottom: 1px solid var(--border-2); }
+  .type-meta { font-size: 0.6875rem; color: var(--text-3); }
+
+  .space-demo, .radius-demo { display: grid; gap: 10px; }
+  .space-demo > div, .radius-demo > div { display: flex; align-items: center; gap: 12px; }
+  .space-demo .sp { height: 16px; background: var(--teal); border-radius: 3px; }
+  .radius-demo .rd { width: 44px; height: 44px; background: var(--ink-lightest); border: 1px solid var(--ink-light); }
+  .shadow-demo { display: grid; gap: var(--s-4); }
+  .shadow-demo .shd { background: #fff; border: 1px solid var(--border-2); border-radius: var(--r-md); padding: 18px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-2); }
+
+  .btn-grid { display: flex; flex-wrap: wrap; gap: var(--s-5); align-items: flex-start; }
+  .btn-cell { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .btn-cell code { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-3); }
+
+  @media (max-width: 640px) { .type-row { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+
+<script src="assets/theme.js"></script>
+<script>
+  document.querySelectorAll('.tabs').forEach(t => t.addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON') { t.querySelectorAll('button').forEach(b => b.classList.remove('active')); e.target.classList.add('active'); }
+  }));
+</script>
+</body>
+</html>

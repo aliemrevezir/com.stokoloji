@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stok Yönetimi — Araçlar ve Rehberler | Stokoloji</title>
+<meta name="description" content="Stok yönetimi kategorisi: EOQ, emniyet stoğu, yeniden sipariş noktası ve stok devir hızı üzerine hesaplayıcı araçlar ve uygulamalı rehberler.">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main data-screen-label="Kategori Arşiv Sayfası">
+  <div class="container">
+    <nav class="breadcrumb" style="--cat:var(--cat-stok)">
+      <a href="index.html">Ana Sayfa</a><span class="sep">/</span>
+      <a href="Kategori.html">Kategoriler</a><span class="sep">/</span>
+      <span class="current">Stok Yönetimi</span>
+    </nav>
+  </div>
+
+  <!-- Category header -->
+  <section class="cat-hero" style="--cat:var(--cat-stok)">
+    <div class="container">
+      <span class="cat-tick" style="width:36px;height:5px;display:block;border-radius:3px;background:var(--cat);margin-bottom:var(--s-4)"></span>
+      <h1 class="h1" style="margin-bottom:var(--s-3)">Stok Yönetimi</h1>
+      <p class="lead" style="max-width:60ch">Ne kadar, ne zaman ve hangi kalemden sipariş vereceğini hesapla. EOQ'dan emniyet stoğuna, stok yönetiminin tüm araç ve rehberleri burada.</p>
+      <div class="cat-tabs">
+        <a href="Kategori.html" class="cat-tab active" style="--c:var(--cat-stok)">Stok Yönetimi</a>
+        <a href="#" class="cat-tab" style="--c:var(--cat-uretim)">Üretim Planlama</a>
+        <a href="#" class="cat-tab" style="--c:var(--cat-maliyet)">Maliyet / Finans</a>
+        <a href="#" class="cat-tab" style="--c:var(--cat-analiz)">Analiz / Veri</a>
+        <a href="#" class="cat-tab" style="--c:var(--cat-tedarik)">Tedarik</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Archive grid -->
+  <section class="section-tight" style="padding-top:var(--s-6)">
+    <div class="container">
+      <div class="archive-head">
+        <span class="small muted"><b style="color:var(--ink)">18</b> içerik · araç ve rehber</span>
+        <div class="archive-sort">
+          <label class="small muted" for="sortSel">Sırala:</label>
+          <select class="select" id="sortSel" style="width:auto;padding:8px 12px">
+            <option>En yeni</option>
+            <option>En çok okunan</option>
+            <option>Önce araçlar</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid cols-3" style="margin-top:var(--s-5)">
+        <article class="card card-hover std-card">
+          <a href="Blog.html"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Rehber</span></div></a>
+          <div class="body">
+            <a href="Blog.html"><h3 class="title">EOQ nedir ve nasıl hesaplanır? 5 adımlık rehber</h3></a>
+            <p class="muted small">Sipariş ve elde tutma maliyetinin dengesi, formülün mantığı ve örnek tablo.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>8 dk</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="EOQ Hesaplayıcı.html"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Araç</span></div></a>
+          <div class="body">
+            <a href="EOQ Hesaplayıcı.html"><h3 class="title">EOQ Hesaplayıcı: maliyet eğrisiyle optimum sipariş</h3></a>
+            <p class="muted small">Yıllık talep, sipariş ve elde tutma maliyetinden EOQ'yu anında hesapla.</p>
+            <div class="meta"><span class="badge badge-teal">İnteraktif</span><span>·</span><span>Araç</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Araç</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Emniyet stoğu hesaplayıcı: servis seviyesi → tampon</h3></a>
+            <p class="muted small">Z skoru, tedarik süresi ve talep sapmasından güvenli stoğu çıkar.</p>
+            <div class="meta"><span class="badge badge-teal">İnteraktif</span><span>·</span><span>Araç</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Rehber</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Yeniden sipariş noktasını doğru kurmanın 4 adımı</h3></a>
+            <p class="muted small">ROP = ortalama talep × tedarik süresi + emniyet stoğu, pratik örneklerle.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>6 dk</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Rehber</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Stok devir hızı kaç olmalı? Sektör ortalamaları</h3></a>
+            <p class="muted small">Devir hızını yorumlama, düşük ve yüksek devrin işaret ettikleri.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>7 dk</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Rehber</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Min-maks stok sistemi nasıl kurulur?</h3></a>
+            <p class="muted small">Basit ama güçlü bir yenileme politikası: ne zaman, ne kadar.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>5 dk</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Rehber</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Ölü stok nasıl tespit edilir ve eritilir?</h3></a>
+            <p class="muted small">Hareketsiz stoğu bulma, raporlama ve elden çıkarma stratejileri.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>6 dk</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Araç</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Devir hızı hesaplayıcı: COGS / ortalama stok</h3></a>
+            <p class="muted small">Stok devir hızını ve gün cinsinden elde tutma süresini ölç.</p>
+            <div class="meta"><span class="badge badge-teal">İnteraktif</span><span>·</span><span>Araç</span></div>
+          </div>
+        </article>
+        <article class="card card-hover std-card">
+          <a href="#"><div class="ph thumb" data-label="görsel"><span class="chip cat-corner" data-cat="stok">Rehber</span></div></a>
+          <div class="body">
+            <a href="#"><h3 class="title">Konsinye stok: avantajları ve muhasebesi</h3></a>
+            <p class="muted small">Tedarikçi konsinyesinin nakit akışına ve riske etkisi.</p>
+            <div class="meta"><span>Ali</span><span>·</span><span>5 dk</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Pagination -->
+      <nav class="pagination" style="margin-top:var(--s-8)" aria-label="Sayfalama">
+        <span class="ellipsis" style="cursor:default">‹</span>
+        <span class="current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <span class="ellipsis">…</span>
+        <a href="#">6</a>
+        <a href="#">›</a>
+      </nav>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<style>
+  .cat-hero { background: var(--ink-lightest); border-bottom: 1px solid var(--border); padding-block: var(--s-7); }
+  .cat-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--s-6); }
+  .cat-tab { padding: 9px 16px; border-radius: 100px; border: 1px solid var(--border); background: #fff; font-weight: 600; font-size: 0.875rem; color: var(--text-2); transition: .15s; }
+  .cat-tab:hover { border-color: var(--c); color: var(--c); }
+  .cat-tab.active { background: var(--c); border-color: var(--c); color: #fff; }
+  .archive-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); }
+  .archive-sort { display: flex; align-items: center; gap: 8px; }
+  @media (max-width: 640px) { .archive-head { flex-direction: row; align-items: center; } }
+</style>
+
+<script src="assets/theme.js"></script>
+</body>
+</html>

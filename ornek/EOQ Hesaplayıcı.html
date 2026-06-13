@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOQ Hesaplayıcı — Ekonomik Sipariş Miktarı | Stokoloji</title>
+<meta name="description" content="Ekonomik sipariş miktarını (EOQ) yıllık talep, sipariş ve elde tutma maliyetinden anında hesapla. Maliyet eğrisi grafiğiyle optimum sipariş noktasını gör.">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main data-screen-label="EOQ Tool Sayfası">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" style="--cat:var(--cat-stok)">
+      <a href="index.html">Ana Sayfa</a>
+      <span class="sep">/</span>
+      <a href="Kategori.html">Stok Yönetimi</a>
+      <span class="sep">/</span>
+      <span class="current">EOQ Hesaplayıcı</span>
+    </nav>
+  </div>
+
+  <!-- ===================== TOOL HEADER + LAYOUT ===================== -->
+  <div class="container">
+    <div class="tool-layout">
+      <!-- LEFT: content -->
+      <div class="tool-main">
+        <header class="tool-head">
+          <span class="chip" data-cat="stok">Stok Yönetimi</span>
+          <h1 class="h1" style="margin:14px 0">EOQ Hesaplayıcı: ekonomik sipariş miktarını bul</h1>
+          <p class="lead">Yıllık talep, sipariş başına maliyet ve birim elde tutma maliyetini gir; optimum sipariş miktarını ve toplam yıllık maliyeti maliyet eğrisiyle birlikte anında gör.</p>
+        </header>
+
+        <!-- Mobile-first: calculator appears here on small screens via order -->
+        <section class="def-block">
+          <h2 class="h3">EOQ nedir?</h2>
+          <p class="muted">Ekonomik Sipariş Miktarı (Economic Order Quantity), her seferinde ne kadar sipariş verirsen toplam stok maliyetinin en düşük olacağını söyleyen miktardır. Çok sık sipariş verirsen sipariş maliyetin artar; çok büyük sipariş verirsen elde tutma maliyetin artar. EOQ bu iki maliyetin tam dengelendiği noktadır.</p>
+        </section>
+
+        <!-- Formula -->
+        <section style="margin-top:var(--s-6)">
+          <div class="formula-card">
+            <div class="formula">EOQ = √( 2 × D × S / H )</div>
+            <div class="legend">
+              <span><b>D</b> = Yıllık talep (adet / yıl)</span>
+              <span><b>S</b> = Sipariş başına maliyet (TL)</span>
+              <span><b>H</b> = Birim başına yıllık elde tutma maliyeti (TL)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Interpretation -->
+        <section class="def-block" style="margin-top:var(--s-7)">
+          <h2 class="h3">Sonuç nasıl yorumlanır?</h2>
+          <p class="muted">EOQ noktasında sipariş verme maliyeti ile elde tutma maliyeti birbirine eşitlenir; toplam maliyet eğrisi bu noktada minimuma iner. Grafikte mavi (sipariş) ve gri (elde tutma) eğrilerinin kesiştiği yer, teal toplam maliyet eğrisinin dibine denk gelir. Pratikte tedarikçinin minimum sipariş adedi veya palet/koli katları nedeniyle EOQ'yu en yakın uygulanabilir miktara yuvarlarsın.</p>
+          <p class="muted" style="margin-top:var(--s-4)">EOQ'yu bulduktan sonra <a href="#" style="color:var(--teal-hover);font-weight:500;text-decoration:underline;text-underline-offset:2px">yeniden sipariş noktası</a> ve <a href="#" style="color:var(--teal-hover);font-weight:500;text-decoration:underline;text-underline-offset:2px">emniyet stoğu</a> hesaplarıyla birleştirerek tam bir sipariş politikası kurabilirsin. Mantığın derinine inmek için <a href="Blog.html" style="color:var(--teal-hover);font-weight:500;text-decoration:underline;text-underline-offset:2px">EOQ rehberini</a> oku.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="def-block" style="margin-top:var(--s-7)">
+          <h2 class="h3" style="margin-bottom:var(--s-3)">Sık sorulan sorular</h2>
+          <details class="faq-item" open>
+            <summary>EOQ formülündeki elde tutma maliyetine neler girer?</summary>
+            <div class="faq-a">Birim başına yıllık elde tutma maliyeti; depo alanı, sermaye maliyeti (faiz/fırsat maliyeti), sigorta, fire ve eskime gibi kalemleri kapsar. Çoğu işletme bunu birim maliyetin %15–30'u olarak alır. Örneğin 100 TL'lik bir ürün için %20 elde tutma oranı, H = 20 TL/yıl demektir.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Talep belirsizse EOQ yine kullanılır mı?</summary>
+            <div class="faq-a">Klasik EOQ sabit ve bilinen talep varsayar. Talep dalgalanıyorsa EOQ'yu sipariş miktarı için kullanmaya devam edebilir, belirsizliği emniyet stoğu ve yeniden sipariş noktası ile yönetirsin. EOQ "ne kadar", ROP ise "ne zaman" sipariş vereceğini söyler.</div>
+          </details>
+          <details class="faq-item">
+            <summary>EOQ'yu tam sayıya yuvarlamak sorun olur mu?</summary>
+            <div class="faq-a">Hayır. Toplam maliyet eğrisi EOQ etrafında oldukça düzdür; optimumun %10–20 yakınındaki miktarlarda toplam maliyet çok az artar. Bu yüzden koli/palet katlarına yuvarlamak pratikte güvenlidir.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Miktar iskontosu varsa EOQ değişir mi?</summary>
+            <div class="faq-a">Evet. Kademeli fiyat indirimi olduğunda her fiyat kademesi için EOQ ve toplam maliyet (satın alma dahil) hesaplanır, en düşük toplamı veren miktar seçilir. Bu, "miktar iskontolu EOQ" modelidir.</div>
+          </details>
+        </section>
+
+        <!-- Related tools -->
+        <section class="def-block" style="margin-top:var(--s-7)">
+          <h2 class="h3" style="margin-bottom:var(--s-5)">İlgili araçlar</h2>
+          <div class="grid cols-3">
+            <a class="card card-hover tool-card" data-cat="stok" href="#">
+              <div class="name" style="font-size:1.0625rem">Emniyet Stoğu</div>
+              <p class="desc">Talep belirsizliğine karşı tampon stoğu hesapla.</p>
+              <span class="link-arrow" style="font-size:.8125rem">Hesapla →</span>
+            </a>
+            <a class="card card-hover tool-card" data-cat="stok" href="#">
+              <div class="name" style="font-size:1.0625rem">Yeniden Sipariş Noktası</div>
+              <p class="desc">Tedarik süresindeki talebi karşılayan ROP seviyesi.</p>
+              <span class="link-arrow" style="font-size:.8125rem">Hesapla →</span>
+            </a>
+            <a class="card card-hover tool-card" data-cat="analiz" href="#">
+              <div class="name" style="font-size:1.0625rem">Stok Devir Hızı</div>
+              <p class="desc">Stoğun yılda kaç kez döndüğünü ölç.</p>
+              <span class="link-arrow" style="font-size:.8125rem">Hesapla →</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Author -->
+        <section style="margin-top:var(--s-7)">
+          <div class="author-box">
+            <span class="avatar">A</span>
+            <div>
+              <div class="a-name">Ali</div>
+              <div class="a-role">ODTÜ Endüstri Mühendisliği · Production Developer</div>
+              <p class="a-bio">Bu hesap modeli klasik Wilson EOQ formülüne dayanır ve sabit talep, sabit tedarik süresi, anlık teslimat varsayar. Saha problemlerini sadeleştirip karar destek araçlarına dönüştürüyorum.</p>
+            </div>
+          </div>
+          <p class="small muted" style="margin-top:var(--s-4)">Yasal uyarı: Stokoloji araçları eğitim ve karar destek amaçlıdır. Sonuçlar işletmenizin gerçek maliyet yapısına göre doğrulanmalıdır; profesyonel danışmanlık yerine geçmez.</p>
+        </section>
+      </div>
+
+      <!-- RIGHT: sticky calculator -->
+      <aside class="tool-aside">
+        <div class="calc-card" id="eoqCalc">
+          <div class="calc-head">
+            <span class="tool-card-icon" style="width:38px;height:38px;border-radius:8px;display:grid;place-items:center;background:var(--teal-tint);color:var(--teal-hover)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+            </span>
+            <div>
+              <div style="font-weight:600;color:var(--ink)">EOQ Hesaplayıcı</div>
+              <div class="small muted">Değerleri değiştir, anında gör</div>
+            </div>
+          </div>
+          <div class="calc-body">
+            <!-- Result -->
+            <div class="result">
+              <div class="result-label">Ekonomik Sipariş Miktarı</div>
+              <div class="result-value" id="r-eoq">577</div>
+              <div class="result-unit">adet / sipariş</div>
+              <div class="result-note" id="r-note">Yılda ~21 sipariş · siparişler arası ~17 gün</div>
+            </div>
+
+            <!-- Secondary results -->
+            <div class="result-secondary">
+              <div class="cell"><div class="k">Yıllık sipariş sayısı</div><div class="v" id="r-orders">20,8</div></div>
+              <div class="cell"><div class="k">Sipariş döngüsü (gün)</div><div class="v" id="r-cycle">17,5</div></div>
+              <div class="cell"><div class="k">Yıllık sipariş maliyeti</div><div class="v" id="r-order-cost">5.196 ₺</div></div>
+              <div class="cell"><div class="k">Yıllık elde tutma</div><div class="v" id="r-hold-cost">5.196 ₺</div></div>
+            </div>
+
+            <!-- Total cost -->
+            <div style="display:flex;align-items:baseline;justify-content:space-between;padding:4px 2px">
+              <span class="small" style="font-weight:600;color:var(--ink-2)">Toplam yıllık stok maliyeti</span>
+              <span class="mono" id="r-total" style="font-weight:700;color:var(--ink);font-size:1.0625rem">10.392 ₺</span>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Inputs -->
+            <div class="field">
+              <label for="in-d">Yıllık talep (D)</label>
+              <div class="input-group">
+                <input class="input" id="in-d" type="number" min="1" step="1" value="12000" inputmode="numeric">
+                <span class="suffix">adet</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="in-s">Sipariş başına maliyet (S)</label>
+              <div class="input-group">
+                <input class="input" id="in-s" type="number" min="0" step="1" value="250" inputmode="numeric">
+                <span class="suffix">₺</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="in-h">Birim yıllık elde tutma maliyeti (H)</label>
+              <div class="input-group">
+                <input class="input" id="in-h" type="number" min="0.01" step="0.01" value="18" inputmode="decimal">
+                <span class="suffix">₺/yıl</span>
+              </div>
+              <span class="err-msg">Elde tutma maliyeti 0'dan büyük olmalı.</span>
+            </div>
+
+            <details class="disclosure">
+              <summary>İleri seçenekler</summary>
+              <div class="field" style="margin-top:var(--s-3)">
+                <label for="in-days">Yıllık çalışma günü</label>
+                <div class="input-group">
+                  <input class="input" id="in-days" type="number" min="1" max="365" step="1" value="365" inputmode="numeric">
+                  <span class="suffix">gün</span>
+                </div>
+                <span class="hint">Sipariş döngüsünü gün cinsinden hesaplamak için kullanılır.</span>
+              </div>
+            </details>
+
+            <!-- Chart -->
+            <div class="chart-wrap">
+              <div class="chart-head">
+                <span class="small" style="font-weight:600;color:var(--ink-2)">Maliyet eğrisi</span>
+                <div class="chart-legend">
+                  <span><i style="background:var(--teal)"></i>Toplam</span>
+                  <span><i style="background:var(--cat-stok)"></i>Sipariş</span>
+                  <span><i style="background:var(--text-3)"></i>Elde tutma</span>
+                </div>
+              </div>
+              <canvas id="costChart" width="640" height="320"></canvas>
+              <div class="chart-x small muted">Sipariş miktarı (adet) →</div>
+            </div>
+
+            <a class="btn btn-primary btn-block" href="#lead">Excel şablonuyla kaydet</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<style>
+  .tool-layout { display: grid; grid-template-columns: 7fr 5fr; gap: var(--s-7); align-items: start; padding-bottom: var(--s-8); }
+  .tool-aside { position: sticky; top: 92px; }
+  .tool-head { margin-bottom: var(--s-6); }
+  .def-block p { max-width: 64ch; }
+  .def-block .h3 { margin-bottom: var(--s-3); }
+
+  .chart-wrap { border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--s-4); }
+  .chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--s-3); flex-wrap: wrap; gap: 8px; }
+  .chart-legend { display: flex; gap: 12px; font-size: 0.6875rem; color: var(--text-2); }
+  .chart-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .chart-legend i { width: 10px; height: 3px; border-radius: 2px; }
+  #costChart { width: 100%; height: auto; display: block; }
+  .chart-x { text-align: center; margin-top: 6px; font-size: 0.6875rem; }
+
+  @media (max-width: 980px) {
+    .tool-layout { grid-template-columns: 1fr; }
+    .tool-aside { position: static; order: -1; margin-bottom: var(--s-6); }
+  }
+</style>
+
+<script src="assets/theme.js"></script>
+<script>
+(function () {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const inD = $('in-d'), inS = $('in-s'), inH = $('in-h'), inDays = $('in-days');
+  const canvas = $('costChart'), ctx = canvas.getContext('2d');
+
+  const nf0 = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 });
+  const nf1 = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const money = v => nf0.format(Math.round(v)) + ' ₺';
+
+  function readVals() {
+    const D = Math.max(1, parseFloat(inD.value) || 0);
+    const S = Math.max(0, parseFloat(inS.value) || 0);
+    const H = parseFloat(inH.value) || 0;
+    const days = Math.max(1, Math.min(365, parseFloat(inDays.value) || 365));
+    return { D, S, H, days };
+  }
+
+  function setError(on) {
+    const field = inH.closest('.field');
+    field.classList.toggle('is-error', on);
+    inH.classList.toggle('error', on);
+  }
+
+  function compute() {
+    const { D, S, H, days } = readVals();
+    if (H <= 0) { setError(true); return null; }
+    setError(false);
+    const eoq = Math.sqrt((2 * D * S) / H);
+    const orders = D / eoq;
+    const cycle = days / orders;
+    const orderCost = orders * S;
+    const holdCost = (eoq / 2) * H;
+    const total = orderCost + holdCost;
+    return { D, S, H, days, eoq, orders, cycle, orderCost, holdCost, total };
+  }
+
+  function render() {
+    const m = compute();
+    if (!m) return;
+    $('r-eoq').textContent = nf0.format(Math.round(m.eoq));
+    $('r-note').textContent = `Yılda ~${nf0.format(Math.round(m.orders))} sipariş · siparişler arası ~${nf0.format(Math.round(m.cycle))} gün`;
+    $('r-orders').textContent = nf1.format(m.orders);
+    $('r-cycle').textContent = nf1.format(m.cycle);
+    $('r-order-cost').textContent = money(m.orderCost);
+    $('r-hold-cost').textContent = money(m.holdCost);
+    $('r-total').textContent = money(m.total);
+    drawChart(m);
+  }
+
+  function drawChart(m) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cssW = canvas.clientWidth || 600, cssH = 300;
+    canvas.width = cssW * dpr; canvas.height = cssH * dpr;
+    canvas.style.height = cssH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    const padL = 44, padR = 12, padT = 14, padB = 26;
+    const W = cssW - padL - padR, H = cssH - padT - padB;
+
+    // X range: from a small Q to ~2.4x EOQ
+    const qMax = Math.max(m.eoq * 2.4, m.eoq + 10);
+    const qMin = Math.max(1, qMax * 0.04);
+    const N = 120;
+
+    const order = q => (m.D / q) * m.S;
+    const hold = q => (q / 2) * m.H;
+    const totalF = q => order(q) + hold(q);
+
+    // Y max from total at qMin (largest) and total at qMax
+    let yMax = Math.max(totalF(qMin), totalF(qMax)) * 1.05;
+
+    const X = q => padL + ((q - qMin) / (qMax - qMin)) * W;
+    const Y = v => padT + H - (Math.min(v, yMax) / yMax) * H;
+
+    // Grid + axes
+    ctx.strokeStyle = '#eef2f6'; ctx.lineWidth = 1;
+    ctx.fillStyle = '#8595a4'; ctx.font = '10px "JetBrains Mono", monospace';
+    for (let i = 0; i <= 4; i++) {
+      const gy = padT + (H / 4) * i;
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(cssW - padR, gy); ctx.stroke();
+      const val = yMax * (1 - i / 4);
+      ctx.fillText(nf0.format(Math.round(val / 1000)) + 'k', 6, gy + 3);
+    }
+
+    function curve(fn, color, width, dash) {
+      ctx.beginPath();
+      ctx.setLineDash(dash || []);
+      ctx.strokeStyle = color; ctx.lineWidth = width;
+      for (let i = 0; i <= N; i++) {
+        const q = qMin + (qMax - qMin) * (i / N);
+        const x = X(q), y = Y(fn(q));
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    curve(order, '#1e4e79', 1.75, [4, 3]);
+    curve(hold, '#8595a4', 1.75, [4, 3]);
+    curve(totalF, '#0ea5a4', 2.75);
+
+    // EOQ marker
+    const ex = X(m.eoq), ey = Y(m.total);
+    ctx.strokeStyle = 'rgba(14,165,164,.35)'; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(ex, padT + H); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#0ea5a4';
+    ctx.beginPath(); ctx.arc(ex, ey, 4.5, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+
+    // EOQ label
+    ctx.fillStyle = '#0f2a43'; ctx.font = '600 11px "JetBrains Mono", monospace';
+    const label = 'EOQ ' + nf0.format(Math.round(m.eoq));
+    const lw = ctx.measureText(label).width;
+    let lx = Math.min(Math.max(ex - lw / 2, padL), cssW - padR - lw);
+    ctx.fillText(label, lx, Math.max(ey - 10, padT + 10));
+  }
+
+  [inD, inS, inH, inDays].forEach(el => el.addEventListener('input', render));
+  window.addEventListener('resize', () => { const m = compute(); if (m) drawChart(m); });
+  render();
+})();
+</script>
+</body>
+</html>
