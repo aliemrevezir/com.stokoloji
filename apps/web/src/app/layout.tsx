@@ -6,7 +6,10 @@ import { ConsentBanner } from '@/components/analytics/ConsentBanner';
 import { AnalyticsScripts } from '@/components/analytics/AnalyticsScripts';
 import { SiteHeader } from '@/components/chrome/SiteHeader';
 import { SiteFooter } from '@/components/chrome/SiteFooter';
+import { JsonLd } from '@/components/JsonLd';
+import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import { getNavData } from '@/lib/nav';
+import { strapi } from '@/lib/strapi';
 
 // Editoryal serif başlık fontu (tasarım imzası).
 const newsreader = Newsreader({
@@ -34,7 +37,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Stokoloji — Stok ve Üretim Yönetimi Araçları ve Rehberleri',
+    default: 'Stok Yönetimi Araçları ve Rehberleri | Stokoloji',
     template: '%s | Stokoloji',
   },
   description:
@@ -48,12 +51,29 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nav = await getNavData();
+  const announcement = await strapi.getActiveAnnouncement().catch(() => null);
   const year = new Date().getFullYear();
 
   return (
     <html lang="tr" className={`${newsreader.variable} ${inter.variable} ${mono.variable}`}>
       <body className="flex min-h-screen flex-col">
-        <SiteHeader nav={nav} />
+        {/* Site geneli kimlik şeması — her sayfada bir kez basılır. */}
+        <JsonLd
+          data={organizationJsonLd({
+            name: 'Stokoloji',
+            url: siteUrl,
+            logo: `${siteUrl}/icon.svg`,
+          })}
+        />
+        <JsonLd
+          data={websiteJsonLd({
+            name: 'Stokoloji',
+            url: siteUrl,
+            description:
+              'Stok ve üretim yönetimi için hesaplayıcı araçlar ve mühendislik temelli rehberler.',
+          })}
+        />
+        <SiteHeader nav={nav} announcement={announcement} />
 
         <main className="flex-1">{children}</main>
 

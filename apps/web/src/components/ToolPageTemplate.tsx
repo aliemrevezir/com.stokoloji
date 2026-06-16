@@ -97,7 +97,7 @@ export function ToolPageTemplate({ tool, siteUrl }: { tool: Tool; siteUrl: strin
                 <h2 className="h3" style={{ marginBottom: 'var(--s-5)' }}>İlgili içerikler</h2>
                 <div className="grid cols-3">
                   {related.map((yazi) => (
-                    <Link key={yazi.slug} className="card card-hover tool-card" data-cat={cat} href={`/blog/${yazi.slug}`}>
+                    <Link key={yazi.slug} className="card card-hover tool-card" data-cat={cat} href={`/icerik/${yazi.slug}`}>
                       <div className="name" style={{ fontSize: '1.0625rem' }}>{yazi.baslik}</div>
                       {yazi.seo?.description && <p className="desc">{yazi.seo.description}</p>}
                       <span className="link-arrow" style={{ fontSize: '.8125rem' }}>Oku →</span>

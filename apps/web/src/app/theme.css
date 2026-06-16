@@ -313,6 +313,7 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .lead-magnet .lm-form { display: flex; gap: var(--s-2); }
 .lead-magnet .lm-form .input { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color: #fff; }
 .lead-magnet .lm-form .input::placeholder { color: rgba(255,255,255,.5); }
+.lead-magnet .lm-thanks { color: var(--teal-light); font-weight: 600; }
 
 /* ==========================================================================
    BREADCRUMB
@@ -349,10 +350,13 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.92); backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--border); transition: box-shadow .2s, padding .2s; }
 .site-header.scrolled { box-shadow: var(--shadow-1); }
 .utility-bar { background: var(--ink); color: var(--ink-light); font-size: 0.8125rem; }
-.utility-bar .container { display: flex; align-items: center; justify-content: center; gap: 10px; padding-block: 8px; white-space: nowrap; }
+.utility-bar .container { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; padding-block: 8px; white-space: nowrap; }
 .utility-bar .ub-text { overflow: hidden; text-overflow: ellipsis; }
 .utility-bar a { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
-.utility-bar .ub-icon { color: var(--teal-light); }
+.utility-bar .ub-icon { color: var(--teal-light); display: inline-flex; }
+.utility-bar .ub-close { position: absolute; right: 0; display: inline-flex; align-items: center; justify-content: center; padding: 4px; background: none; border: 0; color: var(--ink-light); cursor: pointer; line-height: 0; opacity: 0.7; transition: opacity 0.15s; }
+.utility-bar .ub-close:hover { opacity: 1; color: #fff; }
+.utility-bar .ub-close svg { width: 16px; height: 16px; }
 
 .nav { display: flex; align-items: center; gap: var(--s-6); padding-block: 18px; transition: padding .2s; }
 .site-header.scrolled .nav { padding-block: 12px; }
@@ -371,7 +375,7 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .has-mega { position: relative; }
 .mega { position: absolute; top: calc(100% + 10px); left: 0; width: 720px; max-width: calc(100vw - 48px); background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow-2); padding: var(--s-5); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .18s, transform .18s, visibility .18s; display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--s-5); z-index: 120; }
 .has-mega.open .mega { opacity: 1; visibility: visible; transform: translateY(0); }
-.mega-col h5 { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: .12em; color: var(--text-3); margin-bottom: var(--s-3); }
+.mega-col .mega-heading { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--text-3); margin-bottom: var(--s-3); }
 .mega-list { display: grid; gap: 2px; }
 .mega-list a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: var(--r-md); font-size: 0.9375rem; color: var(--ink-2); font-weight: 500; transition: background .15s; }
 .mega-list a:hover { background: var(--ink-lightest); }
@@ -411,7 +415,7 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
    ========================================================================== */
 .site-footer { background: var(--ink); color: var(--ink-light); margin-top: var(--s-9); }
 .site-footer .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.4fr; gap: var(--s-6); padding-block: var(--s-8); }
-.site-footer h5 { color: #fff; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: var(--s-4); }
+.site-footer .footer-col-title { color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: var(--s-4); }
 .site-footer .f-links { display: grid; gap: 10px; }
 .site-footer .f-links a { color: var(--ink-light); font-size: 0.9375rem; transition: color .15s; }
 .site-footer .f-links a:hover { color: #fff; }

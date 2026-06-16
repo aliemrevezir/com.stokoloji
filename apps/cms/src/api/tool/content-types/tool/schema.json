@@ -24,7 +24,7 @@
       "type": "text"
     },
     "formulAciklamasi": {
-      "type": "blocks"
+      "type": "json"
     },
     "seo": {
       "type": "component",

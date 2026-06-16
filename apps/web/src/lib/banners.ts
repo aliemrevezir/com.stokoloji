@@ -29,7 +29,7 @@ export function resolveBannerSlide(banner: Banner): BannerSlide | null {
       key: `banner-${banner.id}`,
       baslik: blog.baslik,
       excerpt: blog.seo?.description ?? '',
-      href: `/blog/${blog.slug}`,
+      href: `/icerik/${blog.slug}`,
       gorselUrl: mediaUrl(banner.gorsel?.url) ?? mediaUrl(blog.kapakGorseli?.url),
       gorselAlt:
         banner.gorsel?.alternativeText ??

@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "duyurular",
+  "info": {
+    "singularName": "duyuru",
+    "pluralName": "duyurular",
+    "displayName": "Duyuru Barı",
+    "description": "En üstteki utility bar duyuruları; birden fazla saklanır, aktif olan (en düşük sira) gösterilir"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "mesaj": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "ikon": {
+      "type": "enumeration",
+      "enum": ["sheet", "etiket", "zil", "hediye", "bilgi", "yildiz", "yok"],
+      "default": "sheet"
+    },
+    "aktif": {
+      "type": "boolean",
+      "default": false
+    },
+    "sira": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

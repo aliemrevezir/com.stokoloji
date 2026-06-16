@@ -9,6 +9,7 @@
  * Yeni sayfa kodu YAZILMAZ.
  */
 import { eoq } from './eoq';
+import { stokDevirHizi } from './stok-devir-hizi';
 import { formatNumber, formatCurrency } from '../format';
 
 export interface CalculatorField {
@@ -66,8 +67,34 @@ const eoqDef: CalculatorDef = {
   },
 };
 
+const stokDevirHiziDef: CalculatorDef = {
+  slug: 'stok-devir-hizi-hesaplama',
+  fields: [
+    { name: 'smm', label: 'Satılan Malların Maliyeti (SMM)', suffix: '₺', defaultValue: 2000000, min: 0.01, step: 1 },
+    { name: 'donemBasiStok', label: 'Dönem Başı Stok', suffix: '₺', defaultValue: 300000, min: 0, step: 1 },
+    { name: 'donemSonuStok', label: 'Dönem Sonu Stok', suffix: '₺', defaultValue: 400000, min: 0, step: 1 },
+  ],
+  compute: (inputs) => {
+    const r = stokDevirHizi({
+      smm: inputs.smm!,
+      donemBasiStok: inputs.donemBasiStok!,
+      donemSonuStok: inputs.donemSonuStok!,
+    });
+    return {
+      value: formatNumber(r.devirHizi),
+      unit: 'kez/yıl',
+      summary: `Stok devir hızı = ${formatNumber(r.devirHizi)} kez · stok ortalama ${formatNumber(r.stoktaKalmaSuresi)} günde bir tükeniyor`,
+      rows: [
+        { label: 'Ortalama stok', value: formatCurrency(r.ortalamaStok) },
+        { label: 'Stokta kalma süresi', value: `${formatNumber(r.stoktaKalmaSuresi)} gün` },
+      ],
+    };
+  },
+};
+
 const REGISTRY: Record<string, CalculatorDef> = {
   [eoqDef.slug]: eoqDef,
+  [stokDevirHiziDef.slug]: stokDevirHiziDef,
 };
 
 export function getCalculator(slug: string): CalculatorDef | null {

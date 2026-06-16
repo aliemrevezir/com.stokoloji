@@ -1,13 +1,34 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import type { Banner, Blog, Tool } from '@stokoloji/api-client';
 import { strapi, mediaUrl } from '@/lib/strapi';
 import { formatDate } from '@/lib/format';
 import { groupPostsByCategory } from '@/lib/home';
 import { categoryKey, type CatKey } from '@/lib/nav';
 import { HeroCarousel } from '@/components/home/HeroCarousel';
+import { LeadMagnetForm } from '@/components/LeadMagnetForm';
 import { resolveBannerSlides } from '@/lib/banners';
+import { JsonLd } from '@/components/JsonLd';
+import { itemListJsonLd } from '@/lib/seo/jsonld';
 
 export const revalidate = 60;
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
+// Title layout default'undan gelir ("Stok Yönetimi Araçları ve Rehberleri |
+// Stokoloji" — head term öne; bkz. cerebrum SEO kararı). Burada yalnız
+// anasayfaya özgü description + OG verilir.
+export const metadata: Metadata = {
+  description:
+    'EOQ, emniyet stoğu, yeniden sipariş noktası ve ABC analizi için ücretsiz hesaplayıcılar ve mühendislik temelli rehberler. Stok kararlarını tahminle değil, hesapla.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Stok Yönetimi Hesaplama Araçları ve Rehberleri | Stokoloji',
+    description:
+      'Stok ve üretim yönetimi için ücretsiz interaktif hesaplayıcılar ve mühendislik temelli rehberler.',
+    type: 'website',
+  },
+};
 
 const ArrowRight = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
@@ -64,9 +85,25 @@ export default async function HomePage() {
 
   return (
     <>
+      {showcaseTools.length > 0 && (
+        <JsonLd
+          data={itemListJsonLd({
+            name: 'Öne çıkan stok yönetimi hesaplama araçları',
+            items: showcaseTools.map((tool) => ({
+              name: tool.ad,
+              url: `${siteUrl}/araclar/${tool.slug}`,
+            })),
+          })}
+        />
+      )}
       {/* ============================ HERO CAROUSEL ============================ */}
       {heroSlides.length > 0 ? (
-        <HeroCarousel slides={heroSlides} />
+        <>
+          {/* Carousel başlıkları <span> (heading değil); sayfanın tek H1'ini
+              görsel akışı bozmadan ekran okuyucu + SEO için burada veriyoruz. */}
+          <h1 className="sr-only">Stok yönetimi hesaplama araçları ve mühendislik rehberleri</h1>
+          <HeroCarousel slides={heroSlides} />
+        </>
       ) : (
         /* Strapi'de yayınlanmış banner yoksa ince statik fallback hero. */
         <section className="hero-fallback">
@@ -95,7 +132,7 @@ export default async function HomePage() {
 
             <div className="hero-grid" data-single={sidePosts.length === 0 ? '' : undefined}>
               <article className="card card-hover featured-card reveal">
-                <Link href={`/blog/${heroFeatured.slug}`} style={{ display: 'block' }}>
+                <Link href={`/icerik/${heroFeatured.slug}`} style={{ display: 'block' }}>
                   <Thumb
                     url={mediaUrl(heroFeatured.kapakGorseli?.url)}
                     alt={heroFeatured.kapakGorseli?.alternativeText}
@@ -109,10 +146,10 @@ export default async function HomePage() {
                     <span className="badge badge-teal">Öne çıkan</span>
                     <span className="small muted">{formatDate(heroFeatured.yayinTarihi) ?? 'Rehber'}</span>
                   </div>
-                  <Link href={`/blog/${heroFeatured.slug}`}><h2 className="title">{heroFeatured.baslik}</h2></Link>
+                  <Link href={`/icerik/${heroFeatured.slug}`}><h2 className="title">{heroFeatured.baslik}</h2></Link>
                   {heroFeatured.seo?.description && <p className="excerpt">{heroFeatured.seo.description}</p>}
                   <div style={{ marginTop: 'var(--s-5)' }}>
-                    <Link className="btn btn-primary" href={`/blog/${heroFeatured.slug}`}>
+                    <Link className="btn btn-primary" href={`/icerik/${heroFeatured.slug}`}>
                       Yazıyı oku <ArrowRight />
                     </Link>
                   </div>
@@ -123,7 +160,7 @@ export default async function HomePage() {
               <aside className="hero-side reveal">
                 <div className="eyebrow" style={{ marginBottom: 'var(--s-3)' }}>Öne çıkanlar</div>
                 {sidePosts.map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} className="compact-card">
+                  <Link key={post.slug} href={`/icerik/${post.slug}`} className="compact-card">
                     <Thumb url={mediaUrl(post.kapakGorseli?.url)} alt={post.kapakGorseli?.alternativeText} label="görsel" />
                     <div>
                       {post.kategori?.ad && (
@@ -151,7 +188,7 @@ export default async function HomePage() {
             <div className="section-head">
               <div>
                 <span className="eyebrow">Hesaplayıcılar</span>
-                <h2 className="h2" style={{ marginTop: 8 }}>Öne çıkan araçlar</h2>
+                <h2 className="h2" style={{ marginTop: 8 }}>Stok yönetimi hesaplama araçları</h2>
               </div>
               <Link className="link-arrow" href="/araclar">Tüm araçlar <LinkArrowIcon /></Link>
             </div>
@@ -183,16 +220,16 @@ export default async function HomePage() {
                   <span className="cat-tick" />
                   <h2 className="h2">{group.kategori.ad}</h2>
                 </div>
-                <Link className="link-arrow" href="/blog" style={{ color: CAT_COLOR[cat] }}>Tümü <LinkArrowIcon /></Link>
+                <Link className="link-arrow" href="/icerik" style={{ color: CAT_COLOR[cat] }}>Tümü <LinkArrowIcon /></Link>
               </div>
               <div className="grid cols-3">
                 {group.posts.slice(0, 3).map((post) => (
                   <article key={post.slug} className="card card-hover std-card">
-                    <Link href={`/blog/${post.slug}`}>
+                    <Link href={`/icerik/${post.slug}`}>
                       <Thumb url={mediaUrl(post.kapakGorseli?.url)} alt={post.kapakGorseli?.alternativeText} label="görsel" cat={cat} corner={group.kategori.ad} />
                     </Link>
                     <div className="body">
-                      <Link href={`/blog/${post.slug}`}><h3 className="title">{post.baslik}</h3></Link>
+                      <Link href={`/icerik/${post.slug}`}><h3 className="title">{post.baslik}</h3></Link>
                       {post.seo?.description && <p className="muted small">{post.seo.description}</p>}
                       <div className="meta">
                         <span>{post.yazar?.ad ?? 'Ali'}</span><span>·</span><span>{formatDate(post.yayinTarihi) ?? 'Rehber'}</span>
@@ -212,7 +249,7 @@ export default async function HomePage() {
           <div className="authority">
             <div className="authority-text">
               <span className="eyebrow">Neden Stokoloji?</span>
-              <h2 className="h2" style={{ margin: '14px 0' }}>Magazin gibi zengin, mühendislik gibi disiplinli</h2>
+              <h2 className="h2" style={{ margin: '14px 0' }}>Stok yönetimini tahminle değil, mühendislikle yönet</h2>
               <p className="lead">Stokoloji bir blog yığını değil. Her araç gerçek bir karar problemini çözer; her yazı o aracı ne zaman ve nasıl kullanacağını öğretir. Tahmin yerine hesap, slogan yerine formül.</p>
               <ul className="why-list">
                 <li><span className="why-num mono">01</span><div><b>Çalışan araçlar.</b> EOQ, emniyet stoğu, ROP ve ABC analizini örnek değerlerle anında dene.</div></li>
@@ -233,10 +270,7 @@ export default async function HomePage() {
               <h3>Stok takip ve EOQ Excel şablonu</h3>
               <p>Hazır formüllü çalışma kitabı: kalem bazında EOQ, emniyet stoğu ve yeniden sipariş noktası tek dosyada. E-postanı bırak, hemen gönderelim.</p>
             </div>
-            <form className="lm-form" action="#lead">
-              <input className="input" type="email" placeholder="E-posta adresin" aria-label="E-posta" />
-              <button className="btn btn-primary" type="submit">İndir</button>
-            </form>
+            <LeadMagnetForm id="anasayfa-stok-yonetimi-paneli" />
           </div>
         </div>
       </section>

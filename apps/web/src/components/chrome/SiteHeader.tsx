@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { track } from '@/lib/analytics';
 import type { CatKey, NavData, NavItem } from '@/lib/nav';
+import type { Announcement, DuyuruIkon } from '@stokoloji/api-client';
 
 const CAT_COLOR: Record<CatKey, string> = {
   stok: 'var(--cat-stok)',
@@ -41,6 +43,31 @@ const Icon = {
   sheet: (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z" /></svg>
   ),
+  etiket: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" /><circle cx="7" cy="7" r="1.2" /></svg>
+  ),
+  zil: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+  ),
+  hediye: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="8" width="18" height="4" rx="1" /><path d="M12 8v13M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7" /><path d="M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5zM12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5z" /></svg>
+  ),
+  bilgi: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+  ),
+  yildiz: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+  ),
+};
+
+/** Duyuru ikonu enum değerini inline SVG'ye eşler ('yok' → ikon basılmaz). */
+const ANNOUNCEMENT_ICONS: Record<Exclude<DuyuruIkon, 'yok'>, React.ReactNode> = {
+  sheet: Icon.sheet,
+  etiket: Icon.etiket,
+  zil: Icon.zil,
+  hediye: Icon.hediye,
+  bilgi: Icon.bilgi,
+  yildiz: Icon.yildiz,
 };
 
 function MegaList({ items }: { items: NavItem[] }) {
@@ -68,7 +95,7 @@ function Mega({
   return (
     <div className="mega">
       <div className="mega-col">
-        <h5>{heading}</h5>
+        <p className="mega-heading">{heading}</p>
         <MegaList items={items} />
       </div>
       <div className="mega-feature">
@@ -81,12 +108,21 @@ function Mega({
   );
 }
 
-export function SiteHeader({ nav }: { nav: NavData }) {
+const DUYURU_DISMISS_KEY = 'duyuru-dismissed';
+
+export function SiteHeader({
+  nav,
+  announcement,
+}: {
+  nav: NavData;
+  announcement?: Announcement | null;
+}) {
   const [openMega, setOpenMega] = useState<'tools' | 'blog' | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [duyuruDismissed, setDuyuruDismissed] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const searchInput = useRef<HTMLInputElement>(null);
 
@@ -120,6 +156,30 @@ export function SiteHeader({ nav }: { nav: NavData }) {
     }
     setQuery('');
   }, [searchOpen]);
+
+  // Duyuru kapatma durumu: ziyaretçi bu duyuruyu (documentId) daha önce
+  // kapattıysa gizli kalır. SSR'da görünür; mount sonrası kontrol edilir.
+  useEffect(() => {
+    if (!announcement) return;
+    try {
+      setDuyuruDismissed(
+        localStorage.getItem(DUYURU_DISMISS_KEY) === announcement.documentId,
+      );
+    } catch {
+      // localStorage erişilemezse (gizli mod vb.) bar görünür kalır.
+    }
+  }, [announcement]);
+
+  const dismissDuyuru = () => {
+    setDuyuruDismissed(true);
+    try {
+      if (announcement) {
+        localStorage.setItem(DUYURU_DISMISS_KEY, announcement.documentId);
+      }
+    } catch {
+      // sessizce yoksay
+    }
+  };
 
   // Aranabilir set: araçlar + yazılar. nav zaten Strapi'den geldiği için ek istek yok.
   const index = useMemo<SearchHit[]>(
@@ -155,13 +215,41 @@ export function SiteHeader({ nav }: { nav: NavData }) {
   return (
     <>
       <header className={`site-header${scrolled ? ' scrolled' : ''}`}>
-        <div className="utility-bar">
-          <div className="container">
-            <span className="ub-icon">{Icon.sheet}</span>
-            <span className="ub-text">Ücretsiz Excel stok takip şablonunu indir.</span>
-            <Link href="/#lead">Hemen al →</Link>
+        {announcement && !duyuruDismissed && (
+          <div className="utility-bar">
+            <div className="container">
+              {announcement.ikon && announcement.ikon !== 'yok' && (
+                <span className="ub-icon">
+                  {ANNOUNCEMENT_ICONS[announcement.ikon] ?? Icon.sheet}
+                </span>
+              )}
+              <span className="ub-text">{announcement.mesaj}</span>
+              {announcement.ctaLabel && announcement.ctaHref && (
+                <Link
+                  href={announcement.ctaHref}
+                  data-track="duyuru_click"
+                  onClick={() =>
+                    track('duyuru_click', {
+                      label: announcement.ctaLabel!,
+                      href: announcement.ctaHref!,
+                      duyuru_id: announcement.documentId,
+                    })
+                  }
+                >
+                  {announcement.ctaLabel} →
+                </Link>
+              )}
+              <button
+                type="button"
+                className="ub-close"
+                aria-label="Duyuruyu kapat"
+                onClick={dismissDuyuru}
+              >
+                {Icon.close}
+              </button>
+            </div>
           </div>
-        </div>
+        )}
         <div className="container">
           <nav className="nav">
             <Link className="brand" href="/">Stokoloji<span className="dot">.</span></Link>
@@ -186,7 +274,7 @@ export function SiteHeader({ nav }: { nav: NavData }) {
                 onMouseLeave={hoverClose}
               >
                 <button type="button" onClick={() => setOpenMega((p) => (p === 'blog' ? null : 'blog'))}>
-                  Blog {Icon.caret}
+                  İçerik {Icon.caret}
                 </button>
                 <Mega
                   items={nav.posts}
@@ -261,7 +349,7 @@ export function SiteHeader({ nav }: { nav: NavData }) {
           </button>
         </div>
         <DrawerSection title="Araçlar" items={nav.tools} onNavigate={() => setDrawerOpen(false)} />
-        <DrawerSection title="Blog" items={nav.posts} onNavigate={() => setDrawerOpen(false)} />
+        <DrawerSection title="İçerik" items={nav.posts} onNavigate={() => setDrawerOpen(false)} />
         <div className="drawer-section">
           <div className="ds-title">Genel</div>
           <Link href="/araclar" onClick={() => setDrawerOpen(false)}>Kategoriler</Link>

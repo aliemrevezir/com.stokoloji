@@ -8,6 +8,7 @@
 
 import type {
   Anasayfa,
+  Announcement,
   Banner,
   Blog,
   StrapiCollectionResponse,
@@ -46,6 +47,7 @@ const BLOG_POPULATE: Record<string, string> = {
   'populate[yazar][populate]': 'avatar',
   'populate[kapakGorseli]': 'true',
   'populate[iliskiliTool]': 'true',
+  'populate[sss]': 'true',
 };
 
 const HOME_POPULATE: Record<string, string> = {
@@ -154,6 +156,7 @@ export function createClient(options: StrapiClientOptions) {
             'populate[kategori]': 'true',
             'populate[kapakGorseli]': 'true',
             'populate[seo]': 'true',
+            'populate[yazar]': 'true',
             'sort': 'yayinTarihi:desc',
           },
           opts.query,
@@ -172,6 +175,32 @@ export function createClient(options: StrapiClientOptions) {
         ),
       });
       return data.data;
+    },
+
+    /**
+     * Aktif duyuru barını getirir (yoksa null).
+     *
+     * Birden fazla duyuru `aktif=true` olabilir; en düşük `sira`'lı tek kayıt
+     * döner. Hiç aktif kayıt yoksa null → bar render edilmez.
+     */
+    async getActiveAnnouncement(
+      opts: FetchOptions = {},
+    ): Promise<Announcement | null> {
+      const data = await request<StrapiCollectionResponse<Announcement>>(
+        '/duyurular',
+        {
+          ...opts,
+          query: buildQuery(
+            {
+              'filters[aktif][$eq]': 'true',
+              'sort': 'sira:asc',
+              'pagination[limit]': '1',
+            },
+            opts.query,
+          ),
+        },
+      );
+      return data.data[0] ?? null;
     },
 
     /** Anasayfa single type'ını getirir (hero, öne çıkan içerik). */

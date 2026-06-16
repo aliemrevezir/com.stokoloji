@@ -282,3 +282,63 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 19:56 | Session end: 5 writes across 3 files (index.ts, RandomPostLink.tsx, not-found.tsx) | 3 reads | ~10229 tok |
 | 19:56 | Edited apps/cms/src/seed/index.ts | modified p() | ~3220 |
 | 19:57 | Edited apps/cms/src/seed/index.ts | 45→46 lines | ~570 |
+| 19:57 | Session end: 7 writes across 3 files (index.ts, RandomPostLink.tsx, not-found.tsx) | 3 reads | ~14019 tok |
+| 19:58 | Edited scripts/lead-magnet/generate.py | 4→2 lines | ~15 |
+| 19:59 | Edited apps/web/src/lib/seo/jsonld.ts | modified articleJsonLd() | ~532 |
+| 19:59 | bug: Excel 'problem with content/recover' diyaloğu — tek hücrelik merge (C19:C19) bozulma sayılıyor | scripts/lead-magnet/generate.py | merge_cells(f'C{r}:C{r}') satırı kaldırıldı | ~5k |
+| 19:59 | Edited apps/web/src/lib/blocks.ts | added 6 condition(s) | ~253 |
+| 19:59 | Session end: 10 writes across 6 files (index.ts, RandomPostLink.tsx, not-found.tsx, generate.py, jsonld.ts) | 4 reads | ~14819 tok |
+| 19:59 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | 2→2 lines | ~44 |
+| 19:59 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | 8→8 lines | ~81 |
+| 19:59 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | CSS: authorTitle | ~145 |
+| 20:00 | Edited apps/web/src/app/(site)/icerik/page.tsx | CSS: margin | ~68 |
+| 20:00 | Edited apps/web/src/app/(site)/araclar/page.tsx | CSS: margin | ~71 |
+
+## Session: 2026-06-16 20:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:00 | Edited apps/web/src/lib/seo/jsonld.ts | modified itemListJsonLd() | ~120 |
+| 20:01 | Edited apps/web/src/app/(site)/page.tsx | expanded (+12 lines) | ~256 |
+| 20:01 | Edited apps/web/src/app/(site)/page.tsx | expanded (+11 lines) | ~125 |
+| 20:01 | Edited packages/api-client/src/index.ts | 6→7 lines | ~66 |
+| 20:02 | Edited apps/web/src/app/robots.ts | modified robots() | ~162 |
+| 20:02 | Edited apps/web/src/lib/banners.test.ts | "/icerik/icerik" → "/icerik/blog" | ~19 |
+| 20:03 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | added nullish coalescing | ~27 |
+| 20:03 | Edited scripts/lead-magnet/generate.py | 8→7 lines | ~138 |
+| 20:03 | Edited scripts/lead-magnet/generate.py | 6→6 lines | ~126 |
+| 20:04 | Edited scripts/lead-magnet/generate.py | TEXT() → miktar() | ~126 |
+| 20:04 | Edited scripts/lead-magnet/generate.py | 8→9 lines | ~191 |
+
+## Session: 2026-06-16 20:04
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:04 | Edited scripts/lead-magnet/generate.py | 12→12 lines | ~167 |
+| 20:04 | Edited scripts/lead-magnet/generate.py | removed 9 lines | ~2 |
+| 20:06 | Edited scripts/lead-magnet/generate.py | modified infolist() | ~276 |
+| 20:06 | Excel onarım sorunu kökten çözüldü: string formüller→statik metin + boş <v></v> zipfile ile temizlendi + koruma kaldırıldı | scripts/lead-magnet/generate.py | XML geçerli, 0 boş v | ~8k |
+| 20:06 | Session end: 3 writes across 1 files (generate.py) | 3 reads | ~6586 tok |
+| 20:06 | Session end: 3 writes across 1 files (generate.py) | 3 reads | ~6586 tok |
+| 20:08 | Edited apps/web/src/app/(site)/page.tsx | 12→14 lines | ~198 |
+| 20:11 | Session end: 4 writes across 2 files (generate.py, page.tsx) | 4 reads | ~7630 tok |
+| 20:11 | Session end: 4 writes across 2 files (generate.py, page.tsx) | 4 reads | ~7630 tok |
+| 20:16 | Edited apps/cms/src/api/blog/content-types/blog/schema.json | 3→3 lines | ~13 |
+| 20:16 | Edited apps/cms/src/api/tool/content-types/tool/schema.json | 3→3 lines | ~16 |
+| 20:17 | Created ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/brevo-lead-magnet-esp.md | — | ~328 |
+| 20:17 | Created ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/MEMORY.md | — | ~33 |
+| 20:17 | Session end: 8 writes across 5 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 8 reads | ~17193 tok |
+
+| 17:18 | Temiz rebuild: container+volume+image silindi, no-cache build, taze seed | docker-compose.yml, apps/cms | 3 container healthy; 2 tool+2 blog+anasayfa+banner+duyuru seed | ~15k |
+| 17:18 | bug-053: blog.icerik + tool.formulAciklamasi blocks->json (custom table/image node'ları Strapi blocks validator'ını crash ediyordu) | blog/tool schema.json | seed crash-loop çözüldü, EOQ tabloları render | ~6k |
+| 20:21 | Edited apps/web/src/lib/analytics/types.ts | 2→4 lines | ~72 |
+| 20:21 | Edited apps/web/src/components/chrome/SiteHeader.tsx | added 1 import(s) | ~58 |
+| 20:21 | Edited apps/web/src/components/chrome/SiteHeader.tsx | CSS: label, href, duyuru_id | ~161 |
+| 20:21 | Session end: 11 writes across 7 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 15 reads | ~27200 tok |
+| 20:21 | Created apps/web/src/components/LeadMagnetForm.tsx | — | ~535 |
+| 20:22 | Edited apps/web/src/app/(site)/page.tsx | added 1 import(s) | ~51 |
+| 20:22 | Edited apps/web/src/app/(site)/page.tsx | 4→1 lines | ~19 |
+| 20:22 | Edited apps/web/src/app/(site)/page.tsx | inline fix | ~19 |
+| 20:22 | Edited apps/web/src/app/theme.css | CSS: font-weight | ~42 |
+| 20:23 | lead magnet trackerları bağlandı: yeni duyuru_click event'i (SiteHeader duyuru CTA) + lead_magnet_view/submit (yeni LeadMagnetForm, anasayfa #lead) | types.ts, SiteHeader.tsx, LeadMagnetForm.tsx, page.tsx, theme.css, anatomy.md | typecheck temiz, GA4+Clarity'ye gidiyor | ~10k |
+| 20:23 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 18 reads | ~40158 tok |

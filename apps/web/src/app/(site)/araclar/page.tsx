@@ -3,12 +3,16 @@ import type { Metadata } from 'next';
 import type { Tool } from '@stokoloji/api-client';
 import { strapi } from '@/lib/strapi';
 import { categoryKey, CATEGORIES, type CatKey } from '@/lib/nav';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbListJsonLd, collectionPageJsonLd } from '@/lib/seo/jsonld';
 
 export const revalidate = 60;
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
 export const metadata: Metadata = {
-  title: 'Araçlar',
-  description: 'Stok ve üretim yönetimi için interaktif hesaplayıcılar: EOQ, emniyet stoğu, ROP ve daha fazlası.',
+  title: 'Stok Yönetimi Hesaplama Araçları',
+  description: 'EOQ, emniyet stoğu, yeniden sipariş noktası ve stok devir hızı için interaktif hesaplayıcılar. Ne kadar, ne zaman, hangi kalemden sipariş vereceğini hesapla.',
   alternates: { canonical: '/araclar' },
 };
 
@@ -34,6 +38,21 @@ export default async function ToolsPage() {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbListJsonLd([
+          { name: 'Ana Sayfa', url: `${siteUrl}/` },
+          { name: 'Araçlar', url: `${siteUrl}/araclar` },
+        ])}
+      />
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: 'Stok Yönetimi Hesaplayıcıları',
+          description: 'EOQ, emniyet stoğu, yeniden sipariş noktası ve stok devir hızı için interaktif hesaplayıcılar.',
+          url: `${siteUrl}/araclar`,
+          items: tools.map((t) => ({ name: t.ad, url: `${siteUrl}/araclar/${t.slug}` })),
+        })}
+      />
+
       <div className="container">
         <nav className="breadcrumb" style={{ '--cat': 'var(--cat-stok)' } as React.CSSProperties}>
           <Link href="/">Ana Sayfa</Link>
@@ -45,9 +64,9 @@ export default async function ToolsPage() {
       <section className="cat-hero" style={{ '--cat': 'var(--cat-stok)' } as React.CSSProperties}>
         <div className="container">
           <span className="cat-tick" style={{ width: 36, height: 5, display: 'block', borderRadius: 3, background: 'var(--cat)', marginBottom: 'var(--s-4)' }} />
-          <h1 className="h1" style={{ marginBottom: 'var(--s-3)' }}>Hesaplayıcı Araçlar</h1>
+          <h1 className="h1" style={{ marginBottom: 'var(--s-3)' }}>Stok Yönetimi Hesaplayıcıları</h1>
           <p className="lead" style={{ maxWidth: '60ch' }}>
-            Ne kadar, ne zaman ve hangi kalemden sipariş vereceğini hesapla. EOQ&apos;dan emniyet stoğuna, stok ve üretim yönetiminin tüm araçları burada.
+            Ne kadar, ne zaman ve hangi kalemden sipariş vereceğini hesapla. EOQ, emniyet stoğu, yeniden sipariş noktası ve stok devir hızı; stok yönetiminin tüm hesaplama araçları burada.
           </p>
           <div className="cat-tabs">
             {CATEGORIES.map((c, i) => (
@@ -62,6 +81,7 @@ export default async function ToolsPage() {
       <section className="section-tight" style={{ paddingTop: 'var(--s-6)' }}>
         <div className="container">
           <div className="archive-head">
+            <h2 className="h3" style={{ margin: 0 }}>Tüm hesaplama araçları</h2>
             <span className="small muted"><b style={{ color: 'var(--ink)' }}>{tools.length}</b> araç</span>
           </div>
 

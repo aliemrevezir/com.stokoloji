@@ -57,18 +57,18 @@ const FALLBACK_TOOLS: NavItem[] = [
 ];
 
 const FALLBACK_POSTS: NavItem[] = [
-  { name: 'EOQ nedir ve nasıl hesaplanır?', cat: 'stok', href: '/blog' },
-  { name: 'Emniyet stoğu formülü ve servis seviyesi', cat: 'stok', href: '/blog' },
-  { name: 'ABC analizi ile stok önceliklendirme', cat: 'analiz', href: '/blog' },
-  { name: 'Stok devir hızı kaç olmalı?', cat: 'analiz', href: '/blog' },
-  { name: 'MRP ve üretim planlamanın temelleri', cat: 'uretim', href: '/blog' },
+  { name: 'EOQ nedir ve nasıl hesaplanır?', cat: 'stok', href: '/icerik' },
+  { name: 'Emniyet stoğu formülü ve servis seviyesi', cat: 'stok', href: '/icerik' },
+  { name: 'ABC analizi ile stok önceliklendirme', cat: 'analiz', href: '/icerik' },
+  { name: 'Stok devir hızı kaç olmalı?', cat: 'analiz', href: '/icerik' },
+  { name: 'MRP ve üretim planlamanın temelleri', cat: 'uretim', href: '/icerik' },
 ];
 
 function toolItem(t: Tool): NavItem {
   return { name: t.ad, href: `/araclar/${t.slug}`, cat: categoryKey(t.kategori?.slug ?? t.kategori?.ad) };
 }
 function postItem(p: Blog): NavItem {
-  return { name: p.baslik, href: `/blog/${p.slug}`, cat: categoryKey(p.kategori?.slug ?? p.kategori?.ad) };
+  return { name: p.baslik, href: `/icerik/${p.slug}`, cat: categoryKey(p.kategori?.slug ?? p.kategori?.ad) };
 }
 
 /** Strapi'den nav verisini topla; hata olursa statik fallback. */

@@ -21,7 +21,7 @@ describe('resolveBannerSlide', () => {
     expect(slide).not.toBeNull();
     expect(slide!.baslik).toBe('EOQ Nedir?');
     expect(slide!.excerpt).toBe('Ekonomik sipariş miktarı açıklaması.');
-    expect(slide!.href).toBe('/blog/eoq-nedir');
+    expect(slide!.href).toBe('/icerik/eoq-nedir');
     expect(slide!.gorselUrl).toContain('/uploads/eoq.jpg');
     expect(slide!.gorselAlt).toBe('EOQ grafiği');
   });
@@ -60,7 +60,7 @@ describe('resolveBannerSlide', () => {
       blog: { id: 5, documentId: 'b5', baslik: 'Blog', slug: 'blog' },
       arac: { id: 7, documentId: 't7', ad: 'Arac', slug: 'arac' },
     };
-    expect(resolveBannerSlide(banner)!.href).toBe('/blog/blog');
+    expect(resolveBannerSlide(banner)!.href).toBe('/icerik/blog');
   });
 });
 

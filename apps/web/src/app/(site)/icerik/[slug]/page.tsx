@@ -8,8 +8,8 @@ import { AuthorBox } from '@/components/AuthorBox';
 import { JsonLd } from '@/components/JsonLd';
 import { TrackedLink } from '@/components/analytics/TrackedLink';
 import { ScrollDepthTracker } from '@/components/analytics/ScrollDepthTracker';
-import { articleJsonLd, breadcrumbListJsonLd } from '@/lib/seo/jsonld';
-import { extractToc } from '@/lib/blocks';
+import { blogPostingJsonLd, breadcrumbListJsonLd, faqPageJsonLd } from '@/lib/seo/jsonld';
+import { extractToc, excerptFromBlocks } from '@/lib/blocks';
 
 export const revalidate = 60;
 
@@ -33,11 +33,11 @@ export async function generateMetadata({
   const post = await strapi.getBlogPost(slug).catch(() => null);
   if (!post) return {};
   const title = post.seo?.title ?? post.baslik;
-  const description = post.seo?.description ?? undefined;
+  const description = post.seo?.description ?? excerptFromBlocks(post.icerik);
   return {
     title,
     description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: `/icerik/${post.slug}` },
     openGraph: { title, description, type: 'article' },
   };
 }
@@ -51,12 +51,12 @@ export default async function BlogPostPage({
   const post = await strapi.getBlogPost(slug).catch(() => null);
   if (!post) notFound();
 
-  const pageUrl = `${siteUrl}/blog/${post.slug}`;
+  const pageUrl = `${siteUrl}/icerik/${post.slug}`;
   const toc = extractToc(post.icerik);
   const crumbs = [
     { name: 'Ana Sayfa', href: '/' },
-    { name: 'Blog', href: '/blog' },
-    { name: post.baslik, href: `/blog/${post.slug}` },
+    { name: 'İçerik', href: '/icerik' },
+    { name: post.baslik, href: `/icerik/${post.slug}` },
   ];
 
   return (
@@ -66,16 +66,21 @@ export default async function BlogPostPage({
         data={breadcrumbListJsonLd(crumbs.map((c) => ({ name: c.name, url: `${siteUrl}${c.href}` })))}
       />
       <JsonLd
-        data={articleJsonLd({
+        data={blogPostingJsonLd({
           headline: post.baslik,
-          description: post.seo?.description ?? post.baslik,
+          description: post.seo?.description ?? excerptFromBlocks(post.icerik) ?? post.baslik,
           url: pageUrl,
           authorName: post.yazar?.ad,
+          authorTitle: post.yazar?.unvan ?? undefined,
           datePublished: post.yayinTarihi ?? post.publishedAt ?? undefined,
           dateModified: post.guncellemeTarihi ?? undefined,
           image: mediaUrl(post.kapakGorseli?.url),
+          siteUrl,
         })}
       />
+      {post.sss && post.sss.length > 0 && (
+        <JsonLd data={faqPageJsonLd(post.sss)} />
+      )}
 
       <Breadcrumb items={crumbs} />
 

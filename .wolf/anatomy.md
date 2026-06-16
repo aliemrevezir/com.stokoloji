@@ -1,11 +1,27 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T15:44:54.738Z
-> Files: 144 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T17:22:34.060Z
+> Files: 164 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../../.claude/plans/
 
+- `en-stteki-bar-da-strapi-den-quirky-octopus.md` — Plan — Strapi'den yönetilen duyuru barı (utility bar) (~1731 tok)
+- `kankam-imdi-canl-ya-kmadan-enumerated-pebble.md` — Stokoloji — Launch Öncesi SEO & İçerik Hazırlık Planı (~3660 tok)
 - `stokoloji-com-un-anasayfas-ndaki-hero-se-zippy-coral.md` — Anasayfa Hero → Tam Genişlik Banner Carousel (Strapi-yönetilen) (~1963 tok)
+
+## ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/
+
+- `brevo-lead-magnet-esp.md` (~327 tok)
+- `MEMORY.md` (~31 tok)
+
+## ../launch-icerik/araclar/
+
+- `stok-devir-hizi-hesaplama.md` — Tool: Stok Devir Hızı Hesaplama (~872 tok)
+
+## ../launch-icerik/blog/
+
+- `stok-devir-hizi-BRIEF.md` — İçerik Brief — Stok Devir Hızı (yazı + görsel planı) (~1345 tok)
+- `stok-devir-hizi-nedir.md` — Blog: Stok Devir Hızı Nedir? (~1967 tok)
 
 ## ./
 
@@ -15,7 +31,7 @@
 - `.gitignore` — Git ignore rules (~142 tok)
 - `.prettierrc.json` — Prettier configuration (~31 tok)
 - `Caddyfile` — Opsiyonel reverse proxy (proxy profili). Demo için zorunlu değildir. (~68 tok)
-- `CLAUDE.md` — OpenWolf (~2803 tok)
+- `CLAUDE.md` — OpenWolf (~3105 tok)
 - `docker-compose.prod.yml` — Stokoloji — PRODUCTION compose (Coolify hedefli). (~1102 tok)
 - `docker-compose.yml` — Docker Compose services (~1111 tok)
 - `package.json` — Node.js package manifest (~185 tok)
@@ -63,7 +79,7 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~504 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~541 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
@@ -112,6 +128,22 @@
 ## apps/cms/src/api/blog/services/
 
 - `blog.ts` (~31 tok)
+
+## apps/cms/src/api/duyuru/content-types/duyuru/
+
+- `schema.json` (~233 tok)
+
+## apps/cms/src/api/duyuru/controllers/
+
+- `duyuru.ts` (~33 tok)
+
+## apps/cms/src/api/duyuru/routes/
+
+- `duyuru.ts` (~32 tok)
+
+## apps/cms/src/api/duyuru/services/
+
+- `duyuru.ts` (~32 tok)
 
 ## apps/cms/src/api/kategori/content-types/kategori/
 
@@ -173,7 +205,7 @@
 
 ## apps/cms/src/seed/
 
-- `index.ts` — Demo içeriğini oluşturur (idempotent — EOQ tool zaten varsa atlar). (~2397 tok)
+- `index.ts` — Declares p (~6931 tok)
 
 ## apps/cms/types/generated/
 
@@ -194,50 +226,58 @@
 - `tsconfig.tsbuildinfo` (~48754 tok)
 - `vitest.config.ts` — Vitest test configuration (~45 tok)
 
+## apps/web/public/img/
+
+
 ## apps/web/src/app/
 
 - `globals.css` — Styles: 3 rules (~108 tok)
 - `icon.svg` — Favicon (App Router): koyu lacivert tile + serif "s" + teal nokta. XML yorumu kullanma (çift tire SVG'yi bozar). (~90 tok)
-- `layout.tsx` — Editoryal serif başlık fontu (tasarım imzası). (~630 tok)
-- `robots.ts` — Exports robots (~90 tok)
+- `layout.tsx` — Editoryal serif başlık fontu (tasarım imzası). (~846 tok)
+- `not-found.tsx` — metadata (~827 tok)
+- `robots.ts` — siteUrl: robots (~197 tok)
 - `sitemap.ts` — siteUrl: sitemap (~398 tok)
-- `theme.css` — Styles: 91 rules, 52 vars (~11376 tok)
+- `theme.css` — Styles: 91 rules, 52 vars (~11797 tok)
 
 ## apps/web/src/app/(site)/
 
-- `page.tsx` — revalidate (~3946 tok)
+- `page.tsx` — revalidate (~3970 tok)
 
 ## apps/web/src/app/(site)/araclar/
 
-- `page.tsx` — revalidate (~1007 tok)
+- `page.tsx` — revalidate (~1284 tok)
 
 ## apps/web/src/app/(site)/araclar/[slug]/
 
 - `page.tsx` — revalidate (~373 tok)
 
-## apps/web/src/app/(site)/blog/
-
-- `page.tsx` — revalidate (~1004 tok)
-
-## apps/web/src/app/(site)/blog/[slug]/
-
-- `page.tsx` — revalidate (~1486 tok)
-
 ## apps/web/src/app/(site)/gizlilik/
 
 - `page.tsx` — metadata (~328 tok)
 
+## apps/web/src/app/(site)/icerik/
+
+- `page.tsx` — blog/içerik liste sayfası (eski `/blog`, 2026-06 taşındı). H1 + "Son yazılar" H2, CollectionPage+Breadcrumb JSON-LD (~1300 tok)
+- `page.tsx` — revalidate (~1291 tok)
+
+## apps/web/src/app/(site)/icerik/[slug]/
+
+- `page.tsx` — blog detay. generateMetadata (desc fallback `excerptFromBlocks`), BlogPosting+Breadcrumb(+FAQPage) JSON-LD (~1550 tok)
+- `page.tsx` — revalidate (~1568 tok)
+
 ## apps/web/src/components/
 
 - `AuthorBox.tsx` — E-E-A-T yazar kutusu. (~290 tok)
-- `BlocksRenderer.tsx` — Minimal Strapi "blocks" zengin metin renderer'ı. (~1182 tok)
+- `BlocksRenderer.tsx` — Minimal Strapi "blocks" zengin metin renderer'ı. (~1548 tok)
 - `Breadcrumb.tsx` — Breadcrumb gezinme (görsel). JSON-LD ayrıca BreadcrumbList ile basılır. (~261 tok)
 - `CalculatorCard.tsx` — Sticky, ön-doldurulmuş hesap kartı (tasarım: ornek/EOQ Hesaplayıcı.html calc-card). (~1344 tok)
 - `CalloutBox.tsx` — Zoho "points to remember" tarzı vurgulu kutu. (~260 tok)
 - `FAQAccordion.tsx` — Açılır SSS listesi. FAQPage JSON-LD ayrıca sayfada basılır. (~326 tok)
 - `FormulaCard.tsx` — Sol accent bordürlü, monospace formül kartı. (~108 tok)
 - `JsonLd.tsx` — schema.org JSON-LD'yi sayfaya basar. (~89 tok)
-- `LeadMagnetBlock.tsx` — Lead magnet bloğu (örn. Excel şablonu). Görünür olunca `lead_magnet_view`, (~650 tok)
+- `LeadMagnetBlock.tsx` — KULLANILMIYOR (ölü kod). Eski Tailwind sınıflı lead magnet bloğu; editorial redesign'da yerini `LeadMagnetForm` aldı. (~650 tok)
+- `LeadMagnetForm.tsx` — KULLANILAN anasayfa lead magnet formu (`page.tsx` #lead). Görünür olunca `lead_magnet_view`, submit'te `lead_magnet_submit` atar; editorial `lm-form` sınıfları. Backend (Brevo/Strapi Abone) deferred. (~560 tok)
+- `RandomPostLink.tsx` — 404 sayfasında "rastgele yazı" CTA'sı. Tıklamada slug listesinden rastgele (~223 tok)
 - `RelatedToolsGrid.tsx` — İç link cluster'ı — ilgili tool/yazı kartları. (~295 tok)
 - `ResultDisplay.tsx` — Büyük monospace sonuç + kısa yorum + ek satırlar. (~308 tok)
 - `TOCSidebar.tsx` — Blog için sticky "Bu yazıda" içindekiler. (~220 tok)
@@ -252,8 +292,8 @@
 
 ## apps/web/src/components/chrome/
 
-- `SiteFooter.tsx` — Koyu zeminli site footer'ı (tasarım: ornek/theme.js buildFooter). (~814 tok)
-- `SiteHeader.tsx` — CAT_COLOR — renders modal — uses useState, useEffect (~2606 tok)
+- `SiteFooter.tsx` — Koyu zeminli site footer'ı (tasarım: ornek/theme.js buildFooter). (~726 tok)
+- `SiteHeader.tsx` — Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). (~4291 tok)
 
 ## apps/web/src/components/home/
 
@@ -271,9 +311,9 @@
 
 ## apps/web/src/lib/
 
-- `banners.test.ts` — Declares baseMeta (~809 tok)
+- `banners.test.ts` — Declares baseMeta (~810 tok)
 - `banners.ts` — Banner → carousel slide çözümleme. (~533 tok)
-- `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~346 tok)
+- `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~561 tok)
 - `format.ts` — Türkçe sayı/para formatlayıcıları (sonuç gösterimi için). (~234 tok)
 - `home.ts` — Blog yazılarını kategorilerine göre gruplar. Kategorisi olmayan yazılar (~247 tok)
 - `nav.ts` — Header / footer chrome için navigasyon verisi. (~934 tok)
@@ -283,7 +323,7 @@
 
 - `consent.ts` — Consent (onay) durumu — framework bağımsız çekirdek. (~425 tok)
 - `index.ts` — Merkezi tracking abstraction — TEK giriş noktası. (~309 tok)
-- `types.ts` — Analitik event sözlüğü — tipli. Tüm track() çağrıları buradan tip alır. (~252 tok)
+- `types.ts` — Analitik event sözlüğü — tipli. Tüm track() çağrıları buradan tip alır. (~296 tok)
 - `useConsent.ts` — Consent durumunu React'e bağlar (banner + script yükleme için). (~171 tok)
 
 ## apps/web/src/lib/analytics/providers/
@@ -297,13 +337,16 @@
 
 ## apps/web/src/lib/seo/
 
-- `jsonld.ts` — JSON-LD (schema.org) builder'ları. Saf fonksiyonlar — düz nesne döner, (~556 tok)
+- `jsonld.ts` — JSON-LD (schema.org) builder'ları. Saf fonksiyonlar — düz nesne döner, (~1370 tok)
 
 ## apps/web/src/lib/tools/
 
 - `eoq.test.ts` — Declares result (~377 tok)
 - `eoq.ts` — EOQ (Ekonomik Sipariş Miktarı) — SAF hesaplama mantığı. (~411 tok)
-- `registry.ts` — Hesaplayıcı kayıt defteri (registry). (~663 tok)
+- `registry.ts` — Hesaplayıcı kayıt defteri (registry). EOQ + stok devir hızı. (~986 tok)
+- `stok-devir-hizi.test.ts` — Declares r (~391 tok)
+- `stok-devir-hizi.ts` — Stok devir hızı SAF hesaplama (SDH = SMM / ort. stok). (~410 tok)
+- `stok-devir-hizi.ts` — Stok Devir Hızı — SAF hesaplama mantığı. (~516 tok)
 
 ## ornek/
 
@@ -321,8 +364,8 @@
 
 ## packages/api-client/src/
 
-- `index.ts` — Exports StrapiClientOptions, FetchOptions, createClient, StrapiClient (~1626 tok)
-- `types.ts` — Strapi 5 REST response tipleri. (~911 tok)
+- `index.ts` — Exports StrapiClientOptions, FetchOptions, createClient, StrapiClient (~1888 tok)
+- `types.ts` — Strapi 5 REST response tipleri. (~1090 tok)
 
 ## packages/ui/
 
@@ -332,3 +375,7 @@
 ## packages/ui/src/
 
 - `tokens.ts` — Stokoloji tasarım token'ları — TEK kaynak. (~339 tok)
+
+## scripts/lead-magnet/
+
+- `generate.py` — -*- coding: utf-8 -*- (~5265 tok)

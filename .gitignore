@@ -41,3 +41,6 @@ coverage/
 
 # strapi update-check cache
 apps/cms/.strapi-updater.json
+
+# openwolf ephemeral session state
+.wolf/hooks/_session.json

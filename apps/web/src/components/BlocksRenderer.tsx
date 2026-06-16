@@ -31,6 +31,9 @@ type BlockNode = {
   level?: number;
   format?: 'ordered' | 'unordered';
   image?: ImageData;
+  headers?: string[];
+  rows?: string[][];
+  caption?: string | null;
   children?: (InlineNode | BlockNode)[];
 };
 
@@ -86,10 +89,42 @@ function renderBlock(block: BlockNode, key: string): ReactNode {
           {renderInline(inline, key)}
         </blockquote>
       );
+    case 'table': {
+      if (!block.headers || !block.rows) return null;
+      return (
+        <figure key={key} className="my-6 overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr>
+                {block.headers.map((head, i) => (
+                  <th key={i} className="border-b-2 border-brand-200 px-3 py-2 text-left font-semibold text-brand-900">
+                    {head}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri}>
+                  {row.map((cell, ci) => (
+                    <td key={ci} className="border-b border-brand-100 px-3 py-2 align-top text-ink/90">{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {block.caption && (
+            <figcaption className="mt-2 text-center text-sm text-muted">{block.caption}</figcaption>
+          )}
+        </figure>
+      );
+    }
     case 'image': {
       // Strapi blocks görseli medya verisini node içine gömer (ekstra populate yok).
       // next/image değil düz <img>: docker dev'de optimizer localhost:1337'e ulaşamaz.
-      const url = mediaUrl(block.image?.url);
+      // `/img/` ile başlayan yol web'in kendi public asset'idir (Strapi host eklenmez).
+      const raw = block.image?.url;
+      const url = raw && raw.startsWith('/img/') ? raw : mediaUrl(raw);
       if (!url) return null;
       const alt = block.image?.alternativeText ?? '';
       return (

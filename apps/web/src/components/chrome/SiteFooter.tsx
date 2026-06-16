@@ -15,7 +15,7 @@ export function SiteFooter({ nav, year }: { nav: NavData; year: number }) {
           </div>
 
           <div>
-            <h5>Araçlar</h5>
+            <h2 className="footer-col-title">Araçlar</h2>
             <div className="f-links">
               {nav.tools.slice(0, 6).map((t, i) => (
                 <Link key={`${t.href}-${i}`} href={t.href}>{t.name}</Link>
@@ -24,7 +24,7 @@ export function SiteFooter({ nav, year }: { nav: NavData; year: number }) {
           </div>
 
           <div>
-            <h5>Kategoriler</h5>
+            <h2 className="footer-col-title">Kategoriler</h2>
             <div className="f-links">
               {nav.categories.map((c) => (
                 <Link key={c.label} href={c.href}>{c.label}</Link>
@@ -33,7 +33,7 @@ export function SiteFooter({ nav, year }: { nav: NavData; year: number }) {
           </div>
 
           <div className="f-news">
-            <h5>Bültene Katıl</h5>
+            <h2 className="footer-col-title">Bültene Katıl</h2>
             <p style={{ color: 'var(--ink-light)', fontSize: '.9375rem', marginBottom: 14 }}>
               Yeni araçlar ve rehberler için ayda iki kez, spam yok.
             </p>

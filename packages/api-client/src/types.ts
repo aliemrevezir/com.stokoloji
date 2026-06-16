@@ -78,6 +78,7 @@ export interface Blog extends StrapiEntityMeta {
   kategori?: Kategori | null;
   yazar?: Yazar | null;
   iliskiliTool?: Tool | null;
+  sss?: Sss[] | null;
   yayinTarihi?: string | null;
   guncellemeTarihi?: string | null;
 }
@@ -94,6 +95,31 @@ export interface Banner extends StrapiEntityMeta {
   blog?: Blog | null;
   arac?: Tool | null;
   gorsel?: StrapiMedia | null;
+}
+
+/** Duyuru barı ikon anahtarı — web `SiteHeader` `Icon` map'iyle birebir eşleşir. */
+export type DuyuruIkon =
+  | 'sheet'
+  | 'etiket'
+  | 'zil'
+  | 'hediye'
+  | 'bilgi'
+  | 'yildiz'
+  | 'yok';
+
+/**
+ * Duyuru collection type — en üstteki utility bar duyurusu.
+ *
+ * Birden fazla kayıt saklanır; `aktif` olanlardan en düşük `sira`'lı gösterilir.
+ * Hiçbiri aktif değilse bar render edilmez.
+ */
+export interface Announcement extends StrapiEntityMeta {
+  mesaj: string;
+  ctaLabel?: string | null;
+  ctaHref?: string | null;
+  ikon?: DuyuruIkon | null;
+  aktif?: boolean | null;
+  sira?: number | null;
 }
 
 /** Anasayfa single type — öne çıkan içerik küratörlüğü (yazılar/araçlar). */
