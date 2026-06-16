@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T22:06:20.843Z
-> Files: 188 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T22:07:33.520Z
+> Files: 189 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../
 
@@ -26,6 +26,7 @@
 - `emniyet-stogu-hesaplama.md` — Tool: Emniyet Stoğu Hesaplama (~1116 tok)
 - `eoq-hesaplama.md` — Tool: EOQ Hesaplama (~926 tok)
 - `stok-devir-hizi-hesaplama.md` — Tool: Stok Devir Hızı Hesaplama (~872 tok)
+- `yeniden-siparis-noktasi-hesaplama.md` — Tool: Yeniden Sipariş Noktası (ROP) Hesaplama (~1033 tok)
 
 ## ../launch-icerik/blog/
 
@@ -217,7 +218,7 @@
 
 ## apps/cms/src/seed/
 
-- `index.ts` — Declares p (~16047 tok)
+- `index.ts` — Declares p (~16048 tok)
 
 ## apps/cms/types/generated/
 

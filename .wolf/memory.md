@@ -602,3 +602,7 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 01:04 | Edited apps/web/src/lib/tools/registry.ts | added 1 import(s) | ~62 |
 | 01:04 | Edited apps/web/src/lib/tools/registry.ts | expanded (+26 lines) | ~351 |
 | 01:06 | Created ../launch-icerik/blog/yeniden-siparis-noktasi-nedir.md | — | ~3159 |
+| 01:06 | Created ../launch-icerik/araclar/yeniden-siparis-noktasi-hesaplama.md | — | ~1102 |
+| 01:07 | Session end: 8 writes across 6 files (index.ts, rop.ts, rop.test.ts, registry.ts, yeniden-siparis-noktasi-nedir.md) | 6 reads | ~25724 tok |
+| 01:07 | Edited apps/cms/src/seed/index.ts | inline fix | ~23 |
+| 01:07 | Edited apps/cms/src/seed/index.ts | inline fix | ~18 |
