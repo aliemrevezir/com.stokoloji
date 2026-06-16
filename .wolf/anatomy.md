@@ -1,10 +1,16 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T20:24:01.712Z
-> Files: 165 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T20:55:11.610Z
+> Files: 168 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../
+
+- `CLAUDE.md` — CLAUDE.md — SEO Portföy Çalışma Alanı (~812 tok)
+- `kapak-gorseli-standardi.md` — Kapak Görseli Prompt Standardı — Stokoloji (~1525 tok)
 
 ## ../../../../.claude/plans/
 
+- `emniyet-sto-u-ve-yeniden-idempotent-fairy.md` — Emniyet Stoğu İçerik Yenileme — Brief & Plan (~1579 tok)
 - `en-stteki-bar-da-strapi-den-quirky-octopus.md` — Plan — Strapi'den yönetilen duyuru barı (utility bar) (~1731 tok)
 - `kankam-imdi-canl-ya-kmadan-enumerated-pebble.md` — Stokoloji — Launch Öncesi SEO & İçerik Hazırlık Planı (~3660 tok)
 - `stokoloji-com-un-anasayfas-ndaki-hero-se-zippy-coral.md` — Anasayfa Hero → Tam Genişlik Banner Carousel (Strapi-yönetilen) (~1963 tok)
@@ -31,7 +37,7 @@
 - `.gitignore` — Git ignore rules (~142 tok)
 - `.prettierrc.json` — Prettier configuration (~31 tok)
 - `Caddyfile` — Opsiyonel reverse proxy (proxy profili). Demo için zorunlu değildir. (~68 tok)
-- `CLAUDE.md` — OpenWolf (~3105 tok)
+- `CLAUDE.md` — OpenWolf (~3223 tok)
 - `docker-compose.prod.yml` — Stokoloji — PRODUCTION compose (Coolify hedefli). (~1102 tok)
 - `docker-compose.yml` — Docker Compose services (~1327 tok)
 - `package.json` — Node.js package manifest (~185 tok)
@@ -163,7 +169,7 @@
 
 ## apps/cms/src/api/tool/content-types/tool/
 
-- `schema.json` (~298 tok)
+- `schema.json` (~329 tok)
 
 ## apps/cms/src/api/tool/controllers/
 
@@ -237,11 +243,11 @@
 - `not-found.tsx` — metadata (~827 tok)
 - `robots.ts` — siteUrl: robots (~197 tok)
 - `sitemap.ts` — siteUrl: sitemap (~402 tok)
-- `theme.css` — Styles: 91 rules, 52 vars (~11910 tok)
+- `theme.css` — Styles: 92 rules, 52 vars (~11970 tok)
 
 ## apps/web/src/app/(site)/
 
-- `page.tsx` — revalidate (~3970 tok)
+- `page.tsx` — revalidate (~3963 tok)
 
 ## apps/web/src/app/(site)/araclar/
 
@@ -297,7 +303,7 @@
 ## apps/web/src/components/chrome/
 
 - `SiteFooter.tsx` — Koyu zeminli site footer'ı (tasarım: ornek/theme.js buildFooter). (~726 tok)
-- `SiteHeader.tsx` — Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). (~4501 tok)
+- `SiteHeader.tsx` — Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). (~4566 tok)
 
 ## apps/web/src/components/home/
 
@@ -316,11 +322,11 @@
 ## apps/web/src/lib/
 
 - `banners.test.ts` — Declares baseMeta (~810 tok)
-- `banners.ts` — Banner → carousel slide çözümleme. (~533 tok)
+- `banners.ts` — Banner → carousel slide çözümleme. (~577 tok)
 - `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~561 tok)
 - `format.ts` — Türkçe sayı/para formatlayıcıları (sonuç gösterimi için). (~234 tok)
 - `home.ts` — Blog yazılarını kategorilerine göre gruplar. Kategorisi olmayan yazılar (~247 tok)
-- `nav.ts` — Header / footer chrome için navigasyon verisi. (~946 tok)
+- `nav.ts` — Header / footer chrome için navigasyon verisi. (~1198 tok)
 - `strapi.ts` — Web uygulamasının Strapi'ye TEK bağlantı noktası. (~353 tok)
 
 ## apps/web/src/lib/analytics/
@@ -368,8 +374,8 @@
 
 ## packages/api-client/src/
 
-- `index.ts` — Exports StrapiClientOptions, FetchOptions, createClient, StrapiClient (~1888 tok)
-- `types.ts` — Strapi 5 REST response tipleri. (~1090 tok)
+- `index.ts` — Exports StrapiClientOptions, FetchOptions, createClient, StrapiClient (~1937 tok)
+- `types.ts` — Strapi 5 REST response tipleri. (~1100 tok)
 
 ## packages/ui/
 

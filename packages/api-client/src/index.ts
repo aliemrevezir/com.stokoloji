@@ -64,6 +64,7 @@ const BANNER_POPULATE: Record<string, string> = {
   'populate[blog][populate][seo]': 'true',
   'populate[blog][populate][kategori]': 'true',
   'populate[arac][populate][kategori]': 'true',
+  'populate[arac][populate][kapakGorseli]': 'true',
   'populate[gorsel]': 'true',
 };
 

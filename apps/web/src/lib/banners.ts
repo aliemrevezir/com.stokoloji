@@ -5,7 +5,8 @@
  * görsel + sıra. Görünüm verisi (başlık, excerpt, link, görsel) buradaki SAF
  * fonksiyonla türetilir; bu sayede mantık test edilebilir ve UI'den ayrıdır.
  *
- * Görsel önceliği: banner.gorsel → blog.kapakGorseli → (yok → degrade).
+ * Görsel önceliği: banner.gorsel → bağlı içeriğin kapakGorseli
+ * (blog.kapakGorseli / arac.kapakGorseli) → (yok → degrade).
  */
 import type { Banner } from '@stokoloji/api-client';
 import { mediaUrl } from './strapi';
@@ -45,8 +46,11 @@ export function resolveBannerSlide(banner: Banner): BannerSlide | null {
       baslik: arac.ad,
       excerpt: arac.kisaAciklama ?? '',
       href: `/araclar/${arac.slug}`,
-      gorselUrl: mediaUrl(banner.gorsel?.url),
-      gorselAlt: banner.gorsel?.alternativeText ?? arac.ad,
+      gorselUrl: mediaUrl(banner.gorsel?.url) ?? mediaUrl(arac.kapakGorseli?.url),
+      gorselAlt:
+        banner.gorsel?.alternativeText ??
+        arac.kapakGorseli?.alternativeText ??
+        arac.ad,
     };
   }
 
