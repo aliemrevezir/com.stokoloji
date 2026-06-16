@@ -627,3 +627,51 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 01:19 | Edited apps/web/public/img/rop-zaman-grafigi.svg | 3→4 lines | ~112 |
 | 01:19 | Edited apps/web/public/img/rop-zaman-grafigi.svg | 1→2 lines | ~56 |
 | 01:20 | Created ../../../../../../tmp/rop_blog_cover.svg | — | ~838 |
+| 01:24 | Edited apps/cms/src/seed/index.ts | 4→9 lines | ~253 |
+| 01:24 | Edited apps/cms/src/seed/index.ts | modified if() | ~244 |
+| 01:24 | Edited apps/cms/src/seed/index.ts | modified if() | ~202 |
+| 01:25 | Session end: 7 writes across 3 files (rop-zaman-grafigi.svg, rop_blog_cover.svg, index.ts) | 5 reads | ~2694 tok |
+| 01:26 | Session end: 7 writes across 3 files (rop-zaman-grafigi.svg, rop_blog_cover.svg, index.ts) | 5 reads | ~2694 tok |
+| 01:28 | Edited apps/cms/src/seed/index.ts | modified if() | ~215 |
+| 01:28 | Edited apps/cms/src/seed/index.ts | modified if() | ~111 |
+| 01:28 | Edited apps/cms/src/seed/index.ts | added 1 condition(s) | ~132 |
+| 01:28 | Edited apps/cms/src/seed/index.ts | modified if() | ~119 |
+
+## Session: 2026-06-16 01:29
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16 01:29
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 01:29 | Edited apps/cms/src/seed/index.ts | added 1 condition(s) | ~214 |
+| 01:30 | ROP görselleri: kullanıcı PNG'leri (rop-kapak/tool/grafik) Pillow q82 1600px JPG'ye (69-83KB) optimize, uploads'a docker cp, seedRop'a kapak+gövde img bağlandı | seed/index.ts, uploads | blog+tool kapak + gövde grafiği canlı render | ~3k |
+| 01:30 | seedRop guard: kapak sonradan eklendiği için "populate kapakGorseli → eksikse 1 kez backfill, varsa atla" desenine çevrildi (elle düzenleme ezilmez) | seed/index.ts | idempotent yakınsadı | ~1.5k |
+| 01:33 | Session end: 1 writes across 1 files (index.ts) | 2 reads | ~214 tok |
+| 01:34 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | CSS: marginBottom | ~228 |
+| 01:34 | Edited apps/cms/src/seed/index.ts | 11→9 lines | ~89 |
+
+## Session: 2026-06-16 01:36
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 01:38 | Edited apps/cms/src/seed/index.ts | expanded (+10 lines) | ~559 |
+| 01:38 | Edited apps/cms/src/seed/index.ts | 6→11 lines | ~164 |
+| 01:38 | Edited apps/cms/src/seed/index.ts | 6→11 lines | ~175 |
+| 01:38 | Edited apps/cms/src/seed/index.ts | 6→11 lines | ~198 |
+| 01:39 | Edited apps/cms/src/index.ts | expanded (+12 lines) | ~55 |
+| 01:39 | Edited apps/cms/src/index.ts | added error handling | ~910 |
+| 01:39 | Edited apps/cms/src/index.ts | 2→3 lines | ~32 |
+| 01:40 | Session end: 7 writes across 1 files (index.ts) | 8 reads | ~32902 tok |
+| 01:40 | Session end: 7 writes across 1 files (index.ts) | 8 reads | ~32902 tok |
+
+## Session: 2026-06-16 01:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 01:42 | FAQ görünürlük + araştırma: blog detay şablonu sss'i görünür akordeon basacak şekilde güncellendi (tek alan JSON-LD+görünür); 4 blog SSS Semrush soru raporu + Google PAA ile zenginleştirildi (export edildi) | icerik/[slug]/page.tsx, seed/index.ts | 4 blogda 7 araştırma-sorulu görünür FAQ | ~8k |
+| 01:42 | syncBlogFaq migration: canonical sss'i canlı kayıtlara işler + gövdedeki artık "Sık sorulan sorular" başlığını temizler (ROP) | apps/cms/src/index.ts | 4 blog güncellendi, idempotent yakınsar | ~2k |
+| 01:45 | Created ../../../../.claude/plans/kankam-yeni-bir-sayfa-greedy-spindle.md | — | ~2864 |
+| 01:45 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |

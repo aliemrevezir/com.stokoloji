@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T22:20:29.965Z
-> Files: 193 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T22:45:34.737Z
+> Files: 194 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../
 
@@ -17,6 +17,7 @@
 - `emniyet-sto-u-ve-yeniden-idempotent-fairy.md` — Emniyet Stoğu İçerik Yenileme — Brief & Plan (~2488 tok)
 - `en-stteki-bar-da-strapi-den-quirky-octopus.md` — Plan — Strapi'den yönetilen duyuru barı (utility bar) (~1731 tok)
 - `kankam-imdi-canl-ya-kmadan-enumerated-pebble.md` — Stokoloji — Launch Öncesi SEO & İçerik Hazırlık Planı (~3660 tok)
+- `kankam-yeni-bir-sayfa-greedy-spindle.md` — Stokoloji — Sözlük (Terimler Sözlüğü) Sayfası (~2685 tok)
 - `stokoloji-com-un-anasayfas-ndaki-hero-se-zippy-coral.md` — Anasayfa Hero → Tam Genişlik Banner Carousel (Strapi-yönetilen) (~1963 tok)
 
 ## ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/
@@ -96,7 +97,7 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~3168 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~4067 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
@@ -222,7 +223,7 @@
 
 ## apps/cms/src/seed/
 
-- `index.ts` — Declares p (~21736 tok)
+- `index.ts` — Exports BLOG_SSS (~22858 tok)
 
 ## apps/cms/types/generated/
 
@@ -280,7 +281,7 @@
 
 ## apps/web/src/app/(site)/icerik/[slug]/
 
-- `page.tsx` — revalidate (~1590 tok)
+- `page.tsx` — revalidate (~1767 tok)
 - `page.tsx` — revalidate (~1568 tok)
 
 ## apps/web/src/app/(site)/rehber/
