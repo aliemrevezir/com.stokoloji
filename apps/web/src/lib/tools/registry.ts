@@ -11,6 +11,7 @@
 import { eoq } from './eoq';
 import { stokDevirHizi } from './stok-devir-hizi';
 import { emniyetStogu } from './emniyet-stogu';
+import { rop } from './rop';
 import { formatNumber, formatCurrency } from '../format';
 
 export interface CalculatorField {
@@ -118,10 +119,36 @@ const emniyetStoguDef: CalculatorDef = {
   },
 };
 
+const ropDef: CalculatorDef = {
+  slug: 'yeniden-siparis-noktasi-hesaplama',
+  fields: [
+    { name: 'gunlukTalep', label: 'Ortalama Günlük Talep', suffix: 'adet/gün', defaultValue: 50, min: 0, step: 0.1 },
+    { name: 'tedarikSuresi', label: 'Tedarik Süresi (L)', suffix: 'gün', defaultValue: 9, min: 0.1, step: 0.1 },
+    { name: 'emniyetStogu', label: 'Emniyet Stoğu', suffix: 'adet', defaultValue: 99, min: 0, step: 1 },
+  ],
+  compute: (inputs) => {
+    const r = rop({
+      gunlukTalep: inputs.gunlukTalep!,
+      tedarikSuresi: inputs.tedarikSuresi!,
+      emniyetStogu: inputs.emniyetStogu!,
+    });
+    return {
+      value: formatNumber(r.ropYuvarli),
+      unit: 'birim',
+      summary: `Yeniden sipariş noktası = ${formatNumber(r.ropYuvarli)} birim · stok bu seviyeye düşünce sipariş ver`,
+      rows: [
+        { label: 'Tedarik süresi talebi', value: `${formatNumber(r.tedarikSuresiTalebi)} birim` },
+        { label: 'Emniyet stoğu payı', value: `${formatNumber(inputs.emniyetStogu!)} birim` },
+      ],
+    };
+  },
+};
+
 const REGISTRY: Record<string, CalculatorDef> = {
   [eoqDef.slug]: eoqDef,
   [stokDevirHiziDef.slug]: stokDevirHiziDef,
   [emniyetStoguDef.slug]: emniyetStoguDef,
+  [ropDef.slug]: ropDef,
 };
 
 export function getCalculator(slug: string): CalculatorDef | null {
