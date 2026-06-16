@@ -55,7 +55,6 @@ export default async function HomePage() {
   const heroFeatured = featuredPosts[0];
   const sidePosts = featuredPosts.slice(1, 4);
   const categoryGroups = groupPostsByCategory(posts);
-  const popularTools = (tools.length ? tools : []).slice(0, 5);
 
   // Banner yokken gösterilen statik fallback hero metni (Strapi'ye bağlı değil).
   const heroTitle = 'Stok kararlarını tahminle değil, hesapla.';
@@ -94,7 +93,7 @@ export default async function HomePage() {
               <span style={{ flex: 1, height: 1, background: 'var(--border)' }} />
             </div>
 
-            <div className="hero-grid">
+            <div className="hero-grid" data-single={sidePosts.length === 0 ? '' : undefined}>
               <article className="card card-hover featured-card reveal">
                 <Link href={`/blog/${heroFeatured.slug}`} style={{ display: 'block' }}>
                   <Thumb
@@ -120,6 +119,7 @@ export default async function HomePage() {
                 </div>
               </article>
 
+              {sidePosts.length > 0 && (
               <aside className="hero-side reveal">
                 <div className="eyebrow" style={{ marginBottom: 'var(--s-3)' }}>Öne çıkanlar</div>
                 {sidePosts.map((post) => (
@@ -137,21 +137,9 @@ export default async function HomePage() {
                   </Link>
                 ))}
               </aside>
+              )}
             </div>
 
-            {popularTools.length > 0 && (
-              <div className="popular-tools">
-                <span className="small muted" style={{ fontWeight: 600 }}>Popüler araçlar:</span>
-                {popularTools.map((t) => {
-                  const cat = categoryKey(t.kategori?.slug ?? t.kategori?.ad);
-                  return (
-                    <Link key={t.slug} className="tool-chip" href={`/araclar/${t.slug}`}>
-                      <span className="d" style={{ background: CAT_COLOR[cat] }} />{t.ad}
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
           </div>
         </section>
       )}
@@ -231,18 +219,6 @@ export default async function HomePage() {
                 <li><span className="why-num mono">02</span><div><b>Şeffaf formüller.</b> Her sonucun arkasındaki denklem ve varsayımlar açıkça gösterilir.</div></li>
                 <li><span className="why-num mono">03</span><div><b>Türkçe ve uygulanabilir.</b> Sektörden gerçekçi örnekler, indirilebilir Excel şablonları.</div></li>
               </ul>
-            </div>
-            <div className="author-box" style={{ alignSelf: 'start' }}>
-              <span className="avatar">A</span>
-              <div>
-                <div className="a-name">Ali</div>
-                <div className="a-role">ODTÜ Endüstri Mühendisliği · Production Developer</div>
-                <p className="a-bio">Tedarik zinciri ve üretim planlama üzerine çalışan bir mühendis. Stokoloji&apos;deki tüm hesap modellerini ve içerikleri yazıyor, sahadaki problemleri sadeleştirip araçlara dönüştürüyor.</p>
-                <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
-                  <span className="badge">E-E-A-T</span>
-                  <span className="badge">8+ yıl saha</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

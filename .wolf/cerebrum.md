@@ -49,6 +49,7 @@
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
 
 - [2026-06-14] **Deploy = Coolify + Docker Compose build pack** (`docker-compose.prod.yml`). Nixpacks değil: tek servis varsayardı, db+cms'i kaçırırdı. Compose 3 servisi, kalıcı volume'ları (`pgdata`+`strapi_uploads`) ve internal network'ü (`http://cms:1337`) yönetir.
+- [2026-06-16] **Arama = client-side filtre** (`SiteHeader` `nav` prop'u üzerinde, Türkçe normalize: ı/i + diacritic strip). Meilisearch reddedildi: bu ölçekte (3 tool + 3 blog) ayrı container + RAM (VPS zaten OOM sınırında), index pipeline'ı, plugin bakımı = aşırı mühendislik. nav zaten Strapi'den geliyor, ek istek yok, CWV/consent maliyeti sıfır. İçerik binlere çıkıp typo-tolerance/faceting gerekince Meilisearch'e geçiş ~1 günlük iş, o zaman yapılır.
 - [2026-06-14] **VPS 6 GB RAM yetmedi** (boştayken ~2 GB available); eşzamanlı `next build`+`strapi build` OOM yapıyordu (çıktısız exit). Çözüm: sunucuya **8 GB swap** (`/swapfile_build`, fstab'a eklendi). Sunucu büyütmek yerine swap — ucuz, build'i öldürmez.
 - [2026-06-14] **cms ayrı subdomain** `cms.stokoloji.com` — tarayıcı Strapi medya URL'lerini buradan çeker; aynı domain'de servis edilmez.
 - [2026-06-14] **Search Console = DNS (CNAME) doğrulaması** (meta yöntemi `layout.tsx`'te `verification.google` + `GOOGLE_SITE_VERIFICATION` env olarak da hazır ama kullanılmadı).

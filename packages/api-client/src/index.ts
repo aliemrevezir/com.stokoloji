@@ -150,7 +150,12 @@ export function createClient(options: StrapiClientOptions) {
       const data = await request<StrapiCollectionResponse<Blog>>('/blogs', {
         ...opts,
         query: buildQuery(
-          { 'populate[kategori]': 'true', 'sort': 'yayinTarihi:desc' },
+          {
+            'populate[kategori]': 'true',
+            'populate[kapakGorseli]': 'true',
+            'populate[seo]': 'true',
+            'sort': 'yayinTarihi:desc',
+          },
           opts.query,
         ),
       });

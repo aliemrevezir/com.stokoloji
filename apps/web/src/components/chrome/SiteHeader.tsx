@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import type { CatKey, NavData, NavItem } from '@/lib/nav';
 
@@ -11,6 +11,19 @@ const CAT_COLOR: Record<CatKey, string> = {
   analiz: 'var(--cat-analiz)',
   tedarik: 'var(--cat-tedarik)',
 };
+
+/** Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). */
+function normalize(value: string): string {
+  return value
+    .toLocaleLowerCase('tr')
+    .replace(/ı/g, 'i')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '');
+}
+
+interface SearchHit extends NavItem {
+  kind: 'Araç' | 'Yazı';
+}
 
 const Icon = {
   caret: (
@@ -72,6 +85,7 @@ export function SiteHeader({ nav }: { nav: NavData }) {
   const [openMega, setOpenMega] = useState<'tools' | 'blog' | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
   const [drawerOpen, setDrawerOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const searchInput = useRef<HTMLInputElement>(null);
@@ -104,7 +118,31 @@ export function SiteHeader({ nav }: { nav: NavData }) {
       const t = setTimeout(() => searchInput.current?.focus(), 60);
       return () => clearTimeout(t);
     }
+    setQuery('');
   }, [searchOpen]);
+
+  // Aranabilir set: araçlar + yazılar. nav zaten Strapi'den geldiği için ek istek yok.
+  const index = useMemo<SearchHit[]>(
+    () => [
+      ...nav.tools.map((t) => ({ ...t, kind: 'Araç' as const })),
+      ...nav.posts.map((p) => ({ ...p, kind: 'Yazı' as const })),
+    ],
+    [nav],
+  );
+
+  const results = useMemo<SearchHit[]>(() => {
+    const q = normalize(query.trim());
+    if (!q) return [];
+    const terms = q.split(/\s+/);
+    return index
+      .filter((item) => {
+        const haystack = normalize(item.name);
+        return terms.every((term) => haystack.includes(term));
+      })
+      .slice(0, 8);
+  }, [index, query]);
+
+  const closeSearch = () => setSearchOpen(false);
 
   const hoverOpen = (which: 'tools' | 'blog') => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -180,14 +218,37 @@ export function SiteHeader({ nav }: { nav: NavData }) {
         }}
       >
         <div className="search-panel">
-          <input ref={searchInput} type="text" placeholder="Araç veya yazı ara… (örn. EOQ, emniyet stoğu)" aria-label="Arama" />
-          <div className="sp-hint">
-            <span>Popüler:</span>
-            <span className="chip" data-cat="stok">EOQ</span>
-            <span className="chip" data-cat="stok">Emniyet Stoğu</span>
-            <span className="chip" data-cat="analiz">ABC Analizi</span>
-            <span className="chip" data-cat="analiz">Stok Devir Hızı</span>
-          </div>
+          <input
+            ref={searchInput}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Araç veya yazı ara… (örn. EOQ, emniyet stoğu)"
+            aria-label="Arama"
+          />
+          {query.trim() ? (
+            results.length > 0 ? (
+              <div className="sp-results">
+                {results.map((hit) => (
+                  <Link key={`${hit.kind}-${hit.href}`} href={hit.href} className="sp-result" onClick={closeSearch}>
+                    <span className="swatch" style={{ background: CAT_COLOR[hit.cat] }} />
+                    <span className="sp-result-name">{hit.name}</span>
+                    <span className="sp-result-kind">{hit.kind}</span>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="sp-empty">Sonuç bulunamadı.</div>
+            )
+          ) : (
+            <div className="sp-hint">
+              <span>Popüler:</span>
+              <button type="button" className="chip" data-cat="stok" onClick={() => setQuery('EOQ')}>EOQ</button>
+              <button type="button" className="chip" data-cat="stok" onClick={() => setQuery('Emniyet Stoğu')}>Emniyet Stoğu</button>
+              <button type="button" className="chip" data-cat="analiz" onClick={() => setQuery('ABC Analizi')}>ABC Analizi</button>
+              <button type="button" className="chip" data-cat="analiz" onClick={() => setQuery('Stok Devir Hızı')}>Stok Devir Hızı</button>
+            </div>
+          )}
         </div>
       </div>
 

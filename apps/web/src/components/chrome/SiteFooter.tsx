@@ -12,13 +12,6 @@ export function SiteFooter({ nav, year }: { nav: NavData; year: number }) {
             <p style={{ color: 'var(--ink-light)', marginTop: 12, fontSize: '.9375rem', maxWidth: '32ch' }}>
               Stok ve üretim yönetimi için hesaplayıcı araçlar ve mühendislik temelli rehberler. Tahmin değil, hesap.
             </p>
-            <div className="f-author">
-              <span className="avatar">A</span>
-              <div>
-                <div style={{ color: '#fff', fontWeight: 600, fontSize: '.9375rem' }}>Ali</div>
-                <div style={{ fontSize: '.8125rem' }}>ODTÜ Endüstri Mühendisliği · production developer. İçeriklerin ve hesap modellerinin yazarı.</div>
-              </div>
-            </div>
           </div>
 
           <div>

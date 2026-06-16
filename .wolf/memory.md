@@ -93,3 +93,35 @@ Anasayfa hero'su tam genişlik (full-bleed) otomatik dönen banner carousel'e d�
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 18:49 | Edited apps/web/src/app/(site)/page.tsx | 2→2 lines | ~48 |
+| 18:49 | Edited apps/web/src/app/(site)/page.tsx | 3→4 lines | ~67 |
+| 18:49 | Edited apps/web/src/app/(site)/page.tsx | 4→5 lines | ~30 |
+| 18:49 | Session end: 3 writes across 1 files (page.tsx) | 1 reads | ~4091 tok |
+| 18:49 | Edited apps/web/src/app/theme.css | CSS: max-width | ~65 |
+| 18:50 | Session end: 4 writes across 2 files (page.tsx, theme.css) | 2 reads | ~15532 tok |
+| 18:50 | Edited apps/web/src/app/(site)/page.tsx | — | ~0 |
+| 18:50 | Edited apps/web/src/app/(site)/page.tsx | — | ~0 |
+| 18:50 | Session end: 6 writes across 2 files (page.tsx, theme.css) | 2 reads | ~15532 tok |
+| 18:53 | Edited packages/api-client/src/index.ts | 2→7 lines | ~61 |
+| 18:53 | Session end: 7 writes across 3 files (page.tsx, theme.css, index.ts) | 3 reads | ~17219 tok |
+| 18:53 | Edited apps/web/src/components/chrome/SiteFooter.tsx | removed 8 lines | ~5 |
+| 18:54 | Edited apps/web/src/app/(site)/page.tsx | removed 13 lines | ~5 |
+| 18:54 | Edited apps/web/src/app/theme.css | inline fix | ~33 |
+| 18:54 | Session end: 10 writes across 4 files (page.tsx, theme.css, index.ts, SiteFooter.tsx) | 4 reads | ~17934 tok |
+| 18:57 | Edited apps/web/src/components/chrome/SiteHeader.tsx | CSS: value | ~78 |
+| 18:57 | Edited apps/web/src/components/chrome/SiteHeader.tsx | CSS: kind | ~41 |
+
+## Session: 2026-06-16 18:57
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 18:57 | Edited apps/web/src/components/chrome/SiteHeader.tsx | 6→6 lines | ~37 |
+| 18:57 | Edited apps/web/src/components/chrome/SiteHeader.tsx | 2→3 lines | ~44 |
+| 18:58 | Edited apps/web/src/components/chrome/SiteHeader.tsx | inline fix | ~18 |
+| 18:58 | Edited apps/web/src/components/chrome/SiteHeader.tsx | CSS: set, kind, kind | ~252 |
+| 18:58 | Edited apps/web/src/components/chrome/SiteHeader.tsx | CSS: background | ~464 |
+| 18:58 | Edited apps/web/src/app/theme.css | expanded (+7 lines) | ~287 |
+| 18:58 | client-side arama (Türkçe normalize, nav üzerinden) — Meilisearch yerine | SiteHeader.tsx, theme.css | calisiyor, typecheck temiz | ~6k |
+| 18:59 | Session end: 6 writes across 2 files (SiteHeader.tsx, theme.css) | 2 reads | ~15215 tok |
+| 18:59 | Session end: 6 writes across 2 files (SiteHeader.tsx, theme.css) | 3 reads | ~16875 tok |
+| 18:59 | Session end: 6 writes across 2 files (SiteHeader.tsx, theme.css) | 3 reads | ~16875 tok |
