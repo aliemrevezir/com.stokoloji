@@ -712,7 +712,7 @@ const EMNIYET_BLOG = [
   fx('Yeniden Sipariş Noktası = (Ortalama Günlük Talep × Tedarik Süresi) + Emniyet Stoğu'),
   pr(
     t(`Yani emniyet stoğu, ROP'un bir bileşenidir. Sipariş tetikleme seviyeni kurmak için `),
-    a('yeniden sipariş noktası nedir', '/blog/yeniden-siparis-noktasi-nedir'),
+    a('yeniden sipariş noktası nedir', '/icerik/yeniden-siparis-noktasi-nedir'),
     t(' yazısına ve '),
     a('yeniden sipariş noktası hesaplama', '/araclar/yeniden-siparis-noktasi-hesaplama'),
     t(' aracına geçebilirsin.'),
@@ -789,7 +789,7 @@ const EMNIYET_TOOL_FORMUL = [
     t(
       `, talebin ve tedarik süresinin belirsiz olduğu durumlarda stoksuz kalmamak için elinde bulundurman gereken tampon stoğu bulur. Ortalama talebe göre sipariş verirsen, talebin beklenenin üstüne çıktığı veya tedarikçinin geciktiği zamanlarda satışı kaçırırsın. Emniyet stoğu bu riski parayla satın aldığın güvence payıdır. Kavramın derin anlatımı için `,
     ),
-    a('emniyet stoğu nedir', '/blog/emniyet-stogu-nedir'),
+    a('emniyet stoğu nedir', '/icerik/emniyet-stogu-nedir'),
     t(' rehberine bakabilirsin.'),
   ),
   h(2, 'Emniyet stoğu formülü nedir?'),
