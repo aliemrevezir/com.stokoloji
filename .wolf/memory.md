@@ -675,3 +675,7 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 01:42 | syncBlogFaq migration: canonical sss'i canlı kayıtlara işler + gövdedeki artık "Sık sorulan sorular" başlığını temizler (ROP) | apps/cms/src/index.ts | 4 blog güncellendi, idempotent yakınsar | ~2k |
 | 01:45 | Created ../../../../.claude/plans/kankam-yeni-bir-sayfa-greedy-spindle.md | — | ~2864 |
 | 01:45 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |
+| 01:46 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |
+| 01:47 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |
+| 01:48 | ROP seed görselleri (rop-grafik/kapak/tool.jpg) seed-assets/uploads'a eklendi+commit (359db8a); ensureUploadAssets prod volume'a kopyalar | seed-assets/uploads | ROP kapakları artık prod'da gelecek | ~3k |
+| 01:48 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |

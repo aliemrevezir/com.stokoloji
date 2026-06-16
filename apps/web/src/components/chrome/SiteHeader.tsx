@@ -296,7 +296,7 @@ export function SiteHeader({
                 <Mega items={nav.posts} heading="Son Yazılar" onNavigate={() => setOpenMega(null)} />
               </li>
               <li><Link href="/rehber">Rehber</Link></li>
-              <li><Link href="/#hakkinda">Hakkında</Link></li>
+              {/* <li><Link href="/#hakkinda">Hakkında</Link></li> */}
             </ul>
             <div className="nav-right">
               <button className="icon-btn search-only" type="button" aria-label="Ara" onClick={() => setSearchOpen(true)}>
