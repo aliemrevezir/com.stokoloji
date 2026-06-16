@@ -121,6 +121,10 @@ services:
   # ZORUNLU secret'lar (LISTMONK_DB_PASSWORD, LISTMONK_ADMIN_*) Coolify env'den.
   listmonk_db:
     image: postgres:16-alpine
+    # `newsletter` profile arkasında: Coolify `--profile`'sız `up` çalıştırdığı
+    # için bu servis varsayılan deploy'da BAŞLAMAZ. Listmonk secret'ları + panel
+    # kurulumu hazır olunca profile aktive edilir (ya da bu satır kaldırılır).
+    profiles: ["newsletter"]
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${LISTMONK_DB_NAME:-listmonk}
@@ -136,6 +140,8 @@ services:
 
   listmonk:
     image: listmonk/listmonk:latest
+    # `newsletter` profile arkasında — varsayılan deploy'da başlamaz. Bkz. listmonk_db.
+    profiles: ["newsletter"]
     restart: unless-stopped
     command: ["sh", "-c", "./listmonk --install --idempotent --yes && ./listmonk --upgrade --yes && ./listmonk"]
     environment:
