@@ -125,3 +125,160 @@ Anasayfa hero'su tam genişlik (full-bleed) otomatik dönen banner carousel'e d�
 | 18:59 | Session end: 6 writes across 2 files (SiteHeader.tsx, theme.css) | 2 reads | ~15215 tok |
 | 18:59 | Session end: 6 writes across 2 files (SiteHeader.tsx, theme.css) | 3 reads | ~16875 tok |
 | 18:59 | Session end: 6 writes across 2 files (SiteHeader.tsx, theme.css) | 3 reads | ~16875 tok |
+| 19:00 | Session end: 6 writes across 2 files (SiteHeader.tsx, theme.css) | 3 reads | ~17387 tok |
+
+## Session: 2026-06-16 19:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:03 | Created ../../../../.claude/plans/en-stteki-bar-da-strapi-den-quirky-octopus.md | — | ~1846 |
+| 19:06 | Edited apps/web/src/lib/seo/jsonld.ts | modified websiteJsonLd() | ~379 |
+| 19:06 | Edited apps/web/src/app/layout.tsx | added 2 import(s) | ~80 |
+| 19:06 | Edited apps/web/src/app/layout.tsx | expanded (+16 lines) | ~195 |
+| 19:06 | Edited apps/web/src/components/chrome/SiteHeader.tsx | 2→2 lines | ~24 |
+| 19:06 | Edited apps/web/src/components/chrome/SiteFooter.tsx | 2→2 lines | ~21 |
+| 19:06 | Edited apps/web/src/components/chrome/SiteFooter.tsx | 2→2 lines | ~22 |
+| 19:06 | Edited apps/web/src/components/chrome/SiteFooter.tsx | 2→2 lines | ~28 |
+| 19:07 | Edited apps/web/src/app/theme.css | inline fix | ~48 |
+| 19:07 | Edited apps/web/src/app/theme.css | inline fix | ~56 |
+| 19:07 | Edited apps/web/src/app/(site)/page.tsx | added 1 import(s) | ~38 |
+| 19:07 | Edited apps/web/src/app/(site)/page.tsx | CSS: metadata, alternates, canonical | ~59 |
+| 19:07 | Edited apps/web/src/app/(site)/page.tsx | 4→9 lines | ~128 |
+| 19:07 | Edited apps/web/src/app/(site)/blog/page.tsx | CSS: http, localhost | ~162 |
+| 19:07 | Created apps/cms/src/api/duyuru/content-types/duyuru/schema.json | — | ~233 |
+| 19:07 | Edited apps/web/src/app/(site)/blog/page.tsx | expanded (+15 lines) | ~232 |
+| 19:07 | Created apps/cms/src/api/duyuru/controllers/duyuru.ts | — | ~33 |
+| 19:08 | Edited apps/web/src/app/(site)/araclar/page.tsx | CSS: http, localhost | ~159 |
+| 19:08 | Created apps/cms/src/api/duyuru/routes/duyuru.ts | — | ~32 |
+| 19:08 | Created apps/cms/src/api/duyuru/services/duyuru.ts | — | ~32 |
+| 19:08 | Edited apps/web/src/app/(site)/araclar/page.tsx | expanded (+15 lines) | ~245 |
+| 19:08 | Edited packages/api-client/src/index.ts | 7→8 lines | ~75 |
+| 19:08 | Edited packages/api-client/src/types.ts | expanded (+25 lines) | ~195 |
+| 19:08 | Edited apps/web/src/app/(site)/blog/[slug]/page.tsx | inline fix | ~25 |
+| 19:08 | Edited packages/api-client/src/index.ts | 8→9 lines | ~40 |
+| 19:08 | Edited apps/web/src/app/(site)/blog/[slug]/page.tsx | 5→8 lines | ~61 |
+| 19:08 | Edited packages/api-client/src/index.ts | added nullish coalescing | ~225 |
+| 19:08 | Edited apps/web/src/app/layout.tsx | added 1 import(s) | ~23 |
+| 19:08 | Edited apps/web/src/app/layout.tsx | 2→3 lines | ~44 |
+| 19:08 | Edited apps/web/src/app/layout.tsx | inline fix | ~18 |
+| 19:08 | Edited packages/api-client/src/types.ts | 6→7 lines | ~50 |
+| 19:09 | Edited apps/web/src/components/chrome/SiteHeader.tsx | added 1 import(s) | ~37 |
+| 19:09 | SEO heading hierarchy + canonical + JSON-LD: chrome h5 fix, anasayfa H1+canonical, blog/araclar CollectionPage, blog FAQPage | layout.tsx, page.tsx(x3), SiteHeader, SiteFooter, theme.css, jsonld.ts, api-client types/index | web typecheck temiz (kalan tek hata: kullanici Duyuru WIP'i) | ~14k |
+| 19:09 | Edited apps/web/src/components/chrome/SiteHeader.tsx | expanded (+25 lines) | ~591 |
+| 19:09 | Edited apps/web/src/components/chrome/SiteHeader.tsx | modified SiteHeader() | ~145 |
+| 19:09 | Edited apps/web/src/components/chrome/SiteHeader.tsx | added error handling | ~202 |
+| 19:09 | Edited apps/web/src/components/chrome/SiteHeader.tsx | added nullish coalescing | ~250 |
+| 19:10 | Session end: 36 writes across 11 files (en-stteki-bar-da-strapi-den-quirky-octopus.md, jsonld.ts, layout.tsx, SiteHeader.tsx, SiteFooter.tsx) | 17 reads | ~36785 tok |
+| 19:10 | Edited apps/web/src/app/theme.css | 4→7 lines | ~227 |
+| 19:10 | Edited apps/cms/src/index.ts | 3→4 lines | ~46 |
+| 19:10 | Edited apps/cms/src/index.ts | inline fix | ~23 |
+| 19:10 | Edited apps/cms/src/index.ts | 2→3 lines | ~19 |
+| 19:11 | Edited apps/cms/src/seed/index.ts | added 1 condition(s) | ~294 |
+
+## Session: 2026-06-16 19:11
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+### Oturum özeti — 2026-06-16 (duyuru barı Strapi'den yönetilebilir)
+En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hale getirildi.
+- YENİ: `api::duyuru.duyuru` collection-type (mesaj/ctaLabel/ctaHref/ikon-enum/aktif/sira, draftAndPublish). Çoklu kayıt saklanır; `aktif=true` olanlardan en düşük `sira` gösterilir.
+- api-client: `Announcement` + `DuyuruIkon` tipleri, `getActiveAnnouncement()` (filters[aktif]=true, sort sira:asc, limit 1).
+- SiteHeader: `announcement` prop, Icon map'e 5 yeni inline SVG (etiket/zil/hediye/bilgi/yildiz), dinamik utility-bar; aktif duyuru yoksa render edilmez; ziyaretçi X ile kapatır (localStorage `duyuru-dismissed`=documentId).
+- layout.tsx: server-side `strapi.getActiveAnnouncement()` → prop. theme.css: `.ub-close` + container position:relative.
+- setPublicReadPermissions'a `duyuru` eklendi (sıfır panel adımı). seedDuyuru() varsayılan Excel duyurusu (aktif).
+- Kararlar: enum ikon (media değil), aktif yoksa bar gizlenir, kapatılabilir. Doğrulama: typecheck+lint temiz.
+
+## Session: 2026-06-16 19:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:26 | Created ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | — | ~2494 |
+| 19:31 | Edited apps/web/src/app/layout.tsx | 2→2 lines | ~31 |
+| 19:31 | Edited apps/web/src/app/(site)/page.tsx | inline fix | ~28 |
+| 19:31 | Edited apps/web/src/app/(site)/page.tsx | 2→2 lines | ~46 |
+| 19:31 | Edited apps/web/src/app/(site)/page.tsx | inline fix | ~34 |
+| 19:45 | Anasayfa SEO: title/H1/H2 semsiye keyword | layout.tsx, page.tsx | basliklar tool-intent kelimelere cekildi | ~120 |
+| 19:32 | Session end: 5 writes across 3 files (kankam-imdi-canl-ya-kmadan-enumerated-pebble.md, layout.tsx, page.tsx) | 3 reads | ~7357 tok |
+
+## Session: 2026-06-16 19:33
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16 19:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16 19:35
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:37 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | modified verisi() | ~367 |
+| 19:38 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | modified hedefleri() | ~688 |
+| 19:38 | Session end: 2 writes across 1 files (kankam-imdi-canl-ya-kmadan-enumerated-pebble.md) | 1 reads | ~1130 tok |
+| 19:38 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | modified rma() | ~322 |
+| 19:39 | Edited apps/web/src/app/layout.tsx | "Stok Yönetimi Hesaplama A" → "Stok Yönetimi Araçları ve" | ~19 |
+| 20:05 | SEMrush(tr) keyword arastirma + title kisaltma | layout.tsx, cerebrum.md | stok yonetimi KD17 dogrulandi, title sadelesti | ~90 |
+| 19:39 | Session end: 4 writes across 2 files (kankam-imdi-canl-ya-kmadan-enumerated-pebble.md, layout.tsx) | 1 reads | ~1493 tok |
+| 19:42 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | modified analizi() | ~193 |
+| 19:42 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | expanded (+7 lines) | ~370 |
+| 19:42 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | modified rma() | ~203 |
+| 19:42 | Edited apps/web/src/app/(site)/araclar/page.tsx | 3→3 lines | ~75 |
+| 19:42 | Edited apps/web/src/app/(site)/araclar/page.tsx | 2→2 lines | ~49 |
+| 19:43 | Edited apps/web/src/app/(site)/araclar/page.tsx | 4→4 lines | ~105 |
+| 19:43 | Edited apps/web/src/app/(site)/blog/page.tsx | 3→3 lines | ~71 |
+| 19:43 | Edited apps/web/src/app/(site)/blog/page.tsx | 2→2 lines | ~52 |
+| 19:43 | Edited apps/web/src/app/(site)/blog/page.tsx | 4→4 lines | ~97 |
+| 19:43 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | 1→2 lines | ~186 |
+| 19:43 | Edited CLAUDE.md | modified SEMrush() | ~163 |
+| 20:20 | /araclar + /blog SEO basliklari + stok-devir-hizi backlog notu | araclar/page.tsx, blog/page.tsx, CLAUDE.md | title/H1/jsonld keyworde cekildi | ~110 |
+| 19:44 | Session end: 15 writes across 4 files (kankam-imdi-canl-ya-kmadan-enumerated-pebble.md, layout.tsx, page.tsx, CLAUDE.md) | 4 reads | ~8363 tok |
+| 19:44 | Edited ../../../../.claude/plans/kankam-imdi-canl-ya-kmadan-enumerated-pebble.md | modified i() | ~398 |
+
+## Session: 2026-06-16 19:45
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16 19:46
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:48 | Created ../launch-icerik/blog/stok-devir-hizi-BRIEF.md | — | ~1434 |
+| 20:40 | Stok devir hizi yazi arastirmasi + gorsel plani | launch-icerik/blog/stok-devir-hizi-BRIEF.md | SEMrush+PAA brief, 3 gorsel plani | ~200 |
+| 19:49 | Session end: 1 writes across 1 files (stok-devir-hizi-BRIEF.md) | 4 reads | ~2869 tok |
+| 19:49 | Edited apps/web/src/app/(site)/icerik/page.tsx | "Blog" → "İçerik" | ~16 |
+| 19:49 | Edited apps/web/src/app/(site)/icerik/page.tsx | inline fix | ~14 |
+| 19:49 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | "Blog" → "İçerik" | ~12 |
+| 19:49 | Edited apps/web/src/components/chrome/SiteHeader.tsx | inline fix | ~11 |
+| 19:49 | Edited apps/web/src/components/chrome/SiteHeader.tsx | "Blog" → "İçerik" | ~28 |
+| 19:51 | Created scripts/lead-magnet/generate.py | — | ~5190 |
+| 19:51 | Created apps/web/src/lib/tools/stok-devir-hizi.ts | — | ~516 |
+| 19:51 | Edited scripts/lead-magnet/generate.py | 3→2 lines | ~20 |
+| 19:51 | Created apps/web/src/lib/tools/stok-devir-hizi.test.ts | — | ~391 |
+| 19:51 | Edited apps/web/src/lib/tools/registry.ts | added 1 import(s) | ~40 |
+| 19:52 | Edited apps/web/src/lib/tools/registry.ts | expanded (+26 lines) | ~330 |
+| 19:52 | lead magnet Excel: Stok Yönetimi Komuta Paneli (EOQ+emniyet+ROP+devir hızı, canlı formül+yorum) | scripts/lead-magnet/generate.py, apps/web/public/sablonlar/*.xlsx | üretildi, formüller doğrulandı | ~9k |
+| 19:52 | Edited apps/web/src/components/BlocksRenderer.tsx | 7→10 lines | ~64 |
+| 19:52 | Session end: 13 writes across 8 files (stok-devir-hizi-BRIEF.md, page.tsx, SiteHeader.tsx, generate.py, stok-devir-hizi.ts) | 15 reads | ~20017 tok |
+| 19:52 | Edited apps/web/src/components/BlocksRenderer.tsx | CSS: raw | ~424 |
+| 19:53 | Created ../launch-icerik/blog/stok-devir-hizi-nedir.md | — | ~2099 |
+| 19:53 | Created ../launch-icerik/araclar/stok-devir-hizi-hesaplama.md | — | ~931 |
+
+## Session: 2026-06-16 19:54
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 19:54 | Edited apps/cms/src/seed/index.ts | added 1 condition(s) | ~1654 |
+| 19:54 | Edited apps/cms/src/index.ts | inline fix | ~29 |
+| 19:54 | Edited apps/cms/src/index.ts | 3→4 lines | ~42 |
+| 19:55 | Created apps/web/src/components/RandomPostLink.tsx | — | ~223 |
+| 19:55 | Created apps/web/src/app/not-found.tsx | — | ~827 |
+| 404 | profesyonel not-found sayfası + rastgele yazı CTA | apps/web/src/app/not-found.tsx, components/RandomPostLink.tsx | done, typecheck temiz | ~6k |
+| 20:55 | Stok devir hizi: tool logic+test+registry+seed+blog/tool icerik | stok-devir-hizi.ts/.test, registry.ts, seed/index.ts, cms/index.ts, launch-icerik | testler gecti, web typecheck temiz | ~600 |
+| 19:55 | Session end: 5 writes across 3 files (index.ts, RandomPostLink.tsx, not-found.tsx) | 3 reads | ~10229 tok |
+| 19:56 | Session end: 5 writes across 3 files (index.ts, RandomPostLink.tsx, not-found.tsx) | 3 reads | ~10229 tok |
+| 19:56 | Edited apps/cms/src/seed/index.ts | modified p() | ~3220 |
+| 19:57 | Edited apps/cms/src/seed/index.ts | 45→46 lines | ~570 |
