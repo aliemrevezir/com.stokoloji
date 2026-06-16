@@ -1,5 +1,5 @@
 import type { Core } from '@strapi/strapi';
-import { seedBanners, seedDemoContent, seedDuyuru, seedHomepage, seedStokDevirHizi } from './seed';
+import { seedBanners, seedDemoContent, seedDuyuru, seedEmniyetStogu, seedHomepage, seedStokDevirHizi } from './seed';
 
 /**
  * Public role'e içerik okuma izni ver (idempotent).
@@ -102,6 +102,7 @@ export default {
     await setPublicReadPermissions(strapi);
     await seedDemoContent(strapi);
     await seedStokDevirHizi(strapi);
+    await seedEmniyetStogu(strapi);
     await seedHomepage(strapi);
     await seedBanners(strapi);
     await seedDuyuru(strapi);

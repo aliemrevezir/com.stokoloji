@@ -46,6 +46,11 @@ const a = (text: string, url: string): any => ({
 });
 const pr = (...children: any[]): any => ({ type: 'paragraph', children });
 
+// display formül bloğu — BlocksRenderer `code` bloğu olarak basılır: backslash'lı
+// içerik (gerçek LaTeX) → KaTeX ile dizilir; düz metin (kelimeli formül) → şık formül
+// kartı. Tek başına satır olan formüller için kullanılır (inline `code` taklit DEĞİL).
+const fx = (latex: string): any => ({ type: 'code', children: [{ type: 'text', text: latex }] });
+
 // statik web görseli (/img/...) — Strapi medya değil, public asset
 const img = (url: string, alt: string, caption?: string): any => ({
   type: 'image',
@@ -66,7 +71,7 @@ const FORMUL_ACIKLAMASI = [
   ),
   h(2, 'EOQ formülü nedir?'),
   p('Ekonomik sipariş miktarı şu formülle bulunur (EOQ formula):'),
-  pr(code('EOQ = √(2 × D × S / H)')),
+  fx('EOQ = \\sqrt{\\dfrac{2 \\times D \\times S}{H}}'),
   p(
     'Burada D yıllık talep (adet/yıl), S sipariş başına maliyet, H ise birim başına yıllık taşıma maliyetidir. Formülün sonucu, sipariş ve taşıma maliyetlerinin tam olarak eşitlendiği sipariş büyüklüğüdür.',
   ),
@@ -118,7 +123,7 @@ const BLOG_ICERIK = [
   ),
   h(2, 'EOQ formülü ve değişkenleri nelerdir?'),
   p('Ekonomik sipariş miktarı şu formülle hesaplanır (EOQ formula):'),
-  pr(code('EOQ = √(2 × D × S / H)')),
+  fx('EOQ = \\sqrt{\\dfrac{2 \\times D \\times S}{H}}'),
   table(
     ['Değişken', 'Açıklama', 'Birim'],
     [
@@ -339,8 +344,8 @@ const SDH_BLOG = [
   ),
   h(2, 'Stok devir hızı nasıl hesaplanır? Formülü nedir?'),
   p('Stok devir hızı formülü iki adımdan oluşur:'),
-  pr(code('Stok Devir Hızı = Satılan Malların Maliyeti (SMM) / Ortalama Stok')),
-  pr(code('Ortalama Stok = (Dönem Başı Stok + Dönem Sonu Stok) / 2')),
+  fx('Stok Devir Hızı = Satılan Malların Maliyeti (SMM) / Ortalama Stok'),
+  fx('Ortalama Stok = (Dönem Başı Stok + Dönem Sonu Stok) / 2'),
   p(
     'Paya ciro değil satılan malların maliyetini (SMM) yazman kritiktir. Ciro kâr marjını da içerdiği için oranı yapay olarak yükseltir ve stoğunu olduğundan verimli gösterir. Hem pay hem payda maliyet bazında olunca oran tutarlı kalır. Formülün değişkenleri şöyledir:',
   ),
@@ -399,7 +404,7 @@ const SDH_BLOG = [
   p(
     'Stok devir hızını güne çevirmek çoğu zaman daha sezgiseldir. Stokta kalma süresi, bir ürünün depoya girdikten sonra ortalama kaç gün satılmadan beklediğini gösterir:',
   ),
-  pr(code('Stokta Kalma Süresi (gün) = 365 / Stok Devir Hızı')),
+  fx('Stokta Kalma Süresi (gün) = 365 / Stok Devir Hızı'),
   p(
     'Devir hızı 5,71 olan örneğimizde stokta kalma süresi 365 / 5,71 = 64 gündür. Bazı kaynaklar yılı 360 gün kabul eder; fark küçüktür, dönemler arasında tutarlı olman yeterlidir.',
   ),
@@ -549,6 +554,466 @@ export async function seedStokDevirHizi(strapi: Core.Strapi): Promise<void> {
   });
 
   strapi.log.info('[seed] Stok devir hızı içeriği başarıyla oluşturuldu.');
+}
+
+/* ------------------------------- emniyet stoğu ------------------------------ */
+
+const EMNIYET_BLOG = [
+  pr(
+    b('Emniyet stoğu (güvenlik stoğu, İngilizcesi safety stock)'),
+    t(
+      `, talebin veya tedarik süresinin beklenenden sapması durumunda stoksuz kalmamak için elinde tuttuğun ekstra tampon stoktur. Türkçe kaynakların çoğu tek bir formül verip geçer; bu rehberde emniyet stoğunun neden gerekli olduğunu, hangi yöntemlerle hesaplandığını, servis seviyesinin sonucu nasıl değiştirdiğini ve formülü Excel'de adım adım nasıl kuracağını gerçek sayılarla anlatıyorum. Kendi verinle hızlı denemek için `,
+    ),
+    a('emniyet stoğu hesaplama aracını', '/araclar/emniyet-stogu-hesaplama'),
+    t(' da kullanabilirsin.'),
+  ),
+
+  h(2, 'Emniyet stoğu nedir?'),
+  p(
+    `Emniyet stoğu, ortalama talebi karşılamaya yetecek stoğun üzerine eklenen güvenlik payıdır. Talep her zaman ortalamada seyretmez; bazı günler beklenenin üstüne çıkar. Tedarikçi de her zaman söz verdiği günde teslim etmez. Emniyet stoğu bu iki belirsizliğe karşı tampon görevi görür ve müşteriyi "stokta yok" cevabıyla kaybetme riskini azaltır. Kısacası emniyet stoğu, parayla satın aldığın bir güvence payıdır.`,
+  ),
+
+  h(3, 'Emniyet stoğu, güvenlik stoğu, safety stock: aynı kavram mı?'),
+  p(
+    `Evet. "Emniyet stoğu" ve "güvenlik stoğu" aynı kavramın iki Türkçe karşılığıdır; ikisi de İngilizcedeki safety stock teriminin çevirisidir. Akademik ve kurumsal kaynaklarda çoğunlukla emniyet stoğu kullanılır, perakende ve POS yazılımlarında ise güvenlik stoğu daha sık geçer. Bu yazıda ikisini eş anlamlı kullanıyorum.`,
+  ),
+
+  h(2, 'Emniyet stoğuna neden ihtiyaç var?'),
+  p('Emniyet stoğu ihtiyacını doğuran iki ayrı belirsizlik kaynağı vardır.'),
+  h(3, 'Talep belirsizliği'),
+  p(
+    `Birinci kaynak talep belirsizliğidir: bir kampanya, sezon etkisi ya da beklenmedik toplu sipariş talebi yukarı çeker. Sattığın miktar günden güne ne kadar dalgalanıyorsa, ortalamaya göre verdiğin sipariş o kadar yetersiz kalma riski taşır.`,
+  ),
+  h(3, 'Tedarik süresi belirsizliği'),
+  p(
+    `İkinci kaynak tedarik süresi belirsizliğidir: tedarikçi gecikir, gümrükte bekleme olur, üretim aksar. Sipariş ettiğin mal gelene kadar geçen sürede ortalamanın üstündeki her talep, emniyet stoğun yoksa doğrudan kayıp satıştır. Tampon stok, bu riskin maliyetini önceden ve kontrollü biçimde üstlenmeni sağlar.`,
+  ),
+  img(
+    '/uploads/emniyet_stogu_1.jpg',
+    'Emniyet stoğu tampon grafiği: ortalama talep, tedarik süresi penceresi ve güvenlik stoğu tampon bandı',
+    'Tedarik süresi boyunca ortalamanın üstündeki talebi karşılayan emniyet stoğu tampon bölgesi',
+  ),
+
+  h(2, 'Emniyet stoğu nasıl hesaplanır?'),
+  p(
+    'Emniyet stoğunu hesaplamanın birkaç yöntemi vardır. Önce hızlı ama kaba olanlardan, sonra tercih edilen istatistiksel yönteme geçelim.',
+  ),
+  h(3, 'Basit yöntemler ve neden aşırı stok önerir'),
+  h(4, 'Güvenlik günü yöntemi'),
+  p('En kaba yaklaşım, "kaç günlük ekstra stok tutayım" mantığıdır:'),
+  fx('Emniyet Stoğu = Ortalama Günlük Talep × Güvenlik Günü'),
+  p(
+    `Hızlıdır ve istatistik gerektirmez; ama güvenlik gününü neye göre seçtiğin belirsizdir, bu yüzden çoğu zaman ya çok fazla ya çok az stok önerir.`,
+  ),
+  h(4, 'Ortalama-maksimum yöntemi'),
+  p('İkinci basit yöntem en kötü senaryoyu temel alır:'),
+  fx('Emniyet Stoğu = (Maks. Günlük Talep × Maks. Tedarik Süresi) − (Ort. Günlük Talep × Ort. Tedarik Süresi)'),
+  p(
+    `Bu yöntem geçmişteki uç değerleri koruduğu için güvenli görünür, ancak nadiren yaşanan en kötü günü kural haline getirdiğinden genellikle gereğinden fazla stok bağlar ve sermaye maliyetini şişirir.`,
+  ),
+  h(3, 'İstatistiksel (servis seviyeli) yöntem'),
+  p(
+    `Pratikte tercih edilen yöntem, "ne kadar risk almak istiyorum" sorusunu sayıya çeviren istatistiksel formüldür:`,
+  ),
+  fx('SS = Z \\times \\sigma_d \\times \\sqrt{L}'),
+  p(
+    `Burada Z hedef servis seviyesine karşılık gelen güven katsayısı, σ_d günlük talebin standart sapması (dalgalanması), L ise tedarik süresidir (gün). Bu formül, talebin normal dağıldığı varsayımıyla, almak istediğin riski doğrudan stok miktarına bağladığı için yaygın kabul görür.`,
+  ),
+  h(4, 'Talebin standart sapması (σ_d) veriden nasıl bulunur'),
+  pr(
+    t(
+      `Formülün en çok atlanan parçası σ_d değeridir. Standart sapma, günlük satışlarının ortalamadan ne kadar saptığını ölçer. Geçmiş satış verin varsa Excel veya Google Sheets'te tek fonksiyonla bulabilirsin: günlük satış rakamlarını bir sütuna yaz, boş bir hücreye `,
+    ),
+    code('=STDEV.S(A2:A31)'),
+    t(
+      ' yaz. Bu sana son 30 günün talep standart sapmasını verir. Standart sapma büyüdükçe talep daha düzensiz demektir ve formül daha büyük bir tampon önerir.',
+    ),
+  ),
+  h(3, 'Servis seviyesi, Z katsayısı ve fill rate'),
+  p(
+    `Servis seviyesi, "talebi karşılayamama riskini ne kadar düşük tutmak istiyorum" sorusunun cevabıdır ve doğrudan Z katsayısını belirler.`,
+  ),
+  h(4, 'Genişletilmiş servis seviyesi ve Z tablosu'),
+  table(
+    ['Servis seviyesi', 'Z katsayısı', 'Anlamı'],
+    [
+      ['%50', '0,00', 'Tampon yok, salt ortalamaya güven'],
+      ['%85', '1,04', 'Düşük öncelikli kalemler'],
+      ['%90', '1,28', '10 dönemde yaklaşık 1 stoksuzluk riski'],
+      ['%95', '1,65', 'Çoğu işletme için dengeli tercih'],
+      ['%97,5', '1,96', 'Yüksek öncelikli kalemler'],
+      ['%98', '2,05', 'Kritik ürünler için yüksek güvence'],
+      ['%99', '2,33', 'Stoksuzluğun çok maliyetli olduğu durumlar'],
+      ['%99,9', '3,09', 'Neredeyse hiç stoksuz kalmama hedefi'],
+    ],
+  ),
+  p(
+    `Servis seviyesini %95'ten %99'a çıkarmak kulağa küçük gelir; ama Z'yi 1,65'ten 2,33'e taşır, yani emniyet stoğunu yaklaşık %40 artırır. Bu yüzden tüm ürünlere aynı yüksek servis seviyesini uygulamak pahalı bir hatadır.`,
+  ),
+  img(
+    '/uploads/emniyet_stogu_2.jpg',
+    'Servis seviyesi ve Z katsayısı: normal dağılım eğrisinde sağ kuyruğun taralı gösterimi',
+    'Servis seviyesi yükseldikçe Z katsayısı ve gereken emniyet stoğu artar',
+  ),
+  h(4, 'Servis seviyesi mi, fill rate mı?'),
+  p(
+    `Burada sık karışan iki ölçüt var. Yukarıdaki tabloda kullandığımız döngü servis seviyesi (cycle service level), bir sipariş döngüsünde hiç stoksuz kalmama olasılığıdır. Fill rate (talep karşılama oranı) ise toplam talebin yüzde kaçını stoktan karşıladığındır. İkisi aynı değildir: bir ürün döngülerin sadece %90'ında stoksuz kalmasa bile, talebin %98'ini karşılıyor olabilir. Pratikte çoğu işletme için döngü servis seviyesiyle başlamak yeterli bir temel verir.`,
+  ),
+
+  h(2, 'Hangi formülü ne zaman kullanmalı?'),
+  p(
+    'Yukarıdaki temel formül yalnızca talep dalgalanmasını hesaba katar. Gerçekte hangi belirsizliğin baskın olduğuna göre formül değişir.',
+  ),
+  h(3, 'Sadece talep belirsizliği'),
+  p('Tedarik süren neredeyse sabitse (tedarikçi her zaman aynı günde teslim ediyorsa) temel formül yeterlidir:'),
+  fx('SS = Z \\times \\sigma_d \\times \\sqrt{L}'),
+  h(3, 'Sadece tedarik süresi belirsizliği'),
+  p('Talebin oldukça istikrarlı ama tedarik sürenin oynak olduğu durumda belirsizliği tedarik süresinin standart sapması taşır:'),
+  fx('SS = Z \\times \\sigma_L \\times D_{ort}'),
+  p(
+    `Burada σ_L tedarik süresinin standart sapması, D_ort ortalama günlük taleptir. Türkçe kaynakların çoğu bu varyantı atlar; oysa ithalata bağlı işlerde baskın belirsizlik çoğu zaman budur.`,
+  ),
+  h(3, 'İleri seviye: kombine belirsizlik (King 2011)'),
+  p('Hem talep hem tedarik süresi dalgalanıyorsa iki belirsizliği birlikte modellemek gerekir. King (2011) tarafından verilen kombine formül şudur:'),
+  fx('SS = Z \\times \\sqrt{(L \\times \\sigma_d^2) + (\\sigma_L \\times D_{ort})^2}'),
+  p(
+    `Dikkat edilmesi gereken nokta şu: iki belirsizlik birlikte hesaplandığında toplam emniyet stoğu, ikisini ayrı ayrı bulup toplamaktan daha düşük çıkar; çünkü varyanslar karekök içinde birleşir. İki riski ayrı ayrı toplamak yaygın ve pahalı bir hatadır. Çoğu işletme için ilk adımda servis seviyeli temel formül yeterli bir başlangıçtır; veri biriktikçe model bu kombine biçime rafine edilir.`,
+  ),
+
+  h(2, "Adım adım örnek: emniyet stoğunu Excel'de hesaplama"),
+  pr(
+    t('Bir ürünü ele alalım. Son 30 günün satışından '),
+    code('=STDEV.S(...)'),
+    t(
+      ' ile günlük talep standart sapmasını 20 adet bulduğunu, tedarik süresinin 9 gün ve hedef servis seviyesinin %95 (Z = 1,65) olduğunu varsayalım.',
+    ),
+  ),
+  fx('SS = 1{,}65 \\times 20 \\times \\sqrt{9} = 1{,}65 \\times 20 \\times 3 = 99 \\text{ adet}'),
+  p(
+    `Yani işletme, ortalama talebi karşılayan stoğun üzerine yaklaşık 100 adet tampon tutarsa, dönemlerin %95'inde stoksuz kalmaz.`,
+  ),
+  h(3, 'Excel ve Sheets şablonuyla hesaplama'),
+  pr(
+    t('Aynı hesabı tekrar tekrar yapmak yerine hazır bir şablon kullanabilirsin: bir sütuna günlük satışları gir, '),
+    code('STDEV.S'),
+    t(' ile σ_d değerini, ardından '),
+    code('=Z*σ*KAREKÖK(L)'),
+    t(' ile emniyet stoğunu otomatik hesaplat. Hazırladığımız '),
+    b('emniyet stoğu Excel şablonunu'),
+    t(' indirip kendi rakamlarınla doldurabilir, anında sonucu görebilirsin. '),
+    a('Şablonu indir', '/araclar/emniyet-stogu-hesaplama'),
+    t(' ve interaktif hesaplayıcıyla karşılaştır.'),
+  ),
+
+  h(2, 'Emniyet stoğu ile yeniden sipariş noktası ilişkisi'),
+  p(
+    `Emniyet stoğu tek başına "ne zaman sipariş vereceğim" sorusunu cevaplamaz; o sorunun cevabı yeniden sipariş noktasıdır (ROP) ve emniyet stoğunu doğrudan içerir:`,
+  ),
+  fx('Yeniden Sipariş Noktası = (Ortalama Günlük Talep × Tedarik Süresi) + Emniyet Stoğu'),
+  pr(
+    t(`Yani emniyet stoğu, ROP'un bir bileşenidir. Sipariş tetikleme seviyeni kurmak için `),
+    a('yeniden sipariş noktası nedir', '/blog/yeniden-siparis-noktasi-nedir'),
+    t(' yazısına ve '),
+    a('yeniden sipariş noktası hesaplama', '/araclar/yeniden-siparis-noktasi-hesaplama'),
+    t(' aracına geçebilirsin.'),
+  ),
+
+  h(2, 'Emniyet stoğunu etkileyen faktörler ve nasıl azaltılır?'),
+  p(
+    `Emniyet stoğu ihtiyacın üç değişkene bağlıdır. Birincisi talep dalgalanması (σ_d): satışların ne kadar değişkense tampon o kadar büyür. İkincisi tedarik süresi (L): süre uzadıkça belirsizliğe açık pencere genişler ve formüldeki √L terimi yükselir. Üçüncüsü hedef servis seviyesi (Z): ne kadar yüksek güvence istersen o kadar fazla stok bağlarsın.`,
+  ),
+  p(
+    `Bu üç değişken aynı zamanda emniyet stoğunu azaltmanın da kaldıraçlarıdır. Tedarik süresini kısaltmak (yakın tedarikçi, daha sık sipariş), talep tahminini iyileştirerek dalgalanmayı düşürmek ve tedarikçi güvenilirliğini artırmak gereken tamponu doğrudan küçültür. Aynı servis seviyesini daha az stokla tutmanın yolu budur.`,
+  ),
+
+  h(2, 'Sık yapılan 5 hata'),
+  ol([
+    'Tek "kaç günlük stok" kuralı. Dalgalanması yüksek bir ürünle istikrarlı satan bir ürüne aynı tamponu uygulamak; biri sürekli stoksuz kalırken diğeri depoda para bağlar.',
+    'Servis seviyesini her kaleme aynı uygulamak. A sınıfı (yüksek ciro) ürünlere %98-99, C sınıfı ürünlere %85-90 servis seviyesi mantıklıdır; bunu ABC analiziyle birleştirmek bütçeyi doğru yere koyar.',
+    'σ yerine ortalama kullanmak. Formül standart sapma ister; ortalama talebi koymak emniyet stoğunu tamamen anlamsızlaştırır.',
+    'Birim tutarsızlığı. σ_d günlükse tedarik süresi de gün cinsinden olmalı; gün ile haftayı karıştırmak sonucu katlar.',
+    'Tedarik süresi belirsizliğini ihmal. İthalata bağlı işlerde baskın risk tedarik süresidir; yalnız talep formülü kullanmak ciddi şekilde eksik tampon verir.',
+  ]),
+  p(
+    `Ürün stok sistemleri üzerinde çalışırken en sık gördüğüm hata birincisidir: tek bir kuralla tüm kataloğa aynı tamponu uygulamak. Servis seviyesini ürünün ciro sınıfına göre ayarlamak hem maliyeti hem stoksuzluk riskini birlikte optimize eder.`,
+  ),
+
+  h(2, 'İleri kavram: DDMRP dinamik tamponları'),
+  p(
+    `Klasik emniyet stoğu statiktir: kalem başına bir kez tanımlanır ve çoğu zaman güncellenmeden kalır. Demand Driven MRP (DDMRP) yaklaşımı buna alternatif olarak dinamik tamponlar kullanır; tampon seviyeleri gerçek tüketime göre sürekli güncellenir ve renk bölgeleriyle (yeşil, sarı, kırmızı) yönetilir. Birçok kalemli, oynak talepli işletmelerde statik emniyet stoğunun zayıf kaldığı yerde DDMRP daha esnek bir koruma sağlar. Çoğu KOBİ için başlangıç noktası yine de servis seviyeli emniyet stoğudur; DDMRP olgunlaşmış bir sonraki adımdır.`,
+  ),
+
+  pr(
+    b('Kaynak: '),
+    t('King, P. L. (2011). "Crack the Code: Understanding safety stock and mastering its equations." APICS Magazine. '),
+    a('web.mit.edu/2.810/www/files/readings/King_SafetyStock.pdf', 'https://web.mit.edu/2.810/www/files/readings/King_SafetyStock.pdf'),
+  ),
+];
+
+const EMNIYET_SSS = [
+  {
+    soru: 'Emniyet stoğu ile güvenlik stoğu aynı şey mi?',
+    cevap:
+      'Evet, ikisi de aynı kavramın Türkçe karşılığıdır; İngilizcesi "safety stock"tur. Emniyet stoğu daha çok akademik, güvenlik stoğu daha çok perakende dilinde kullanılır.',
+  },
+  {
+    soru: 'Emniyet stoğu formülü nedir?',
+    cevap:
+      'İstatistiksel yöntemde SS = Z × σ_d × √L; Z servis seviyesi katsayısı, σ_d günlük talep standart sapması, L tedarik süresidir. Hem talep hem tedarik süresi oynaksa kombine formül kullanılır.',
+  },
+  {
+    soru: 'Emniyet stoğu neden tutulur?',
+    cevap:
+      'Talep ve tedarik süresindeki belirsizliğe karşı stoksuz kalmamak için tutulur. Tampon olmadan, mal gelene kadar ortalamanın üstündeki her talep kayıp satıştır.',
+  },
+  {
+    soru: "Emniyet stoğu Excel'de nasıl hesaplanır?",
+    cevap:
+      'Günlük satışları bir sütuna girip =STDEV.S(...) ile standart sapmayı bulursun, sonra Z × σ × KAREKÖK(tedarik süresi) formülüyle emniyet stoğunu hesaplarsın. Hazır şablonu indirip rakamlarını doldurman yeterlidir.',
+  },
+  {
+    soru: 'Servis seviyesi kaç olmalı?',
+    cevap:
+      'Çoğu işletme için %95 dengeli bir tercihtir. Stoksuzluğun çok maliyetli olduğu kritik ürünlerde %98 veya %99 seçilebilir; düşük öncelikli ürünlerde %85-90 yeterlidir.',
+  },
+  {
+    soru: 'Emniyet stoğu nasıl azaltılır?',
+    cevap:
+      'Tedarik süresini kısaltmak, talep tahminini iyileştirerek dalgalanmayı düşürmek ve tedarikçi güvenilirliğini artırmak emniyet stoğu ihtiyacını azaltır.',
+  },
+];
+
+const EMNIYET_TOOL_FORMUL = [
+  pr(
+    b('Emniyet stoğu hesaplama'),
+    t(
+      `, talebin ve tedarik süresinin belirsiz olduğu durumlarda stoksuz kalmamak için elinde bulundurman gereken tampon stoğu bulur. Ortalama talebe göre sipariş verirsen, talebin beklenenin üstüne çıktığı veya tedarikçinin geciktiği zamanlarda satışı kaçırırsın. Emniyet stoğu bu riski parayla satın aldığın güvence payıdır. Kavramın derin anlatımı için `,
+    ),
+    a('emniyet stoğu nedir', '/blog/emniyet-stogu-nedir'),
+    t(' rehberine bakabilirsin.'),
+  ),
+  h(2, 'Emniyet stoğu formülü nedir?'),
+  p('Bu araç istatistiksel (servis seviyeli) yöntemi kullanır:'),
+  fx('SS = Z \\times \\sigma_d \\times \\sqrt{L}'),
+  p(
+    `Burada Z hedef servis seviyesine karşılık gelen güven katsayısı, σ_d günlük talebin standart sapması (dalgalanması), L ise tedarik süresidir (gün). Servis seviyesi yükseldikçe Z büyür ve daha fazla tampon stok gerekir. Hem talebin hem tedarik süresinin oynak olduğu durumlarda iki belirsizliği birleştiren kombine formül kullanılır; bunun ayrıntısı blog rehberinde anlatılır.`,
+  ),
+  h(2, 'Servis seviyesi ve Z katsayısı'),
+  p('Servis seviyesi, "talebi karşılayamama riskini ne kadar düşük tutmak istiyorum" sorusunun cevabıdır:'),
+  table(
+    ['Servis seviyesi', 'Z katsayısı', 'Anlamı'],
+    [
+      ['%90', '1,28', '10 dönemde yaklaşık 1 stoksuzluk riski'],
+      ['%95', '1,65', 'Çoğu işletme için dengeli tercih'],
+      ['%97,5', '1,96', 'Yüksek öncelikli kalemler'],
+      ['%98', '2,05', 'Kritik ürünler için yüksek güvence'],
+      ['%99', '2,33', 'Stoksuzluğun çok maliyetli olduğu durumlar'],
+    ],
+  ),
+  h(2, 'Aracı nasıl kullanırım?'),
+  pr(
+    t(
+      `Üç değeri gir: günlük talep standart sapması (σ_d), tedarik süresi (L, gün) ve hedef servis seviyesi. Standart sapmayı bilmiyorsan geçmiş günlük satışlarından Excel'de `,
+    ),
+    code('=STDEV.S(...)'),
+    t(
+      ' ile bulabilirsin. Örneğin günlük talep dalgalanması 20 adet, tedarik süresi 9 gün ve servis seviyesi %95 (Z = 1,65) ise emniyet stoğu 1,65 × 20 × √9 = 1,65 × 20 × 3 = 99 adet çıkar. Aynı hesabı kendi verinle tekrar etmek için ',
+    ),
+    b('emniyet stoğu Excel şablonunu'),
+    t(' indirip doldurabilirsin.'),
+  ),
+  h(2, 'Sonucu nasıl yorumlamalısın?'),
+  pr(
+    t(
+      `Emniyet stoğu yükseldikçe stoksuz kalma riskin düşer ama bağladığın sermaye ve taşıma maliyetin artar; doğru servis seviyesi bu iki maliyetin dengesidir. A sınıfı (yüksek ciro) ürünlerde yüksek, C sınıfı ürünlerde düşük servis seviyesi mantıklıdır; bu mantık doğrudan ABC analiziyle birleşir. Emniyet stoğunu bulduktan sonra sipariş tetikleme seviyeni kurmak için `,
+    ),
+    a('yeniden sipariş noktası hesaplama', '/araclar/yeniden-siparis-noktasi-hesaplama'),
+    t(' aracına geç; ROP doğrudan emniyet stoğunu içerir. Ne kadar sipariş vereceğini ise '),
+    a('EOQ hesaplama', '/araclar/eoq-hesaplama'),
+    t(' aracıyla bulabilirsin.'),
+  ),
+];
+
+const EMNIYET_TOOL_SSS = [
+  {
+    soru: 'Emniyet stoğu nasıl hesaplanır?',
+    cevap: `İstatistiksel yöntemde emniyet stoğu, servis seviyesi katsayısı Z ile günlük talep standart sapması ve tedarik süresinin kareköküyle çarpılarak bulunur: SS = Z × σ_d × √L.`,
+  },
+  {
+    soru: 'Servis seviyesi neyi belirler?',
+    cevap: `Servis seviyesi, talebi karşılayabilme olasılığını belirler. %95 servis seviyesi, dönemlerin %95'inde stoksuz kalmamayı hedeflediğin anlamına gelir ve Z katsayısı 1,65'tir.`,
+  },
+  {
+    soru: 'Standart sapmayı (σ_d) nasıl bulurum?',
+    cevap: `Geçmiş günlük satışlarını bir sütuna yazıp Excel veya Google Sheets'te =STDEV.S(...) fonksiyonunu kullanarak bulabilirsin. Bu değer talebin günden güne ne kadar dalgalandığını ölçer.`,
+  },
+  {
+    soru: 'Emniyet stoğu çok yüksek olursa ne olur?',
+    cevap: `Stoksuz kalma riski düşer ama depoda bağlanan sermaye ve taşıma maliyeti artar. Amaç, hizmet riski ile stok maliyeti arasında denge kurmaktır.`,
+  },
+  {
+    soru: 'Emniyet stoğu ile yeniden sipariş noktası arasındaki ilişki nedir?',
+    cevap: `Yeniden sipariş noktası, tedarik süresindeki ortalama talebe emniyet stoğunun eklenmesiyle bulunur; yani emniyet stoğu ROP'un bir bileşenidir.`,
+  },
+];
+
+/**
+ * Container public/uploads içine önceden konmuş bir görsele işaret eden
+ * plugin::upload.file kaydı sağlar (idempotent). upload service'in dosya-shape
+ * belirsizliğine girmeden, var olan dosyaya media kaydı bağlamak için kullanılır.
+ * Dosya kaydı kurulamazsa undefined döner; çağıran kapağı boş bırakıp devam eder.
+ */
+async function ensureLocalFile(
+  strapi: Core.Strapi,
+  opts: { url: string; name: string; alt: string; hash: string; size: number; width?: number; height?: number },
+): Promise<number | undefined> {
+  try {
+    const existingFile = await strapi.db
+      .query('plugin::upload.file')
+      .findOne({ where: { url: opts.url } });
+    const file =
+      existingFile ??
+      (await strapi.db.query('plugin::upload.file').create({
+        data: {
+          name: opts.name,
+          alternativeText: opts.alt,
+          hash: opts.hash,
+          ext: '.jpg',
+          mime: 'image/jpeg',
+          size: opts.size,
+          width: opts.width ?? 1200,
+          height: opts.height ?? 630,
+          url: opts.url,
+          provider: 'local',
+          folderPath: '/',
+        },
+      }));
+    return file?.id;
+  } catch (e) {
+    strapi.log.warn(`[seed] Görsel kaydı bağlanamadı (${opts.url}): ${e}`);
+    return undefined;
+  }
+}
+
+/**
+ * Emniyet stoğu içeriğini seed'ler: blog yazısı + hesaplama tool'u (idempotent;
+ * blog ve tool ayrı ayrı guard'lanır, ikisi de varsa atlar). Kapak görselleri
+ * container public/uploads'taki dosyalara ensureLocalFile ile bağlanır. Blog ile
+ * tool birbirine (iliskiliTool / iliskiliYazilar) ilişkilendirilir.
+ */
+export async function seedEmniyetStogu(strapi: Core.Strapi): Promise<void> {
+  const existing = await strapi.documents('api::blog.blog').findFirst({
+    filters: { slug: 'emniyet-stogu-nedir' },
+  });
+  const existingTool = await strapi.documents('api::tool.tool').findFirst({
+    filters: { slug: 'emniyet-stogu-hesaplama' },
+  });
+  if (existing && existingTool) {
+    strapi.log.info('[seed] Emniyet stoğu içeriği (blog + tool) zaten mevcut, atlanıyor.');
+    return;
+  }
+
+  strapi.log.info('[seed] Emniyet stoğu içeriği oluşturuluyor...');
+
+  const kategori =
+    (await strapi.documents('api::kategori.kategori').findFirst({
+      filters: { slug: 'stok-yonetimi' },
+    })) ??
+    (await strapi.documents('api::kategori.kategori').create({
+      data: { ad: 'Stok Yönetimi', slug: 'stok-yonetimi' },
+      status: 'published',
+    }));
+
+  const yazar =
+    (await strapi.documents('api::yazar.yazar').findFirst()) ??
+    (await strapi.documents('api::yazar.yazar').create({
+      data: {
+        ad: 'Stokoloji Editör Ekibi',
+        unvan: 'Stok & Tedarik Zinciri',
+        bio: 'Stok yönetimi ve operasyon araçları üzerine içerik üreten editör ekibi.',
+      },
+      status: 'published',
+    }));
+
+  // --- TOOL ---
+  let tool = existingTool;
+  if (!tool) {
+    const toolKapakId = await ensureLocalFile(strapi, {
+      url: '/uploads/emniyet_stogu_tool.jpg',
+      name: 'emniyet_stogu_tool.jpg',
+      alt: 'Emniyet stoğu hesaplama aracı kapak görseli',
+      hash: 'emniyet_stogu_tool_cover_seed',
+      size: 280.58,
+    });
+    tool = await strapi.documents('api::tool.tool').create({
+      data: {
+        ad: 'Emniyet Stoğu Hesaplama',
+        slug: 'emniyet-stogu-hesaplama',
+        kisaAciklama:
+          'Talep dalgalanmanı, tedarik süreni ve hedef servis seviyeni gir; emniyet stoğu hesaplama aracı stoksuz kalmamak için tutman gereken tampon stoğu Z-skoru yöntemiyle versin.',
+        formulAciklamasi: EMNIYET_TOOL_FORMUL,
+        ...(toolKapakId ? { kapakGorseli: toolKapakId } : {}),
+        seo: {
+          title: 'Emniyet Stoğu Hesaplama: Servis Seviyeli Araç [2026]',
+          description:
+            'Emniyet stoğu hesaplama aracı ile servis seviyesine göre güvenlik stoğunu bul. Talep dalgalanması ve tedarik süresini gir, optimum tampon stoğu ve Z tablosunu gör.',
+        },
+        kategori: kategori.documentId,
+        sss: EMNIYET_TOOL_SSS,
+      },
+      status: 'published',
+    });
+    strapi.log.info('[seed] Emniyet stoğu tool kaydı oluşturuldu.');
+  }
+
+  // --- BLOG ---
+  let blog = existing;
+  if (!blog) {
+    const kapakId = await ensureLocalFile(strapi, {
+      url: '/uploads/emniyet-stogu-nedir.jpg',
+      name: 'emniyet-stogu-nedir.jpg',
+      alt: 'Emniyet stoğu: talep ve tedarik süresi belirsizliğine karşı güvenlik tamponu',
+      hash: 'emniyet_stogu_nedir_cover_seed',
+      size: 100.82,
+    });
+    blog = await strapi.documents('api::blog.blog').create({
+      data: {
+        baslik: 'Emniyet Stoğu Nedir? Formülü, Servis Seviyesi ve Hesaplama Rehberi [2026]',
+        slug: 'emniyet-stogu-nedir',
+        icerik: EMNIYET_BLOG,
+        ...(kapakId ? { kapakGorseli: kapakId } : {}),
+        iliskiliTool: tool.documentId,
+        seo: {
+          title: 'Emniyet Stoğu Nedir? Formülü ve Hesaplama [2026]',
+          description:
+            'Emniyet stoğu (güvenlik stoğu) nedir, nasıl hesaplanır? Servis seviyesi, Z-skoru tablosu, Excel ile standart sapma ve formül varyantları. Örnekli tampon stok rehberi.',
+        },
+        kategori: kategori.documentId,
+        yazar: yazar.documentId,
+        sss: EMNIYET_SSS,
+        yayinTarihi: '2026-06-17T09:00:00.000Z',
+        guncellemeTarihi: '2026-06-17T09:00:00.000Z',
+      },
+      status: 'published',
+    });
+    strapi.log.info('[seed] Emniyet stoğu blog içeriği oluşturuldu.');
+  } else {
+    // Blog önceden vardı; tool yeni oluşturulduysa ilişkilendir.
+    await strapi.documents('api::blog.blog').update({
+      documentId: blog.documentId,
+      data: { iliskiliTool: tool.documentId },
+      status: 'published',
+    });
+  }
+
+  // Tool tarafından blog'a ilişki (oneToMany iliskiliYazilar).
+  await strapi.documents('api::tool.tool').update({
+    documentId: tool.documentId,
+    data: { iliskiliYazilar: [blog.documentId] },
+    status: 'published',
+  });
+
+  strapi.log.info('[seed] Emniyet stoğu içeriği başarıyla oluşturuldu.');
 }
 
 /**

@@ -10,6 +10,7 @@
  */
 import { eoq } from './eoq';
 import { stokDevirHizi } from './stok-devir-hizi';
+import { emniyetStogu } from './emniyet-stogu';
 import { formatNumber, formatCurrency } from '../format';
 
 export interface CalculatorField {
@@ -92,9 +93,35 @@ const stokDevirHiziDef: CalculatorDef = {
   },
 };
 
+const emniyetStoguDef: CalculatorDef = {
+  slug: 'emniyet-stogu-hesaplama',
+  fields: [
+    { name: 'talepStdSapma', label: 'Günlük Talep Std. Sapması (σ_d)', suffix: 'birim/gün', defaultValue: 20, min: 0, step: 0.1 },
+    { name: 'tedarikSuresi', label: 'Tedarik Süresi (L)', suffix: 'gün', defaultValue: 9, min: 0.1, step: 0.1 },
+    { name: 'servisSeviyesi', label: 'Hedef Servis Seviyesi', suffix: '%', defaultValue: 95, min: 50, step: 0.5 },
+  ],
+  compute: (inputs) => {
+    const r = emniyetStogu({
+      talepStdSapma: inputs.talepStdSapma!,
+      tedarikSuresi: inputs.tedarikSuresi!,
+      servisSeviyesi: inputs.servisSeviyesi!,
+    });
+    return {
+      value: formatNumber(r.emniyetStoguYuvarli),
+      unit: 'birim',
+      summary: `Emniyet stoğu = ${formatNumber(r.emniyetStoguYuvarli)} birim · %${formatNumber(inputs.servisSeviyesi!)} servis seviyesi (Z = ${formatNumber(r.zKatsayisi)})`,
+      rows: [
+        { label: 'Kullanılan Z katsayısı', value: formatNumber(r.zKatsayisi) },
+        { label: 'Ham emniyet stoğu', value: `${formatNumber(r.emniyetStogu)} birim` },
+      ],
+    };
+  },
+};
+
 const REGISTRY: Record<string, CalculatorDef> = {
   [eoqDef.slug]: eoqDef,
   [stokDevirHiziDef.slug]: stokDevirHiziDef,
+  [emniyetStoguDef.slug]: emniyetStoguDef,
 };
 
 export function getCalculator(slug: string): CalculatorDef | null {
