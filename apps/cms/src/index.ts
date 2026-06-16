@@ -1,5 +1,5 @@
 import type { Core } from '@strapi/strapi';
-import { seedDemoContent, seedHomepage } from './seed';
+import { seedBanners, seedDemoContent, seedHomepage } from './seed';
 
 /**
  * Public role'e içerik okuma izni ver (idempotent).
@@ -20,6 +20,7 @@ async function setPublicReadPermissions(strapi: Core.Strapi): Promise<void> {
     blog: ['find', 'findOne'],
     kategori: ['find', 'findOne'],
     yazar: ['find', 'findOne'],
+    banner: ['find', 'findOne'],
     // Single type yalnızca `find` action'ı kullanır (findOne yoktur).
     anasayfa: ['find'],
   };
@@ -48,5 +49,6 @@ export default {
     await setPublicReadPermissions(strapi);
     await seedDemoContent(strapi);
     await seedHomepage(strapi);
+    await seedBanners(strapi);
   },
 };

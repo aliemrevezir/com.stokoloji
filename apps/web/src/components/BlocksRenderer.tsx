@@ -1,12 +1,13 @@
 /**
  * Minimal Strapi "blocks" zengin metin renderer'ı.
  *
- * Demoda kullanılan düğümleri (paragraf, başlık, liste, alıntı, satır-içi
+ * Demoda kullanılan düğümleri (paragraf, başlık, liste, alıntı, görsel, satır-içi
  * biçimlendirme, bağlantı) kapsar. Dış bağımlılık YOKTUR. Yeni bir blok türü
  * gerekirse buraya eklenir.
  */
 import { Fragment, type ReactNode } from 'react';
 import { slugify } from '@/lib/blocks';
+import { mediaUrl } from '@/lib/strapi';
 
 type InlineNode = {
   type: 'text' | 'link';
@@ -19,10 +20,17 @@ type InlineNode = {
   children?: InlineNode[];
 };
 
+type ImageData = {
+  url?: string;
+  alternativeText?: string | null;
+  caption?: string | null;
+};
+
 type BlockNode = {
   type: string;
   level?: number;
   format?: 'ordered' | 'unordered';
+  image?: ImageData;
   children?: (InlineNode | BlockNode)[];
 };
 
@@ -78,6 +86,22 @@ function renderBlock(block: BlockNode, key: string): ReactNode {
           {renderInline(inline, key)}
         </blockquote>
       );
+    case 'image': {
+      // Strapi blocks görseli medya verisini node içine gömer (ekstra populate yok).
+      // next/image değil düz <img>: docker dev'de optimizer localhost:1337'e ulaşamaz.
+      const url = mediaUrl(block.image?.url);
+      if (!url) return null;
+      const alt = block.image?.alternativeText ?? '';
+      return (
+        <figure key={key} className="my-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={url} alt={alt} loading="lazy" className="w-full rounded-lg" />
+          {block.image?.caption && (
+            <figcaption className="mt-2 text-center text-sm text-muted">{block.image.caption}</figcaption>
+          )}
+        </figure>
+      );
+    }
     case 'paragraph':
     default:
       return (

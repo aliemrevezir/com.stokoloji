@@ -8,6 +8,7 @@
 
 import type {
   Anasayfa,
+  Banner,
   Blog,
   StrapiCollectionResponse,
   StrapiSingleResponse,
@@ -48,12 +49,19 @@ const BLOG_POPULATE: Record<string, string> = {
 };
 
 const HOME_POPULATE: Record<string, string> = {
-  'populate[hero][populate]': 'gorsel',
-  'populate[bannerlar][populate]': 'gorsel',
   'populate[oneCikanYazilar][populate][kapakGorseli]': 'true',
   'populate[oneCikanYazilar][populate][kategori]': 'true',
   'populate[oneCikanYazilar][populate][seo]': 'true',
   'populate[oneCikanAraclar][populate][kategori]': 'true',
+};
+
+const BANNER_POPULATE: Record<string, string> = {
+  // Blog'tan başlık/excerpt/kapak; araçtan başlık/kısa açıklama türetilir.
+  'populate[blog][populate][kapakGorseli]': 'true',
+  'populate[blog][populate][seo]': 'true',
+  'populate[blog][populate][kategori]': 'true',
+  'populate[arac][populate][kategori]': 'true',
+  'populate[gorsel]': 'true',
 };
 
 export function createClient(options: StrapiClientOptions) {
@@ -149,7 +157,19 @@ export function createClient(options: StrapiClientOptions) {
       return data.data;
     },
 
-    /** Anasayfa single type'ını getirir (hero, bannerlar, öne çıkan içerik). */
+    /** Yayınlanmış hero carousel banner'larını sıra (sira) artan getirir. */
+    async listBanners(opts: FetchOptions = {}): Promise<Banner[]> {
+      const data = await request<StrapiCollectionResponse<Banner>>('/banners', {
+        ...opts,
+        query: buildQuery(
+          { 'sort': 'sira:asc', ...BANNER_POPULATE },
+          opts.query,
+        ),
+      });
+      return data.data;
+    },
+
+    /** Anasayfa single type'ını getirir (hero, öne çıkan içerik). */
     async getHomepage(opts: FetchOptions = {}): Promise<Anasayfa | null> {
       const data = await request<StrapiSingleResponse<Anasayfa>>('/anasayfa', {
         ...opts,

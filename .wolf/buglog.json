@@ -8,8 +8,17 @@
       "file": "apps/web/Dockerfile.prod",
       "root_cause": "VPS 6 GB RAM; eşzamanlı next build + strapi build OOM yapıyor, BuildKit çıktısız 'exit 1' veriyordu. İlk tahminler (ESLint/types) yanıltıcıydı; aynı commit local Docker'da geçiyordu.",
       "fix": "Sunucuya 8 GB swap eklendi (/swapfile_build, fstab). Build ilerledi ve gerçek sonraki hata (cms TS) ortaya çıktı.",
-      "tags": ["coolify", "deploy", "oom", "ram", "swap", "next-build"],
-      "related_bugs": ["bug-002"],
+      "tags": [
+        "coolify",
+        "deploy",
+        "oom",
+        "ram",
+        "swap",
+        "next-build"
+      ],
+      "related_bugs": [
+        "bug-002"
+      ],
       "occurrences": 2,
       "last_seen": "2026-06-14T00:00:00.000Z"
     },
@@ -20,8 +29,17 @@
       "file": "apps/cms/Dockerfile.prod",
       "root_cause": "Strapi types/generated/ .gitignore'da; fresh Docker image'da yok → tsc tool şemasındaki iliskiliYazilar alanını tanımıyor. (Alan şemada var, satır 39.)",
       "fix": "cms Dockerfile.prod'a build öncesi 'pnpm strapi ts:generate-types' eklendi.",
-      "tags": ["strapi", "typescript", "types-generated", "gitignore", "docker", "build"],
-      "related_bugs": ["bug-003"],
+      "tags": [
+        "strapi",
+        "typescript",
+        "types-generated",
+        "gitignore",
+        "docker",
+        "build"
+      ],
+      "related_bugs": [
+        "bug-003"
+      ],
       "occurrences": 1,
       "last_seen": "2026-06-14T00:10:00.000Z"
     },
@@ -32,8 +50,16 @@
       "file": "apps/cms/Dockerfile.prod",
       "root_cause": "ts:generate-types Strapi'yi boot ediyor; upload-local plugin public/uploads klasörünü arıyor. Klasör .dockerignore + gitignore yüzünden fresh image'da yok.",
       "fix": "ts:generate-types'tan önce 'RUN mkdir -p public/uploads' eklendi.",
-      "tags": ["strapi", "upload", "docker", "dockerignore", "build"],
-      "related_bugs": ["bug-002"],
+      "tags": [
+        "strapi",
+        "upload",
+        "docker",
+        "dockerignore",
+        "build"
+      ],
+      "related_bugs": [
+        "bug-002"
+      ],
       "occurrences": 1,
       "last_seen": "2026-06-14T00:20:00.000Z"
     },
@@ -44,7 +70,15 @@
       "file": "Coolify env (runtime)",
       "root_cause": "Strapi 5, APP_KEYS ve diğer secret'lar olmadan boot etmiyor (crash-loop). Coolify Environment Variables'a girilmemişti.",
       "fix": "APP_KEYS (4 değer virgülle), API_TOKEN_SALT, ADMIN_JWT_SECRET, TRANSFER_TOKEN_SALT, JWT_SECRET, ENCRYPTION_KEY openssl ile üretilip Coolify env'e girildi (runtime, build variable değil).",
-      "tags": ["strapi", "coolify", "env", "secrets", "app-keys", "runtime", "crash-loop"],
+      "tags": [
+        "strapi",
+        "coolify",
+        "env",
+        "secrets",
+        "app-keys",
+        "runtime",
+        "crash-loop"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-14T00:55:00.000Z"
@@ -56,7 +90,13 @@
       "file": "apps/web/src/app/icon.svg",
       "root_cause": "SVG yorumlarında (--ink, --teal) çift tire vardı; XML yorumu <!-- --> içi -- içeremez → tarayıcı SVG'yi parse edemiyor, globe fallback.",
       "fix": "icon.svg'deki yorumlar kaldırıldı; geçerli XML olarak doğrulandı.",
-      "tags": ["favicon", "svg", "xml", "next-app-router", "icon"],
+      "tags": [
+        "favicon",
+        "svg",
+        "xml",
+        "next-app-router",
+        "icon"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-14T01:18:00.000Z"
@@ -68,10 +108,229 @@
       "file": "apps/web/.next (local)",
       "root_cause": "Root'a ait bayat .next cache'i (eski dev container'ından, izin reddi ile silinemiyordu). Sadece LOCAL sorun; Docker'da .next .dockerignore'da, fresh.",
       "fix": "Docker build (temiz .next) ile doğrulandı — kod sağlam. Local için 'sudo rm -rf apps/web/.next' gerek.",
-      "tags": ["nextjs", "stale-cache", "local-only", "types", "permission"],
+      "tags": [
+        "nextjs",
+        "stale-cache",
+        "local-only",
+        "types",
+        "permission"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-14T00:30:00.000Z"
+    },
+    {
+      "id": "bug-007",
+      "timestamp": "2026-06-16T14:56:49.933Z",
+      "error_message": "Missing await",
+      "file": "packages/api-client/src/index.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call | Also: /**; * Hero carousel banner'larını seed'ler (idempotent — kayıt v",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-16T15:01:15.734Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-06-16T14:57:28.729Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/web/src/lib/banners.test.ts",
+      "root_cause": "Had 'boş (bağlantısız) banner'",
+      "fix": "Changed to 'bağlantısız banner kayıtlarını listeden atar'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T14:57:28.729Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-06-16T14:58:43.739Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/app/(site)/page.tsx",
+      "root_cause": "27 lines replaced/restructured",
+      "fix": "Rewrote 46→19 lines (27 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T14:58:43.739Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-06-16T15:03:08.206Z",
+      "error_message": "Incorrect value in code",
+      "file": "apps/cms/src/api/anasayfa/content-types/anasayfa/schema.json",
+      "root_cause": "Had \"Anasayfa hero, bannerlar ve öne çıkan içerik küra",
+      "fix": "Changed to \"Anasayfa hero (fallback) ve öne çıkan içerik küra",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:03:08.206Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-06-16T15:10:25.828Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/cms/src/seed/index.ts",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 21→25 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:10:25.828Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-06-16T15:11:00.000Z",
+      "error_message": "GET /api/banners → 404 (yeni banner content-type kaydolmadi); seedBanners hic loglamadi; dist/src/api/ icinde banner YOK",
+      "file": "apps/cms/src/seed/index.ts",
+      "root_cause": "Strapi'nin TS build adimi noEmitOnError ile calisir. seed/index.ts'teki blocks yardimcilarinin (p/h/ul) dönüsü generated BlocksValue tipiyle uyusmadigindan 2 TS hatasi olustu; bu TÜM cms emit'ini blokladi → dist stale kaldi, yeni banner API + seedBanners hic derlenmedi → /api/banners 404.",
+      "fix": "p/h/ul yardimcilarinin dönüs tipini ': any' yaptim (runtime JSON dogru; generated tip katiligi asildi). Sonra 'strapi ts:generate-types' + 'tsc --noEmit -p apps/cms' temiz gecti.",
+      "tags": [
+        "strapi",
+        "typescript",
+        "noEmitOnError",
+        "blocks",
+        "content-type",
+        "404",
+        "seed",
+        "banner"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:11:00.000Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-06-16T15:28:46.162Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/cms/src/api/anasayfa/content-types/anasayfa/schema.json",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 12→7 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:28:46.162Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-06-16T15:29:00.978Z",
+      "error_message": "Incorrect value in code",
+      "file": "packages/api-client/src/index.ts",
+      "root_cause": "Had 'populate[hero][populate]'",
+      "fix": "Changed to 'populate[oneCikanYazilar][populate][kapakGorseli]",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:29:00.978Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-06-16T15:29:25.048Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/cms/src/seed/index.ts",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 17→7 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:29:25.048Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-06-16T15:29:37.134Z",
+      "error_message": "CSS fix: metin",
+      "file": "apps/web/src/app/(site)/page.tsx",
+      "root_cause": "metin: home?.hero?.birincilCtaMetni || 'Araçları keşfet', → 'Araçları keşfet', link: '/araclar'",
+      "fix": "Changed metin: home?.hero?.birincilCtaMetni || 'Araçları keşfet', → 'Araçları keşfet', link: '/araclar'",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:29:37.134Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-06-16T15:38:03.284Z",
+      "error_message": "Significant refactor of ",
+      "file": "apps/web/src/components/home/HeroCarousel.tsx",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 13→15 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:38:03.284Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-06-16T15:44:31.125Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/web/src/components/BlocksRenderer.tsx",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:44:31.125Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-06-16T15:44:54.750Z",
+      "error_message": "Null/undefined access in ",
+      "file": "apps/web/src/app/(site)/blog/[slug]/page.tsx",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T15:44:54.750Z"
     }
   ]
 }

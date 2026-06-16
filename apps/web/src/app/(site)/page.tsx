@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import type { Blog, Tool } from '@stokoloji/api-client';
+import type { Banner, Blog, Tool } from '@stokoloji/api-client';
 import { strapi, mediaUrl } from '@/lib/strapi';
 import { formatDate } from '@/lib/format';
 import { groupPostsByCategory } from '@/lib/home';
 import { categoryKey, type CatKey } from '@/lib/nav';
-import { HeroSignature } from '@/components/home/HeroSignature';
+import { HeroCarousel } from '@/components/home/HeroCarousel';
+import { resolveBannerSlides } from '@/lib/banners';
 
 export const revalidate = 60;
 
@@ -27,12 +28,13 @@ const CAT_COLOR: Record<CatKey, string> = {
 };
 
 async function safeData() {
-  const [home, posts, tools] = await Promise.all([
+  const [home, posts, tools, banners] = await Promise.all([
     strapi.getHomepage().catch(() => null),
     strapi.listBlogPosts().catch(() => [] as Blog[]),
     strapi.listTools().catch(() => [] as Tool[]),
+    strapi.listBanners().catch(() => [] as Banner[]),
   ]);
-  return { home, posts, tools };
+  return { home, posts, tools, banners };
 }
 
 function Thumb({ url, alt, label, cat, corner }: { url?: string | null; alt?: string | null; label: string; cat?: CatKey; corner?: string }) {
@@ -45,7 +47,8 @@ function Thumb({ url, alt, label, cat, corner }: { url?: string | null; alt?: st
 }
 
 export default async function HomePage() {
-  const { home, posts, tools } = await safeData();
+  const { home, posts, tools, banners } = await safeData();
+  const heroSlides = resolveBannerSlides(banners);
 
   const featuredPosts = home?.oneCikanYazilar?.length ? home.oneCikanYazilar : posts;
   const showcaseTools = (home?.oneCikanAraclar?.length ? home.oneCikanAraclar : tools).slice(0, 4);
@@ -54,63 +57,33 @@ export default async function HomePage() {
   const categoryGroups = groupPostsByCategory(posts);
   const popularTools = (tools.length ? tools : []).slice(0, 5);
 
-  const heroTitle = home?.hero?.baslik || 'Stok kararlarını tahminle değil, hesapla.';
+  // Banner yokken gösterilen statik fallback hero metni (Strapi'ye bağlı değil).
+  const heroTitle = 'Stok kararlarını tahminle değil, hesapla.';
   const heroSub =
-    home?.hero?.altBaslik ||
     'EOQ, emniyet stoğu, yeniden sipariş noktası ve ABC analizi için çalışan hesaplayıcılar; her aracı ne zaman ve nasıl kullanacağını öğreten mühendislik temelli rehberler. Slogan yerine formül.';
-  const primaryCta = {
-    metin: home?.hero?.birincilCtaMetni || 'Araçları keşfet',
-    link: home?.hero?.birincilCtaLink || '/araclar',
-  };
+  const primaryCta = { metin: 'Araçları keşfet', link: '/araclar' };
 
   return (
     <>
-      {/* ============================ HERO ============================ */}
-      <section className="hero">
-        <div className="container">
-          <div className="hero-band">
-            <div className="hero-copy">
-              <span className="eyebrow">Stok &amp; Üretim Yönetimi Otoritesi</span>
-              <h1 className="display hero-title">{heroTitle}</h1>
-              <p className="lead hero-sub">{heroSub}</p>
-              <div className="hero-cta">
-                <Link className="btn btn-primary btn-lg" href={primaryCta.link}>
-                  {primaryCta.metin} <ArrowRight size={17} />
-                </Link>
-                <Link className="btn btn-secondary btn-lg" href="/#hakkinda">Neden Stokoloji?</Link>
-              </div>
-              <ul className="hero-trust">
-                <li><b>{tools.length || 5}</b> hesaplayıcı araç</li>
-                <li><b>Türkçe</b> uygulamalı rehberler</li>
-                <li><b>Ücretsiz</b> Excel şablonu</li>
-              </ul>
-            </div>
-
-            <aside className="hero-signature">
-              <div className="sig-card-head">
-                <span className="chip" data-cat="stok">EOQ · Stok Yönetimi</span>
-                <span className="sig-live"><i />canlı önizleme</span>
-              </div>
-              <div className="sig-formula mono">EOQ = √( 2 · D · S / H )</div>
-              <div className="sig-result-row">
-                <div>
-                  <div className="sig-r-label">Optimum sipariş miktarı</div>
-                  <div className="sig-r-value mono">577<span>adet</span></div>
-                </div>
-                <HeroSignature />
-              </div>
-              <div className="sig-split">
-                <div className="sp"><span className="k">Sipariş mlyt.</span><span className="v mono">5.196&nbsp;₺</span></div>
-                <div className="sp"><span className="k">Elde tutma</span><span className="v mono">5.196&nbsp;₺</span></div>
-                <div className="sp"><span className="k">Toplam / yıl</span><span className="v mono total">10.392&nbsp;₺</span></div>
-              </div>
-              <Link className="btn btn-primary btn-block" href="/araclar/eoq-hesaplama">
-                Kendi değerlerinle dene <ArrowRight />
+      {/* ============================ HERO CAROUSEL ============================ */}
+      {heroSlides.length > 0 ? (
+        <HeroCarousel slides={heroSlides} />
+      ) : (
+        /* Strapi'de yayınlanmış banner yoksa ince statik fallback hero. */
+        <section className="hero-fallback">
+          <div className="container hero-fallback-inner">
+            <span className="eyebrow">Stok &amp; Üretim Yönetimi Otoritesi</span>
+            <h1 className="display hero-title">{heroTitle}</h1>
+            <p className="lead hero-sub">{heroSub}</p>
+            <div className="hero-cta">
+              <Link className="btn btn-primary btn-lg" href={primaryCta.link}>
+                {primaryCta.metin} <ArrowRight size={17} />
               </Link>
-            </aside>
+              <Link className="btn btn-secondary btn-lg" href="/#hakkinda">Neden Stokoloji?</Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ============================ ÖNE ÇIKAN BLOK ============================ */}
       {heroFeatured && (

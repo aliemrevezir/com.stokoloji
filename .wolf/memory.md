@@ -87,3 +87,9 @@ Anasayfa hero'su tam genişlik (full-bleed) otomatik dönen banner carousel'e d�
 | 18:45 | Session end: 4 writes across 2 files (BlocksRenderer.tsx, page.tsx) | 3 reads | ~4555 tok |
 | 18:45 | blog detayına sabit oranlı (16/9) kapak görseli eklendi | apps/web/src/app/(site)/blog/[slug]/page.tsx | typecheck+lint temiz | ~3k |
 | 18:45 | Session end: 4 writes across 2 files (BlocksRenderer.tsx, page.tsx) | 3 reads | ~4555 tok |
+| 18:48 | Session end: 4 writes across 2 files (BlocksRenderer.tsx, page.tsx) | 3 reads | ~4555 tok |
+
+## Session: 2026-06-16 18:48
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

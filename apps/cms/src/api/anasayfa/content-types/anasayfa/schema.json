@@ -5,22 +5,12 @@
     "singularName": "anasayfa",
     "pluralName": "anasayfalar",
     "displayName": "Anasayfa",
-    "description": "Anasayfa hero, bannerlar ve öne çıkan içerik küratörlüğü"
+    "description": "Anasayfa öne çıkan içerik küratörlüğü (öne çıkan yazılar/araçlar)"
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "hero": {
-      "type": "component",
-      "repeatable": false,
-      "component": "content.hero"
-    },
-    "bannerlar": {
-      "type": "component",
-      "repeatable": true,
-      "component": "content.banner"
-    },
     "oneCikanYazilar": {
       "type": "relation",
       "relation": "oneToMany",

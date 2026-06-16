@@ -1,19 +1,23 @@
 import type { Core } from '@strapi/strapi';
 
-/* ----------------------------- blocks yardımcıları ----------------------------- */
+/* ----------------------------- blocks yardımcıları -----------------------------
+ * Strapi 'blocks' alanı runtime'da düz JSON node dizisidir; generated tipler
+ * (BlocksValue) katı bir union olduğundan elle kurulan node'lar widening yüzünden
+ * uyuşmaz. Dönüş tipini `any` işaretleyerek seed'i tip uyuşmazlığından kurtarıyoruz
+ * (aksi halde tek bir tip hatası TÜM cms derlemesini bloklar — banner API dahil). */
 
-const p = (text: string) => ({
+const p = (text: string): any => ({
   type: 'paragraph',
   children: [{ type: 'text', text }],
 });
 
-const h = (level: number, text: string) => ({
+const h = (level: number, text: string): any => ({
   type: 'heading',
   level,
   children: [{ type: 'text', text }],
 });
 
-const ul = (items: string[]) => ({
+const ul = (items: string[]): any => ({
   type: 'list',
   format: 'unordered',
   children: items.map((text) => ({
@@ -163,7 +167,7 @@ export async function seedDemoContent(strapi: Core.Strapi): Promise<void> {
  *
  * Demo içerik guard'ından BAĞIMSIZ çalışır: EOQ içeriği önceden seed edilmiş
  * olsa bile anasayfa kaydı oluşturulur. Öne çıkan tool/blog'u mevcut kayıtlardan
- * (varsa) slug ile bağlar; bulunmazsa sadece hero + bannerlar ile devam eder.
+ * (varsa) slug ile bağlar; bulunmazsa boş kürasyonla devam eder.
  */
 export async function seedHomepage(strapi: Core.Strapi): Promise<void> {
   const existing = await strapi.documents('api::anasayfa.anasayfa').findFirst();
@@ -183,32 +187,6 @@ export async function seedHomepage(strapi: Core.Strapi): Promise<void> {
 
   await strapi.documents('api::anasayfa.anasayfa').create({
     data: {
-      hero: {
-        baslik: 'Stok yönetimini',
-        vurgu: 'sayılara dökün',
-        altBaslik:
-          'EOQ, emniyet stoğu ve stok devir hızı için ücretsiz, hızlı hesaplayıcılar; yanında uygulamalı rehberler. Tahmini bırak, kararı veriyle ver.',
-        birincilCtaMetni: 'Araçları keşfet',
-        birincilCtaLink: '/araclar',
-        ikincilCtaMetni: 'Rehberleri oku',
-        ikincilCtaLink: '/blog',
-      },
-      bannerlar: [
-        {
-          baslik: 'EOQ Hesaplama Aracı',
-          aciklama:
-            'İdeal sipariş büyüklüğünü ve yıllık sipariş sayını saniyeler içinde hesapla.',
-          vurguMetni: 'Popüler araç',
-          link: '/araclar/eoq-hesaplama',
-        },
-        {
-          baslik: 'EOQ Nedir? Başlangıç Rehberi',
-          aciklama:
-            'Ekonomik sipariş miktarının mantığını, varsayımlarını ve uygulamasını örneklerle öğren.',
-          vurguMetni: 'Rehber',
-          link: '/blog/eoq-nedir',
-        },
-      ],
       oneCikanYazilar: blog ? [blog.documentId] : [],
       oneCikanAraclar: tool ? [tool.documentId] : [],
     },
@@ -216,4 +194,48 @@ export async function seedHomepage(strapi: Core.Strapi): Promise<void> {
   });
 
   strapi.log.info('[seed] Anasayfa içeriği başarıyla oluşturuldu.');
+}
+
+/**
+ * Hero carousel banner'larını seed'ler (idempotent — kayıt varsa atlar).
+ *
+ * Banner kendi metnini tutmaz; mevcut blog/tool kayıtlarına bağlanır. Başlık,
+ * excerpt ve link web tarafında bu referanstan türetilir (bkz. web lib/banners.ts).
+ * Görsel opsiyoneldir; seed'de yüklenmez, panelden eklenebilir.
+ */
+export async function seedBanners(strapi: Core.Strapi): Promise<void> {
+  const existing = await strapi.documents('api::banner.banner').findFirst();
+  if (existing) {
+    strapi.log.info('[seed] Banner kayıtları zaten mevcut, atlanıyor.');
+    return;
+  }
+
+  const tool = await strapi.documents('api::tool.tool').findFirst({
+    filters: { slug: 'eoq-hesaplama' },
+  });
+  const blog = await strapi.documents('api::blog.blog').findFirst({
+    filters: { slug: 'eoq-nedir' },
+  });
+
+  if (!tool && !blog) {
+    strapi.log.warn('[seed] Banner için bağlanacak blog/tool bulunamadı, atlandı.');
+    return;
+  }
+
+  strapi.log.info('[seed] Banner kayıtları oluşturuluyor...');
+
+  if (blog) {
+    await strapi.documents('api::banner.banner').create({
+      data: { blog: blog.documentId, sira: 1 },
+      status: 'published',
+    });
+  }
+  if (tool) {
+    await strapi.documents('api::banner.banner').create({
+      data: { arac: tool.documentId, sira: 2 },
+      status: 'published',
+    });
+  }
+
+  strapi.log.info('[seed] Banner kayıtları başarıyla oluşturuldu.');
 }

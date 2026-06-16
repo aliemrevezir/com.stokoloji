@@ -82,33 +82,22 @@ export interface Blog extends StrapiEntityMeta {
   guncellemeTarihi?: string | null;
 }
 
-/** Hero component (content.hero) — anasayfa banner içeriği. */
-export interface Hero {
-  id?: number;
-  baslik: string;
-  vurgu?: string | null;
-  altBaslik?: string | null;
-  birincilCtaMetni?: string | null;
-  birincilCtaLink?: string | null;
-  ikincilCtaMetni?: string | null;
-  ikincilCtaLink?: string | null;
+/**
+ * Banner collection type — anasayfa hero carousel slide'ı.
+ *
+ * Banner kendi metnini tutmaz: bir blog VEYA bir araca bağlanır; başlık, excerpt
+ * ve link o içerikten otomatik türetilir (bkz. web `lib/banners.ts`). `gorsel`
+ * opsiyoneldir ve doluysa arka plan görselini override eder.
+ */
+export interface Banner extends StrapiEntityMeta {
+  sira: number;
+  blog?: Blog | null;
+  arac?: Tool | null;
   gorsel?: StrapiMedia | null;
 }
 
-/** Banner component (content.banner) — repeatable promosyon bannerı. */
-export interface Banner {
-  id?: number;
-  baslik: string;
-  aciklama?: string | null;
-  vurguMetni?: string | null;
-  link?: string | null;
-  gorsel?: StrapiMedia | null;
-}
-
-/** Anasayfa single type — hero, bannerlar ve öne çıkan içerik küratörlüğü. */
+/** Anasayfa single type — öne çıkan içerik küratörlüğü (yazılar/araçlar). */
 export interface Anasayfa extends StrapiEntityMeta {
-  hero?: Hero | null;
-  bannerlar?: Banner[] | null;
   oneCikanYazilar?: Blog[] | null;
   oneCikanAraclar?: Tool[] | null;
 }

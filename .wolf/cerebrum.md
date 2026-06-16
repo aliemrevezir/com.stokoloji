@@ -26,6 +26,9 @@
 - **Env:** `NEXT_PUBLIC_*` build-time bundle'a gömülür → Coolify'da **Build Variable** olarak da girilmeli (runtime yetmez). Strapi secret'ları (`APP_KEYS` vb.) **runtime** (build variable değil).
 - **GA4:** `G-3TQF6XG6XX`, Clarity: `x6l7nkaqw5`, Search Console: DNS (CNAME) doğrulaması. `.env.local` (gitignore) local dev için.
 - **next/image** `AuthorBox`'ta aktif → prod Strapi medya host'u `next.config.mjs`'te `NEXT_PUBLIC_STRAPI_URL`'den türetilir (remotePatterns).
+- **web tsconfig `noUncheckedIndexedAccess` AÇIK** — dizi index erişimi (`arr[0].x`) `possibly undefined` verir; testlerde/kodda `arr[0]!.x` veya guard kullan.
+- **Public read izni otomatik:** yeni bir Strapi collection-type eklerken `apps/cms/src/index.ts` `setPublicReadPermissions` içindeki `permissionsByModel`'e `['find','findOne']` ile EKLE → `docker compose up` sonrası web sıfır manuel adımla okur. (Banner için yapıldı.)
+- **Hero = tam genişlik banner carousel** (`HeroCarousel.tsx`, `lib/banners.ts`). Veri: `Banner` collection-type (`api::banner.banner`) — kendi metni yok, bir `blog` VEYA `arac` relation'ına bağlanır; başlık/excerpt/link `resolveBannerSlide()` ile o referanstan türer. Görsel önceliği: `banner.gorsel` → `blog.kapakGorseli` → degrade. Eski inline hero + `HeroSignature` (EOQ canvas) ve yarım kalan `content.banner`/`bannerlar`/`PromoBanner`/`BannerStrip`/`HeroBanner` KALDIRILDI.
 
 ## Do-Not-Repeat
 
@@ -37,6 +40,9 @@
 - [2026-06-14] Prod cms Dockerfile'da `strapi build` öncesi `strapi ts:generate-types` ŞART — `types/generated/` gitignore'da, fresh image'da yok; olmadan seed gibi tipli dosyalar `iliskiliYazilar` vb. alanlarda TS hatası verir. Ayrıca typegen Strapi'yi boot ettiği için `mkdir -p public/uploads` gerekir (upload plugin klasörü arar).
 - [2026-06-14] Background/pipe'lı build'de "exit 0" YANILTICI olabilir (tail pipe'ın çıkışı, build'in değil). Gerçek exit'i `; echo EXIT=$?` ile AYRI doğrula.
 - [2026-06-14] Coolify BuildKit gerçek `next build`/`strapi build` stdout'unu gizleyip sadece `Dockerfile:line` + `exit code 1` gösterebilir. Gerçek hata için: VPS'te `docker build -f ... .` ELLE çalıştır, ya da kaynağı (RAM/OOM gibi) çözünce build ilerleyip gerçek hata ortaya çıkar.
+- [2026-06-16] **Strapi TS build `noEmitOnError` ile çalışır: cms'te TEK bir TS hatası TÜM emit'i bloklar.** Sonuç sinsi: yeni eklenen content-type API'si kaydolmaz (`/api/<plural>` → **404**), bootstrap/seed eski dist'le çalışır (yeni seed fn'i hiç loglamaz), `dist/src/api/` stale kalır. Debug: `ls apps/cms/dist/src/api` ile yeni API'nin derlenip derlenmediğine bak. Yeni Strapi işi sonrası `cd apps/cms && npx strapi ts:generate-types && npx tsc --noEmit -p tsconfig.json` ile DERLEMEYİ doğrula (web typecheck cms'i KAPSAMAZ). `blocks` alanı için elle JSON node kuran helper'lar generated `BlocksValue` ile uyuşmaz → dönüşü `: any` işaretle.
+- [2026-06-16] **`docker compose up` çalışan cms container'ını "Recreated" etmeyip "Running" bırakabilir** → kod değişikliğin YANSIMAZ (eski container). İlk up'taki 404'lere aldanma; `docker compose up --build` ya da `docker compose restart cms` ile taze başlat.
+- [2026-06-16] **Strapi medyasında `next/image` KULLANMA — docker dev'de 500 verir.** `mediaUrl` tarayıcı için `http://localhost:1337` üretir; next/image optimizer görseli SUNUCU tarafında (web container) çeker, oradan `localhost:1337` cms'e değil web'in kendisine gider → ECONNREFUSED → `/_next/image ... 500`. Prod'da host `cms.stokoloji.com` (her iki taraftan erişilir) olduğu için fark edilmez. Çözüm: Strapi görsellerini düz `<img>` ile yükle (projede Thumb/blog zaten böyle); LCP için ilk görselde `loading="eager"` + `fetchPriority="high"`, `// eslint-disable-next-line @next/next/no-img-element`. (HeroCarousel'de uygulandı.)
 
 ## Decision Log
 
@@ -48,3 +54,4 @@
 - [2026-06-14] **Search Console = DNS (CNAME) doğrulaması** (meta yöntemi `layout.tsx`'te `verification.google` + `GOOGLE_SITE_VERIFICATION` env olarak da hazır ama kullanılmadı).
 - [2026-06-14] **Çift `@types/react`** (web@19 vs cms@18) → root `package.json` `pnpm.overrides` ile `@types/react` 19.2.17 + `@types/react-dom` 19.2.3 sabitlendi.
 - [ileride] `.xyz` → `.com` 301 (Cloudflare/DNS redirect, içerik servis etmeden).
+- [2026-06-16] **Banner = ayrı collection-type, repeatable component DEĞİL.** Kullanıcı her banner'ın bağımsız yayınla/taslak olmasını istedi → `api::banner.banner` (draftAndPublish). Metin override YOK: editör mevcut blog/araç seçer, görünüm verisi referanstan türer (kısayol). Görsel opsiyonel banner alanı (blog kapağı varsa o, yoksa kullanıcı kendi görselini ekler).

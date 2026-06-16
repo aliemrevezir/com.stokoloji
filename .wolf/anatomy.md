@@ -1,14 +1,18 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-13T23:14:08.164Z
-> Files: 138 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T15:44:54.738Z
+> Files: 144 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../../.claude/plans/
+
+- `stokoloji-com-un-anasayfas-ndaki-hero-se-zippy-coral.md` — Anasayfa Hero → Tam Genişlik Banner Carousel (Strapi-yönetilen) (~1963 tok)
 
 ## ./
 
 - `.dockerignore` — Docker ignore rules (~42 tok)
 - `.DS_Store` (~1640 tok)
-- `.gitignore` — Git ignore rules (~142 tok)
 - `.env.prod.example` — PRODUCTION ortam değişkenleri referansı (Coolify env paneline girilir; secret + NEXT_PUBLIC_* + URL'ler) (~260 tok)
+- `.gitignore` — Git ignore rules (~142 tok)
 - `.prettierrc.json` — Prettier configuration (~31 tok)
 - `Caddyfile` — Opsiyonel reverse proxy (proxy profili). Demo için zorunlu değildir. (~68 tok)
 - `CLAUDE.md` — OpenWolf (~2803 tok)
@@ -59,11 +63,11 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~482 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~504 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
-- `schema.json` (~226 tok)
+- `schema.json` (~165 tok)
 
 ## apps/cms/src/api/anasayfa/controllers/
 
@@ -76,6 +80,22 @@
 ## apps/cms/src/api/anasayfa/services/
 
 - `anasayfa.ts` (~33 tok)
+
+## apps/cms/src/api/banner/content-types/banner/
+
+- `schema.json` (~218 tok)
+
+## apps/cms/src/api/banner/controllers/
+
+- `banner.ts` (~33 tok)
+
+## apps/cms/src/api/banner/routes/
+
+- `banner.ts` (~32 tok)
+
+## apps/cms/src/api/banner/services/
+
+- `banner.ts` (~32 tok)
 
 ## apps/cms/src/api/blog/content-types/blog/
 
@@ -153,7 +173,7 @@
 
 ## apps/cms/src/seed/
 
-- `index.ts` — Demo içeriğini oluşturur (idempotent — EOQ tool zaten varsa atlar). (~2184 tok)
+- `index.ts` — Demo içeriğini oluşturur (idempotent — EOQ tool zaten varsa atlar). (~2397 tok)
 
 ## apps/cms/types/generated/
 
@@ -181,11 +201,11 @@
 - `layout.tsx` — Editoryal serif başlık fontu (tasarım imzası). (~630 tok)
 - `robots.ts` — Exports robots (~90 tok)
 - `sitemap.ts` — siteUrl: sitemap (~398 tok)
-- `theme.css` — Styles: 91 rules, 52 vars (~11281 tok)
+- `theme.css` — Styles: 91 rules, 52 vars (~11376 tok)
 
 ## apps/web/src/app/(site)/
 
-- `page.tsx` — revalidate (~4315 tok)
+- `page.tsx` — revalidate (~3946 tok)
 
 ## apps/web/src/app/(site)/araclar/
 
@@ -201,7 +221,7 @@
 
 ## apps/web/src/app/(site)/blog/[slug]/
 
-- `page.tsx` — revalidate (~1280 tok)
+- `page.tsx` — revalidate (~1486 tok)
 
 ## apps/web/src/app/(site)/gizlilik/
 
@@ -210,7 +230,7 @@
 ## apps/web/src/components/
 
 - `AuthorBox.tsx` — E-E-A-T yazar kutusu. (~290 tok)
-- `BlocksRenderer.tsx` — Minimal Strapi "blocks" zengin metin renderer'ı. (~926 tok)
+- `BlocksRenderer.tsx` — Minimal Strapi "blocks" zengin metin renderer'ı. (~1182 tok)
 - `Breadcrumb.tsx` — Breadcrumb gezinme (görsel). JSON-LD ayrıca BreadcrumbList ile basılır. (~261 tok)
 - `CalculatorCard.tsx` — Sticky, ön-doldurulmuş hesap kartı (tasarım: ornek/EOQ Hesaplayıcı.html calc-card). (~1344 tok)
 - `CalloutBox.tsx` — Zoho "points to remember" tarzı vurgulu kutu. (~260 tok)
@@ -238,13 +258,10 @@
 ## apps/web/src/components/home/
 
 - `ArticleCard.tsx` — Önceden çözülmüş (mediaUrl ile) kapak görseli URL'i. (~556 tok)
-- `BannerStrip.tsx` — Promosyon bannerlarını responsive şeritte dizen ince wrapper. (~145 tok)
 - `CategoryBadge.tsx` — Koyu zeminde (hero/öne çıkan görsel üstü) kullanım için açık varyant. (~247 tok)
 - `CategorySection.tsx` — Tek kategori bloğu: başlık + o kategoriye ait yazı kartları grid'i. (~201 tok)
-- `FeaturedArticle.tsx` — Büyük öne çıkan yazı kartı. Görsel üstüne yerleşen koyu degrade + metin (~583 tok)
-- `HeroBanner.tsx` — Başlıktan sonra teal vurguyla gösterilen kelime/öbek. (~946 tok)
-- `HeroSignature.tsx` — Anasayfa hero imzası: mini EOQ maliyet eğrisi (markanın görsel imzası). (~862 tok)
-- `PromoBanner.tsx` — Önceden çözülmüş (mediaUrl ile) görsel URL'i. (~486 tok)
+- `FeaturedArticle.tsx` — Büyük öne çıkan yazı kartı (şu an kullanılmıyor). (~583 tok)
+- `HeroCarousel.tsx` — Tam genişlik (full-bleed) hero carousel. Slide verisi Strapi'den türetilir (~1256 tok)
 - `SectionHeading.tsx` — Verilirse sağda "Tümü →" linki gösterilir. (~228 tok)
 - `ToolCard.tsx` — Araç vitrini kartı. Anasayfa ve liste sayfalarında tekrar kullanılabilir. (~340 tok)
 
@@ -254,6 +271,8 @@
 
 ## apps/web/src/lib/
 
+- `banners.test.ts` — Declares baseMeta (~809 tok)
+- `banners.ts` — Banner → carousel slide çözümleme. (~533 tok)
 - `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~346 tok)
 - `format.ts` — Türkçe sayı/para formatlayıcıları (sonuç gösterimi için). (~234 tok)
 - `home.ts` — Blog yazılarını kategorilerine göre gruplar. Kategorisi olmayan yazılar (~247 tok)
@@ -302,8 +321,8 @@
 
 ## packages/api-client/src/
 
-- `index.ts` — Exports StrapiClientOptions, FetchOptions, createClient, StrapiClient (~1436 tok)
-- `types.ts` — Strapi 5 REST response tipleri. (~971 tok)
+- `index.ts` — Exports StrapiClientOptions, FetchOptions, createClient, StrapiClient (~1626 tok)
+- `types.ts` — Strapi 5 REST response tipleri. (~911 tok)
 
 ## packages/ui/
 

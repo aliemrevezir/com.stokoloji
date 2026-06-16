@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banners",
+  "info": {
+    "singularName": "banner",
+    "pluralName": "banners",
+    "displayName": "Banner",
+    "description": "Anasayfa hero carousel slide'ları; bir blog yazısına veya araca bağlanır, başlık/excerpt/link otomatik türetilir"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "blog": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blog.blog"
+    },
+    "arac": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tool.tool"
+    },
+    "gorsel": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "sira": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
