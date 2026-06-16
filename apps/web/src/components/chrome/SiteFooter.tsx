@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { NavData } from '@/lib/nav';
+import { NewsletterForm } from '@/components/NewsletterForm';
 
 /** Koyu zeminli site footer'ı (tasarım: ornek/theme.js buildFooter). */
 export function SiteFooter({ nav, year }: { nav: NavData; year: number }) {
@@ -37,10 +38,11 @@ export function SiteFooter({ nav, year }: { nav: NavData; year: number }) {
             <p style={{ color: 'var(--ink-light)', fontSize: '.9375rem', marginBottom: 14 }}>
               Yeni araçlar ve rehberler için ayda iki kez, spam yok.
             </p>
-            <form className="lm-form" style={{ display: 'flex', gap: 8 }} action="/#lead">
-              <input className="input" type="email" placeholder="E-posta adresin" aria-label="E-posta" />
-              <button className="btn btn-primary btn-sm" type="submit">Katıl</button>
-            </form>
+            <NewsletterForm
+              source="footer"
+              buttonLabel="Katıl"
+              style={{ display: 'flex', gap: 8 }}
+            />
             <p style={{ color: 'var(--ink-light)', fontSize: '.75rem', marginTop: 18, lineHeight: 1.5 }}>
               Stokoloji eğitim amaçlıdır. Hesap sonuçları karar desteğidir; profesyonel danışmanlık yerine geçmez.
             </p>

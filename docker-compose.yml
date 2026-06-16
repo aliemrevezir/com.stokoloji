@@ -39,10 +39,25 @@ services:
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-devTransferTokenSaltChangeMe==}
       JWT_SECRET: ${JWT_SECRET:-devJwtSecretChangeMe==}
       ENCRYPTION_KEY: ${ENCRYPTION_KEY:-devEncryptionKeyChangeMe16Byte==}
+      # macOS/Docker bind mount'larda Strapi'nin (chokidar) dosya değişikliklerini
+      # algılaması için polling. autoReload host'taki düzenlemelerde tetiklensin.
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "1337:1337"
+    # Canlı geliştirme: host kaynağını container'a bağla → `strapi develop`
+    # autoReload host'taki değişiklikleri görür, yeniden build gerekmez.
+    # node_modules ve Strapi build artifact'ları anonymous volume ile korunur
+    # (image içindeki kurulu bağımlılıklar / platforma özel binary'ler gölgelenmesin).
     volumes:
+      - ./apps/cms:/repo/apps/cms
       - strapi_uploads:/repo/apps/cms/public/uploads
+      - /repo/node_modules
+      - /repo/apps/cms/node_modules
+      - /repo/apps/cms/.strapi
+      - /repo/apps/cms/.cache
+      - /repo/apps/cms/build
+      - /repo/apps/cms/dist
+      - /repo/apps/cms/.tmp
     depends_on:
       db:
         condition: service_healthy
@@ -76,6 +91,12 @@ services:
       NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID:-}
       NEXT_PUBLIC_CLARITY_ID: ${NEXT_PUBLIC_CLARITY_ID:-}
       GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION:-}
+      # Newsletter (Listmonk) — SUNUCU tarafı; token tarayıcıya gitmez.
+      # Internal network: web → listmonk:9000. User/token/list Listmonk admin'den.
+      LISTMONK_API_URL: ${LISTMONK_API_URL:-http://listmonk:9000}
+      LISTMONK_API_USER: ${LISTMONK_API_USER:-}
+      LISTMONK_API_TOKEN: ${LISTMONK_API_TOKEN:-}
+      LISTMONK_LIST_ID: ${LISTMONK_LIST_ID:-}
     ports:
       - "3000:3000"
     # Canlı geliştirme: host kaynağı container'a bağla; node_modules ve .next'i
@@ -100,6 +121,49 @@ services:
       retries: 20
       start_period: 60s
 
+  # Listmonk newsletter / lead-magnet ESP. Kendi postgres'i (Strapi DB'sinden
+  # izole) + Amazon SES'i SMTP relay olarak kullanır (SMTP, admin panelinden
+  # girilir: Settings > SMTP → email-smtp.eu-central-1.amazonaws.com:587 STARTTLS).
+  listmonk_db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${LISTMONK_DB_NAME:-listmonk}
+      POSTGRES_USER: ${LISTMONK_DB_USER:-listmonk}
+      POSTGRES_PASSWORD: ${LISTMONK_DB_PASSWORD:-listmonk}
+    volumes:
+      - listmonk_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${LISTMONK_DB_USER:-listmonk} -d ${LISTMONK_DB_NAME:-listmonk}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  listmonk:
+    image: listmonk/listmonk:latest
+    restart: unless-stopped
+    # İlk açılışta tabloları kur (idempotent) + migrasyonları uygula, sonra başlat.
+    command: ["sh", "-c", "./listmonk --install --idempotent --yes && ./listmonk --upgrade --yes && ./listmonk"]
+    environment:
+      TZ: Europe/Istanbul
+      LISTMONK_app__address: 0.0.0.0:9000
+      LISTMONK_db__host: listmonk_db
+      LISTMONK_db__port: "5432"
+      LISTMONK_db__user: ${LISTMONK_DB_USER:-listmonk}
+      LISTMONK_db__password: ${LISTMONK_DB_PASSWORD:-listmonk}
+      LISTMONK_db__database: ${LISTMONK_DB_NAME:-listmonk}
+      LISTMONK_db__ssl_mode: disable
+      # İlk süper admin (yalnız ilk --install'da oluşturulur).
+      LISTMONK_ADMIN_USER: ${LISTMONK_ADMIN_USER:-admin}
+      LISTMONK_ADMIN_PASSWORD: ${LISTMONK_ADMIN_PASSWORD:-listmonkadmin}
+    ports:
+      - "9000:9000"
+    volumes:
+      - listmonk_uploads:/listmonk/uploads
+    depends_on:
+      listmonk_db:
+        condition: service_healthy
+
   # Opsiyonel reverse proxy — `docker compose --profile proxy up` ile etkinleşir.
   caddy:
     image: caddy:2-alpine
@@ -116,3 +180,5 @@ services:
 volumes:
   pgdata:
   strapi_uploads:
+  listmonk_data:
+  listmonk_uploads:

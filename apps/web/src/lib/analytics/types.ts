@@ -11,6 +11,8 @@ export interface AnalyticsEventMap {
   lead_magnet_view: { id: string } & AnalyticsPayload;
   /** Lead magnet formu gönderildi. */
   lead_magnet_submit: { id: string } & AnalyticsPayload;
+  /** Newsletter / abonelik formu gönderildi (kaynak + ESP sonucu). */
+  newsletter_submit: { source: string; status: string } & AnalyticsPayload;
   /** Üst duyuru barındaki CTA'ya tıklandı ("duyuruya basanlar"). */
   duyuru_click: { label: string; href: string; duyuru_id?: string } & AnalyticsPayload;
   /** Sayfa kaydırma derinliği eşiği aşıldı. */

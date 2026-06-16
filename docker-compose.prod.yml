@@ -93,6 +93,12 @@ services:
       NEXT_PUBLIC_GA4_ID: ${NEXT_PUBLIC_GA4_ID}
       NEXT_PUBLIC_CLARITY_ID: ${NEXT_PUBLIC_CLARITY_ID}
       GOOGLE_SITE_VERIFICATION: ${GOOGLE_SITE_VERIFICATION}
+      # Newsletter (Listmonk) — SUNUCU tarafı; internal network üzerinden.
+      # API user/token/list Listmonk admin'den üretilir, Coolify env'e girilir.
+      LISTMONK_API_URL: ${LISTMONK_API_URL:-http://listmonk:9000}
+      LISTMONK_API_USER: ${LISTMONK_API_USER}
+      LISTMONK_API_TOKEN: ${LISTMONK_API_TOKEN}
+      LISTMONK_LIST_ID: ${LISTMONK_LIST_ID}
     expose:
       - "3000"
     # ports:
@@ -109,6 +115,53 @@ services:
       retries: 20
       start_period: 60s
 
+  # Listmonk newsletter / lead-magnet ESP. Kendi postgres'i (Strapi DB'sinden
+  # izole) + Amazon SES SMTP relay (SMTP, admin panelinden Settings > SMTP'de
+  # girilir). Coolify UI: listmonk:9000 → list.stokoloji.com (SSL otomatik).
+  # ZORUNLU secret'lar (LISTMONK_DB_PASSWORD, LISTMONK_ADMIN_*) Coolify env'den.
+  listmonk_db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${LISTMONK_DB_NAME:-listmonk}
+      POSTGRES_USER: ${LISTMONK_DB_USER:-listmonk}
+      POSTGRES_PASSWORD: ${LISTMONK_DB_PASSWORD}
+    volumes:
+      - listmonk_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${LISTMONK_DB_USER:-listmonk} -d ${LISTMONK_DB_NAME:-listmonk}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  listmonk:
+    image: listmonk/listmonk:latest
+    restart: unless-stopped
+    command: ["sh", "-c", "./listmonk --install --idempotent --yes && ./listmonk --upgrade --yes && ./listmonk"]
+    environment:
+      TZ: Europe/Istanbul
+      LISTMONK_app__address: 0.0.0.0:9000
+      LISTMONK_db__host: listmonk_db
+      LISTMONK_db__port: "5432"
+      LISTMONK_db__user: ${LISTMONK_DB_USER:-listmonk}
+      LISTMONK_db__password: ${LISTMONK_DB_PASSWORD}
+      LISTMONK_db__database: ${LISTMONK_DB_NAME:-listmonk}
+      LISTMONK_db__ssl_mode: disable
+      # İlk süper admin (yalnız ilk --install'da oluşturulur).
+      LISTMONK_ADMIN_USER: ${LISTMONK_ADMIN_USER}
+      LISTMONK_ADMIN_PASSWORD: ${LISTMONK_ADMIN_PASSWORD}
+    expose:
+      - "9000"
+    # ports:
+    #   - "9000:9000"
+    volumes:
+      - listmonk_uploads:/listmonk/uploads
+    depends_on:
+      listmonk_db:
+        condition: service_healthy
+
 volumes:
   pgdata:
   strapi_uploads:
+  listmonk_data:
+  listmonk_uploads:
