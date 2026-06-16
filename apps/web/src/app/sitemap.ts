@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const now = new Date();
 
-  const staticRoutes: MetadataRoute.Sitemap = ['', '/araclar', '/icerik'].map((path) => ({
+  const staticRoutes: MetadataRoute.Sitemap = ['', '/rehber', '/araclar', '/icerik'].map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: now,
     changeFrequency: 'weekly',

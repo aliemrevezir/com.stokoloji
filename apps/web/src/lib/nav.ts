@@ -40,11 +40,11 @@ export function categoryKey(value?: string | null): CatKey {
 }
 
 export const CATEGORIES: NavCategory[] = [
-  { label: 'Stok Yönetimi', href: '/araclar', cat: 'stok' },
-  { label: 'Üretim Planlama', href: '/araclar', cat: 'uretim' },
-  { label: 'Maliyet / Finans', href: '/araclar', cat: 'maliyet' },
-  { label: 'Analiz / Veri', href: '/araclar', cat: 'analiz' },
-  { label: 'Tedarik', href: '/araclar', cat: 'tedarik' },
+  { label: 'Stok Yönetimi', href: '/rehber#stok', cat: 'stok' },
+  { label: 'Üretim Planlama', href: '/rehber#uretim', cat: 'uretim' },
+  { label: 'Maliyet / Finans', href: '/rehber#maliyet', cat: 'maliyet' },
+  { label: 'Analiz / Veri', href: '/rehber#analiz', cat: 'analiz' },
+  { label: 'Tedarik', href: '/rehber#tedarik', cat: 'tedarik' },
 ];
 
 const FALLBACK_TOOLS: NavItem[] = [

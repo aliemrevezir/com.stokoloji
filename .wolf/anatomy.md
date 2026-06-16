@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T17:22:34.060Z
-> Files: 164 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T20:24:01.712Z
+> Files: 165 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../../.claude/plans/
 
@@ -33,7 +33,7 @@
 - `Caddyfile` — Opsiyonel reverse proxy (proxy profili). Demo için zorunlu değildir. (~68 tok)
 - `CLAUDE.md` — OpenWolf (~3105 tok)
 - `docker-compose.prod.yml` — Stokoloji — PRODUCTION compose (Coolify hedefli). (~1102 tok)
-- `docker-compose.yml` — Docker Compose services (~1111 tok)
+- `docker-compose.yml` — Docker Compose services (~1327 tok)
 - `package.json` — Node.js package manifest (~185 tok)
 - `pnpm-lock.yaml` — pnpm lock file (~171281 tok)
 - `pnpm-workspace.yaml` (~12 tok)
@@ -79,11 +79,11 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~541 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~1078 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
-- `schema.json` (~165 tok)
+- `schema.json` (~195 tok)
 
 ## apps/cms/src/api/anasayfa/controllers/
 
@@ -205,7 +205,7 @@
 
 ## apps/cms/src/seed/
 
-- `index.ts` — Declares p (~6931 tok)
+- `index.ts` — Declares p (~8998 tok)
 
 ## apps/cms/types/generated/
 
@@ -236,8 +236,8 @@
 - `layout.tsx` — Editoryal serif başlık fontu (tasarım imzası). (~846 tok)
 - `not-found.tsx` — metadata (~827 tok)
 - `robots.ts` — siteUrl: robots (~197 tok)
-- `sitemap.ts` — siteUrl: sitemap (~398 tok)
-- `theme.css` — Styles: 91 rules, 52 vars (~11797 tok)
+- `sitemap.ts` — siteUrl: sitemap (~402 tok)
+- `theme.css` — Styles: 91 rules, 52 vars (~11910 tok)
 
 ## apps/web/src/app/(site)/
 
@@ -262,8 +262,12 @@
 
 ## apps/web/src/app/(site)/icerik/[slug]/
 
-- `page.tsx` — blog detay. generateMetadata (desc fallback `excerptFromBlocks`), BlogPosting+Breadcrumb(+FAQPage) JSON-LD (~1550 tok)
+- `page.tsx` — revalidate (~1590 tok)
 - `page.tsx` — revalidate (~1568 tok)
+
+## apps/web/src/app/(site)/rehber/
+
+- `page.tsx` — Hub'ta gösterilen tek kavram satırı: rehber yazısı + (varsa) hesaplayıcı. (~2456 tok)
 
 ## apps/web/src/components/
 
@@ -280,7 +284,7 @@
 - `RandomPostLink.tsx` — 404 sayfasında "rastgele yazı" CTA'sı. Tıklamada slug listesinden rastgele (~223 tok)
 - `RelatedToolsGrid.tsx` — İç link cluster'ı — ilgili tool/yazı kartları. (~295 tok)
 - `ResultDisplay.tsx` — Büyük monospace sonuç + kısa yorum + ek satırlar. (~308 tok)
-- `TOCSidebar.tsx` — Blog için sticky "Bu yazıda" içindekiler. (~220 tok)
+- `TOCSidebar.tsx` — Blog için sticky "Bu yazıda" içindekiler. (~216 tok)
 - `ToolPageTemplate.tsx` — TEK tool sayfası şablonu (tasarım: ornek/EOQ Hesaplayıcı.html). (~1662 tok)
 
 ## apps/web/src/components/analytics/
@@ -293,7 +297,7 @@
 ## apps/web/src/components/chrome/
 
 - `SiteFooter.tsx` — Koyu zeminli site footer'ı (tasarım: ornek/theme.js buildFooter). (~726 tok)
-- `SiteHeader.tsx` — Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). (~4291 tok)
+- `SiteHeader.tsx` — Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). (~4501 tok)
 
 ## apps/web/src/components/home/
 
@@ -316,7 +320,7 @@
 - `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~561 tok)
 - `format.ts` — Türkçe sayı/para formatlayıcıları (sonuç gösterimi için). (~234 tok)
 - `home.ts` — Blog yazılarını kategorilerine göre gruplar. Kategorisi olmayan yazılar (~247 tok)
-- `nav.ts` — Header / footer chrome için navigasyon verisi. (~934 tok)
+- `nav.ts` — Header / footer chrome için navigasyon verisi. (~946 tok)
 - `strapi.ts` — Web uygulamasının Strapi'ye TEK bağlantı noktası. (~353 tok)
 
 ## apps/web/src/lib/analytics/

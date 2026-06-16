@@ -399,3 +399,24 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 23:16 | navbar Araçlar/İçerik etiketlerini tıklanabilir Link yaptı (caret ayrı toggle) | SiteHeader.tsx, theme.css | typecheck temiz | ~3k |
 | 23:16 | Session end: 5 writes across 3 files (index.ts, SiteHeader.tsx, theme.css) | 2 reads | ~17256 tok |
 | 23:17 | Session end: 5 writes across 3 files (index.ts, SiteHeader.tsx, theme.css) | 2 reads | ~17256 tok |
+| 23:18 | Session end: 5 writes across 3 files (index.ts, SiteHeader.tsx, theme.css) | 3 reads | ~18190 tok |
+
+## Session: 2026-06-16 23:18
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16 23:19
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:21 | Created apps/web/src/app/(site)/rehber/page.tsx | — | ~1958 |
+| 23:21 | Edited apps/web/src/lib/nav.ts | 7→7 lines | ~112 |
+| 23:22 | Edited apps/web/src/components/chrome/SiteHeader.tsx | 2→2 lines | ~35 |
+| 23:22 | Edited apps/web/src/components/chrome/SiteHeader.tsx | "/araclar" → "/rehber" | ~24 |
+| 23:22 | Edited apps/web/src/app/sitemap.ts | inline fix | ~29 |
+| 23:22 | Kategoriler navbar redundancy -> /rehber kavram hub | rehber/page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts | typecheck temiz | ~6k |
+| 23:23 | Edited apps/web/src/app/(site)/rehber/page.tsx | CSS: row | ~364 |
+| 23:24 | Edited apps/web/src/app/(site)/rehber/page.tsx | expanded (+10 lines) | ~498 |
+| 23:24 | Session end: 7 writes across 4 files (page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts) | 5 reads | ~11821 tok |
+| 23:24 | Session end: 7 writes across 4 files (page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts) | 5 reads | ~11821 tok |

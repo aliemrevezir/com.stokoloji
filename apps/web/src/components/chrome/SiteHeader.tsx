@@ -300,7 +300,7 @@ export function SiteHeader({
                   feature={{ cat: 'analiz', label: 'Analiz / Veri', title: 'Stok devir hızı kaç olmalı?', meta: 'Sektör ortalamaları ve yorumlama rehberi.' }}
                 />
               </li>
-              <li><Link href="/araclar">Kategoriler</Link></li>
+              <li><Link href="/rehber">Rehber</Link></li>
               <li><Link href="/#hakkinda">Hakkında</Link></li>
             </ul>
             <div className="nav-right">
@@ -370,7 +370,7 @@ export function SiteHeader({
         <DrawerSection title="İçerik" items={nav.posts} onNavigate={() => setDrawerOpen(false)} />
         <div className="drawer-section">
           <div className="ds-title">Genel</div>
-          <Link href="/araclar" onClick={() => setDrawerOpen(false)}>Kategoriler</Link>
+          <Link href="/rehber" onClick={() => setDrawerOpen(false)}>Rehber</Link>
           <Link href="/#hakkinda" onClick={() => setDrawerOpen(false)}>Hakkında</Link>
         </div>
         <Link className="btn btn-primary btn-block" href="/araclar" style={{ marginTop: 16 }} onClick={() => setDrawerOpen(false)}>
