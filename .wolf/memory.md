@@ -342,3 +342,60 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 20:22 | Edited apps/web/src/app/theme.css | CSS: font-weight | ~42 |
 | 20:23 | lead magnet trackerları bağlandı: yeni duyuru_click event'i (SiteHeader duyuru CTA) + lead_magnet_view/submit (yeni LeadMagnetForm, anasayfa #lead) | types.ts, SiteHeader.tsx, LeadMagnetForm.tsx, page.tsx, theme.css, anatomy.md | typecheck temiz, GA4+Clarity'ye gidiyor | ~10k |
 | 20:23 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 18 reads | ~40158 tok |
+| 20:32 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 18 reads | ~40158 tok |
+| 20:42 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 19 reads | ~40158 tok |
+| 20:45 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 20 reads | ~40158 tok |
+| 20:52 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 21 reads | ~40158 tok |
+| 20:58 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 21 reads | ~40158 tok |
+| 21:07 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 22 reads | ~40158 tok |
+| 21:09 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 23 reads | ~40158 tok |
+| 21:09 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 23 reads | ~40158 tok |
+| 21:18 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 24 reads | ~40158 tok |
+| 22:54 | Session end: 16 writes across 9 files (generate.py, page.tsx, schema.json, brevo-lead-magnet-esp.md, MEMORY.md) | 25 reads | ~40158 tok |
+
+## Session: 2026-06-16 22:59
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:01 | Edited apps/cms/src/seed/index.ts | modified budur() | ~2611 |
+| 23:02 | Edited apps/cms/src/seed/index.ts | 8→8 lines | ~124 |
+| 23:04 | Edited docker-compose.yml | expanded (+15 lines) | ~265 |
+| 23:04 | Session end: 3 writes across 2 files (index.ts, docker-compose.yml) | 2 reads | ~4111 tok |
+
+## Session: 2026-06-16 23:04
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+| 23:00 | Prod DB cerrahi sıfırla: DROP SCHEMA public CASCADE + cms restart → fresh seed (volume/container'a dokunmadan, Coolify bozulmaz) | prod db (ssh) | tools=2/blogs=2 canlı, crash yok | ~20k |
+| 23:05 | Coolify deploy fail = transient OOM margin (build her yerde geçti; VPS canlı izlemede peak 1G avail'a indi, swap kurtardı; redeploy geçti) | docker-compose.prod.yml | deploy OK | ~15k |
+| 23:10 | stok-devir-hizi-nedir blog SEMRUSH(tr)+PAA ile ~250→~1000 kelime (3 tablo, sektör/örnek tablosu, yorumlama, stokta kalma, nasıl artırılır, E-E-A-T) | apps/cms/src/seed/index.ts | local doğrulandı, prod'a cerrahi SQL update | ~25k |
+
+## Session: 2026-06-16 23:09
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:13 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | "hidden lg:block" → "hidden self-start lg:stic" | ~35 |
+| 23:13 | Edited apps/web/src/components/TOCSidebar.tsx | inline fix | ~16 |
+| 23:13 | Session end: 2 writes across 2 files (page.tsx, TOCSidebar.tsx) | 7 reads | ~4893 tok |
+| 23:14 | Session end: 2 writes across 2 files (page.tsx, TOCSidebar.tsx) | 7 reads | ~4893 tok |
+
+## Session: 2026-06-16 23:14
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:15 | Edited apps/cms/src/api/anasayfa/content-types/anasayfa/schema.json | 2→2 lines | ~64 |
+
+## Session: 2026-06-16 23:15
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:15 | Edited apps/cms/src/index.ts | added error handling | ~576 |
+| 23:15 | Edited apps/cms/src/index.ts | 4→5 lines | ~40 |
+| 23:15 | Edited apps/web/src/components/chrome/SiteHeader.tsx | expanded (+9 lines) | ~157 |
+| 23:15 | Edited apps/web/src/components/chrome/SiteHeader.tsx | expanded (+9 lines) | ~155 |
+| 23:16 | Edited apps/web/src/app/theme.css | CSS: font, nav-trigger | ~240 |
+| 23:16 | "Editörün Seçtikleri" zaten Strapi `oneCikanYazilar`'dan besleniyordu (max 4: 1 büyük+3 yan). Kullanıcı isteği=max'ı Strapi'de göster | apps/cms/src/api/anasayfa/.../schema.json, apps/cms/src/index.ts | info.description güncellendi + bootstrap'ta content-manager field açıklaması set edildi (setAnasayfaFieldHints); cms tsc EXIT=0 | ~9k |
+| 23:16 | navbar Araçlar/İçerik etiketlerini tıklanabilir Link yaptı (caret ayrı toggle) | SiteHeader.tsx, theme.css | typecheck temiz | ~3k |
+| 23:16 | Session end: 5 writes across 3 files (index.ts, SiteHeader.tsx, theme.css) | 2 reads | ~17256 tok |
+| 23:17 | Session end: 5 writes across 3 files (index.ts, SiteHeader.tsx, theme.css) | 2 reads | ~17256 tok |

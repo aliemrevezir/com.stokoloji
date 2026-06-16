@@ -43,6 +43,58 @@ async function setPublicReadPermissions(strapi: Core.Strapi): Promise<void> {
   }
 }
 
+/**
+ * Anasayfa "Öne Çıkan Yazılar" / "Öne Çıkan Araçlar" alanlarının altına
+ * content-manager edit görünümünde görünecek bir açıklama yazar (en fazla 4
+ * kuralı). Field açıklaması şema dosyasında DEĞİL, content-manager
+ * konfigürasyonunda (DB) tutulur; bu yüzden burada idempotent set edilir.
+ * Hata boot'u BOZMAMALI (try/catch) — config henüz oluşmamışsa sessizce atlar.
+ */
+async function setAnasayfaFieldHints(strapi: Core.Strapi): Promise<void> {
+  const hints: Record<string, string> = {
+    oneCikanYazilar:
+      'Editörün Seçtikleri bölümünü besler. En fazla 4 yazı ekle: ilki büyük kart, sonraki 3 yan sütun olur; fazlası gösterilmez. Kapak görseli, başlık ve excerpt (SEO açıklaması) yazının kendisinden gelir.',
+    oneCikanAraclar:
+      'Anasayfa hesaplayıcı vitrinini besler. En fazla 4 araç; fazlası gösterilmez.',
+  };
+
+  try {
+    const store = strapi.store({
+      type: 'plugin',
+      name: 'content_manager_configuration',
+      key: 'content_types::api::anasayfa.anasayfa',
+    });
+    const config = (await store.get()) as {
+      metadatas?: Record<string, { edit?: { description?: string } }>;
+    } | null;
+
+    if (!config?.metadatas) {
+      strapi.log.info(
+        '[anasayfa] content-manager konfigürasyonu hazır değil, alan açıklamaları atlandı.',
+      );
+      return;
+    }
+
+    let changed = false;
+    for (const [field, desc] of Object.entries(hints)) {
+      const edit = config.metadatas[field]?.edit;
+      if (edit && edit.description !== desc) {
+        edit.description = desc;
+        changed = true;
+      }
+    }
+
+    if (changed) {
+      await store.set({ value: config });
+      strapi.log.info('[anasayfa] Öne çıkan alan açıklamaları ayarlandı.');
+    }
+  } catch (err) {
+    strapi.log.warn(
+      `[anasayfa] Alan açıklamaları ayarlanamadı: ${(err as Error).message}`,
+    );
+  }
+}
+
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
@@ -53,5 +105,6 @@ export default {
     await seedHomepage(strapi);
     await seedBanners(strapi);
     await seedDuyuru(strapi);
+    await setAnasayfaFieldHints(strapi);
   },
 };

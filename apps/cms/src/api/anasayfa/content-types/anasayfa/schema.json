@@ -5,7 +5,7 @@
     "singularName": "anasayfa",
     "pluralName": "anasayfalar",
     "displayName": "Anasayfa",
-    "description": "Anasayfa öne çıkan içerik küratörlüğü (öne çıkan yazılar/araçlar)"
+    "description": "Anasayfa küratörlüğü. Öne Çıkan Yazılar: 'Editörün Seçtikleri' bölümünü besler, en fazla 4 yazı (1 büyük + 3 yan), fazlası gösterilmez. Öne Çıkan Araçlar: en fazla 4 araç."
   },
   "options": {
     "draftAndPublish": true
