@@ -606,3 +606,24 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 01:07 | Session end: 8 writes across 6 files (index.ts, rop.ts, rop.test.ts, registry.ts, yeniden-siparis-noktasi-nedir.md) | 6 reads | ~25724 tok |
 | 01:07 | Edited apps/cms/src/seed/index.ts | inline fix | ~23 |
 | 01:07 | Edited apps/cms/src/seed/index.ts | inline fix | ~18 |
+| 01:09 | Edited apps/cms/src/seed/index.ts | added 3 condition(s) | ~5734 |
+| 01:09 | Edited apps/cms/src/index.ts | inline fix | ~36 |
+| 01:09 | Session end: 12 writes across 6 files (index.ts, rop.ts, rop.test.ts, registry.ts, yeniden-siparis-noktasi-nedir.md) | 6 reads | ~33341 tok |
+| 01:09 | Edited apps/cms/src/index.ts | 2→3 lines | ~27 |
+| 01:12 | Edited apps/cms/src/index.ts | added error handling | ~662 |
+| 01:12 | Edited apps/cms/src/index.ts | 1→2 lines | ~23 |
+| 01:14 | ROP yenileme: rop.ts+test (29 web testi geçti), registry ropDef, seed seedRop (ROP_BLOG/SSS/TOOL), index.ts wiring | rop.ts, rop.test.ts, registry.ts, seed/index.ts, index.ts | blog+tool canlı render 200, çift yönlü cluster mesh | ~12k |
+| 01:14 | İç link bug: canlı emniyet kayıtlarında /blog/ kırık linkler → idempotent migrateInternalLinks (/blog/→/icerik/) eklendi, bootstrap'a bağlandı | apps/cms/src/index.ts | 2 kayıt onarıldı, cluster 0 kırık link | ~1k |
+| 01:15 | Edited apps/cms/src/index.ts | added 2 import(s) | ~76 |
+| 01:15 | Edited apps/cms/src/index.ts | added error handling | ~481 |
+| 01:15 | Session end: 17 writes across 6 files (index.ts, rop.ts, rop.test.ts, registry.ts, yeniden-siparis-noktasi-nedir.md) | 8 reads | ~40414 tok |
+
+## Session: 2026-06-16 01:16
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 01:20 | Görsel asset sync (Approach A): seed-assets/uploads/ (14 jpg, git-tracked) + index.ts ensureUploadAssets bootstrap → fresh prod volume'una kopyalar; idempotent. Test: volume'dan sil→restart→geri geldi (200) | apps/cms/seed-assets/*, apps/cms/src/index.ts | mekanizma doğrulandı; commit BEKLEDI (index.ts paralel rop işiyle entangle) | ~7k |
+| 01:18 | Created apps/web/public/img/rop-zaman-grafigi.svg | — | ~856 |
+| 01:19 | Edited apps/web/public/img/rop-zaman-grafigi.svg | 3→4 lines | ~112 |
+| 01:19 | Edited apps/web/public/img/rop-zaman-grafigi.svg | 1→2 lines | ~56 |
+| 01:20 | Created ../../../../../../tmp/rop_blog_cover.svg | — | ~838 |

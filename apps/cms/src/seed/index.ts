@@ -1016,6 +1016,361 @@ export async function seedEmniyetStogu(strapi: Core.Strapi): Promise<void> {
   strapi.log.info('[seed] Emniyet stoğu içeriği başarıyla oluşturuldu.');
 }
 
+/* ----------------------- yeniden sipariş noktası (ROP) ----------------------- */
+
+const ROP_BLOG = [
+  pr(
+    b('Yeniden sipariş noktası (ROP, İngilizcesi reorder point)'),
+    t(
+      ', stoğun hangi seviyeye düştüğünde yeni siparişi vermen gerektiğini gösteren stok kontrol eşiğidir. Aynı kavram Türkçe kaynaklarda "sipariş verme noktası", "minimum stok seviyesi" ya da "kritik stok seviyesi" olarak da geçer. EOQ "ne kadar", emniyet stoğu "ne kadar tampon" sorusunu cevaplıyordu; yeniden sipariş noktası ise "ne zaman" sorusunu cevaplar. Bu rehberde ROP\'un formülünü, değişken talep ve tedarik süresinde nasıl hesaplandığını, Excel\'de adım adım örneğini ve EOQ ile emniyet stoğuyla nasıl birleştiğini gerçek sayılarla anlatıyorum. Kendi rakamlarını denemek için ',
+    ),
+    a('yeniden sipariş noktası hesaplama aracını', '/araclar/yeniden-siparis-noktasi-hesaplama'),
+    t(' kullanabilirsin.'),
+  ),
+  h(2, 'Yeniden sipariş noktası nedir?'),
+  p(
+    'Yeniden sipariş noktası, sipariş verme alarmını tetikleyen stok seviyesidir. Stok bu seviyeye indiğinde yeni sipariş verirsin; amaç, sipariş ettiğin mal gelene kadar elindeki stoğun tükenmemesidir. Doğru kurulmuş bir ROP, stoksuz kalmayı önlerken gereksiz erken sipariş vermeni de engeller. Modern ERP ve stok yazılımları stok bu eşiğe düştüğünde otomatik uyarı üretir; SAP gibi sistemlerde bu, yeniden sipariş noktası planlaması olarak adlandırılır.',
+  ),
+  h(3, 'Reorder point, sipariş verme noktası, minimum stok seviyesi: aynı şey mi?'),
+  p(
+    'Büyük ölçüde evet. "Yeniden sipariş noktası" ve "reorder point" birebir aynı kavramdır; "sipariş verme noktası" da aynı eşiği anlatır. "Minimum stok seviyesi" ve "kritik stok seviyesi" çoğu işletmede ROP ile aynı anlamda kullanılır: stoğun düşmesine izin verdiğin alt sınır. Teknik olarak küçük bir nüans vardır; bazı kaynaklar minimum stok seviyesini doğrudan emniyet stoğu olarak tanımlar. Bu yazıda yeniden sipariş noktasını sipariş tetikleme eşiği anlamında kullanıyorum ve emniyet stoğunu onun bir bileşeni olarak ele alıyorum.',
+  ),
+  h(2, 'Yeniden sipariş noktası neden önemli?'),
+  p(
+    'Sipariş zamanlamasını sezgiyle yönetmek iki yönde de hata üretir. ROP bu kararı sayısallaştırır: tedarik süresi boyunca tüketeceğin miktarı ve belirsizlik tamponunu birleştirip net bir tetikleme seviyesi verir.',
+  ),
+  h(3, 'Erken sipariş verirsen sermaye bağlanır'),
+  p(
+    'Stok daha yüksekken sipariş verirsen depoda gereksiz mal birikir. Bağlanan sermaye başka bir yerde değerlendirilemez, depo ve sigorta maliyeti artar, fire ve demode olma riski yükselir. Erken sipariş güvenli hissettirir ama parayı rafta tutar.',
+  ),
+  h(3, 'Geç sipariş verirsen satış kaçar'),
+  p(
+    'Stok çok düşmeden sipariş vermezsen, sipariş ettiğin mal gelene kadar stoğun biter. Bu durumda yalnız o satışı değil, çoğu zaman müşteriyi de kaybedersin. ROP\'un asıl işi, tedarik süresi boyunca elinde yeterli mal kalmasını garanti altına almaktır.',
+  ),
+  h(2, 'Yeniden sipariş noktası nasıl hesaplanır?'),
+  p(
+    'ROP\'un mantığı tek cümleyle özetlenir: mal gelene kadar tüketeceğin ortalama miktarı bul, üzerine belirsizlik tamponunu ekle.',
+  ),
+  h(3, 'Temel formül'),
+  p('Sabit tedarik süresi varsayımıyla yeniden sipariş noktası şu formülle bulunur:'),
+  fx('ROP = (Ortalama Günlük Talep × Tedarik Süresi) + Emniyet Stoğu'),
+  p(
+    'İlk terim tedarik süresi talebidir (lead time demand): sipariş verdiğin andan mal gelene kadar geçen sürede ortalama ne kadar tüketeceğin. İkinci terim emniyet stoğudur: bu süre içinde talebin ortalamayı aşması veya tedarikin gecikmesi ihtimaline karşı tampon.',
+  ),
+  h(4, 'Emniyet stoğu neden ROP\'un parçası?'),
+  pr(
+    t(
+      'Emniyet stoğunu hesaba katmazsan, ROP yalnız ortalama tüketimi karşılar. Talep tam ortalama gittiği sürece bu yeterlidir; ama gerçek hayatta talebin yarısı ortalamanın üstündedir. Emniyet stoğu olmayan bir ROP, istatistiksel olarak yaklaşık her iki dönemden birinde stoksuzluk üretir. Tampon bileşeni bu yüzden tercih değil, formülün gerçek dünyada işe yaramasının şartıdır. Emniyet stoğunu kendi verinle hesaplamak için ',
+    ),
+    a('emniyet stoğu hesaplama', '/araclar/emniyet-stogu-hesaplama'),
+    t(' aracını kullan.'),
+  ),
+  h(3, 'Değişken talep ve tedarik süresi: istatistiksel ROP'),
+  p(
+    'Temel formül, tedarik süresinin sabit olduğunu varsayar. Gerçekte hem talep hem tedarik süresi dalgalanır. Bu durumda emniyet stoğunu sabit bir sayı olarak değil, servis seviyesine bağlı istatistiksel bir değer olarak hesaplarsın ve ROP\'a öyle eklersin:',
+  ),
+  fx('ROP = (Ortalama Günlük Talep × Tedarik Süresi) + (Z × σ_d × √Tedarik Süresi)'),
+  p(
+    'Buradaki ikinci terim doğrudan emniyet stoğu formülüdür. Z hedef servis seviyesine karşılık gelen güven katsayısı, σ_d günlük talebin standart sapmasıdır. Yani istatistiksel ROP, tedarik süresi talebinin üstüne servis seviyeli emniyet stoğunu ekler. Servis seviyesini yükselttikçe Z büyür, emniyet stoğu artar ve ROP yukarı çıkar.',
+  ),
+  h(4, 'Standart sapmadan ROP'),
+  pr(
+    t(
+      'İstatistiksel ROP\'un anahtarı σ_d değeridir. Bunu geçmiş günlük satışlarından bulursun: satış serisini bir sütuna yazıp Excel veya Google Sheets\'te ',
+    ),
+    code('=STDEV.S(...)'),
+    t(
+      ' fonksiyonunu kullanırsın. Bu değer talebin günden güne ne kadar dalgalandığını ölçer; ne kadar büyükse o kadar tampon gerekir. Talebin oynaklığını ölçmeden kurulan bir ROP, aslında bir tahminden ibarettir.',
+    ),
+  ),
+  h(3, 'Excel\'de adım adım hesaplama'),
+  pr(
+    t(
+      'ROP\'u Excel\'de kurmak üç sütun ister: ortalama günlük talep, tedarik süresi ve emniyet stoğu. Ortalama talebi ',
+    ),
+    code('=ORTALAMA(...)'),
+    t(', emniyet stoğunu istatistiksel formülle hesaplarsın; ROP hücresi ise '),
+    code('=(ortalama_talep*tedarik_suresi)+emniyet_stogu'),
+    t(
+      ' olur. Aynı tabloyu sıfırdan kurmamak için hazır stok kontrol Excel şablonunu indirip kendi verinle doldurabilirsin.',
+    ),
+  ),
+  h(2, 'Adım adım örnek'),
+  p(
+    'Bir ürünün ortalama günlük talebi 50 adet, tedarik süresi 9 gün ve emniyet stoğu 99 adet olsun. Önce tedarik süresi talebini bul: 50 × 9 = 450 adet. Üzerine emniyet stoğunu ekle: 450 + 99 = 549 adet. Sonuç: stok 549 adede düştüğünde yeni siparişini vermelisin. Sipariş miktarını ise EOQ belirler; örneğin EOQ 200 ise, stok 549\'a indiğinde 200 adet sipariş verirsin.',
+  ),
+  table(
+    ['Bileşen', 'Hesap', 'Sonuç'],
+    [
+      ['Tedarik süresi talebi', '50 adet/gün × 9 gün', '450 adet'],
+      ['Emniyet stoğu', 'servis seviyeli, ayrı hesaplanır', '99 adet'],
+      ['Yeniden sipariş noktası', '450 + 99', '549 adet'],
+    ],
+  ),
+  pr(
+    t('Bu örnekteki 99 adetlik emniyet stoğunun nereden geldiğini '),
+    a('emniyet stoğu nedir', '/icerik/emniyet-stogu-nedir'),
+    t(
+      ' yazısında adım adım hesapladım; aynı ürün üzerinden ilerliyorum ki üç kavram tek bir örnekte birleşsin.',
+    ),
+  ),
+  h(2, 'Yeniden sipariş noktası, EOQ ve emniyet stoğu nasıl birleşir?'),
+  p('Bu üç kavram tek bir stok kontrol sisteminin parçalarıdır ve birbirini tamamlar:'),
+  ul([
+    'EOQ her seferinde ne kadar sipariş vereceğini söyler.',
+    'Emniyet stoğu belirsizliğe karşı ne kadar tampon tutacağını söyler.',
+    'Yeniden sipariş noktası ne zaman sipariş vereceğini söyler ve emniyet stoğunu içine alır.',
+  ]),
+  pr(
+    t(
+      'Pratikte döngü şöyle işler: stok yeniden sipariş noktasına düşer, EOQ kadar sipariş verilir, mal gelene kadar emniyet stoğu güvence sağlar. Üçünü birlikte kuran bir işletme hem stoksuz kalmayı hem de aşırı stoğu aynı anda kontrol eder. Sipariş miktarını ',
+    ),
+    a('EOQ hesaplama', '/araclar/eoq-hesaplama'),
+    t(', tampon stoğunu '),
+    a('emniyet stoğu hesaplama', '/araclar/emniyet-stogu-hesaplama'),
+    t(' aracıyla bulup değerleri '),
+    a('yeniden sipariş noktası hesaplama', '/araclar/yeniden-siparis-noktasi-hesaplama'),
+    t(' aracında birleştirebilirsin.'),
+  ),
+  h(2, 'Yeniden sipariş noktasını sürekli mi periyodik mi gözden geçirmeli?'),
+  p(
+    'İki temel sistem vardır. Sürekli gözden geçirme sisteminde stok her hareket sonrası kontrol edilir ve ROP\'a düşünce sipariş tetiklenir; bu yöntem ROP mantığının doğrudan uygulamasıdır ve modern stok yazılımlarının varsayılanıdır. Periyodik gözden geçirme sisteminde ise stok belirli aralıklarla (örneğin haftada bir) kontrol edilir; bu durumda emniyet stoğu, gözden geçirme aralığını da kapsayacak şekilde biraz daha yüksek tutulur, çünkü iki kontrol arasında stok ROP\'un altına inmiş olabilir. Hangi sistemi seçeceğin, stok takibini ne kadar otomatikleştirebildiğine bağlıdır.',
+  ),
+  h(2, 'Yeniden sipariş noktası ile sipariş miktarı farkı nedir?'),
+  p(
+    'Sık karıştırılan iki kavramdır. Yeniden sipariş noktası (reorder point) ne zaman sipariş vereceğini, sipariş miktarı (reorder quantity) ise her seferinde kaç adet sipariş vereceğini belirler. ROP bir eşik seviyesidir; sipariş miktarı bir parti büyüklüğüdür ve onu EOQ verir. Stok ROP\'a düştüğünde sistem alarm üretir, sen de EOQ kadar sipariş açarsın. İkisi ayrı kararlardır ama aynı döngüde çalışır.',
+  ),
+  h(2, 'Sık yapılan 5 hata'),
+  p('ERP sistemleri kurarken ROP tarafında tekrar tekrar gördüğüm hatalar şunlar:'),
+  ol([
+    'Emniyet stoğunu atlamak. ROP\'u yalnız tedarik süresi × günlük talep olarak tanımlamak en yaygın hata; bu, ortalama bir dünya varsayar ve dönem dönem stoksuzluk üretir.',
+    'Tedarik süresini sabit kabul etmek. Tedarik süresi tedarikçiye, mevsime ve lojistiğe göre değişir; gerçek teslim verisiyle düzenli güncellenmezse ROP gerçeği yansıtmaz.',
+    'Birimleri karıştırmak. Talebi haftalık, tedarik süresini günlük girersen sonuç anlamsız çıkar; iki değer de aynı zaman birimine çevrilmelidir.',
+    'Tek bir ROP\'u tüm ürünlere uygulamak. A sınıfı ürünle C sınıfı ürün aynı servis seviyesini gerektirmez; bu mantık doğrudan ABC analiziyle birleşir.',
+    'Minimum stok seviyesini elle yuvarlak sayı olarak belirlemek. Sezgiyle konan 100 ya da 500 gibi değerler ne tedarik süresini ne talep oynaklığını yansıtır; ROP hesaplanmalı, tahmin edilmemelidir.',
+  ]),
+  h(2, 'Sıkça sorulan sorular'),
+  p('Aşağıda yeniden sipariş noktasıyla ilgili en sık aranan sorulara kısa cevaplar var.'),
+  pr(
+    b('Kaynak: '),
+    t('King, P. L. (2011). "Crack the Code: Understanding safety stock and mastering its equations." APICS Magazine. '),
+    a(
+      'web.mit.edu/2.810/www/files/readings/King_SafetyStock.pdf',
+      'https://web.mit.edu/2.810/www/files/readings/King_SafetyStock.pdf',
+    ),
+  ),
+];
+
+const ROP_SSS = [
+  {
+    soru: 'Yeniden sipariş noktası ne demek?',
+    cevap:
+      'Yeniden sipariş noktası (ROP), stoğun hangi seviyeye düştüğünde yeni sipariş verilmesi gerektiğini gösteren eşik stok seviyesidir. Türkçede sipariş verme noktası, minimum stok seviyesi ya da kritik stok seviyesi olarak da geçer.',
+  },
+  {
+    soru: 'ROP formülü nedir?',
+    cevap:
+      'ROP = (ortalama günlük talep × tedarik süresi) + emniyet stoğu. Talep ve tedarik süresi değişkense emniyet stoğu, servis seviyeli (Z × σ_d × √tedarik süresi) yöntemle hesaplanır.',
+  },
+  {
+    soru: 'Yeniden sipariş noktası nasıl hesaplanır?',
+    cevap:
+      'Önce tedarik süresi boyunca beklenen tüketimi bul (günlük talep × tedarik süresi), sonra emniyet stoğunu ekle. Örneğin günde 50 adet, 9 gün tedarik ve 99 adet emniyet stoğu için ROP = 450 + 99 = 549 adettir.',
+  },
+  {
+    soru: 'ROP ile EOQ birlikte nasıl kullanılır?',
+    cevap:
+      'Stok ROP seviyesine düştüğünde EOQ kadar sipariş verilir. ROP zamanlamayı, EOQ ise miktarı belirler.',
+  },
+  {
+    soru: 'Yeniden sipariş noktası neden emniyet stoğu içerir?',
+    cevap:
+      'Çünkü tedarik süresi boyunca talep ortalamayı aşabilir veya tedarik gecikebilir; emniyet stoğu bu belirsizliği karşılar ve stoksuz kalmayı önler. Emniyet stoğu olmadan stoksuzluk riski yaklaşık %50\'ye çıkar.',
+  },
+  {
+    soru: 'Minimum stok seviyesi ile yeniden sipariş noktası aynı şey mi?',
+    cevap:
+      'Pratikte çoğunlukla aynı eşiği anlatır: stoğun düşmesine izin verdiğin alt sınır ve sipariş tetikleme noktası. Bazı kaynaklar minimum stok seviyesini doğrudan emniyet stoğu olarak tanımlar.',
+  },
+];
+
+const ROP_TOOL_FORMUL = [
+  pr(
+    b('Yeniden sipariş noktası hesaplama'),
+    t(
+      ' (ROP), stoğun hangi seviyeye indiğinde yeni sipariş vermen gerektiğini bulur. EOQ ne kadar sipariş vereceğini söyler; yeniden sipariş noktası ise ne zaman sipariş vereceğini. İkisi birlikte stok kontrol döngüsünü tamamlar: stok ROP\'a düştüğünde EOQ kadar sipariş verirsin. Kavramın derin anlatımı, değişken talep için istatistiksel ROP ve Excel örneği için ',
+    ),
+    a('yeniden sipariş noktası nedir', '/icerik/yeniden-siparis-noktasi-nedir'),
+    t(' rehberine bakabilirsin.'),
+  ),
+  h(2, 'Yeniden sipariş noktası formülü nedir?'),
+  p('ROP, tedarik süresi boyunca beklenen talebe emniyet stoğunun eklenmesiyle bulunur:'),
+  fx('ROP = (Ortalama Günlük Talep × Tedarik Süresi) + Emniyet Stoğu'),
+  p(
+    'İlk terim tedarik süresi talebidir: sipariş verildiği andan mal gelene kadar tüketeceğin ortalama miktar. Emniyet stoğu ise bu süre içindeki talep dalgalanması ve gecikmelere karşı tampondur. Emniyet stoğu sıfır kabul edilirse ROP yalnız tedarik süresi talebine eşit olur, ki bu da stoksuzluk riskini yaklaşık %50\'ye çıkarır.',
+  ),
+  h(2, 'Aracı nasıl kullanırım?'),
+  p('Üç değeri gir: ortalama günlük talep, tedarik süresi (gün) ve emniyet stoğu.'),
+  table(
+    ['Girdi', 'Anlamı', 'Örnek'],
+    [
+      ['Ortalama günlük talep', 'Günde satılan/kullanılan ortalama adet', '50 adet'],
+      ['Tedarik süresi', 'Sipariş verildikten sonra teslim süresi', '9 gün'],
+      ['Emniyet stoğu', 'Belirsizliğe karşı tampon stok', '99 adet'],
+    ],
+  ),
+  pr(
+    t(
+      'Örneğin ortalama günlük talep 50 adet, tedarik süresi 9 gün ve emniyet stoğu 99 adet ise ROP = (50 × 9) + 99 = 450 + 99 = 549 adet çıkar. Yani stok 549 adede düştüğünde yeni siparişini vermelisin. Emniyet stoğu girdisini servis seviyeli yöntemle hesaplamak için ',
+    ),
+    b('stok kontrol Excel şablonunu'),
+    t(' indirip kendi verinle doldurabilirsin.'),
+  ),
+  h(2, 'Sonucu nasıl yorumlamalısın?'),
+  pr(
+    t(
+      'ROP, sipariş tetikleme alarmındır. Stok bu seviyeye indiğinde sipariş verirsen, mal gelene kadar elindeki stok ortalama talebi karşılar ve emniyet stoğu beklenmedik durumları kapatır. Emniyet stoğu girdisini doğru belirlemek için önce ',
+    ),
+    a('emniyet stoğu hesaplama', '/araclar/emniyet-stogu-hesaplama'),
+    t(' aracını kullan; sipariş miktarını ise '),
+    a('EOQ hesaplama', '/araclar/eoq-hesaplama'),
+    t(' aracıyla bul. Stoğunun ne sıklıkta döndüğünü görmek için '),
+    a('stok devir hızı hesaplama', '/araclar/stok-devir-hizi-hesaplama'),
+    t(' aracına da bakabilirsin. Bu araçlar birlikte tam bir stok kontrol sistemi oluşturur.'),
+  ),
+];
+
+const ROP_TOOL_SSS = [
+  {
+    soru: 'Yeniden sipariş noktası nasıl hesaplanır?',
+    cevap:
+      'ROP, ortalama günlük talebin tedarik süresiyle çarpımına emniyet stoğunun eklenmesiyle bulunur: ROP = (günlük talep × tedarik süresi) + emniyet stoğu.',
+  },
+  {
+    soru: 'ROP ve EOQ arasındaki fark nedir?',
+    cevap:
+      'ROP ne zaman sipariş vereceğini, EOQ ise her seferinde ne kadar sipariş vereceğini belirler. Stok ROP seviyesine düştüğünde EOQ kadar sipariş verilir.',
+  },
+  {
+    soru: 'Emniyet stoğu olmadan ROP hesaplanır mı?',
+    cevap:
+      'Hesaplanır ama önerilmez. Emniyet stoğu sıfır olduğunda ROP yalnız ortalama talebi karşılar ve stoksuz kalma riski yaklaşık %50\'ye çıkar.',
+  },
+  {
+    soru: 'Tedarik süresi değişirse ROP\'u güncellemeli miyim?',
+    cevap: 'Evet. Tedarik süresi uzarsa ROP yükselmeli; aksi halde mal gelmeden stoğun biter.',
+  },
+  {
+    soru: 'Minimum stok seviyesi ile yeniden sipariş noktası aynı mı?',
+    cevap:
+      'Pratikte çoğunlukla aynı eşiği anlatır: sipariş tetikleme noktası ve stoğun düşmesine izin verilen alt sınır.',
+  },
+];
+
+/**
+ * Yeniden sipariş noktası (ROP) içeriğini seed'ler: blog yazısı + hesaplama
+ * tool'u (idempotent; blog ve tool ayrı ayrı guard'lanır). Kapak görselleri
+ * sonraki turda eklenecek (placeholder). Blog ile tool birbirine
+ * (iliskiliTool / iliskiliYazilar) ilişkilendirilir.
+ */
+export async function seedRop(strapi: Core.Strapi): Promise<void> {
+  const existing = await strapi.documents('api::blog.blog').findFirst({
+    filters: { slug: 'yeniden-siparis-noktasi-nedir' },
+  });
+  const existingTool = await strapi.documents('api::tool.tool').findFirst({
+    filters: { slug: 'yeniden-siparis-noktasi-hesaplama' },
+  });
+  if (existing && existingTool) {
+    strapi.log.info('[seed] Yeniden sipariş noktası içeriği (blog + tool) zaten mevcut, atlanıyor.');
+    return;
+  }
+
+  strapi.log.info('[seed] Yeniden sipariş noktası içeriği oluşturuluyor...');
+
+  const kategori =
+    (await strapi.documents('api::kategori.kategori').findFirst({
+      filters: { slug: 'stok-yonetimi' },
+    })) ??
+    (await strapi.documents('api::kategori.kategori').create({
+      data: { ad: 'Stok Yönetimi', slug: 'stok-yonetimi' },
+      status: 'published',
+    }));
+
+  const yazar =
+    (await strapi.documents('api::yazar.yazar').findFirst()) ??
+    (await strapi.documents('api::yazar.yazar').create({
+      data: {
+        ad: 'Stokoloji Editör Ekibi',
+        unvan: 'Stok & Tedarik Zinciri',
+        bio: 'Stok yönetimi ve operasyon araçları üzerine içerik üreten editör ekibi.',
+      },
+      status: 'published',
+    }));
+
+  // --- TOOL ---
+  let tool = existingTool;
+  if (!tool) {
+    tool = await strapi.documents('api::tool.tool').create({
+      data: {
+        ad: 'Yeniden Sipariş Noktası Hesaplama',
+        slug: 'yeniden-siparis-noktasi-hesaplama',
+        kisaAciklama:
+          'Ortalama günlük talebini, tedarik süreni ve emniyet stoğunu gir; yeniden sipariş noktası hesaplama aracı stoğun hangi seviyeye düşünce yeni sipariş vermen gerektiğini söylesin.',
+        formulAciklamasi: ROP_TOOL_FORMUL,
+        seo: {
+          title: 'Yeniden Sipariş Noktası Hesaplama (ROP) Aracı [2026]',
+          description:
+            'Yeniden sipariş noktası hesaplama aracı ile ne zaman sipariş vereceğini bul. Ortalama günlük talep, tedarik süresi ve emniyet stoğunu gir, ROP seviyeni ve tedarik süresi talebini gör.',
+        },
+        kategori: kategori.documentId,
+        sss: ROP_TOOL_SSS,
+      },
+      status: 'published',
+    });
+    strapi.log.info('[seed] Yeniden sipariş noktası tool kaydı oluşturuldu.');
+  }
+
+  // --- BLOG ---
+  let blog = existing;
+  if (!blog) {
+    blog = await strapi.documents('api::blog.blog').create({
+      data: {
+        baslik: 'Yeniden Sipariş Noktası (ROP) Nedir? Formülü ve Hesaplama Rehberi [2026]',
+        slug: 'yeniden-siparis-noktasi-nedir',
+        icerik: ROP_BLOG,
+        iliskiliTool: tool.documentId,
+        seo: {
+          title: 'Yeniden Sipariş Noktası Nedir? ROP Formülü ve Hesaplama [2026]',
+          description:
+            'Yeniden sipariş noktası (ROP) nedir, nasıl hesaplanır? Formülü, değişken talep için istatistiksel ROP, Excel örneği ve EOQ ile ilişkisi. Ne zaman sipariş vereceğini belirleyen rehber.',
+        },
+        kategori: kategori.documentId,
+        yazar: yazar.documentId,
+        sss: ROP_SSS,
+        yayinTarihi: '2026-06-17T09:00:00.000Z',
+        guncellemeTarihi: '2026-06-17T09:00:00.000Z',
+      },
+      status: 'published',
+    });
+    strapi.log.info('[seed] Yeniden sipariş noktası blog içeriği oluşturuldu.');
+  } else {
+    await strapi.documents('api::blog.blog').update({
+      documentId: blog.documentId,
+      data: { iliskiliTool: tool.documentId },
+      status: 'published',
+    });
+  }
+
+  // Tool tarafından blog'a ilişki (oneToMany iliskiliYazilar).
+  await strapi.documents('api::tool.tool').update({
+    documentId: tool.documentId,
+    data: { iliskiliYazilar: [blog.documentId] },
+    status: 'published',
+  });
+
+  strapi.log.info('[seed] Yeniden sipariş noktası içeriği başarıyla oluşturuldu.');
+}
+
 /**
  * Anasayfa single type'ını seed'ler (idempotent — kayıt zaten varsa atlar).
  *

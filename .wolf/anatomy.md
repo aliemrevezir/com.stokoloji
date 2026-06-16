@@ -1,12 +1,16 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T22:07:33.520Z
-> Files: 189 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T22:20:29.965Z
+> Files: 193 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../
 
 - `CLAUDE.md` — CLAUDE.md — SEO Portföy Çalışma Alanı (~812 tok)
 - `kapak-gorseli-standardi.md` — Kapak Görseli Prompt Standardı — Stokoloji (~1525 tok)
+
+## ../../../../../../tmp/
+
+- `rop_blog_cover.svg` (~838 tok)
 
 ## ../../../../.claude/plans/
 
@@ -92,7 +96,7 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Bootstrap: public read izni + seed çağrıları + `migrateFormulaBlocks` (eski DB'de inline-code formülleri code-block'a çevirir, sembolik→LaTeX; idempotent) + anasayfa field hint. (~2900 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~3168 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
@@ -218,7 +222,7 @@
 
 ## apps/cms/src/seed/
 
-- `index.ts` — Declares p (~16048 tok)
+- `index.ts` — Declares p (~21736 tok)
 
 ## apps/cms/types/generated/
 
@@ -241,6 +245,7 @@
 
 ## apps/web/public/img/
 
+- `rop-zaman-grafigi.svg` (~912 tok)
 
 ## apps/web/src/app/
 
@@ -387,6 +392,8 @@
 
 - `emniyet-stogu.test.ts` — emniyet-stogu unit testleri (6) (~200 tok)
 - `emniyet-stogu.ts` — Emniyet stoğu saf hesap: SS=Z×σ_d×√L, Z ters normal (Acklam inverseNormal) (~350 tok)
+- `rop.test.ts` — yeniden sipariş noktası unit testleri (5) (~200 tok)
+- `rop.ts` — ROP saf hesap: ROP=(günlük talep×tedarik süresi)+emniyet stoğu; tedarikSuresiTalebi + yuvarlı (~280 tok)
 
 ## ornek/
 

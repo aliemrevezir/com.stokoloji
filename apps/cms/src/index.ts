@@ -1,5 +1,7 @@
 import type { Core } from '@strapi/strapi';
-import { seedBanners, seedDemoContent, seedDuyuru, seedEmniyetStogu, seedHomepage, seedStokDevirHizi } from './seed';
+import { access, copyFile, mkdir, readdir } from 'fs/promises';
+import { join } from 'path';
+import { seedBanners, seedDemoContent, seedDuyuru, seedEmniyetStogu, seedHomepage, seedRop, seedStokDevirHizi } from './seed';
 
 /**
  * Public role'e içerik okuma izni ver (idempotent).
@@ -172,18 +174,119 @@ async function migrateFormulaBlocks(strapi: Core.Strapi): Promise<void> {
   }
 }
 
+/**
+ * İç link migration (idempotent): blocks içindeki link node'larında `/blog/<slug>`
+ * URL'lerini canlı blog route'una (`/icerik/<slug>`) çevirir. Eski seed kayıtları
+ * `/blog/` yazdığı ve canlı route `/icerik/` olduğu için kırık linkleri onarır.
+ */
+async function migrateInternalLinks(strapi: Core.Strapi): Promise<void> {
+  // Bir blocks ağacını dolaşır; type:'link' node'larının url'sini düzeltir.
+  const fix = (node: any): boolean => {
+    let changed = false;
+    if (node?.type === 'link' && typeof node.url === 'string' && node.url.startsWith('/blog/')) {
+      node.url = node.url.replace(/^\/blog\//, '/icerik/');
+      changed = true;
+    }
+    if (Array.isArray(node?.children)) {
+      for (const child of node.children) {
+        if (fix(child)) changed = true;
+      }
+    }
+    return changed;
+  };
+  const convert = (nodes: any[]): { out: any[]; changed: boolean } => {
+    let changed = false;
+    for (const node of nodes) {
+      if (fix(node)) changed = true;
+    }
+    return { out: nodes, changed };
+  };
+
+  try {
+    const blogs: any[] = await strapi.documents('api::blog.blog').findMany({ status: 'published' });
+    for (const b of blogs) {
+      if (!Array.isArray(b.icerik)) continue;
+      const { out, changed } = convert(b.icerik);
+      if (changed) {
+        await strapi.documents('api::blog.blog').update({
+          documentId: b.documentId,
+          data: { icerik: out },
+          status: 'published',
+        });
+        strapi.log.info(`[migrate-link] blog güncellendi: ${b.slug}`);
+      }
+    }
+
+    const tools: any[] = await strapi.documents('api::tool.tool').findMany({ status: 'published' });
+    for (const tl of tools) {
+      if (!Array.isArray(tl.formulAciklamasi)) continue;
+      const { out, changed } = convert(tl.formulAciklamasi);
+      if (changed) {
+        await strapi.documents('api::tool.tool').update({
+          documentId: tl.documentId,
+          data: { formulAciklamasi: out },
+          status: 'published',
+        });
+        strapi.log.info(`[migrate-link] tool güncellendi: ${tl.slug}`);
+      }
+    }
+  } catch (err) {
+    strapi.log.warn(`[migrate-link] atlandı: ${(err as Error).message}`);
+  }
+}
+
+/**
+ * Seed görsellerini (git'li `seed-assets/uploads/`) çalışma anında `public/uploads/`
+ * volume'una kopyalar (yoksa). Neden: `public/uploads` kalıcı bir named volume'dur ve
+ * image build'indeki dosyaları GÖLGELER; fresh prod deploy'da boş başlar → seed'in
+ * oluşturduğu `plugin::upload.file` kayıtları ve gövde görselleri 404 verirdi. Binary'ler
+ * git'te (`seed-assets/`, .dockerignore/.gitignore DIŞINDA) → image'a girer → buradan
+ * volume'a kopyalanır. Idempotent: var olan dosya atlanır. Seed'lerden ÖNCE çalışmalı.
+ * Hata boot'u BOZMAMALI (try/catch).
+ */
+async function ensureUploadAssets(strapi: Core.Strapi): Promise<void> {
+  try {
+    const srcDir = join(process.cwd(), 'seed-assets', 'uploads');
+    const destDir = join(process.cwd(), 'public', 'uploads');
+    let files: string[];
+    try {
+      files = await readdir(srcDir);
+    } catch {
+      return; // asset klasörü yoksa sessizce geç
+    }
+    await mkdir(destDir, { recursive: true });
+    let copied = 0;
+    for (const file of files) {
+      if (file.startsWith('.')) continue;
+      const dest = join(destDir, file);
+      try {
+        await access(dest); // varsa atla
+      } catch {
+        await copyFile(join(srcDir, file), dest);
+        copied++;
+      }
+    }
+    if (copied > 0) strapi.log.info(`[assets] ${copied} seed görseli public/uploads'a kopyalandı.`);
+  } catch (err) {
+    strapi.log.warn(`[assets] Seed görselleri kopyalanamadı: ${(err as Error).message}`);
+  }
+}
+
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    await ensureUploadAssets(strapi);
     await setPublicReadPermissions(strapi);
     await seedDemoContent(strapi);
     await seedStokDevirHizi(strapi);
     await seedEmniyetStogu(strapi);
+    await seedRop(strapi);
     await seedHomepage(strapi);
     await seedBanners(strapi);
     await seedDuyuru(strapi);
     await migrateFormulaBlocks(strapi);
+    await migrateInternalLinks(strapi);
     await setAnasayfaFieldHints(strapi);
   },
 };
