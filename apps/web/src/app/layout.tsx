@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Newsreader, Inter, JetBrains_Mono } from 'next/font/google';
+import 'katex/dist/katex.min.css';
 import './globals.css';
 import './theme.css';
 import { ConsentBanner } from '@/components/analytics/ConsentBanner';

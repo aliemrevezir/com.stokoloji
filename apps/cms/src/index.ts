@@ -95,6 +95,83 @@ async function setAnasayfaFieldHints(strapi: Core.Strapi): Promise<void> {
   }
 }
 
+/**
+ * Mevcut blog/tool içeriğindeki "tek başına formül" paragraflarını (inline `code`
+ * text node) blok düzeyi `code` node'una çevirir → web'de KaTeX/şık formül kartı
+ * olarak render edilir (BlocksRenderer `case 'code'`). Sembolik formüller LaTeX'e
+ * maplenir; kelimeli formüller metin kartı olur. Idempotent: dönüştürülen node artık
+ * `paragraph` değil `code` olduğundan tekrar çalıştırınca atlanır. Yeni seed `fx()`
+ * kullanır; bu migration ESKİ DB kayıtlarını (idempotent seed atladığı için) düzeltir.
+ * Hata boot'u BOZMAMALI (try/catch).
+ */
+async function migrateFormulaBlocks(strapi: Core.Strapi): Promise<void> {
+  // Eski (inline code) formül metni → yeni (code block) LaTeX. Map'te olmayan
+  // tek-code paragraflar (kelimeli formüller) metni aynen taşınır → metin kartı.
+  const LATEX: Record<string, string> = {
+    'EOQ = √(2 × D × S / H)': 'EOQ = \\sqrt{\\dfrac{2 \\times D \\times S}{H}}',
+    'Emniyet Stoğu = Z × σ_d × √L': 'SS = Z \\times \\sigma_d \\times \\sqrt{L}',
+    'Emniyet Stoğu = Z × σ_L × D_ort': 'SS = Z \\times \\sigma_L \\times D_{ort}',
+    'Emniyet Stoğu = Z × √[ (L × σ_d²) + (σ_L × D_ort)² ]':
+      'SS = Z \\times \\sqrt{(L \\times \\sigma_d^2) + (\\sigma_L \\times D_{ort})^2}',
+    'Emniyet Stoğu = 1,65 × 20 × √9 = 1,65 × 20 × 3 = 99 adet':
+      'SS = 1{,}65 \\times 20 \\times \\sqrt{9} = 1{,}65 \\times 20 \\times 3 = 99 \\text{ adet}',
+  };
+
+  // Yalnız "tek bir inline code text node içeren paragraf" formül satırı sayılır
+  // (içinde STDEV gibi karışık prose'da code geçen paragraflar çok-çocukludur, atlanır).
+  const convert = (nodes: any[]): { out: any[]; changed: boolean } => {
+    let changed = false;
+    const out = nodes.map((node) => {
+      if (
+        node?.type === 'paragraph' &&
+        Array.isArray(node.children) &&
+        node.children.length === 1 &&
+        node.children[0]?.type === 'text' &&
+        node.children[0]?.code === true &&
+        typeof node.children[0]?.text === 'string'
+      ) {
+        changed = true;
+        const raw = node.children[0].text.trim();
+        return { type: 'code', children: [{ type: 'text', text: LATEX[raw] ?? raw }] };
+      }
+      return node;
+    });
+    return { out, changed };
+  };
+
+  try {
+    const blogs: any[] = await strapi.documents('api::blog.blog').findMany({ status: 'published' });
+    for (const b of blogs) {
+      if (!Array.isArray(b.icerik)) continue;
+      const { out, changed } = convert(b.icerik);
+      if (changed) {
+        await strapi.documents('api::blog.blog').update({
+          documentId: b.documentId,
+          data: { icerik: out },
+          status: 'published',
+        });
+        strapi.log.info(`[migrate-formul] blog güncellendi: ${b.slug}`);
+      }
+    }
+
+    const tools: any[] = await strapi.documents('api::tool.tool').findMany({ status: 'published' });
+    for (const tl of tools) {
+      if (!Array.isArray(tl.formulAciklamasi)) continue;
+      const { out, changed } = convert(tl.formulAciklamasi);
+      if (changed) {
+        await strapi.documents('api::tool.tool').update({
+          documentId: tl.documentId,
+          data: { formulAciklamasi: out },
+          status: 'published',
+        });
+        strapi.log.info(`[migrate-formul] tool güncellendi: ${tl.slug}`);
+      }
+    }
+  } catch (err) {
+    strapi.log.warn(`[migrate-formul] atlandı: ${(err as Error).message}`);
+  }
+}
+
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
@@ -106,6 +183,7 @@ export default {
     await seedHomepage(strapi);
     await seedBanners(strapi);
     await seedDuyuru(strapi);
+    await migrateFormulaBlocks(strapi);
     await setAnasayfaFieldHints(strapi);
   },
 };

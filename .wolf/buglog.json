@@ -871,5 +871,17 @@
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-16T17:14:06Z"
+  },
+  {
+    "id": "bug-054",
+    "timestamp": "2026-06-17T00:50:00Z",
+    "error_message": "Module not found: Can't resolve 'katex/dist/katex.min.css' (apps/web/src/app/layout.tsx) — build error overlay, web 200 dönerken bile",
+    "file": "apps/web/src/app/layout.tsx + docker-compose.yml (web volumes)",
+    "root_cause": "Dev server Docker container'da çalışıyor; web servisinin node_modules'ı ANONYMOUS volume (/repo/apps/web/node_modules + /repo/node_modules) — image build'inde kuruldu. Host'ta `pnpm add katex` yapmak package.json/lockfile'ı günceller ve host node_modules'a kurar ama container'ın anonymous volume'u onu gölgeler → container'da katex YOK → webpack çözemez. require.resolve host'ta çalışsa da container'da dosya yok.",
+    "fix": "Container içine kur: `docker compose exec -T web sh -c 'cd /repo && pnpm install'` (mounted apps/web/package.json katex'i listeliyor → anonymous volume'a +3 paket eklendi), sonra `docker compose restart web` (webpack başlangıçta modül grafiğini cache'ler, restart şart). Genel kural: Docker dev'de yeni bağımlılık = host pnpm add + container'da pnpm install + restart (VEYA image rebuild + anonymous volume reset).",
+    "tags": ["docker", "node_modules", "anonymous-volume", "pnpm", "katex", "module-not-found", "next", "webpack", "dependency"],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-17T00:50:00Z"
   }
 ]

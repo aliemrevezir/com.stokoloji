@@ -8,6 +8,7 @@
 import { Fragment, type ReactNode } from 'react';
 import { slugify } from '@/lib/blocks';
 import { mediaUrl } from '@/lib/strapi';
+import { renderMath, splitInlineMath } from '@/lib/katex';
 
 type InlineNode = {
   type: 'text' | 'link';
@@ -52,7 +53,24 @@ function renderInline(nodes: InlineNode[] | undefined, keyPrefix: string): React
         </a>
       );
     }
+    // Satır-içi `$...$` matematiği (yalnız işaretsiz düz metinde; inline `code` taklit değil).
     let content: ReactNode = node.text ?? '';
+    if (!node.code && typeof node.text === 'string' && node.text.includes('$')) {
+      const segs = splitInlineMath(node.text);
+      if (segs.some((s) => s.type === 'math')) {
+        content = segs.map((s, si) =>
+          s.type === 'math' ? (
+            <span
+              key={`${key}-m-${si}`}
+              className="katex-inline"
+              dangerouslySetInnerHTML={{ __html: renderMath(s.value, false) }}
+            />
+          ) : (
+            <Fragment key={`${key}-t-${si}`}>{s.value}</Fragment>
+          ),
+        );
+      }
+    }
     if (node.code) content = <code className="rounded bg-canvas px-1 font-mono text-sm">{content}</code>;
     if (node.bold) content = <strong>{content}</strong>;
     if (node.italic) content = <em>{content}</em>;
@@ -135,6 +153,29 @@ function renderBlock(block: BlockNode, key: string): ReactNode {
             <figcaption className="mt-2 text-center text-sm text-muted">{block.image.caption}</figcaption>
           )}
         </figure>
+      );
+    }
+    case 'code': {
+      // Strapi `code` bloğu = formül. Backslash içeriyorsa (gerçek LaTeX) KaTeX ile
+      // dizilir; düz metinse (kelimeli formül) şık metin kartında gösterilir. KaTeX'in
+      // matematik fontu Türkçe gliflerde zayıf olduğundan kelimeli formüller text kalır.
+      // Server-side; ekstra client JS yok (CWV — mimari kural 7).
+      const src = (inline ?? []).map((n) => n.text ?? '').join('\n');
+      const isLatex = src.includes('\\');
+      if (isLatex) {
+        return (
+          <div key={key} className="formula-block" role="math">
+            <div
+              className="formula-block__math"
+              dangerouslySetInnerHTML={{ __html: renderMath(src, true) }}
+            />
+          </div>
+        );
+      }
+      return (
+        <div key={key} className="formula-block formula-block--text">
+          <span className="formula-block__text">{src}</span>
+        </div>
       );
     }
     case 'paragraph':

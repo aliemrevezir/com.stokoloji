@@ -283,6 +283,17 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .formula-card .legend { font-size: 0.8125rem; color: var(--text-2); margin-top: var(--s-3); display: grid; gap: 4px; }
 .formula-card .legend b { color: var(--ink-2); font-family: var(--font-mono); }
 
+/* KaTeX display formülü — içerik akışında ortalanmış, teal aksanlı kart.
+   BlocksRenderer `code` bloğunu buraya basar; satır-içi `$...$` ise .katex-inline. */
+.formula-block { margin: var(--s-6) 0; padding: var(--s-5) var(--s-6); background: var(--ink-lightest); border-left: 3px solid var(--teal); border-radius: 0 var(--r-md) var(--r-md) 0; overflow-x: auto; }
+.formula-block__math { display: flex; justify-content: center; }
+.formula-block .katex-display { margin: 0; }
+.formula-block .katex { font-size: 1.35rem; color: var(--ink); }
+.katex-inline .katex { font-size: 1.05em; }
+/* Kelimeli (LaTeX olmayan) formül — KaTeX değil, şık monospace metin kartı. */
+.formula-block--text { display: flex; justify-content: center; }
+.formula-block__text { font-family: var(--font-mono); font-size: 1.0625rem; font-weight: 500; color: var(--ink); text-align: center; white-space: pre-wrap; }
+
 /* ==========================================================================
    EDITORIAL — author / TOC / FAQ / callout / lead magnet
    ========================================================================== */
@@ -318,6 +329,9 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .lead-magnet .lm-form .input { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color: #fff; }
 .lead-magnet .lm-form .input::placeholder { color: rgba(255,255,255,.5); }
 .lead-magnet .lm-thanks { color: var(--teal-light); font-weight: 600; }
+.lm-thanks { color: var(--teal); font-weight: 600; font-size: .9375rem; }
+.lm-form { flex-wrap: wrap; }
+.lm-error { color: #d9534f; font-size: .8125rem; }
 
 /* ==========================================================================
    BREADCRUMB
