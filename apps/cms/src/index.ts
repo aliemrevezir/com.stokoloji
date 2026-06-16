@@ -1,7 +1,19 @@
 import type { Core } from '@strapi/strapi';
 import { access, copyFile, mkdir, readdir } from 'fs/promises';
 import { join } from 'path';
-import { seedBanners, seedDemoContent, seedDuyuru, seedEmniyetStogu, seedHomepage, seedRop, seedStokDevirHizi } from './seed';
+import {
+  BLOG_SSS,
+  EMNIYET_SSS,
+  ROP_SSS,
+  SDH_SSS,
+  seedBanners,
+  seedDemoContent,
+  seedDuyuru,
+  seedEmniyetStogu,
+  seedHomepage,
+  seedRop,
+  seedStokDevirHizi,
+} from './seed';
 
 /**
  * Public role'e içerik okuma izni ver (idempotent).
@@ -272,6 +284,85 @@ async function ensureUploadAssets(strapi: Core.Strapi): Promise<void> {
   }
 }
 
+/**
+ * Blog SSS (FAQ) içeriğini canonical seed dizileriyle senkronlar (idempotent) ve
+ * gövdedeki artık "Sıkça/Sık sorulan sorular" başlığını + giriş paragrafını temizler.
+ *
+ * Gerekçe: SSS alanı blog detayında artık GÖRÜNÜR render ediliyor (tek alan hem
+ * JSON-LD hem görünür FAQ). Mevcut kayıtlar idempotent seed guard'ı yüzünden
+ * güncellenmez; bu migration Semrush + Google PAA araştırmasıyla zenginleştirilen
+ * FAQ'ı canlı kayıtlara taşır. NOT: bu 4 launch blog'unun FAQ'ı seed-yönetimlidir;
+ * panelden elle düzenleme sonraki boot'ta canonical ile geri yazılır. İçeriğin
+ * gerçekten değiştiği kayda dokunur (soru+cevap imzası farklıysa) → yakınsar.
+ */
+async function syncBlogFaq(strapi: Core.Strapi): Promise<void> {
+  const FAQ_BY_SLUG: Record<string, { soru: string; cevap: string }[]> = {
+    'eoq-nedir': BLOG_SSS,
+    'stok-devir-hizi-nedir': SDH_SSS,
+    'emniyet-stogu-nedir': EMNIYET_SSS,
+    'yeniden-siparis-noktasi-nedir': ROP_SSS,
+  };
+  // gövdeden silinecek artık FAQ başlığı (sorular ayrı alandan görünür basılıyor)
+  const isFaqHeading = (node: any): boolean =>
+    node?.type === 'heading' &&
+    typeof node?.children?.[0]?.text === 'string' &&
+    /^s[ıi]k(ça)?\s+sorulan\s+sorular$/i.test(node.children[0].text.trim());
+  const isFaqIntro = (node: any): boolean =>
+    node?.type === 'paragraph' &&
+    typeof node?.children?.[0]?.text === 'string' &&
+    /^aşağıda\b/i.test(node.children[0].text.trim());
+
+  const sig = (items: { soru: string; cevap: string }[]): string =>
+    items.map((q) => `${q.soru}::${q.cevap}`).join('||');
+
+  try {
+    for (const [slug, faq] of Object.entries(FAQ_BY_SLUG)) {
+      const blog: any = await strapi.documents('api::blog.blog').findFirst({
+        filters: { slug },
+        populate: ['sss'],
+      });
+      if (!blog) continue;
+
+      const data: Record<string, unknown> = {};
+
+      // 1) FAQ senkronu (yalnız farklıysa)
+      const current = Array.isArray(blog.sss)
+        ? blog.sss.map((q: any) => ({ soru: q.soru, cevap: q.cevap }))
+        : [];
+      if (sig(current) !== sig(faq)) {
+        data.sss = faq;
+      }
+
+      // 2) Gövdeden artık FAQ başlığı + giriş paragrafını temizle
+      if (Array.isArray(blog.icerik)) {
+        const out: any[] = [];
+        let changed = false;
+        for (let i = 0; i < blog.icerik.length; i++) {
+          const node = blog.icerik[i];
+          if (isFaqHeading(node)) {
+            changed = true;
+            if (isFaqIntro(blog.icerik[i + 1])) i += 1; // takip eden giriş paragrafını da atla
+            continue;
+          }
+          out.push(node);
+        }
+        if (changed) data.icerik = out;
+      }
+
+      if (Object.keys(data).length > 0) {
+        await strapi.documents('api::blog.blog').update({
+          documentId: blog.documentId,
+          data,
+          status: 'published',
+        });
+        strapi.log.info(`[migrate-faq] blog güncellendi: ${slug} (${Object.keys(data).join(', ')})`);
+      }
+    }
+  } catch (err) {
+    strapi.log.warn(`[migrate-faq] atlandı: ${(err as Error).message}`);
+  }
+}
+
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
@@ -287,6 +378,7 @@ export default {
     await seedDuyuru(strapi);
     await migrateFormulaBlocks(strapi);
     await migrateInternalLinks(strapi);
+    await syncBlogFaq(strapi);
     await setAnasayfaFieldHints(strapi);
   },
 };

@@ -172,7 +172,7 @@ const BLOG_ICERIK = [
   ),
 ];
 
-const BLOG_SSS = [
+export const BLOG_SSS = [
   {
     soru: 'EOQ açılımı nedir? (What does EOQ mean?)',
     cevap:
@@ -181,17 +181,27 @@ const BLOG_SSS = [
   {
     soru: 'EOQ formülü nedir?',
     cevap:
-      'EOQ = √(2DS/H); burada D yıllık talep, S sipariş maliyeti, H birim yıllık taşıma maliyetidir.',
+      'EOQ = √(2DS/H); burada D yıllık talep, S sipariş başına maliyet, H ise birim başına yıllık taşıma maliyetidir. Sonuç, sipariş ve taşıma maliyetlerinin eşitlendiği sipariş büyüklüğüdür.',
   },
   {
-    soru: 'EOQ ne işe yarar?',
+    soru: 'EOQ hangi iki maliyeti dengeler?',
     cevap:
-      'Sipariş ve taşıma maliyetlerinin toplamını en aza indiren optimum sipariş büyüklüğünü bularak stok maliyetini düşürür.',
+      'Sipariş verme maliyeti (operasyon, nakliye, işçilik) ile stok taşıma maliyetini (depo, sigorta, bağlanan sermaye) dengeler. Sık sipariş taşıma maliyetini düşürür ama sipariş maliyetini artırır; EOQ ikisinin toplamını en küçük yapan noktadır.',
+  },
+  {
+    soru: 'EOQ formülünün varsayımları nelerdir?',
+    cevap:
+      'Klasik EOQ; talebin sabit ve bilindiğini, sipariş ve taşıma maliyetlerinin değişmediğini, teslimin anında olduğunu ve stoksuzluğa izin verilmediğini varsayar. Talep dalgalıysa EOQ\'yu emniyet stoğuyla birlikte kullanmak gerekir.',
   },
   {
     soru: 'EOQ ve emniyet stoğu aynı şey mi?',
     cevap:
       'Hayır. EOQ ne kadar sipariş vereceğini, emniyet stoğu ise talep ve tedarik belirsizliğine karşı ne kadar tampon tutman gerektiğini belirler; ikisi birlikte kullanılır.',
+  },
+  {
+    soru: "EOQ Excel'de nasıl hesaplanır?",
+    cevap:
+      'Yıllık talep, sipariş maliyeti ve birim taşıma maliyetini üç hücreye girip =KAREKÖK((2*talep*sipariş_maliyeti)/taşıma_maliyeti) formülünü yazarsın. Üstteki araç aynı hesabı anında yapıp maliyet eğrisini de gösterir.',
   },
   {
     soru: 'EOQ değeri ne sıklıkla güncellenmeli?',
@@ -441,11 +451,16 @@ const SDH_BLOG = [
   ),
 ];
 
-const SDH_SSS = [
+export const SDH_SSS = [
   {
     soru: 'Stok devir hızı nasıl hesaplanır?',
     cevap:
       'Satılan malların maliyeti (SMM), ortalama stoğa bölünür: SDH = SMM / Ortalama Stok. Ortalama stok, dönem başı ve dönem sonu stoğun ortalamasıdır.',
+  },
+  {
+    soru: 'Düşük stok devir hızı ne anlama gelir?',
+    cevap:
+      'Düşük devir, stoğun yavaş satıldığını ve depoda uzun beklediğini gösterir; fazla stok, bağlanan sermaye, eskime ve depolama maliyeti riski demektir. Talep tahminini, sipariş miktarını (EOQ) ve yavaş hareket eden kalemleri gözden geçirmek gerekir.',
   },
   {
     soru: 'Stok devir hızı kaç olmalı?',
@@ -750,11 +765,16 @@ const EMNIYET_BLOG = [
   ),
 ];
 
-const EMNIYET_SSS = [
+export const EMNIYET_SSS = [
   {
     soru: 'Emniyet stoğu ile güvenlik stoğu aynı şey mi?',
     cevap:
       'Evet, ikisi de aynı kavramın Türkçe karşılığıdır; İngilizcesi "safety stock"tur. Emniyet stoğu daha çok akademik, güvenlik stoğu daha çok perakende dilinde kullanılır.',
+  },
+  {
+    soru: 'Emniyet stoğu kaç günlük olmalı?',
+    cevap:
+      'Sabit bir gün sayısı yoktur; tedarik süresine ve talep dalgalanmasına bağlıdır. Pratik bir başlangıç olarak yerli tedarikçide 3-5 gün, ithal üründe 15-30 gün tutulur; ama doğru değer servis seviyeli formülle (Z × σ_d × √L) ürün bazında hesaplanmalıdır.',
   },
   {
     soru: 'Emniyet stoğu formülü nedir?',
@@ -1031,6 +1051,11 @@ const ROP_BLOG = [
   p(
     'Yeniden sipariş noktası, sipariş verme alarmını tetikleyen stok seviyesidir. Stok bu seviyeye indiğinde yeni sipariş verirsin; amaç, sipariş ettiğin mal gelene kadar elindeki stoğun tükenmemesidir. Doğru kurulmuş bir ROP, stoksuz kalmayı önlerken gereksiz erken sipariş vermeni de engeller. Modern ERP ve stok yazılımları stok bu eşiğe düştüğünde otomatik uyarı üretir; SAP gibi sistemlerde bu, yeniden sipariş noktası planlaması olarak adlandırılır.',
   ),
+  img(
+    '/uploads/rop-grafik.jpg',
+    'Yeniden sipariş noktası zaman-stok grafiği: stok ROP eşiğine düştüğünde sipariş verilir, tedarik süresi boyunca stok düşmeye devam eder.',
+    'Stok yeniden sipariş noktasına (ROP) düştüğünde sipariş verilir; mal tedarik süresi boyunca gelir, emniyet stoğu bu sürede güvence sağlar.',
+  ),
   h(3, 'Reorder point, sipariş verme noktası, minimum stok seviyesi: aynı şey mi?'),
   p(
     'Büyük ölçüde evet. "Yeniden sipariş noktası" ve "reorder point" birebir aynı kavramdır; "sipariş verme noktası" da aynı eşiği anlatır. "Minimum stok seviyesi" ve "kritik stok seviyesi" çoğu işletmede ROP ile aynı anlamda kullanılır: stoğun düşmesine izin verdiğin alt sınır. Teknik olarak küçük bir nüans vardır; bazı kaynaklar minimum stok seviyesini doğrudan emniyet stoğu olarak tanımlar. Bu yazıda yeniden sipariş noktasını sipariş tetikleme eşiği anlamında kullanıyorum ve emniyet stoğunu onun bir bileşeni olarak ele alıyorum.',
@@ -1149,8 +1174,6 @@ const ROP_BLOG = [
     'Tek bir ROP\'u tüm ürünlere uygulamak. A sınıfı ürünle C sınıfı ürün aynı servis seviyesini gerektirmez; bu mantık doğrudan ABC analiziyle birleşir.',
     'Minimum stok seviyesini elle yuvarlak sayı olarak belirlemek. Sezgiyle konan 100 ya da 500 gibi değerler ne tedarik süresini ne talep oynaklığını yansıtır; ROP hesaplanmalı, tahmin edilmemelidir.',
   ]),
-  h(2, 'Sıkça sorulan sorular'),
-  p('Aşağıda yeniden sipariş noktasıyla ilgili en sık aranan sorulara kısa cevaplar var.'),
   pr(
     b('Kaynak: '),
     t('King, P. L. (2011). "Crack the Code: Understanding safety stock and mastering its equations." APICS Magazine. '),
@@ -1161,11 +1184,16 @@ const ROP_BLOG = [
   ),
 ];
 
-const ROP_SSS = [
+export const ROP_SSS = [
   {
     soru: 'Yeniden sipariş noktası ne demek?',
     cevap:
       'Yeniden sipariş noktası (ROP), stoğun hangi seviyeye düştüğünde yeni sipariş verilmesi gerektiğini gösteren eşik stok seviyesidir. Türkçede sipariş verme noktası, minimum stok seviyesi ya da kritik stok seviyesi olarak da geçer.',
+  },
+  {
+    soru: 'Değişken tedarik süresinde ROP nasıl hesaplanır?',
+    cevap:
+      'Tedarik süresi ve talep dalgalanıyorsa emniyet stoğunu servis seviyeli (Z × σ_d × √tedarik süresi) yöntemle hesaplayıp tedarik süresi talebine eklersin: ROP = (ortalama günlük talep × tedarik süresi) + istatistiksel emniyet stoğu. Servis seviyesi yükseldikçe ROP artar.',
   },
   {
     soru: 'ROP formülü nedir?',
@@ -1276,11 +1304,16 @@ const ROP_TOOL_SSS = [
 export async function seedRop(strapi: Core.Strapi): Promise<void> {
   const existing = await strapi.documents('api::blog.blog').findFirst({
     filters: { slug: 'yeniden-siparis-noktasi-nedir' },
+    populate: ['kapakGorseli'],
   });
   const existingTool = await strapi.documents('api::tool.tool').findFirst({
     filters: { slug: 'yeniden-siparis-noktasi-hesaplama' },
+    populate: ['kapakGorseli'],
   });
-  if (existing && existingTool) {
+  // Kapak görselleri sonradan eklendi: ikisi de varsa VE ikisinin de kapağı
+  // bağlıysa atla. Kapak eksikse bir kez backfill et (içerik elle düzenlenmişse
+  // ezme; yalnız kapağı olmayan kayda dokun).
+  if (existing && existingTool && existing.kapakGorseli && existingTool.kapakGorseli) {
     strapi.log.info('[seed] Yeniden sipariş noktası içeriği (blog + tool) zaten mevcut, atlanıyor.');
     return;
   }
@@ -1308,6 +1341,15 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
     }));
 
   // --- TOOL ---
+  const toolKapakId = await ensureLocalFile(strapi, {
+    url: '/uploads/rop-tool.jpg',
+    name: 'rop-tool.jpg',
+    alt: 'Yeniden sipariş noktası hesaplama aracı kapak görseli',
+    hash: 'rop_tool_cover_seed',
+    size: 83,
+    width: 1600,
+    height: 845,
+  });
   let tool = existingTool;
   if (!tool) {
     tool = await strapi.documents('api::tool.tool').create({
@@ -1317,6 +1359,7 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
         kisaAciklama:
           'Ortalama günlük talebini, tedarik süreni ve emniyet stoğunu gir; yeniden sipariş noktası hesaplama aracı stoğun hangi seviyeye düşünce yeni sipariş vermen gerektiğini söylesin.',
         formulAciklamasi: ROP_TOOL_FORMUL,
+        ...(toolKapakId ? { kapakGorseli: toolKapakId } : {}),
         seo: {
           title: 'Yeniden Sipariş Noktası Hesaplama (ROP) Aracı [2026]',
           description:
@@ -1328,9 +1371,26 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
       status: 'published',
     });
     strapi.log.info('[seed] Yeniden sipariş noktası tool kaydı oluşturuldu.');
+  } else if (!existingTool.kapakGorseli && toolKapakId) {
+    // Kapak eksik kayda backfill (içeriği ezme).
+    await strapi.documents('api::tool.tool').update({
+      documentId: tool.documentId,
+      data: { kapakGorseli: toolKapakId },
+      status: 'published',
+    });
+    strapi.log.info('[seed] Yeniden sipariş noktası tool kapağı backfill edildi.');
   }
 
   // --- BLOG ---
+  const kapakId = await ensureLocalFile(strapi, {
+    url: '/uploads/rop-kapak.jpg',
+    name: 'rop-kapak.jpg',
+    alt: 'Yeniden sipariş noktası: stok seviyesinin ROP eşiğine düşüşü ve sipariş tetikleme anı',
+    hash: 'rop_kapak_cover_seed',
+    size: 69,
+    width: 1600,
+    height: 845,
+  });
   let blog = existing;
   if (!blog) {
     blog = await strapi.documents('api::blog.blog').create({
@@ -1338,6 +1398,7 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
         baslik: 'Yeniden Sipariş Noktası (ROP) Nedir? Formülü ve Hesaplama Rehberi [2026]',
         slug: 'yeniden-siparis-noktasi-nedir',
         icerik: ROP_BLOG,
+        ...(kapakId ? { kapakGorseli: kapakId } : {}),
         iliskiliTool: tool.documentId,
         seo: {
           title: 'Yeniden Sipariş Noktası Nedir? ROP Formülü ve Hesaplama [2026]',
@@ -1353,6 +1414,18 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
       status: 'published',
     });
     strapi.log.info('[seed] Yeniden sipariş noktası blog içeriği oluşturuldu.');
+  } else if (!existing.kapakGorseli) {
+    // Kapak eksik: kapağı bağla ve gövdeyi (görsel node'u dahil) bir kez yenile.
+    await strapi.documents('api::blog.blog').update({
+      documentId: blog.documentId,
+      data: {
+        icerik: ROP_BLOG,
+        ...(kapakId ? { kapakGorseli: kapakId } : {}),
+        iliskiliTool: tool.documentId,
+      },
+      status: 'published',
+    });
+    strapi.log.info('[seed] Yeniden sipariş noktası blog kapağı + görseli backfill edildi.');
   } else {
     await strapi.documents('api::blog.blog').update({
       documentId: blog.documentId,

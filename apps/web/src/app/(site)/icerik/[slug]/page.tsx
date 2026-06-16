@@ -119,6 +119,19 @@ export default async function BlogPostPage({
             <BlocksRenderer content={post.icerik} />
           </div>
 
+          {/* Sıkça sorulan sorular — `sss` alanı hem JSON-LD hem görünür FAQ'ı besler */}
+          {post.sss && post.sss.length > 0 && (
+            <section className="def-block" style={{ marginTop: 'var(--s-7)' }}>
+              <h2 className="h3" style={{ marginBottom: 'var(--s-3)' }}>Sık sorulan sorular</h2>
+              {post.sss.map((item, i) => (
+                <details className="faq-item" key={i} open={i === 0}>
+                  <summary>{item.soru}</summary>
+                  <div className="faq-a">{item.cevap}</div>
+                </details>
+              ))}
+            </section>
+          )}
+
           {/* İlgili tool'a CTA */}
           {post.iliskiliTool && (
             <div className="mt-8 rounded-xl border border-accent-500/30 bg-accent-500/5 p-6">
