@@ -161,7 +161,6 @@ export default async function HomePage() {
                 <div className="eyebrow" style={{ marginBottom: 'var(--s-3)' }}>Öne çıkanlar</div>
                 {sidePosts.map((post) => (
                   <Link key={post.slug} href={`/icerik/${post.slug}`} className="compact-card">
-                    <Thumb url={mediaUrl(post.kapakGorseli?.url)} alt={post.kapakGorseli?.alternativeText} label="görsel" />
                     <div>
                       {post.kategori?.ad && (
                         <span className="chip" data-cat={categoryKey(post.kategori.slug ?? post.kategori.ad)} style={{ fontSize: '.625rem', padding: '3px 7px' }}>
@@ -169,6 +168,7 @@ export default async function HomePage() {
                         </span>
                       )}
                       <div className="title" style={{ marginTop: 6 }}>{post.baslik}</div>
+                      {post.seo?.description && <p className="excerpt">{post.seo.description}</p>}
                       <div className="meta">{formatDate(post.yayinTarihi) ?? 'Rehber'}</div>
                     </div>
                   </Link>
