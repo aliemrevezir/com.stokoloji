@@ -85,7 +85,7 @@ export default async function BlogPostPage({
       <Breadcrumb items={crumbs} />
 
       <div className="mt-6 grid gap-10 lg:grid-cols-[220px_1fr]">
-        <aside className="hidden lg:block">
+        <aside className="hidden self-start lg:sticky lg:top-24 lg:block lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
           <TOCSidebar items={toc} />
         </aside>
 

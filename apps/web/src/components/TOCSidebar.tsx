@@ -7,7 +7,7 @@ export interface TocItem {
 export function TOCSidebar({ items }: { items: TocItem[] }) {
   if (items.length === 0) return null;
   return (
-    <nav aria-label="İçindekiler" className="sticky top-6 text-sm">
+    <nav aria-label="İçindekiler" className="text-sm">
       <p className="mb-2 font-semibold text-brand-900">Bu yazıda</p>
       <ul className="space-y-1.5 border-l border-line">
         {items.map((item) => (
