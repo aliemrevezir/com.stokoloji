@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { track } from '@/lib/analytics';
-import type { CatKey, NavData, NavItem } from '@/lib/nav';
+import { CAT_LABEL, type CatKey, type NavData, type NavItem } from '@/lib/nav';
 import type { Announcement, DuyuruIkon } from '@stokoloji/api-client';
 
 const CAT_COLOR: Record<CatKey, string> = {
@@ -70,40 +70,43 @@ const ANNOUNCEMENT_ICONS: Record<Exclude<DuyuruIkon, 'yok'>, React.ReactNode> = 
   yildiz: Icon.yildiz,
 };
 
-function MegaList({ items }: { items: NavItem[] }) {
-  return (
-    <div className="mega-list">
-      {items.slice(0, 6).map((t, i) => (
-        <Link key={`${t.href}-${i}`} href={t.href}>
-          <span className="swatch" style={{ background: CAT_COLOR[t.cat] }} />
-          {t.name}
-        </Link>
-      ))}
-    </div>
-  );
-}
+function Mega({ items, heading, onNavigate }: { items: NavItem[]; heading: string; onNavigate: () => void }) {
+  const list = items.slice(0, 6);
+  // Hover/focus edilen öğe sağdaki "öne çıkan" önizlemeyi sürer; varsayılan ilk öğe.
+  const [activeIdx, setActiveIdx] = useState(0);
+  const active = list[activeIdx] ?? list[0];
+  if (!active) return null;
 
-function Mega({
-  items,
-  heading,
-  feature,
-}: {
-  items: NavItem[];
-  heading: string;
-  feature: { cat: CatKey; label: string; title: string; meta: string };
-}) {
   return (
     <div className="mega">
       <div className="mega-col">
         <p className="mega-heading">{heading}</p>
-        <MegaList items={items} />
+        <div className="mega-list">
+          {list.map((t, i) => (
+            <Link
+              key={`${t.href}-${i}`}
+              href={t.href}
+              onMouseEnter={() => setActiveIdx(i)}
+              onFocus={() => setActiveIdx(i)}
+              onClick={onNavigate}
+            >
+              <span className="swatch" style={{ background: CAT_COLOR[t.cat] }} />
+              {t.name}
+            </Link>
+          ))}
+        </div>
       </div>
-      <div className="mega-feature">
-        <div className="ph" data-label="öne çıkan görsel" />
-        <span className="chip" data-cat={feature.cat}>{feature.label}</span>
-        <div className="mf-title" style={{ marginTop: 8 }}>{feature.title}</div>
-        <div className="mf-meta">{feature.meta}</div>
-      </div>
+      <Link className="mega-feature" href={active.href} onClick={onNavigate}>
+        <div className={`ph${active.imageUrl ? ' has-img' : ''}`} data-label="öne çıkan görsel">
+          {active.imageUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={active.imageUrl} alt={active.name} />
+          )}
+        </div>
+        <span className="chip" data-cat={active.cat}>{active.catLabel ?? CAT_LABEL[active.cat]}</span>
+        <div className="mf-title" style={{ marginTop: 8 }}>{active.name}</div>
+        {active.desc && <div className="mf-meta">{active.desc}</div>}
+      </Link>
     </div>
   );
 }
@@ -271,11 +274,7 @@ export function SiteHeader({
                     {Icon.caret}
                   </button>
                 </span>
-                <Mega
-                  items={nav.tools}
-                  heading="Hesaplayıcı Araçlar"
-                  feature={{ cat: 'stok', label: 'Stok Yönetimi', title: 'EOQ Hesaplayıcı', meta: 'Sipariş miktarını maliyet eğrisiyle optimize et. En çok kullanılan aracımız.' }}
-                />
+                <Mega items={nav.tools} heading="Hesaplayıcı Araçlar" onNavigate={() => setOpenMega(null)} />
               </li>
               <li
                 className={`has-mega${openMega === 'blog' ? ' open' : ''}`}
@@ -294,11 +293,7 @@ export function SiteHeader({
                     {Icon.caret}
                   </button>
                 </span>
-                <Mega
-                  items={nav.posts}
-                  heading="Son Yazılar"
-                  feature={{ cat: 'analiz', label: 'Analiz / Veri', title: 'Stok devir hızı kaç olmalı?', meta: 'Sektör ortalamaları ve yorumlama rehberi.' }}
-                />
+                <Mega items={nav.posts} heading="Son Yazılar" onNavigate={() => setOpenMega(null)} />
               </li>
               <li><Link href="/rehber">Rehber</Link></li>
               <li><Link href="/#hakkinda">Hakkında</Link></li>

@@ -6,7 +6,7 @@
  * Tüm değerler serileştirilebilir (client SiteHeader'a prop olarak geçer).
  */
 import type { Blog, Tool } from '@stokoloji/api-client';
-import { strapi } from './strapi';
+import { strapi, mediaUrl } from './strapi';
 
 /** Kategori renk anahtarı — theme.css'teki --cat-* ve chip data-cat ile eşleşir. */
 export type CatKey = 'stok' | 'uretim' | 'maliyet' | 'analiz' | 'tedarik';
@@ -15,7 +15,22 @@ export interface NavItem {
   name: string;
   href: string;
   cat: CatKey;
+  /** Mega menü "öne çıkan" önizlemesinde chip etiketi (ör. "Stok Yönetimi"). */
+  catLabel?: string;
+  /** Önizleme alt metni (tool: kısa açıklama, yazı: SEO açıklaması). */
+  desc?: string;
+  /** Önizleme kapak görseli — mediaUrl ile çözülmüş mutlak URL. */
+  imageUrl?: string | null;
 }
+
+/** CatKey → okunabilir etiket (Strapi kategorisi yoksa fallback). */
+export const CAT_LABEL: Record<CatKey, string> = {
+  stok: 'Stok Yönetimi',
+  uretim: 'Üretim Planlama',
+  maliyet: 'Maliyet / Finans',
+  analiz: 'Analiz / Veri',
+  tedarik: 'Tedarik',
+};
 
 export interface NavCategory {
   label: string;
@@ -65,10 +80,26 @@ const FALLBACK_POSTS: NavItem[] = [
 ];
 
 function toolItem(t: Tool): NavItem {
-  return { name: t.ad, href: `/araclar/${t.slug}`, cat: categoryKey(t.kategori?.slug ?? t.kategori?.ad) };
+  const cat = categoryKey(t.kategori?.slug ?? t.kategori?.ad);
+  return {
+    name: t.ad,
+    href: `/araclar/${t.slug}`,
+    cat,
+    catLabel: t.kategori?.ad ?? CAT_LABEL[cat],
+    desc: t.kisaAciklama ?? undefined,
+    imageUrl: mediaUrl(t.kapakGorseli?.url),
+  };
 }
 function postItem(p: Blog): NavItem {
-  return { name: p.baslik, href: `/icerik/${p.slug}`, cat: categoryKey(p.kategori?.slug ?? p.kategori?.ad) };
+  const cat = categoryKey(p.kategori?.slug ?? p.kategori?.ad);
+  return {
+    name: p.baslik,
+    href: `/icerik/${p.slug}`,
+    cat,
+    catLabel: p.kategori?.ad ?? CAT_LABEL[cat],
+    desc: p.seo?.description ?? undefined,
+    imageUrl: mediaUrl(p.kapakGorseli?.url),
+  };
 }
 
 /** Strapi'den nav verisini topla; hata olursa statik fallback. */

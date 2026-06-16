@@ -62,6 +62,7 @@ export interface Tool extends StrapiEntityMeta {
   ad: string;
   slug: string;
   kisaAciklama?: string | null;
+  kapakGorseli?: StrapiMedia | null;
   formulAciklamasi?: BlocksContent | null;
   seo?: SeoMeta | null;
   kategori?: Kategori | null;

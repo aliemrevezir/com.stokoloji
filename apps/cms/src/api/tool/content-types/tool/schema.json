@@ -23,6 +23,11 @@
     "kisaAciklama": {
       "type": "text"
     },
+    "kapakGorseli": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
     "formulAciklamasi": {
       "type": "json"
     },

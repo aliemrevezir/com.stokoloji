@@ -420,3 +420,41 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 23:24 | Edited apps/web/src/app/(site)/rehber/page.tsx | expanded (+10 lines) | ~498 |
 | 23:24 | Session end: 7 writes across 4 files (page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts) | 5 reads | ~11821 tok |
 | 23:24 | Session end: 7 writes across 4 files (page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts) | 5 reads | ~11821 tok |
+| 23:27 | Session end: 7 writes across 4 files (page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts) | 5 reads | ~11821 tok |
+| 23:30 | Session end: 7 writes across 4 files (page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts) | 5 reads | ~11821 tok |
+| 23:35 | Session end: 7 writes across 4 files (page.tsx, nav.ts, SiteHeader.tsx, sitemap.ts) | 5 reads | ~11821 tok |
+
+## Session: 2026-06-16 23:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:39 | Created ../kapak-gorseli-standardi.md | — | ~1627 |
+| 23:39 | Edited ../CLAUDE.md | 2→3 lines | ~101 |
+| --:-- | Kapak görseli prompt standardı oluşturuldu (blog=split+başlık, tool=yazısız) | ../kapak-gorseli-standardi.md, ../CLAUDE.md | ✓ referans doküman | ~3k |
+| 23:40 | Session end: 2 writes across 2 files (kapak-gorseli-standardi.md, CLAUDE.md) | 1 reads | ~4956 tok |
+| 23:40 | Session end: 2 writes across 2 files (kapak-gorseli-standardi.md, CLAUDE.md) | 7 reads | ~14049 tok |
+| 23:41 | Edited apps/cms/src/api/tool/content-types/tool/schema.json | 3→8 lines | ~46 |
+| 23:41 | Edited packages/api-client/src/types.ts | 5→6 lines | ~48 |
+| 23:42 | Edited packages/api-client/src/index.ts | 6→7 lines | ~64 |
+| 23:42 | Edited packages/api-client/src/index.ts | 4→8 lines | ~58 |
+| 23:42 | Edited apps/web/src/lib/nav.ts | expanded (+15 lines) | ~254 |
+| 23:42 | Edited apps/web/src/lib/nav.ts | modified toolItem() | ~178 |
+| 23:42 | Edited apps/web/src/components/chrome/SiteHeader.tsx | inline fix | ~23 |
+| 23:42 | Edited apps/web/src/components/chrome/SiteHeader.tsx | added nullish coalescing | ~427 |
+| 23:42 | Session end: 10 writes across 7 files (kapak-gorseli-standardi.md, CLAUDE.md, schema.json, types.ts, index.ts) | 9 reads | ~16056 tok |
+| 23:42 | Edited apps/web/src/components/chrome/SiteHeader.tsx | removed 5 lines | ~21 |
+| 23:42 | Edited apps/web/src/components/chrome/SiteHeader.tsx | removed 5 lines | ~19 |
+
+## Session: 2026-06-16 23:43
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:43 | Edited apps/web/src/components/chrome/SiteHeader.tsx | CSS: onNavigate | ~291 |
+| 23:43 | Edited apps/web/src/components/chrome/SiteHeader.tsx | inline fix | ~32 |
+| 23:43 | Edited apps/web/src/components/chrome/SiteHeader.tsx | inline fix | ~29 |
+| 23:44 | tool kapakGorseli + navbar mega hover preview (Araçlar/İçerik) | tool/schema.json, api-client(types,index), nav.ts, SiteHeader.tsx | typecheck+lint temiz | ~9k |
+| 23:44 | Edited CLAUDE.md | inline fix | ~183 |
+| 23:45 | Session end: 4 writes across 2 files (SiteHeader.tsx, CLAUDE.md) | 3 reads | ~19533 tok |
+| 23:45 | Edited apps/web/src/app/theme.css | inline fix | ~28 |
+| 23:45 | Edited apps/web/src/app/theme.css | inline fix | ~16 |
+| 23:45 | Session end: 6 writes across 3 files (SiteHeader.tsx, CLAUDE.md, theme.css) | 3 reads | ~19577 tok |

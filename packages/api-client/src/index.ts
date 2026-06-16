@@ -36,6 +36,7 @@ export interface FetchOptions {
 
 const TOOL_POPULATE: Record<string, string> = {
   'populate[seo][populate]': 'ogImage',
+  'populate[kapakGorseli]': 'true',
   'populate[kategori]': 'true',
   'populate[sss]': 'true',
   'populate[iliskiliYazilar]': 'true',
@@ -125,7 +126,11 @@ export function createClient(options: StrapiClientOptions) {
       const data = await request<StrapiCollectionResponse<Tool>>('/tools', {
         ...opts,
         query: buildQuery(
-          { 'populate[kategori]': 'true', 'sort': 'ad:asc' },
+          {
+            'populate[kategori]': 'true',
+            'populate[kapakGorseli]': 'true',
+            'sort': 'ad:asc',
+          },
           opts.query,
         ),
       });
