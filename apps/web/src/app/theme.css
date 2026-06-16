@@ -363,8 +363,11 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .brand { display: flex; align-items: baseline; gap: 2px; font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.02em; }
 .brand .dot { color: var(--teal); }
 .nav-links { display: flex; align-items: center; gap: 4px; margin-left: var(--s-3); list-style: none; padding: 0; }
-.nav-links > li > a, .nav-links > li > button { display: inline-flex; align-items: center; gap: 5px; padding: 9px 14px; border-radius: var(--r-md); font-weight: 500; font-size: 0.9375rem; color: var(--ink-2); background: none; border: 0; cursor: pointer; transition: background .15s, color .15s; }
-.nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li.open > button { background: var(--ink-lightest); color: var(--ink); }
+.nav-links > li > a, .nav-links > li > button, .nav-links > li > .nav-trigger { display: inline-flex; align-items: center; gap: 5px; border-radius: var(--r-md); font-weight: 500; font-size: 0.9375rem; color: var(--ink-2); background: none; border: 0; cursor: pointer; transition: background .15s, color .15s; }
+.nav-links > li > a, .nav-links > li > button { padding: 9px 14px; }
+.nav-trigger > a { padding: 9px 2px 9px 14px; color: inherit; font: inherit; }
+.nav-trigger > .nav-caret { display: inline-flex; align-items: center; padding: 9px 12px 9px 4px; background: none; border: 0; color: inherit; cursor: pointer; }
+.nav-links > li > a:hover, .nav-links > li > button:hover, .nav-links > li > .nav-trigger:hover, .nav-links > li.open > button, .nav-links > li.open > .nav-trigger { background: var(--ink-lightest); color: var(--ink); }
 .nav-links .caret { transition: transform .2s; }
 .nav-links li.open .caret { transform: rotate(180deg); }
 .nav-right { margin-left: auto; display: flex; align-items: center; gap: var(--s-3); }

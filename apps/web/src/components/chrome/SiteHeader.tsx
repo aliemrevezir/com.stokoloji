@@ -259,9 +259,18 @@ export function SiteHeader({
                 onMouseEnter={() => hoverOpen('tools')}
                 onMouseLeave={hoverClose}
               >
-                <button type="button" onClick={() => setOpenMega((p) => (p === 'tools' ? null : 'tools'))}>
-                  Araçlar {Icon.caret}
-                </button>
+                <span className="nav-trigger">
+                  <Link href="/araclar" onClick={() => setOpenMega(null)}>Araçlar</Link>
+                  <button
+                    type="button"
+                    className="nav-caret"
+                    aria-label="Araçlar menüsünü aç/kapat"
+                    aria-expanded={openMega === 'tools'}
+                    onClick={() => setOpenMega((p) => (p === 'tools' ? null : 'tools'))}
+                  >
+                    {Icon.caret}
+                  </button>
+                </span>
                 <Mega
                   items={nav.tools}
                   heading="Hesaplayıcı Araçlar"
@@ -273,9 +282,18 @@ export function SiteHeader({
                 onMouseEnter={() => hoverOpen('blog')}
                 onMouseLeave={hoverClose}
               >
-                <button type="button" onClick={() => setOpenMega((p) => (p === 'blog' ? null : 'blog'))}>
-                  İçerik {Icon.caret}
-                </button>
+                <span className="nav-trigger">
+                  <Link href="/icerik" onClick={() => setOpenMega(null)}>İçerik</Link>
+                  <button
+                    type="button"
+                    className="nav-caret"
+                    aria-label="İçerik menüsünü aç/kapat"
+                    aria-expanded={openMega === 'blog'}
+                    onClick={() => setOpenMega((p) => (p === 'blog' ? null : 'blog'))}
+                  >
+                    {Icon.caret}
+                  </button>
+                </span>
                 <Mega
                   items={nav.posts}
                   heading="Son Yazılar"
