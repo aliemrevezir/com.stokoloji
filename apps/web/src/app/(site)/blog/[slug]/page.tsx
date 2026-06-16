@@ -93,6 +93,23 @@ export default async function BlogPostPage({
             </p>
           )}
 
+          {post.kapakGorseli?.url && (
+            <figure
+              className="overflow-hidden rounded-xl border border-brand-100 bg-brand-50"
+              style={{ marginTop: 'var(--s-5)', aspectRatio: '16 / 9' }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={mediaUrl(post.kapakGorseli.url) ?? ''}
+                alt={post.kapakGorseli.alternativeText ?? post.baslik}
+                width={post.kapakGorseli.width ?? undefined}
+                height={post.kapakGorseli.height ?? undefined}
+                className="h-full w-full object-cover"
+                loading="eager"
+              />
+            </figure>
+          )}
+
           <div className="prose" style={{ marginTop: 'var(--s-5)' }}>
             <BlocksRenderer content={post.icerik} />
           </div>
