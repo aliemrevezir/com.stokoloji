@@ -295,6 +295,7 @@ export function SiteHeader({
                 </span>
                 <Mega items={nav.posts} heading="Son Yazılar" onNavigate={() => setOpenMega(null)} />
               </li>
+              <li><Link href="/sozluk">Sözlük</Link></li>
               <li><Link href="/rehber">Rehber</Link></li>
               {/* <li><Link href="/#hakkinda">Hakkında</Link></li> */}
             </ul>
@@ -365,6 +366,7 @@ export function SiteHeader({
         <DrawerSection title="İçerik" items={nav.posts} onNavigate={() => setDrawerOpen(false)} />
         <div className="drawer-section">
           <div className="ds-title">Genel</div>
+          <Link href="/sozluk" onClick={() => setDrawerOpen(false)}>Sözlük</Link>
           <Link href="/rehber" onClick={() => setDrawerOpen(false)}>Rehber</Link>
           <Link href="/#hakkinda" onClick={() => setDrawerOpen(false)}>Hakkında</Link>
         </div>

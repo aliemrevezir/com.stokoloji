@@ -630,5 +630,6 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 .cat-tab { padding: 9px 16px; border-radius: 100px; border: 1px solid var(--border); background: #fff; font-weight: 600; font-size: 0.875rem; color: var(--text-2); transition: .15s; }
 .cat-tab:hover { border-color: var(--c); color: var(--c); }
 .cat-tab.active { background: var(--c); border-color: var(--c); color: #fff; }
+.cat-tab.is-disabled { opacity: .38; cursor: default; pointer-events: none; }
 .archive-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); }
 .archive-sort { display: flex; align-items: center; gap: 8px; }

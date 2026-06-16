@@ -52,6 +52,7 @@ export function SiteFooter({ nav, year }: { nav: NavData; year: number }) {
         <div className="footer-bottom">
           <span>© {year} Stokoloji. Tüm hakları saklıdır.</span>
           <span style={{ display: 'flex', gap: 18 }}>
+            <Link href="/sozluk">Sözlük</Link>
             <Link href="/gizlilik">Gizlilik</Link>
             <Link href="/gizlilik">Kullanım Şartları</Link>
             <Link href="/#hakkinda">İletişim</Link>

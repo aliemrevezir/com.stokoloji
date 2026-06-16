@@ -58,6 +58,24 @@ export interface Yazar extends StrapiEntityMeta {
   avatar?: StrapiMedia | null;
 }
 
+/**
+ * Sözlük terimi — stok/üretim/tedarik kavramları sözlüğü.
+ *
+ * Terim başına ayrı sayfa yoktur; tanımlar harf sayfalarında (`/sozluk/[harf]`)
+ * inline gösterilir. `slug` anchor (deep link) ve ileriye dönük detay sayfası için
+ * tutulur. `anlam` blocks alanı içine `/araclar` ve `/icerik` iç linkleri gömülür.
+ */
+export interface SozlukTerimi extends StrapiEntityMeta {
+  kelime: string;
+  slug: string;
+  /** Tam Türk alfabesi harfi (ör. "Ç", "İ"); gruplama/gösterim için. */
+  baslangicHarfi: string;
+  kisaTanim: string;
+  anlam?: BlocksContent | null;
+  ilgiliTerimler?: SozlukTerimi[] | null;
+  seo?: SeoMeta | null;
+}
+
 export interface Tool extends StrapiEntityMeta {
   ad: string;
   slug: string;

@@ -1,11 +1,13 @@
 import type { MetadataRoute } from 'next';
 import { strapi } from '@/lib/strapi';
+import { distinctHarfSluglari } from '@/lib/sozluk';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let tools: Awaited<ReturnType<typeof strapi.listTools>> = [];
   let posts: Awaited<ReturnType<typeof strapi.listBlogPosts>> = [];
+  let terimler: Awaited<ReturnType<typeof strapi.listSozlukTerimleri>> = [];
   try {
     tools = await strapi.listTools();
   } catch {
@@ -16,10 +18,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   } catch {
     posts = [];
   }
+  try {
+    terimler = await strapi.listSozlukTerimleri();
+  } catch {
+    terimler = [];
+  }
 
   const now = new Date();
 
-  const staticRoutes: MetadataRoute.Sitemap = ['', '/rehber', '/araclar', '/icerik'].map((path) => ({
+  const staticRoutes: MetadataRoute.Sitemap = ['', '/rehber', '/araclar', '/icerik', '/sozluk'].map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: now,
     changeFrequency: 'weekly',
@@ -44,5 +51,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...toolRoutes, ...blogRoutes];
+  const sozlukRoutes: MetadataRoute.Sitemap = distinctHarfSluglari(terimler).map((harf) => ({
+    url: `${siteUrl}/sozluk/${harf}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }));
+
+  return [...staticRoutes, ...toolRoutes, ...blogRoutes, ...sozlukRoutes];
 }

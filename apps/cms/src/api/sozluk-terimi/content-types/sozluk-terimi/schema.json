@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sozluk_terimleri",
+  "info": {
+    "singularName": "sozluk-terimi",
+    "pluralName": "sozluk-terimleri",
+    "displayName": "Sözlük Terimi",
+    "description": "Stok, üretim ve tedarik zinciri terimleri sözlüğü"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "kelime": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "kelime",
+      "required": true
+    },
+    "baslangicHarfi": {
+      "type": "string",
+      "required": true,
+      "maxLength": 1,
+      "description": "Tam Türk alfabesi başlangıç harfi (diakritikli): A, B, C, Ç, ... İ, Ö, Ş, Ü. Enum DEĞİL: Strapi enum normalizasyonunda Ç/C, Ş/S, Ğ/G, İ/I çakışır."
+    },
+    "kisaTanim": {
+      "type": "text",
+      "required": true
+    },
+    "anlam": {
+      "type": "json",
+      "required": true
+    },
+    "ilgiliTerimler": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sozluk-terimi.sozluk-terimi"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.meta"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T22:45:34.737Z
-> Files: 194 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T23:44:25.837Z
+> Files: 204 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../
 
@@ -66,6 +66,9 @@
 
 - `openwolf.md` (~313 tok)
 
+## Sözlük (terimler sözlüğü) — 2026-06-17
+
+
 ## apps/
 
 - `.DS_Store` (~1640 tok)
@@ -97,7 +100,7 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~4067 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~4100 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
@@ -179,6 +182,22 @@
 
 - `kategori.ts` (~33 tok)
 
+## apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/
+
+- `schema.json` — Declares normalizasyonunda (~332 tok)
+
+## apps/cms/src/api/sozluk-terimi/controllers/
+
+- `sozluk-terimi.ts` (~37 tok)
+
+## apps/cms/src/api/sozluk-terimi/routes/
+
+- `sozluk-terimi.ts` (~36 tok)
+
+## apps/cms/src/api/sozluk-terimi/services/
+
+- `sozluk-terimi.ts` (~36 tok)
+
 ## apps/cms/src/api/tool/content-types/tool/
 
 - `schema.json` (~329 tok)
@@ -224,6 +243,9 @@
 ## apps/cms/src/seed/
 
 - `index.ts` — Exports BLOG_SSS (~22858 tok)
+- `sozluk-blocks.ts` — Sözlük seed'i için blocks yardımcıları + veri tipi. (~708 tok)
+- `sozluk-data.ts` — Exports SOZLUK_TERIMLERI (~26813 tok)
+- `sozluk.ts` — Sözlük terimlerini idempotent şekilde seed eder. (~553 tok)
 
 ## apps/cms/types/generated/
 
@@ -255,8 +277,8 @@
 - `layout.tsx` — Editoryal serif başlık fontu (tasarım imzası). (~856 tok)
 - `not-found.tsx` — metadata (~827 tok)
 - `robots.ts` — siteUrl: robots (~197 tok)
-- `sitemap.ts` — siteUrl: sitemap (~402 tok)
-- `theme.css` — Styles: 92 rules, 52 vars (~12268 tok)
+- `sitemap.ts` — siteUrl: sitemap (~535 tok)
+- `theme.css` — Styles: 92 rules, 52 vars (~12290 tok)
 
 ## apps/web/src/app/(site)/
 
@@ -287,6 +309,14 @@
 ## apps/web/src/app/(site)/rehber/
 
 - `page.tsx` — Hub'ta gösterilen tek kavram satırı: rehber yazısı + (varsa) hesaplayıcı. (~2456 tok)
+
+## apps/web/src/app/(site)/sozluk/
+
+- `page.tsx` — revalidate (~1442 tok)
+
+## apps/web/src/app/(site)/sozluk/[harf]/
+
+- `page.tsx` — revalidate (~1389 tok)
 
 ## apps/web/src/app/api/newsletter/
 
@@ -322,8 +352,8 @@
 
 ## apps/web/src/components/chrome/
 
-- `SiteFooter.tsx` — Koyu zeminli site footer'ı (tasarım: ornek/theme.js buildFooter). (~702 tok)
-- `SiteHeader.tsx` — Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). (~4566 tok)
+- `SiteFooter.tsx` — Koyu zeminli site footer'ı (tasarım: ornek/theme.js buildFooter). (~716 tok)
+- `SiteHeader.tsx` — Türkçe karakterleri sadeleştirip küçük harfe indirger (ı/i, ç→c, ğ→g, ş→s, ö→o, ü→u). (~4608 tok)
 
 ## apps/web/src/components/home/
 
@@ -349,6 +379,7 @@
 - `katex.test.ts` — Declares html (~397 tok)
 - `katex.ts` — KaTeX matematik dizgisi — SERVER-SIDE. (~472 tok)
 - `nav.ts` — Header / footer chrome için navigasyon verisi. (~1198 tok)
+- `sozluk.ts` — Sözlük yardımcıları — terimleri Türk alfabesi sırasında harf gruplarına böler. (~419 tok)
 - `strapi.ts` — Web uygulamasının Strapi'ye TEK bağlantı noktası. (~353 tok)
 
 ## apps/web/src/lib/analytics/
@@ -374,7 +405,7 @@
 
 ## apps/web/src/lib/seo/
 
-- `jsonld.ts` — JSON-LD (schema.org) builder'ları. Saf fonksiyonlar — düz nesne döner, (~1370 tok)
+- `jsonld.ts` — JSON-LD (schema.org) builder'ları. Saf fonksiyonlar — düz nesne döner, (~1579 tok)
 
 ## apps/web/src/lib/tools/
 
@@ -412,8 +443,8 @@
 
 ## packages/api-client/src/
 
-- `index.ts` — Exports StrapiClientOptions, FetchOptions, createClient, StrapiClient (~1937 tok)
-- `types.ts` — Strapi 5 REST response tipleri. (~1100 tok)
+- `index.ts` — Exports StrapiClientOptions, FetchOptions, TR_ALPHABET, harfToSlug + 3 more (~2695 tok)
+- `types.ts` — Strapi 5 REST response tipleri. (~1280 tok)
 
 ## packages/ui/
 

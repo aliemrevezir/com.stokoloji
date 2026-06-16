@@ -679,3 +679,68 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 | 01:47 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |
 | 01:48 | ROP seed görselleri (rop-grafik/kapak/tool.jpg) seed-assets/uploads'a eklendi+commit (359db8a); ensureUploadAssets prod volume'a kopyalar | seed-assets/uploads | ROP kapakları artık prod'da gelecek | ~3k |
 | 01:48 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |
+| 01:50 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |
+| 01:54 | Session end: 1 writes across 1 files (kankam-yeni-bir-sayfa-greedy-spindle.md) | 7 reads | ~30128 tok |
+
+## Session: 2026-06-16 01:54
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16 02:01
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 02:03 | Created apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json | — | ~344 |
+| 02:03 | Created apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts | — | ~37 |
+| 02:03 | Created apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts | — | ~36 |
+| 02:03 | Created apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts | — | ~36 |
+| 02:03 | Edited apps/cms/src/index.ts | 2→3 lines | ~31 |
+| 02:03 | Edited packages/api-client/src/types.ts | expanded (+18 lines) | ~194 |
+| 02:03 | Edited packages/api-client/src/index.ts | 5→6 lines | ~29 |
+| 02:03 | Edited packages/api-client/src/index.ts | added nullish coalescing | ~335 |
+| 02:03 | Edited packages/api-client/src/index.ts | added 1 condition(s) | ~456 |
+| 02:04 | Edited apps/web/src/lib/seo/jsonld.ts | modified definedTermSetJsonLd() | ~223 |
+| 02:04 | Created apps/web/src/lib/sozluk.ts | — | ~419 |
+| 02:04 | Created apps/web/src/app/(site)/sozluk/page.tsx | — | ~1447 |
+| 02:05 | Created apps/web/src/app/(site)/sozluk/[harf]/page.tsx | — | ~1389 |
+| 02:05 | Edited apps/web/src/app/sitemap.ts | added 1 import(s) | ~39 |
+| 02:05 | Edited apps/web/src/app/sitemap.ts | expanded (+6 lines) | ~173 |
+| 02:05 | Edited apps/web/src/app/sitemap.ts | expanded (+7 lines) | ~83 |
+| 02:05 | Edited apps/web/src/components/chrome/SiteHeader.tsx | 2→3 lines | ~54 |
+| 02:05 | Edited apps/web/src/components/chrome/SiteHeader.tsx | 3→4 lines | ~86 |
+| 02:06 | Edited apps/web/src/components/chrome/SiteFooter.tsx | 2→3 lines | ~44 |
+| 02:06 | Edited apps/web/src/app/(site)/sozluk/page.tsx | inline fix | ~28 |
+| 02:06 | Edited apps/web/src/app/theme.css | CSS: opacity, cursor, pointer-events | ~50 |
+| 02:07 | Created apps/cms/src/seed/sozluk-blocks.ts | — | ~708 |
+| 02:08 | Created apps/cms/src/seed/sozluk.ts | — | ~553 |
+| 02:08 | Edited apps/cms/src/index.ts | added 1 import(s) | ~24 |
+| 02:08 | Edited apps/cms/src/index.ts | 2→3 lines | ~29 |
+| 02:10 | Session end: 25 writes across 12 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 13 reads | ~54177 tok |
+| 02:11 | Session end: 25 writes across 12 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 13 reads | ~54177 tok |
+| 02:11 | Session end: 25 writes across 12 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 13 reads | ~54177 tok |
+| 02:12 | Session end: 25 writes across 12 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 13 reads | ~54177 tok |
+| 02:13 | Edited docker-compose.prod.yml | 5→9 lines | ~117 |
+| 02:13 | Edited docker-compose.prod.yml | 4→6 lines | ~59 |
+| 02:14 | Session end: 27 writes across 13 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~56054 tok |
+| 02:21 | Created apps/cms/src/seed/sozluk-data.ts | — | ~26813 |
+| 02:22 | Edited apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json | modified harfi() | ~78 |
+| 02:24 | Session end: 29 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~82945 tok |
+| 02:35 | Sözlük özelliği: sozluk-terimi content-type + 95 terim seed + /sozluk & /sozluk/[harf] sayfaları + api-client/jsonld/nav/sitemap | 14 dosya | typecheck temiz | ~32k |
+| 02:36 | enum→string fix (baslangicHarfi normalize çakışması, bug-056) + ts:generate-types | schema.json | cms tsc temiz | ~1k |
+| 02:25 | Session end: 29 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~82945 tok |
+| 02:32 | Session end: 29 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~82945 tok |
+| 02:37 | Session end: 29 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~82945 tok |
+| 02:38 | Session end: 29 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~82945 tok |
+| 02:39 | Edited docker-compose.prod.yml | 7→3 lines | ~21 |
+| 02:39 | Edited docker-compose.prod.yml | 5→3 lines | ~22 |
+| 02:39 | Session end: 31 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~83098 tok |
+| 02:40 | Session end: 31 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~83098 tok |
+| 02:43 | Session end: 31 writes across 14 files (schema.json, sozluk-terimi.ts, index.ts, types.ts, jsonld.ts) | 14 reads | ~83098 tok |
+| 02:44 | Edited apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json | 10→10 lines | ~70 |
+| 02:44 | Edited apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json | 6→5 lines | ~40 |
+
+## Session: 2026-06-16 02:46
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

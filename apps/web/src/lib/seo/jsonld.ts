@@ -111,6 +111,33 @@ export function itemListJsonLd(params: {
   };
 }
 
+/**
+ * Sözlük için schema.org DefinedTermSet + DefinedTerm. Sözlük sayfaları (terim
+ * koleksiyonu) için ideal tip; her terim adı + tanımıyla gömülür.
+ */
+export function definedTermSetJsonLd(params: {
+  name: string;
+  description: string;
+  url: string;
+  terms: { term: string; definition: string; url?: string }[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    name: params.name,
+    description: params.description,
+    url: params.url,
+    inLanguage: 'tr-TR',
+    hasDefinedTerm: params.terms.map((t) => ({
+      '@type': 'DefinedTerm',
+      name: t.term,
+      description: t.definition,
+      inDefinedTermSet: params.url,
+      ...(t.url ? { url: t.url } : {}),
+    })),
+  };
+}
+
 export function webApplicationJsonLd(params: {
   name: string;
   description: string;

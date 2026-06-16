@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-06-13T23:14:08.103Z",
   "lifetime": {
-    "total_tokens_estimated": 2257948,
-    "total_reads": 836,
-    "total_writes": 1026,
-    "total_sessions": 34,
-    "anatomy_hits": 627,
-    "anatomy_misses": 208,
-    "repeated_reads_blocked": 147,
-    "estimated_savings_vs_bare_cli": 765740
+    "total_tokens_estimated": 3261194,
+    "total_reads": 1036,
+    "total_writes": 1393,
+    "total_sessions": 37,
+    "anatomy_hits": 819,
+    "anatomy_misses": 216,
+    "repeated_reads_blocked": 165,
+    "estimated_savings_vs_bare_cli": 877312
   },
   "sessions": [
     {
@@ -12085,6 +12085,3312 @@
         "writes_count": 1,
         "repeated_reads_blocked": 1,
         "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-06-16-0141",
+      "started": "2026-06-16T22:41:03.052Z",
+      "ended": "2026-06-16T22:50:16.527Z",
+      "reads": [
+        {
+          "file": "/tmp/faq_crop.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/content-types/kategori/schema.json",
+          "tokens_estimated": 135,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 4067,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/faq_crop2.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/faq_bottom.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/faq_top.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/.claude/plans/kankam-yeni-bir-sayfa-greedy-spindle.md",
+          "tokens_estimated": 3068,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 27060,
+        "output_tokens_estimated": 3068,
+        "reads_count": 7,
+        "writes_count": 1,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-06-16-0141",
+      "started": "2026-06-16T22:41:03.052Z",
+      "ended": "2026-06-16T22:54:03.298Z",
+      "reads": [
+        {
+          "file": "/tmp/faq_crop.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/content-types/kategori/schema.json",
+          "tokens_estimated": 135,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 4067,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/faq_crop2.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/faq_bottom.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/faq_top.png",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/.claude/plans/kankam-yeni-bir-sayfa-greedy-spindle.md",
+          "tokens_estimated": 3068,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 27060,
+        "output_tokens_estimated": 3068,
+        "reads_count": 7,
+        "writes_count": 1,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:02:48.341Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 6209,
+        "output_tokens_estimated": 0,
+        "reads_count": 8,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 8
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:10:43.636Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 47330,
+        "output_tokens_estimated": 6847,
+        "reads_count": 13,
+        "writes_count": 25,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 13
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:11:23.542Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 47330,
+        "output_tokens_estimated": 6847,
+        "reads_count": 13,
+        "writes_count": 25,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 13
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:11:51.114Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 47330,
+        "output_tokens_estimated": 6847,
+        "reads_count": 13,
+        "writes_count": 25,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 13
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:12:53.113Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 47330,
+        "output_tokens_estimated": 6847,
+        "reads_count": 13,
+        "writes_count": 25,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 13
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:14:20.187Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1701,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49031,
+        "output_tokens_estimated": 7023,
+        "reads_count": 14,
+        "writes_count": 27,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:24:23.681Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1701,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49031,
+        "output_tokens_estimated": 33914,
+        "reads_count": 14,
+        "writes_count": 29,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:25:15.147Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1701,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49031,
+        "output_tokens_estimated": 33914,
+        "reads_count": 14,
+        "writes_count": 29,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:32:15.602Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1701,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49031,
+        "output_tokens_estimated": 33914,
+        "reads_count": 14,
+        "writes_count": 29,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:37:15.634Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1701,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49031,
+        "output_tokens_estimated": 33914,
+        "reads_count": 14,
+        "writes_count": 29,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:38:32.687Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1701,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49031,
+        "output_tokens_estimated": 33914,
+        "reads_count": 14,
+        "writes_count": 29,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:39:30.127Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1811,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 22,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49141,
+        "output_tokens_estimated": 33957,
+        "reads_count": 14,
+        "writes_count": 31,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:40:23.846Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1811,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 22,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49141,
+        "output_tokens_estimated": 33957,
+        "reads_count": 14,
+        "writes_count": 31,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-06-16-0201",
+      "started": "2026-06-16T23:01:58.941Z",
+      "ended": "2026-06-16T23:43:11.089Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/controllers/kategori.ts",
+          "tokens_estimated": 34,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/routes/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/kategori/services/kategori.ts",
+          "tokens_estimated": 33,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 1937,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 1370,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/icerik/page.tsx",
+          "tokens_estimated": 1300,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 402,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 4585,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 702,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 12268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/index.ts",
+          "tokens_estimated": 22858,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1811,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 344,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/controllers/sozluk-terimi.ts",
+          "tokens_estimated": 37,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/routes/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/services/sozluk-terimi.ts",
+          "tokens_estimated": 36,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/types.ts",
+          "tokens_estimated": 194,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/packages/api-client/src/index.ts",
+          "tokens_estimated": 456,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/seo/jsonld.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/sozluk.ts",
+          "tokens_estimated": 419,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 1447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/[harf]/page.tsx",
+          "tokens_estimated": 1389,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 39,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 173,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/sitemap.ts",
+          "tokens_estimated": 83,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteHeader.tsx",
+          "tokens_estimated": 86,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/chrome/SiteFooter.tsx",
+          "tokens_estimated": 44,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/(site)/sozluk/page.tsx",
+          "tokens_estimated": 28,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/theme.css",
+          "tokens_estimated": 50,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-blocks.ts",
+          "tokens_estimated": 708,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk.ts",
+          "tokens_estimated": 553,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 24,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/index.ts",
+          "tokens_estimated": 29,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 117,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 59,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/seed/sozluk-data.ts",
+          "tokens_estimated": 26813,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+          "tokens_estimated": 78,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 21,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 22,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 49141,
+        "output_tokens_estimated": 33957,
+        "reads_count": 14,
+        "writes_count": 31,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 14
       }
     }
   ],

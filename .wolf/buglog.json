@@ -843,7 +843,13 @@
     "file": "apps/web/src/lib/banners.test.ts",
     "root_cause": "Blog route /blog -> /icerik taşınırken `sed 's|/blog|/icerik|g'` kullanıldı. Test verisindeki beklenti string'i '/blog/blog' (slug='blog' olan bir blog) idi; sed iki '/blog' geçişini de değiştirip '/icerik/icerik' yaptı, slug kısmını bozdu.",
     "fix": "Beklenti elle '/icerik/blog' olarak düzeltildi. Ders: global sed path replace, path'in slug segmenti de eski adla aynıysa (örn. '/blog/blog') over-replace yapar; sed sonrası testleri çalıştırıp double-replace'leri yakala.",
-    "tags": ["sed", "refactor", "route-rename", "blog-to-icerik", "test"],
+    "tags": [
+      "sed",
+      "refactor",
+      "route-rename",
+      "blog-to-icerik",
+      "test"
+    ],
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-16T20:02:00Z"
@@ -855,7 +861,13 @@
     "file": "apps/web/src/app/(site)/icerik/[slug]/page.tsx",
     "root_cause": "blogPostingJsonLd authorTitle?: string bekliyor; post.yazar?.unvan tipi string|null (Strapi alanı nullable). null doğrudan geçilince strict TS reddetti.",
     "fix": "authorTitle: post.yazar?.unvan ?? undefined. Strapi nullable alanlarını opsiyonel string param'a geçerken daima `?? undefined` ekle.",
-    "tags": ["typescript", "strapi", "nullable", "jsonld", "blogPosting"],
+    "tags": [
+      "typescript",
+      "strapi",
+      "nullable",
+      "jsonld",
+      "blogPosting"
+    ],
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-16T20:03:00Z"
@@ -867,7 +879,17 @@
     "file": "apps/cms/src/api/blog|tool/content-types/.../schema.json",
     "root_cause": "blog.icerik ve tool.formulAciklamasi alanları Strapi 'blocks' tipiydi. Seed, BlocksRenderer'ın render ettiği ÖZEL node'lar (type:'table' ve /img/ url'li type:'image') içeriyor. Strapi 5 blocks validator'ı create sırasında bilinmeyen/uyumsuz node tiplerini reddediyor (table geçersiz; image gerçek media referansı bekler). Bug latent kalmıştı çünkü seed idempotent — eski DB'de hep atlanıyordu; taze rebuild (container+volume silindi) ilk kez ortaya çıkardı.",
     "fix": "İki alanın tipini 'blocks' -> 'json' yapıldı. json'da şema validation yok; custom table/image node'ları geçer. İçerik zaten seed/markdown'dan geliyor, Strapi WYSIWYG'inde elle yazılmıyor; BlocksRenderer content'i generic JSON dizisi olarak işliyor. Taze DB'de migration gerekmedi. cms image rebuild + db volume reset şart (cms dev compose'da source mount etmez, schema build-time gömülür).",
-    "tags": ["strapi", "blocks", "json", "seed", "validation", "bootstrap", "crash-loop", "blocksrenderer", "table"],
+    "tags": [
+      "strapi",
+      "blocks",
+      "json",
+      "seed",
+      "validation",
+      "bootstrap",
+      "crash-loop",
+      "blocksrenderer",
+      "table"
+    ],
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-16T17:14:06Z"
@@ -879,9 +901,60 @@
     "file": "apps/web/src/app/layout.tsx + docker-compose.yml (web volumes)",
     "root_cause": "Dev server Docker container'da çalışıyor; web servisinin node_modules'ı ANONYMOUS volume (/repo/apps/web/node_modules + /repo/node_modules) — image build'inde kuruldu. Host'ta `pnpm add katex` yapmak package.json/lockfile'ı günceller ve host node_modules'a kurar ama container'ın anonymous volume'u onu gölgeler → container'da katex YOK → webpack çözemez. require.resolve host'ta çalışsa da container'da dosya yok.",
     "fix": "Container içine kur: `docker compose exec -T web sh -c 'cd /repo && pnpm install'` (mounted apps/web/package.json katex'i listeliyor → anonymous volume'a +3 paket eklendi), sonra `docker compose restart web` (webpack başlangıçta modül grafiğini cache'ler, restart şart). Genel kural: Docker dev'de yeni bağımlılık = host pnpm add + container'da pnpm install + restart (VEYA image rebuild + anonymous volume reset).",
-    "tags": ["docker", "node_modules", "anonymous-volume", "pnpm", "katex", "module-not-found", "next", "webpack", "dependency"],
+    "tags": [
+      "docker",
+      "node_modules",
+      "anonymous-volume",
+      "pnpm",
+      "katex",
+      "module-not-found",
+      "next",
+      "webpack",
+      "dependency"
+    ],
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-17T00:50:00Z"
+  },
+  {
+    "id": "bug-055",
+    "timestamp": "2026-06-16T23:02:00Z",
+    "error_message": "Coolify deploy fail: dependency failed to start: container listmonk_db is unhealthy; compose up exit status 1",
+    "file": "docker-compose.prod.yml",
+    "root_cause": "Listmonk newsletter stack (listmonk + listmonk_db) prod compose'a profile'siz eklenmisti. Bos LISTMONK_DB_PASSWORD -> postgres init basarisiz -> unhealthy. listmonk depends_on listmonk_db condition service_healthy -> tum 'docker compose up' exit 1 -> Coolify deploy'u komple fail sayiyor (web/cms saglikli olsa bile).",
+    "fix": "listmonk_db ve listmonk servislerine profiles: [\"newsletter\"] eklendi. Coolify 'docker compose up -d' komutunu --profile'siz calistiriyor, bu yuzden profilli servisler default deploy'da baslamiyor. web/cms bu servislere depends_on etmiyor, izole. Newsletter hazir olunca profile aktive edilir / secret'lar girilir.",
+    "tags": [
+      "coolify",
+      "docker-compose",
+      "listmonk",
+      "deploy",
+      "healthcheck",
+      "profiles",
+      "newsletter"
+    ],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-16T23:02:00Z"
+  },
+  {
+    "id": "bug-056",
+    "timestamp": "2026-06-17T02:22:00Z",
+    "error_message": "strapi ts:generate-types fail: Content Type Definition is invalid for api::sozluk-terimi.sozluk-terimi. Some enumeration values of the field 'baslangicHarfi' collide when normalized: C, G, I, S.",
+    "file": "apps/cms/src/api/sozluk-terimi/content-types/sozluk-terimi/schema.json",
+    "root_cause": "Strapi enumeration değerlerini normalize ederken (diakritik strip + uppercase) Türk alfabesi harfleri çakışıyor: Ç→C, Ğ→G, İ/ı→I, Ş→S. Aynı enum'da hem C hem Ç olamaz; Strapi content-type loader şemayı geçersiz sayıp boot/typegen'i fail ediyor.",
+    "fix": "baslangicHarfi 'enumeration' yerine 'string' (maxLength 1, required) yapıldı. Gruplama/filtreleme zaten exact string ($in) ile çalışıyor; admin'de dropdown yerine serbest harf girişi. Türkçe harf içeren enum İSTERSEN ASCII-benzersiz değerler kullanmalısın, ham Türkçe harfleri enum'a koyma.",
+    "tags": [
+      "strapi",
+      "enumeration",
+      "turkish",
+      "normalize",
+      "collision",
+      "content-type",
+      "sozluk",
+      "typegen"
+    ],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-17T02:22:00Z"
   }
 ]

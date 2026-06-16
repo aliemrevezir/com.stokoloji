@@ -14,6 +14,7 @@ import {
   seedRop,
   seedStokDevirHizi,
 } from './seed';
+import { seedSozluk } from './seed/sozluk';
 
 /**
  * Public role'e içerik okuma izni ver (idempotent).
@@ -36,6 +37,7 @@ async function setPublicReadPermissions(strapi: Core.Strapi): Promise<void> {
     yazar: ['find', 'findOne'],
     banner: ['find', 'findOne'],
     duyuru: ['find', 'findOne'],
+    'sozluk-terimi': ['find', 'findOne'],
     // Single type yalnızca `find` action'ı kullanır (findOne yoktur).
     anasayfa: ['find'],
   };
@@ -376,6 +378,7 @@ export default {
     await seedHomepage(strapi);
     await seedBanners(strapi);
     await seedDuyuru(strapi);
+    await seedSozluk(strapi);
     await migrateFormulaBlocks(strapi);
     await migrateInternalLinks(strapi);
     await syncBlogFaq(strapi);

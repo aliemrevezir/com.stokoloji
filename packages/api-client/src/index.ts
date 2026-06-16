@@ -11,6 +11,7 @@ import type {
   Announcement,
   Banner,
   Blog,
+  SozlukTerimi,
   StrapiCollectionResponse,
   StrapiSingleResponse,
   Tool,
@@ -67,6 +68,36 @@ const BANNER_POPULATE: Record<string, string> = {
   'populate[arac][populate][kapakGorseli]': 'true',
   'populate[gorsel]': 'true',
 };
+
+const SOZLUK_POPULATE: Record<string, string> = {
+  'populate[ilgiliTerimler]': 'true',
+  'populate[seo][populate]': 'ogImage',
+};
+
+/**
+ * Türk alfabesi gösterim sırası (29 harf). Sözlük gruplama/sıralaması bu sıraya
+ * göre yapılır; JS'in `localeCompare('tr')`'ı yerine sabit indeks kullanılır.
+ */
+export const TR_ALPHABET = [
+  'A', 'B', 'C', 'Ç', 'D', 'E', 'F', 'G', 'Ğ', 'H',
+  'I', 'İ', 'J', 'K', 'L', 'M', 'N', 'O', 'Ö', 'P',
+  'R', 'S', 'Ş', 'T', 'U', 'Ü', 'V', 'Y', 'Z',
+] as const;
+
+/** Türkçe diakritik harf → ASCII URL segmenti. Ç→c, Ğ→g, ı/İ/I→i, Ö→o, Ş→s, Ü→u. */
+export function harfToSlug(harf: string): string {
+  const map: Record<string, string> = {
+    Ç: 'c', Ğ: 'g', İ: 'i', I: 'i', Ö: 'o', Ş: 's', Ü: 'u',
+  };
+  const upper = harf.toLocaleUpperCase('tr');
+  return (map[upper] ?? upper.toLocaleLowerCase('en')).normalize('NFC');
+}
+
+/** ASCII harf segmenti → o sayfada toplanacak Türk alfabesi harfleri. 'c' → ['C','Ç']. */
+export function harflerForSlug(asciiHarf: string): string[] {
+  const slug = asciiHarf.toLowerCase();
+  return TR_ALPHABET.filter((h) => harfToSlug(h) === slug);
+}
 
 export function createClient(options: StrapiClientOptions) {
   const baseUrl = options.baseUrl.replace(/\/$/, '');
@@ -207,6 +238,53 @@ export function createClient(options: StrapiClientOptions) {
         },
       );
       return data.data[0] ?? null;
+    },
+
+    /** Tüm sözlük terimlerini kelimeye göre artan getirir (liste/sitemap için). */
+    async listSozlukTerimleri(
+      opts: FetchOptions = {},
+    ): Promise<SozlukTerimi[]> {
+      const data = await request<StrapiCollectionResponse<SozlukTerimi>>(
+        '/sozluk-terimleri',
+        {
+          ...opts,
+          query: buildQuery(
+            { 'sort': 'kelime:asc', 'pagination[limit]': '500', ...SOZLUK_POPULATE },
+            opts.query,
+          ),
+        },
+      );
+      return data.data;
+    },
+
+    /**
+     * Bir ASCII harf segmentine ait sözlük terimlerini getirir.
+     *
+     * URL Türkçe karaktersizdir; diakritik harfler base harfe katlanır
+     * (`/sozluk/c` → C ve Ç). Bu yüzden tek harf değil, `harflerForSlug` ile
+     * bulunan Türk alfabesi harf kümesi `$in` ile filtrelenir.
+     */
+    async listSozlukByHarf(
+      asciiHarf: string,
+      opts: FetchOptions = {},
+    ): Promise<SozlukTerimi[]> {
+      const harfler = harflerForSlug(asciiHarf);
+      if (harfler.length === 0) return [];
+      const filters: Record<string, string> = {};
+      harfler.forEach((h, i) => {
+        filters[`filters[baslangicHarfi][$in][${i}]`] = h;
+      });
+      const data = await request<StrapiCollectionResponse<SozlukTerimi>>(
+        '/sozluk-terimleri',
+        {
+          ...opts,
+          query: buildQuery(
+            { 'sort': 'kelime:asc', 'pagination[limit]': '200', ...filters, ...SOZLUK_POPULATE },
+            opts.query,
+          ),
+        },
+      );
+      return data.data;
     },
 
     /** Anasayfa single type'ını getirir (hero, öne çıkan içerik). */
