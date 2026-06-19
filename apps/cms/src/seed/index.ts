@@ -339,20 +339,29 @@ const SDH_FORMUL = [
   ),
 ];
 
-const SDH_BLOG = [
+export const SDH_BLOG = [
   pr(
     b('Stok devir hızı (inventory turnover)'),
     t(
-      ', bir işletmenin stoğunu belirli bir dönemde kaç kez sattığını ve yeniden tazelediğini gösteren temel stok yönetimi oranıdır. Tek bir sayıyla nakitinin ne kadar süre rafta beklediğini, stokta bağlanan sermayenin ne kadar verimli döndüğünü özetler. Bu rehberde stok devir hızının ne olduğunu, formülünü, işlenmiş bir örneğini, sektör ortalamalarını ve sonucu nasıl yorumlayacağını adım adım ele alıyoruz; dilersen önce kendi rakamlarını ',
+      ', bir işletmenin stoğunu belirli bir dönemde kaç kez sattığını ve yeniden tazelediğini gösteren temel stok yönetimi oranıdır; kısaca SDH olarak da yazılır. Tek bir sayıyla nakitinin ne kadar süre rafta beklediğini, stokta bağlanan sermayenin ne kadar verimli döndüğünü özetler. Bu rehberde stok devir hızının ne olduğunu, formülünü, hangi dönem için hesaplanacağını, işlenmiş örneklerini, sektör ortalamalarını ve sonucu nasıl yorumlayacağını adım adım ele alıyoruz; dilersen önce kendi rakamlarını ',
     ),
     a('stok devir hızı hesaplama aracıyla', '/araclar/stok-devir-hizi-hesaplama'),
     t(' deneyebilirsin.'),
   ),
   h(2, 'Stok devir hızı ne demek?'),
-  p(
-    'Stok devir hızı, bir dönem boyunca sattığın malların maliyetini o dönemde elinde tuttuğun ortalama stoğa oranlar. Sonuç bir adettir: "stoğumu bu dönemde kaç kez komple sattım ve yeniledim?" sorusunun cevabıdır. İngilizcesi inventory turnover ya da stock turnover olarak geçer. Yüksek bir değer stoğun hızlı döndüğünü, düşük bir değer ise malın rafta uzun süre beklediğini gösterir. Bu oran satın alma, üretim planlama ve perakende stok yönetiminin en çok kullanılan performans göstergelerinden biridir; çünkü hem nakit akışını hem depolama maliyetini hem de eskime riskini aynı anda yansıtır.',
+  pr(
+    t(
+      'Stok devir hızı, bir dönem boyunca sattığın malların maliyetini o dönemde elinde tuttuğun ortalama stoğa oranlar. Sonuç bir adettir: "stoğumu bu dönemde kaç kez komple sattım ve yeniledim?" sorusunun cevabıdır. İngilizcesi ',
+    ),
+    b('inventory turnover'),
+    t(' ya da '),
+    b('stock turnover ratio'),
+    t(
+      ' olarak geçer; Türkçe kaynaklarda çoğu zaman SDH kısaltmasıyla görürsün. Yüksek bir değer stoğun hızlı döndüğünü, düşük bir değer ise malın rafta uzun süre beklediğini gösterir. Bu oran satın alma, üretim planlama ve perakende stok yönetiminin en çok kullanılan performans göstergelerinden biridir; çünkü hem nakit akışını hem depolama maliyetini hem de eskime riskini aynı anda yansıtır.',
+    ),
   ),
   h(2, 'Stok devir hızı nasıl hesaplanır? Formülü nedir?'),
+  h(3, 'Stok devir hızı formülü'),
   p('Stok devir hızı formülü iki adımdan oluşur:'),
   fx('Stok Devir Hızı = Satılan Malların Maliyeti (SMM) / Ortalama Stok'),
   fx('Ortalama Stok = (Dönem Başı Stok + Dönem Sonu Stok) / 2'),
@@ -368,9 +377,41 @@ const SDH_BLOG = [
       ['Ortalama stok', '(Dönem başı + dönem sonu) / 2', '₺'],
     ],
   ),
+  h(3, 'Ortalama stok nasıl hesaplanır?'),
+  p(
+    'Ortalama stok, dönem başı ve dönem sonu stok değerinin aritmetik ortalamasıdır: (dönem başı + dönem sonu) / 2. Tek bir günün stoğunu almak yerine ortalama kullanmak, dönem içindeki dalgalanmaları yumuşatır. Mevsimsel işlerde daha hassas sonuç için aylık stok değerlerinin ortalamasını da kullanabilirsin: on iki ay sonu değerini toplayıp on ikiye bölmek, tek bir başı-sonu ortalamasından daha temsil edicidir.',
+  ),
+  h(3, 'SMM ve ortalama stoğu bilançodan nasıl bulursun?'),
+  pr(
+    t('İki rakamı da finansal tablolardan çekebilirsin. '),
+    b('Satılan malların maliyeti (SMM)'),
+    t(' gelir tablosunda ayrı bir satır olarak yer alır. '),
+    b('Dönem başı ve dönem sonu stok'),
+    t(
+      ' değerleri ise bilançonun (finansal durum tablosu) dönen varlıklar bölümündeki "Stoklar" kaleminden okunur: önceki dönemin kapanış stoğu bu dönemin açılış stoğudur. Yani geçen yılın bilançosundaki stok bu yılın dönem başı stoğu, bu yılın bilançosundaki stok ise dönem sonu stoğudur. Bu yüzden stok devir hızı, dışarıdan bir şirketi yalnızca finansal tablolarıyla analiz ederken de hesaplanabilen bir orandır.',
+    ),
+  ),
+  h(2, 'Stok devir hızını hangi dönem için hesaplamalı?'),
+  h(3, 'Yıllık, çeyreklik ve aylık stok devir hızı'),
+  p(
+    'Stok devir hızı her zaman bir döneme aittir. En yaygın kullanım yıllıktır (365 gün), ama mevsimsel veya hızlı değişen işlerde çeyreklik (90 gün) ya da aylık (30 gün) hesaplamak daha bilgilendiricidir. Kritik kural şudur: paydaki SMM ile hesabın dönemi aynı olmalı. Aylık devir hızı istiyorsan paya o ayın SMM değerini yaz, ortalama stoğu o ayın başı ve sonuyla al; aksi halde oran yanıltır.',
+  ),
+  p('Devir hızını güne çevirirken de aynı dönem gününü kullanırsın:'),
+  fx('Stokta Kalma Süresi (gün) = Dönem Günü / Stok Devir Hızı'),
+  pr(
+    t('Yıllık hesapta dönem günü 365, çeyreklikte 90, aylıkta 30 alınır. '),
+    a('Stok devir hızı hesaplama aracında', '/araclar/stok-devir-hizi-hesaplama'),
+    t(
+      ' dönemi yıllık, çeyreklik veya aylık olarak seçebilir, stokta kalma süresini doğru gün bazında görebilirsin.',
+    ),
+  ),
   h(2, 'Stok devir hızı hesaplama örneği'),
   p(
-    'Bir işletmenin yıllık SMM değeri 2.000.000 ₺ olsun. Yıl başında deposunda 300.000 ₺, yıl sonunda 400.000 ₺ değerinde stok bulunuyor. Hesabı adım adım yapalım:',
+    'Farklı iş modelleri için örnekleyelim. Hepsinde aynı iki adımı izliyoruz: önce ortalama stok, sonra SMM bölü ortalama stok.',
+  ),
+  h(3, 'Üretim örneği: hammadde stok devir hızı'),
+  p(
+    'Bir imalat işletmesinin yıllık hammadde SMM değeri 2.000.000 ₺ olsun. Yıl başında deposunda 300.000 ₺, yıl sonunda 400.000 ₺ değerinde hammadde stoğu bulunuyor. Hesabı adım adım yapalım:',
   ),
   table(
     ['Adım', 'İşlem', 'Sonuç'],
@@ -381,9 +422,18 @@ const SDH_BLOG = [
     ],
   ),
   p(
-    'Sonuç: bu işletme stoğunu yılda yaklaşık 5,71 kez döndürüyor; başka bir deyişle bir ürün depoya girdikten ortalama 64 gün sonra satılıyor. Bu değer tek başına iyi ya da kötü değildir; anlamı sektör ortalaması ve geçmiş dönemlerle kıyaslandığında ortaya çıkar.',
+    'Sonuç: bu işletme hammadde stoğunu yılda yaklaşık 5,71 kez döndürüyor; bir parça depoya girdikten ortalama 64 gün sonra üretime alınıyor. Üretim ve imalatta 4-6 aralığı tipiktir, dolayısıyla bu değer makuldür.',
+  ),
+  h(3, 'Perakende ve e-ticaret örneği'),
+  p(
+    'Bir e-ticaret işletmesinin yıllık SMM değeri 4.800.000 ₺, ortalama stoğu 600.000 ₺ olsun. Stok devir hızı 4.800.000 / 600.000 = 8 olur; stokta kalma süresi 365 / 8 yaklaşık 46 gündür. Perakendede 5-10 bandı normaldir, 8 sağlıklı bir değerdir. Perakende için aylık takip çoğu zaman daha yararlıdır; çünkü kampanya ve sezon etkisi yıllık ortalamada kaybolur.',
+  ),
+  h(3, 'Birden fazla ürün olduğunda hesaplama'),
+  p(
+    'Çok ürünlü bir işletmede stok devir hızını ürün ürün değil, değer üzerinden topluca hesaplarsın: tüm ürünlerin SMM toplamını, tüm ürünlerin ortalama stok değeri toplamına bölersin. Adet bazında toplamak yanlıştır; çünkü farklı ürünlerin birim maliyeti farklıdır, ortak payda her zaman parasal değerdir. Daha derin analiz için aynı formülü kategori ya da ABC grubu bazında ayrı ayrı uygulayıp hangi grubun sermayeyi kilitlediğini görebilirsin.',
   ),
   h(2, 'Stok devir hızı kaç olmalı? Sektör ortalamaları'),
+  h(3, 'Sektör ortalamaları tablosu'),
   p(
     'Tek bir ideal değer yoktur; doğru aralık tamamen sektöre ve iş modeline bağlıdır. Hızlı tüketim ürünlerinde yüksek devir beklenirken, dayanıklı tüketim ve yedek parçada düşük devir normaldir. Aşağıdaki tablo tipik aralıkları hem yıllık devir sayısı hem de ortalama stokta kalma süresi olarak veriyor:',
   ),
@@ -398,17 +448,18 @@ const SDH_BLOG = [
       ['Yedek parça / ağır sanayi', '1 - 3', '120 - 365'],
     ],
   ),
+  h(3, 'İdeal stok devir hızı nasıl belirlenir?'),
   p(
-    'Bu aralıkları mutlak doğru değil, başlangıç referansı olarak kullan. Asıl anlamlı kıyas iki yerdedir: kendi geçmiş dönemlerin (devir hızın artıyor mu azalıyor mu) ve doğrudan rakiplerin. Sektör ortalamasının belirgin altındaysan stok yönetiminde iyileştirme alanın var demektir.',
+    'Bu aralıkları mutlak doğru değil, başlangıç referansı olarak kullan. Asıl anlamlı kıyas iki yerdedir: kendi geçmiş dönemlerin (devir hızın artıyor mu azalıyor mu) ve doğrudan rakiplerin. Senin için ideal devir hızı, stoksuz kalmadan talebi karşılayabildiğin en yüksek değerdir. Sektör ortalamasının belirgin altındaysan stok yönetiminde iyileştirme alanın var demektir; belirgin üstündeysen ve sık stoksuz kalıyorsan emniyet stoğunu gözden geçirmen gerekebilir.',
   ),
   h(2, 'Stok devir hızı nasıl yorumlanır? Yüksek mi iyi düşük mü?'),
-  ul([
-    'Yüksek devir hızı: nakit hızlı döner, depolama ve sigorta maliyeti düşer, eskime riski azalır. Ancak aşırı yüksek değer çoğu zaman stoğu çok ince tuttuğunun işaretidir; stoksuz kalma ve kaçan satış riski artar.',
-    'Düşük devir hızı: sermaye stokta bağlanır, depo dolar, fire ve demode olma riski yükselir. Ölü stok ve fazla sipariş çoğu zaman bunun arkasındadır.',
-    'Dengeli devir hızı: talebi karşılayacak kadar stok tutarken sermayeyi gereksiz bağlamayan bölgedir; hedef budur.',
-  ]),
+  h(3, 'Yüksek stok devir hızı ne anlama gelir?'),
   p(
-    'Devir hızını asla tek başına okuma; her zaman servis seviyesi (talebi karşılama oranı) ile birlikte değerlendir. Yüksek devir, sürekli stoksuz kalarak elde ediliyorsa bu bir başarı değil, gizli bir satış kaybıdır.',
+    'Yüksek devir hızı genelde olumludur: nakit hızlı döner, depolama ve sigorta maliyeti düşer, eskime ve fire riski azalır. Ancak aşırı yüksek değer çoğu zaman stoğu çok ince tuttuğunun işaretidir; stoksuz kalma ve kaçan satış riski artar. Yüksek devri her zaman servis seviyesiyle (talebi karşılama oranı) birlikte oku: sürekli stoksuz kalarak elde edilen yüksek devir bir başarı değil, gizli bir satış kaybıdır.',
+  ),
+  h(3, 'Düşük stok devir hızı ne anlama gelir?'),
+  p(
+    'Düşük devir hızı, sermayenin stokta bağlandığını, deponun dolu olduğunu ve malın yavaş satıldığını gösterir; fire, demode olma ve depolama maliyeti riski yükselir. Ölü stok ve fazla sipariş çoğu zaman bunun arkasındadır. Hedef ikisinin arasıdır: talebi karşılayacak kadar stok tutarken sermayeyi gereksiz bağlamayan dengeli bölge.',
   ),
   h(2, 'Stok devir süresi (stokta kalma süresi) nasıl bulunur?'),
   p(
@@ -416,7 +467,7 @@ const SDH_BLOG = [
   ),
   fx('Stokta Kalma Süresi (gün) = 365 / Stok Devir Hızı'),
   p(
-    'Devir hızı 5,71 olan örneğimizde stokta kalma süresi 365 / 5,71 = 64 gündür. Bazı kaynaklar yılı 360 gün kabul eder; fark küçüktür, dönemler arasında tutarlı olman yeterlidir.',
+    'Devir hızı 5,71 olan örneğimizde stokta kalma süresi 365 / 5,71 = 64 gündür. İngilizce kaynaklarda bu değer days inventory outstanding (DIO) olarak geçer. Bazı kaynaklar yılı 360 gün kabul eder; fark küçüktür, dönemler arasında tutarlı olman yeterlidir.',
   ),
   h(2, 'Stok devir hızı nasıl artırılır?'),
   p('Düşük devir hızını yükseltmek için en çok işe yarayan adımlar şunlardır:'),
@@ -427,6 +478,21 @@ const SDH_BLOG = [
     'Tedarik süresini kısalt: daha hızlı ve güvenilir tedarikçilerle çalışıp daha küçük ve sık sipariş ver.',
     'ABC analizi uygula: cironun çoğunu getiren A grubu ürünlere odaklan, C grubunda stoğu minimumda tut.',
   ]),
+  h(2, 'Excel ile stok devir hızı nasıl hesaplanır?'),
+  p(
+    'Stok devir hızını Excel veya Google Sheets ile saniyeler içinde kurabilirsin. Üç hücreye SMM, dönem başı ve dönem sonu stoğunu yaz; ortalama stoğu ve devir hızını formülle bağla:',
+  ),
+  fx('Stok Devir Hızı = SMM / ((Dönem Başı + Dönem Sonu) / 2)'),
+  p(
+    'Örneğin SMM B1, dönem başı B2, dönem sonu B3 hücresindeyse devir hızı =B1/((B2+B3)/2), stokta kalma süresi ise =365/B4 olur (B4 devir hızı hücresi). Tabloyu aylık sütunlara genişletip devir hızını zaman içinde izleyebilir, bir grafikle trendini görebilirsin. Bu kurulum, dönem boyunca düşen bir devir hızını erkenden fark etmenin en pratik yoludur.',
+  ),
+  pr(
+    t('Hesabı hiç kurmadan denemek istersen '),
+    a('stok devir hızı hesaplama aracı', '/araclar/stok-devir-hizi-hesaplama'),
+    t(' aynı formülü yıllık, çeyreklik ve aylık dönem seçenekleriyle anında uygular; '),
+    a('ücretsiz Excel şablonunu', '/#lead'),
+    t(' indirerek kendi takip tablonu da oluşturabilirsin.'),
+  ),
   h(2, 'Stok devir hızı hesaplarken sık yapılan hatalar'),
   ul([
     'Paya ciro yazmak: SMM yerine satış cirosu kullanmak oranı yapay olarak şişirir. Daima maliyet bazını kullan.',
@@ -486,6 +552,36 @@ export const SDH_SSS = [
     soru: 'Stok devir hızının İngilizcesi nedir?',
     cevap:
       'Stok devir hızı İngilizcede inventory turnover veya stock turnover ratio olarak geçer. Stokta kalma süresi ise days inventory outstanding (DIO) olarak adlandırılır.',
+  },
+  {
+    soru: 'SDH ne demek?',
+    cevap:
+      'SDH, stok devir hızının kısaltmasıdır. Stoğun bir dönemde kaç kez satılıp yenilendiğini gösterir: SDH = SMM / Ortalama Stok.',
+  },
+  {
+    soru: 'Aylık stok devir hızı nasıl hesaplanır?',
+    cevap:
+      'Aynı formül kullanılır, ama hem SMM hem stok değerleri o aya ait olmalıdır: o ayın SMM değerini, ayın başı ve sonu stoğunun ortalamasına bölersin. Stokta kalma süresini bulurken 365 yerine 30 günü kullanırsın.',
+  },
+  {
+    soru: 'Hammadde stok devir hızı nasıl hesaplanır?',
+    cevap:
+      'Hammadde için paya dönemde tüketilen hammadde maliyetini, paydaya dönem başı ve dönem sonu hammadde stoğunun ortalamasını yazarsın. Üretim işletmelerinde 4-6 aralığı tipik kabul edilir.',
+  },
+  {
+    soru: 'Stok devir hızı Excel ile nasıl hesaplanır?',
+    cevap:
+      'SMM, dönem başı ve dönem sonu stoğu üç hücreye yazıp devir hızını =SMM/((Dönem başı+Dönem sonu)/2) formülüyle, stokta kalma süresini ise =365/devir hızı hücresi ile hesaplarsın.',
+  },
+  {
+    soru: 'Stok devir hızı bilançodan nasıl bulunur?',
+    cevap:
+      'Satılan malların maliyeti (SMM) gelir tablosundan, dönem başı ve dönem sonu stok değerleri ise bilançonun "Stoklar" kaleminden okunur. Önceki dönemin kapanış stoğu, bu dönemin açılış stoğudur.',
+  },
+  {
+    soru: 'Stok devir hızı ile stok devir süresi arasındaki fark nedir?',
+    cevap:
+      'Stok devir hızı stoğun dönemde kaç kez döndüğünü (adet) gösterir; stok devir süresi ise bunu güne çevirir: 365 / devir hızı. Devir hızı yükseldikçe stokta kalma süresi kısalır.',
   },
 ];
 

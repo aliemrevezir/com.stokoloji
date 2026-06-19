@@ -102,19 +102,34 @@ export function CalculatorCard({
         {def.fields.map((field) => (
           <div className="field" key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>
-            <div className="input-group">
-              <input
+            {field.options ? (
+              <select
                 className="input"
                 id={field.name}
-                type="number"
-                inputMode="decimal"
-                min={field.min}
-                step={field.step}
-                value={Number.isNaN(values[field.name]) ? '' : values[field.name]}
+                value={Number.isNaN(values[field.name]) ? field.defaultValue : values[field.name]}
                 onChange={(e) => handleChange(field.name, e.target.value)}
-              />
-              {field.suffix && <span className="suffix">{field.suffix}</span>}
-            </div>
+              >
+                {field.options.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="input-group">
+                <input
+                  className="input"
+                  id={field.name}
+                  type="number"
+                  inputMode="decimal"
+                  min={field.min}
+                  step={field.step}
+                  value={Number.isNaN(values[field.name]) ? '' : values[field.name]}
+                  onChange={(e) => handleChange(field.name, e.target.value)}
+                />
+                {field.suffix && <span className="suffix">{field.suffix}</span>}
+              </div>
+            )}
           </div>
         ))}
 

@@ -26,6 +26,8 @@ function inlineText(children: unknown): string {
 export interface TocEntry {
   id: string;
   label: string;
+  /** Başlık seviyesi (2 = ana bölüm, 3 = alt başlık → girintili gösterilir). */
+  level: number;
 }
 
 /** İlk paragraf(lar)dan meta description için özet üretir (varsayılan 160 karakter). */
@@ -47,14 +49,14 @@ export function excerptFromBlocks(content: unknown, maxLen = 160): string | unde
   return `${(lastSpace > 40 ? cut.slice(0, lastSpace) : cut).trim()}…`;
 }
 
-/** İçerikteki level-2 başlıklardan içindekiler (TOC) listesi üretir. */
+/** İçerikteki H2 + H3 başlıklardan içindekiler (TOC) listesi üretir (H3 girintili). */
 export function extractToc(content: unknown): TocEntry[] {
   if (!Array.isArray(content)) return [];
   const toc: TocEntry[] = [];
   for (const block of content as { type?: string; level?: number; children?: unknown }[]) {
-    if (block.type === 'heading' && block.level === 2) {
+    if (block.type === 'heading' && (block.level === 2 || block.level === 3)) {
       const label = inlineText(block.children);
-      if (label) toc.push({ id: slugify(label), label });
+      if (label) toc.push({ id: slugify(label), label, level: block.level });
     }
   }
   return toc;

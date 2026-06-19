@@ -21,6 +21,8 @@ export interface CalculatorField {
   defaultValue: number;
   min?: number;
   step?: number;
+  /** Verilirse alan sayısal input yerine <select> (preset) olarak render edilir. */
+  options?: { label: string; value: number }[];
 }
 
 export interface ResultRow {
@@ -75,16 +77,29 @@ const stokDevirHiziDef: CalculatorDef = {
     { name: 'smm', label: 'Satılan Malların Maliyeti (SMM)', suffix: '₺', defaultValue: 2000000, min: 0.01, step: 1 },
     { name: 'donemBasiStok', label: 'Dönem Başı Stok', suffix: '₺', defaultValue: 300000, min: 0, step: 1 },
     { name: 'donemSonuStok', label: 'Dönem Sonu Stok', suffix: '₺', defaultValue: 400000, min: 0, step: 1 },
+    {
+      name: 'donemGunu',
+      label: 'Hesap Dönemi',
+      defaultValue: 365,
+      options: [
+        { label: 'Yıllık (365 gün)', value: 365 },
+        { label: 'Çeyreklik (90 gün)', value: 90 },
+        { label: 'Aylık (30 gün)', value: 30 },
+      ],
+    },
   ],
   compute: (inputs) => {
+    const donemGunu = inputs.donemGunu ?? 365;
     const r = stokDevirHizi({
       smm: inputs.smm!,
       donemBasiStok: inputs.donemBasiStok!,
       donemSonuStok: inputs.donemSonuStok!,
+      donemGunu,
     });
+    const donemAdi = donemGunu === 30 ? 'ay' : donemGunu === 90 ? 'çeyrek' : 'yıl';
     return {
       value: formatNumber(r.devirHizi),
-      unit: 'kez/yıl',
+      unit: `kez/${donemAdi}`,
       summary: `Stok devir hızı = ${formatNumber(r.devirHizi)} kez · stok ortalama ${formatNumber(r.stoktaKalmaSuresi)} günde bir tükeniyor`,
       rows: [
         { label: 'Ortalama stok', value: formatCurrency(r.ortalamaStok) },

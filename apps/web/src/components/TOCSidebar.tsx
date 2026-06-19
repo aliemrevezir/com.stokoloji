@@ -1,9 +1,11 @@
 export interface TocItem {
   id: string;
   label: string;
+  /** 2 = ana bölüm, 3 = alt başlık (girintili). Eski çağrılar için opsiyonel. */
+  level?: number;
 }
 
-/** Blog için sticky "Bu yazıda" içindekiler. */
+/** Blog için sticky "Bu yazıda" içindekiler (H2 ana, H3 girintili). */
 export function TOCSidebar({ items }: { items: TocItem[] }) {
   if (items.length === 0) return null;
   return (
@@ -14,7 +16,9 @@ export function TOCSidebar({ items }: { items: TocItem[] }) {
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className="-ml-px block border-l border-transparent pl-3 text-muted hover:border-accent-500 hover:text-brand-700"
+              className={`-ml-px block border-l border-transparent text-muted hover:border-accent-500 hover:text-brand-700 ${
+                item.level === 3 ? 'pl-6 text-[0.8125rem]' : 'pl-3'
+              }`}
             >
               {item.label}
             </a>

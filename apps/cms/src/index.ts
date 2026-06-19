@@ -5,6 +5,7 @@ import {
   BLOG_SSS,
   EMNIYET_SSS,
   ROP_SSS,
+  SDH_BLOG,
   SDH_SSS,
   seedBanners,
   seedDemoContent,
@@ -365,6 +366,36 @@ async function syncBlogFaq(strapi: Core.Strapi): Promise<void> {
   }
 }
 
+/**
+ * Stok devir hızı blog gövdesini (icerik) canonical SDH_BLOG ile senkronlar
+ * (idempotent). seedStokDevirHizi CREATE-only olduğundan mevcut canlı kayıt
+ * güncellenmez; bu migration, SEO için zenginleştirilen gövdeyi (yeni H2/H3
+ * bölümleri: bilançodan hesaplama, dönem seçimi, hammadde/perakende/çoklu ürün
+ * örnekleri, Excel) canlıya taşır. Yalnızca içerik imzası farklıysa yazar →
+ * yakınsar. NOT: gövde seed-yönetimlidir; panelden elle düzenleme sonraki boot'ta
+ * canonical ile geri yazılır (SDH_SSS ↔ syncBlogFaq ile aynı sözleşme).
+ */
+async function migrateStokDevirHiziBody(strapi: Core.Strapi): Promise<void> {
+  try {
+    const blog: any = await strapi.documents('api::blog.blog').findFirst({
+      filters: { slug: 'stok-devir-hizi-nedir' },
+    });
+    if (!blog) return;
+
+    const sig = (icerik: unknown): string => JSON.stringify(icerik ?? null);
+    if (sig(blog.icerik) === sig(SDH_BLOG)) return;
+
+    await strapi.documents('api::blog.blog').update({
+      documentId: blog.documentId,
+      data: { icerik: SDH_BLOG },
+      status: 'published',
+    });
+    strapi.log.info('[migrate-sdh-body] stok-devir-hizi-nedir gövdesi güncellendi.');
+  } catch (err) {
+    strapi.log.warn(`[migrate-sdh-body] atlandı: ${(err as Error).message}`);
+  }
+}
+
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
@@ -381,6 +412,7 @@ export default {
     await seedSozluk(strapi);
     await migrateFormulaBlocks(strapi);
     await migrateInternalLinks(strapi);
+    await migrateStokDevirHiziBody(strapi);
     await syncBlogFaq(strapi);
     await setAnasayfaFieldHints(strapi);
   },
