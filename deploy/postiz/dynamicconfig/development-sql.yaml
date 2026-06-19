@@ -1,0 +1,11 @@
+# Temporal dynamic config — LEAN/postgres visibility (Elasticsearch yok).
+# Temporal'in resmi docker-compose-postgres setup'indan alindi.
+# Bu dosya, gelismis (ES tabanli) visibility'yi devre disi birakir; tum
+# arama/visibility postgres uzerinden calisir. Postiz'in zamanlama
+# workflow'lari icin yeterlidir.
+limit.maxIDLength:
+  - value: 255
+    constraints: {}
+system.forceSearchAttributesCacheRefreshOnRead:
+  - value: true # yalnizca dev/self-host; yuksek hacimde kapatilabilir
+    constraints: {}
