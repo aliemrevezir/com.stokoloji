@@ -956,5 +956,83 @@
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-17T02:22:00Z"
+  },
+  {
+    "id": "bug-057",
+    "timestamp": "2026-06-19",
+    "error_message": "ValidationError: icerik must be a `string` type, but the final value was: [array] — Strapi boot crash after json→richtext schema change",
+    "file": "apps/cms/src/index.ts",
+    "root_cause": "FAZ 2'de blog.icerik+tool.formulAciklamasi json→richtext (string) yapıldı. Eski migration'lar (migrateFormulaBlocks, migrateInternalLinks, syncBlogFaq body-strip) hâlâ alana blocks DİZİSİ yazıyordu → string-tipli alanda yup validation patlıyor.",
+    "fix": "Dizi yazan migration'lar kaldırıldı; tek içerik yazıcısı migrateContentToMarkdown (her zaman markdown STRING yazar). link-fix + FAQ-strip seed/blocksToMarkdown.ts converter'ına taşındı. syncBlogFaq yalnız sss senkronu yapar, icerik'e dokunmaz.",
+    "tags": [
+      "strapi",
+      "richtext",
+      "migration",
+      "validation",
+      "markdown",
+      "faz2"
+    ],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-19"
+  },
+  {
+    "id": "bug-058",
+    "timestamp": "2026-06-19",
+    "error_message": "Module not found: Can't resolve 'katex/dist/katex.min.css' + react-markdown/remark/rehype container'da YOK (pnpm add sonrası)",
+    "file": "docker-compose.yml (web service)",
+    "root_cause": "Dev compose web servisinde node_modules ANONİM VOLUME ('- /repo/node_modules', '- /repo/apps/web/node_modules'). Host'ta pnpm add ile eklenen yeni deps image rebuild edilse bile eski anon volume tarafından gölgeleniyor → container eski node_modules'u görüyor.",
+    "fix": "docker compose build web SONRASI 'docker compose up -d -V web' (--renew-anon-volumes) ile anon volume'ları image'dan yenile. Yeni npm bağımlılığı eklerken dev container için -V şart.",
+    "tags": [
+      "docker",
+      "compose",
+      "pnpm",
+      "node_modules",
+      "anon-volume",
+      "dev",
+      "gotcha"
+    ],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-19"
+  },
+  {
+    "id": "bug-059",
+    "timestamp": "2026-06-19",
+    "error_message": "Render'da ham '**Kaynak: **King' görünüyor — bold parse olmuyor, ** düz metin sızıyor",
+    "file": "apps/cms/src/seed/blocksToMarkdown.ts",
+    "root_cause": "blocks b('Kaynak: ') node'u converter'da '**Kaynak: **' üretiyordu; CommonMark kapanış '**'tan önce boşluğu emphasis saymaz → markdown bold parse edilmedi.",
+    "fix": "inlineToMd: bold/italic sararken baştaki/sondaki boşluğu işaretlerin DIŞINA al (lead/trail ayır, core'u sar). Sonuç '**Kaynak:** ' → doğru bold.",
+    "tags": [
+      "markdown",
+      "commonmark",
+      "converter",
+      "bold",
+      "blocksToMarkdown",
+      "faz2"
+    ],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-19"
+  },
+  {
+    "id": "bug-060",
+    "timestamp": "2026-06-20T00:00:00Z",
+    "error_message": "Coolify deploy: temporal container unhealthy/Error ~8s, 'dependency failed to start: container temporal is unhealthy', exit status 1",
+    "file": "deploy/postiz/docker-compose.yaml",
+    "root_cause": "temporal'a eklenen mem_limit:512m, auto-setup ilk boot sema kurulumu sirasinda asilip OOM-kill -> ~8s crash",
+    "fix": "Tum hard mem_limit'ler kaldirildi (ozellikle temporal+postiz); ENABLE_ES=false + TEMPORAL_NAMESPACE=default explicit; temporal healthcheck start_period 40->120s, retries 10->20",
+    "tags": [
+      "postiz",
+      "temporal",
+      "docker",
+      "coolify",
+      "oom",
+      "mem_limit",
+      "deploy"
+    ],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-20T00:00:00Z"
   }
 ]

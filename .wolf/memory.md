@@ -744,3 +744,209 @@ En üstteki utility-bar (önceden SiteHeader'da hardcoded) Strapi-yönetilen hal
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-06-17 03:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-17 03:13
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-17 03:24
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 03:37 | Edited ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/listmonk-ses-esp.md | modified YAPILDI() | ~403 |
+| 03:38 | Session end: 1 writes across 1 files (listmonk-ses-esp.md) | 12 reads | ~5623 tok |
+| 19:19 | Session end: 1 writes across 1 files (listmonk-ses-esp.md) | 12 reads | ~5623 tok |
+
+## Session: 2026-06-19 20:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-19 20:37
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-19 20:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-19 20:55
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 20:56 | Edited icerik-uretim-kurallari.md | 1→2 lines | ~113 |
+| 20:56 | Session end: 1 writes across 1 files (icerik-uretim-kurallari.md) | 0 reads | ~121 tok |
+| 21:00 | Created ../../../../.claude/plans/stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md | — | ~2156 |
+| 21:03 | Edited apps/web/src/lib/blocks.ts | 4→6 lines | ~46 |
+| 21:03 | Edited apps/web/src/lib/blocks.ts | modified extractToc() | ~155 |
+| 21:03 | Edited apps/web/src/components/TOCSidebar.tsx | modified TOCSidebar() | ~275 |
+| 21:03 | Edited apps/web/src/lib/tools/registry.ts | 8→10 lines | ~80 |
+| 21:03 | Edited apps/web/src/lib/tools/registry.ts | added nullish coalescing | ~294 |
+| 21:04 | Edited apps/web/src/components/CalculatorCard.tsx | CSS: defaultValue | ~369 |
+| 21:04 | Created ../../../../.claude/plans/yeni-bir-blog-yaz-s-shimmying-marshmallow.md | — | ~2941 |
+| 21:07 | Edited apps/cms/src/seed/index.ts | modified ikisinin() | ~2654 |
+| 21:07 | Edited apps/cms/src/seed/index.ts | expanded (+15 lines) | ~340 |
+| 21:07 | Edited apps/cms/src/seed/index.ts | expanded (+30 lines) | ~518 |
+| 21:07 | Edited apps/cms/src/seed/index.ts | 3→3 lines | ~23 |
+| 21:08 | Edited apps/cms/src/index.ts | 6→7 lines | ~24 |
+| 21:08 | Edited apps/cms/src/index.ts | added error handling | ~385 |
+| 21:09 | Edited apps/cms/src/index.ts | 3→4 lines | ~44 |
+| 21:09 | Created ../launch-icerik/blog/stok-nedir-BRIEF.md | — | ~2764 |
+| 21:09 | stok-nedir pillar blog brief (SEMrush+SERP araştırma, H hiyerarşisi, iç link planı) | launch-icerik/blog/stok-nedir-BRIEF.md | created | ~6k |
+| 21:09 | Session end: 17 writes across 9 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 10 reads | ~47038 tok |
+| 21:11 | Session end: 17 writes across 9 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 11 reads | ~47038 tok |
+| 21:12 | Created ../launch-icerik/blog/stok-nedir.md | — | ~2729 |
+| 21:12 | Edited ../launch-icerik/blog/stok-nedir.md | inline fix | ~17 |
+| 21:12 | Edited ../launch-icerik/blog/stok-nedir.md | inline fix | ~45 |
+| 21:13 | Session end: 20 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 11 reads | ~50028 tok |
+| 21:14 | Session end: 20 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~52502 tok |
+| 21:15 | Session end: 20 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~52502 tok |
+| 21:17 | Edited apps/cms/src/seed/index.ts | added 1 condition(s) | ~3936 |
+| 21:17 | Edited apps/cms/src/index.ts | 3→4 lines | ~19 |
+| 21:17 | Edited apps/cms/src/index.ts | 2→3 lines | ~30 |
+| 21:18 | stok-nedir pillar blog Strapi seed (seedStokNedir + bootstrap), cms restart, doğrulandı | apps/cms/src/seed/index.ts, apps/cms/src/index.ts | localde canlı (/icerik/stok-nedir 200) | ~9k |
+| 21:19 | Session end: 23 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~56867 tok |
+| 21:21 | Session end: 23 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~56867 tok |
+| 21:22 | Session end: 23 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~56867 tok |
+| 21:32 | Session end: 23 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~56867 tok |
+| 21:34 | Edited apps/cms/src/seed/index.ts | 3→8 lines | ~144 |
+| 21:34 | Edited apps/cms/src/seed/index.ts | 4→9 lines | ~140 |
+| 21:35 | Edited apps/cms/src/seed/index.ts | added nullish coalescing | ~857 |
+| 21:35 | Session end: 26 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~61921 tok |
+| 21:36 | stok-nedir kapak + 2 gövde görseli: PNG→jpg(1600px), seed-assets, seedStokNedir upsert+kapak, cms restart, doğrulandı | apps/cms/seed-assets/uploads/, apps/cms/src/seed/index.ts | canlıya hazır, push-safe | ~10k |
+| 21:36 | Session end: 26 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~61921 tok |
+| 21:39 | Session end: 26 writes across 10 files (icerik-uretim-kurallari.md, stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, blocks.ts, TOCSidebar.tsx, registry.ts) | 14 reads | ~61921 tok |
+
+## Session: 2026-06-19 21:44
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-19 21:44
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:53 | Created ../../../../.claude/plans/stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md | — | ~1905 |
+| 21:53 | Session end: 1 writes across 1 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md) | 12 reads | ~42299 tok |
+| 21:55 | Edited docker-compose.prod.yml | 5→5 lines | ~69 |
+| 21:55 | Edited docker-compose.prod.yml | reduced (-7 lines) | ~76 |
+| 21:56 | Created .github/workflows/build-push.yml | — | ~880 |
+| 21:59 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 12 reads | ~43324 tok |
+| 22:01 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 13 reads | ~43324 tok |
+| 22:02 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 13 reads | ~43324 tok |
+| 22:03 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 13 reads | ~43324 tok |
+| 22:06 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 14 reads | ~43324 tok |
+| 22:09 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 14 reads | ~43324 tok |
+| 22:11 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 14 reads | ~43324 tok |
+| 22:12 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 14 reads | ~43324 tok |
+| 22:27 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 14 reads | ~43324 tok |
+| 22:28 | Session end: 4 writes across 3 files (stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md, docker-compose.prod.yml, build-push.yml) | 14 reads | ~43324 tok |
+
+## Session: 2026-06-19 22:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 22:38 | Created apps/cms/src/seed/blocksToMarkdown.ts | — | ~1754 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | added 1 import(s) | ~28 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~16 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~11 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~14 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~10 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~12 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~16 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~12 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~15 |
+| 22:38 | Edited apps/cms/src/seed/index.ts | inline fix | ~10 |
+| 22:38 | Edited apps/cms/src/api/blog/content-types/blog/schema.json | 3→3 lines | ~14 |
+| 22:38 | Edited apps/cms/src/api/tool/content-types/tool/schema.json | 3→3 lines | ~17 |
+| 22:38 | Edited apps/cms/src/index.ts | added 1 import(s) | ~90 |
+| 22:39 | Edited apps/cms/src/index.ts | modified migrateContentToMarkdown() | ~533 |
+| 22:39 | Edited apps/cms/src/index.ts | migrateStokDevirHiziBody() → migrateContentToMarkdown() | ~44 |
+| 22:40 | Created apps/web/src/components/MarkdownContent.tsx | — | ~1304 |
+| 22:40 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | "@/components/BlocksRender" → "@/components/MarkdownCont" | ~18 |
+| 22:40 | Edited apps/web/src/app/(site)/icerik/[slug]/page.tsx | inline fix | ~16 |
+| 22:40 | Edited apps/web/src/components/ToolPageTemplate.tsx | "./BlocksRenderer" → "./MarkdownContent" | ~15 |
+| 22:40 | Edited apps/web/src/components/ToolPageTemplate.tsx | inline fix | ~20 |
+| 22:41 | Edited apps/web/src/lib/blocks.ts | added 11 condition(s) | ~877 |
+| 22:42 | Edited apps/web/src/lib/blocks.ts | added nullish coalescing | ~74 |
+| 22:57 | Edited packages/api-client/src/types.ts | 5→6 lines | ~72 |
+| 22:57 | Edited packages/api-client/src/types.ts | 3→4 lines | ~47 |
+| 23:05 | FAZ 2 — içerik Markdown'\''a: blog icerik + tool formulAciklamasi json→richtext; seed/blocksToMarkdown.ts converter; index.ts migrateContentToMarkdown (migrateStokDevirHiziBody kaldırıldı); MarkdownContent.tsx (react-markdown+gfm+math+katex); page+ToolPageTemplate+blocks.ts(toc/excerpt md)+types.ts | 10+ dosya | web+cms typecheck/lint/test yeşil, converter çıktısı doğrulandı | ~9k |
+| 23:00 | Edited CLAUDE.md | modified tamam() | ~383 |
+| 23:00 | Session end: 26 writes across 9 files (blocksToMarkdown.ts, index.ts, schema.json, MarkdownContent.tsx, page.tsx) | 11 reads | ~51241 tok |
+| 23:07 | Edited apps/cms/src/index.ts | removed 139 lines | ~107 |
+| 23:07 | Edited apps/cms/src/index.ts | 4→2 lines | ~22 |
+| 23:07 | Edited apps/cms/src/index.ts | reduced (-7 lines) | ~89 |
+| 23:07 | Edited apps/cms/src/index.ts | removed 21 lines | ~33 |
+
+## Session: 2026-06-19 23:09
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:17 | Created deploy/postiz/docker-compose.yaml | — | ~1546 |
+| 23:17 | Created deploy/postiz/dynamicconfig/development-sql.yaml | — | ~144 |
+
+## Session: 2026-06-19 23:18
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:18 | Created deploy/postiz/README.md | — | ~857 |
+| 23:18 | Edited apps/cms/src/seed/blocksToMarkdown.ts | added nullish coalescing | ~203 |
+| 20:30 | Postiz lean deploy paketi (ES'siz, Temporal postgres-visibility) | deploy/postiz/{docker-compose.yaml,.env.example,dynamicconfig/development-sql.yaml,README.md} | created; Coolify/aynı VPS, X+LinkedIn; pipeline sonraki adım | ~9k |
+| 23:19 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:35 | FAZ 2 lokal doğrulama (fresh docker stack) | blocksToMarkdown.ts, index.ts, buglog.json | seed→markdown temiz, ValidationError YOK, blog+tool render OK (GFM tablo/KaTeX/formül kartı/TOC 19-19 anchor/iç link), 3 bug bulundu+düzeltildi (array-yazan migration, anon node_modules volume, bold sondaki boşluk) | ~12k |
+| 23:21 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:21 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:23 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:27 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:28 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:29 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:31 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:33 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:38 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:39 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:44 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:46 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:48 | Session end: 2 writes across 2 files (README.md, blocksToMarkdown.ts) | 0 reads | ~1121 tok |
+| 23:48 | Created ../../../../../../tmp/gen_matrix.py | — | ~2342 |
+| 23:49 | Session end: 3 writes across 3 files (README.md, blocksToMarkdown.ts, gen_matrix.py) | 0 reads | ~3463 tok |
+| 00:06 | Edited deploy/postiz/docker-compose.yaml | 6→5 lines | ~35 |
+| 00:07 | Edited deploy/postiz/docker-compose.yaml | 5→4 lines | ~30 |
+| 00:07 | Edited deploy/postiz/docker-compose.yaml | 5→4 lines | ~27 |
+| 00:07 | Edited deploy/postiz/docker-compose.yaml | 5→4 lines | ~31 |
+| 00:07 | Edited deploy/postiz/docker-compose.yaml | 12→13 lines | ~137 |
+| 00:07 | Edited deploy/postiz/docker-compose.yaml | 5→5 lines | ~50 |
+| 00:08 | Session end: 9 writes across 4 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml) | 0 reads | ~3773 tok |
+| 00:12 | Session end: 9 writes across 4 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml) | 0 reads | ~3773 tok |
+| 00:33 | Session end: 9 writes across 4 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml) | 0 reads | ~3773 tok |
+
+## Session 2026-06-20 — Sosyal video stratejisi + segment matrisi
+
+Kod yok; strateji/içerik oturumu. Kısa video (Shorts/TikTok/Reels) ile araç/yazılara trafik kararı; Postiz ile dağıtım. Devil's advocate → kasıtlı merak boşluğu + sesli CTA + UTM köprüsü. E-ticaret birincil segment.
+
+| HH:MM | description | file(s) | outcome | ~tokens |
+| --- | --- | --- | --- | --- |
+| --:-- | Reels/Shorts animasyon prompt'ları (Claude artifact, 9:16, Türkçe metin) | — | hook'lu dikey video prompt'u verildi | ~2k |
+| --:-- | Segment × tool stratejisi (e-ticaret/KOBİ-toptan/KOBİ-üretim, farkındalık ekseni, acı→tool eşlemesi) | — | dil/segment çerçevesi kararlaştı | ~2k |
+| --:-- | Segment × tool matrisi Excel üretimi | ../sosyal-video-segment-matrisi.xlsx (parent), /tmp/gen_matrix.py (silindi) | 2 sayfa: 11 video varyantı (filtrelenebilir) + UTM kuralı/notlar | ~2k |
+| --:-- | .wolf + CLAUDE güncelleme | cerebrum.md, memory.md, ../CLAUDE.md | strateji kararı kalıcılaştırıldı | ~1k |
+
+**Sıradaki iş:** pilot video (stok-devir-hizi/eticaret) Claude-artifact promptu; ilk dalga 5 gövde + hook-swap ile ~8 video; UTM'li bio linkleri + GA4 segment raporu.
+| 00:34 | Edited ../CLAUDE.md | 1→2 lines | ~99 |
+| 00:34 | Session end: 10 writes across 5 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml, CLAUDE.md) | 0 reads | ~3879 tok |
+| 00:35 | Session end: 10 writes across 5 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml, CLAUDE.md) | 0 reads | ~3879 tok |
+| 00:36 | Session end: 10 writes across 5 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml, CLAUDE.md) | 0 reads | ~3879 tok |
+| 00:38 | Session end: 10 writes across 5 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml, CLAUDE.md) | 0 reads | ~3879 tok |
+| 00:39 | Session end: 10 writes across 5 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml, CLAUDE.md) | 0 reads | ~3879 tok |
+| 00:42 | Edited CLAUDE.md | modified Kalan() | ~693 |
+
+## Oturum özeti (2026-06-20)
+Postiz self-host kurulumu başlatıldı. deploy/postiz/ lean paketi (ES'siz Temporal) yazıldı, Coolify'a ayrı resource olarak deploy denendi. 2 deploy tuzağı çözüldü: image extract timeout (cache'le geçti) + temporal mem_limit OOM (mem_limit'ler kaldırıldı, commit 4cca8f3). BLOKER: VPS 16GB yükseltmesi sağlayıcıda VM'e inmedi (free -h hâlâ 5.8GB), provider ticket bekliyor. Yarın: RAM doğrula → redeploy → admin/OAuth/API key → sonra pipeline (apps/cms lifecycle). Pipeline kararı: ayrı worker yok, Strapi lifecycle, postlar draft. İçerik planı: ../sosyal-video-segment-matrisi.xlsx (parent git'te değil). Commits: 68b356e (paket), 4cca8f3 (mem_limit fix). CLAUDE.md "Postiz DEVAM EDİYOR" bölümü eklendi.

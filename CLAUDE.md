@@ -85,6 +85,11 @@ packages/ui/src/           # tokens.ts
 
 ## Mevcut durum (2026-06)
 
+**Altyapı — FAZ 1 (GHCR) + FAZ 2 (Markdown) tamam (2026-06-19):**
+
+- **FAZ 1 — Build VPS'ten GHCR'a taşındı.** GitHub Actions (`.github/workflows/build-push.yml`) web+cms image'larını `ghcr.io/aliemrevezir/stokoloji-{web,cms}` push eder; Coolify pull eder (build yok). web `NEXT_PUBLIC_*` build-args repo **Variables**'tan. GHCR private → VPS'te `docker login` (PAT `read:packages`); paket public YAPILMADI. Canlı doğrulandı.
+- **FAZ 2 — İçerik artık Markdown, panelden düzenlenebilir.** Blog `icerik` + tool `formulAciklamasi` alan tipi `json`→**`richtext`** (Strapi 5 Markdown editörü). Web render `MarkdownContent.tsx` (react-markdown + remark-gfm tablo + remark-math/rehype-katex formül; başlık id'leri `slugify`, TOC anchor tutarlı). Converter `seed/blocksToMarkdown.ts`; canlı DB'yi `index.ts` `migrateContentToMarkdown` BİR KEZ çevirir, **düz markdown'a dokunmaz → panel düzenlemeleri kalıcı** (deploy gerekmez, ISR ile gelir). `BlocksRenderer` `sozluk.anlam` için + dizi-fallback olarak duruyor. **DEPLOY NOTU: schema json→richtext kolon cast'i içerdiğinden ilk deploy öncesi prod DB yedeği al.**
+
 Kurulu: monorepo iskeleti, docker-compose (db+cms+web+caddy profili), Strapi content-type'ları (blog, tool, kategori, yazar) + component'ler (seo.meta, content.sss), `api-client`, design token'ları, `lib/tools/eoq.ts`+test, `lib/seo/jsonld.ts`, `lib/strapi.ts`, seed iskeleti, analitik env değişkenleri.
 
 **Premium editorial tasarım uygulandı (`ornek/` referansından):**
@@ -116,6 +121,14 @@ Kurulu: monorepo iskeleti, docker-compose (db+cms+web+caddy profili), Strapi con
 - **Deploy (Coolify) — CANLI (2026-06-13).** db + cms + web ayakta. Kaynak: `docker-compose.prod.yml` (Docker Compose build pack), prod Dockerfile'lar (`next build`+`start` / `strapi build`+`start`), `pgdata`+`strapi_uploads` kalıcı volume, caddy yok (Coolify Traefik + otomatik SSL). `next.config.mjs` prod Strapi host'unu `NEXT_PUBLIC_STRAPI_URL`'den türetir (next/image). Env referansı `.env.prod.example`. Domain: web `stokoloji.com`, cms `cms.stokoloji.com`.
   - **Deploy'da çıkan ve çözülen 4 tuzak (tekrar deploy'da bil):** (1) VPS 6 GB RAM yetmiyordu, eşzamanlı `next build`+`strapi build` OOM yapıyordu → sunucuya **8 GB swap** eklendi. (2) `strapi build`, fresh image'da `types/generated/` (gitignore) olmadan seed'deki `iliskiliYazilar`'da TS hatası veriyordu → cms Dockerfile'a `strapi ts:generate-types`. (3) O komut Strapi'yi boot ettiği için `public/uploads` aranıyordu → `mkdir -p public/uploads`. (4) Strapi `APP_KEYS` + diğer secret'lar Coolify env'de yoktu → boot crash-loop → secret'lar Coolify env'e girildi (runtime, build variable DEĞİL).
   - **Kalan (post-deploy panel işi):** Strapi admin kullanıcısı; içerik tiplerine **public read** izni (Settings > Roles > Public) ya da API token üretip `STRAPI_API_TOKEN`'a koymak + web redeploy; içerik girişi (`../launch-icerik/` / seed). `.xyz` ileride 301 → `.com`.
+
+**Postiz (sosyal otomasyon) — DEVAM EDİYOR (2026-06-20, yarıda kaldı):**
+
+- **Karar:** self-hosted Postiz, **ayrı Coolify resource** (Stokoloji compose'una gömülü DEĞİL). Platform hedefi X + LinkedIn. Depolama local volume. Postlar Postiz'e **draft** düşecek (haftalık ≤1 saat onay kuralı). İçerik dağıtım planı: `../sosyal-video-segment-matrisi.xlsx` (kısa video takvimi + segment×tool matrisi; parent klasör git'te DEĞİL).
+- **Deploy paketi hazır:** `deploy/postiz/` (docker-compose.yaml + .env.example + dynamicconfig/development-sql.yaml + README). **LEAN profil:** Elasticsearch YOK, Temporal postgres-only visibility. Coolify: Docker Compose kaynağı, Base Directory `/deploy/postiz`, domain `postiz.stokoloji.com` **port 5000**. Env'ler (`POSTIZ_MAIN_URL`, `POSTIZ_JWT_SECRET`, `POSTIZ_DB_PASSWORD`, `TEMPORAL_DB_PASSWORD`, sonra `X_*`/`LINKEDIN_*`) Coolify panelinden.
+- **Çözülen tuzaklar:** (1) Postiz image ~1.7GB, yavaş diskte ilk extract Coolify timeout'una takıldı → ikinci deploy'da cache'li geçti. (2) **temporal'a koyduğum `mem_limit:512m` ilk-boot şema kurulumunda OOM-kill → ~8s "unhealthy/Error"**; tüm hard mem_limit'ler kaldırıldı, `ENABLE_ES=false`+`TEMPORAL_NAMESPACE=default` explicit, healthcheck `start_period` 120s/retries 20 yapıldı (commit `4cca8f3`). Lean kazancı zaten ES'siz Temporal'dan; hard cap'ler boot'u öldürüyordu.
+- **BLOKER — RAM yükseltmesi sağlayıcıda inmedi:** VPS 16GB'a yükseltildi, panel 16384MB gösteriyor ama VM'de `free -h` hâlâ 5.8GB / `nproc` 4 (stop/start'a rağmen). Küçük sağlayıcılarda resize yarı-manuel; **provider ticket bekliyor.** (Ayrıca panel #83410 "Sanal Sunucu #8" IP 213.142.148.228 — bunun mevcut prod ile aynı makine mi yoksa ayrı yeni sunucu mu olduğu DOĞRULANMADI; `hostname -I`/`curl ifconfig.me` ile IP karşılaştırılacak.)
+- **Sıradaki (yarın):** (a) RAM 16GB indi mi doğrula → Postiz **redeploy** → temporal OOM'suz `healthy` → `postiz Started` mı? (b) admin kaydı → `POSTIZ_DISABLE_REGISTRATION=true` → X/LinkedIn OAuth app + kanal bağla → **Public API key** üret. (c) ANCAK BUNDAN SONRA pipeline: Strapi publish → `apps/cms` lifecycle → Postiz API draft (ayrı worker YOK = RAM tasarrufu). Saf transform `buildSocialPosts()` testli; API self-host base `{MAIN_URL}/api/public/v1`, auth `Authorization: <key>` (pos_ yok).
 
 ## Launch kapsamı (ilk dalga)
 

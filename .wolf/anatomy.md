@@ -1,15 +1,16 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T23:44:25.837Z
-> Files: 204 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-19T21:42:04.192Z
+> Files: 216 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../
 
-- `CLAUDE.md` — CLAUDE.md — SEO Portföy Çalışma Alanı (~812 tok)
+- `CLAUDE.md` — CLAUDE.md — SEO Portföy Çalışma Alanı (~875 tok)
 - `kapak-gorseli-standardi.md` — Kapak Görseli Prompt Standardı — Stokoloji (~1525 tok)
 
 ## ../../../../../../tmp/
 
+- `gen_matrix.py` (~2342 tok)
 - `rop_blog_cover.svg` (~838 tok)
 
 ## ../../../../.claude/plans/
@@ -18,12 +19,14 @@
 - `en-stteki-bar-da-strapi-den-quirky-octopus.md` — Plan — Strapi'den yönetilen duyuru barı (utility bar) (~1731 tok)
 - `kankam-imdi-canl-ya-kmadan-enumerated-pebble.md` — Stokoloji — Launch Öncesi SEO & İçerik Hazırlık Planı (~3660 tok)
 - `kankam-yeni-bir-sayfa-greedy-spindle.md` — Stokoloji — Sözlük (Terimler Sözlüğü) Sayfası (~2685 tok)
+- `stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md` — GHCR Deploy Pipeline + İçeriği Markdown'a Taşıma Planı (~1786 tok)
 - `stokoloji-com-un-anasayfas-ndaki-hero-se-zippy-coral.md` — Anasayfa Hero → Tam Genişlik Banner Carousel (Strapi-yönetilen) (~1963 tok)
+- `yeni-bir-blog-yaz-s-shimmying-marshmallow.md` — İçerik Brief'i — "Stok Nedir?" (Pillar / Cluster Hub Yazısı) (~2757 tok)
 
 ## ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/
 
 - `brevo-lead-magnet-esp.md` (~327 tok)
-- `listmonk-ses-esp.md` (~466 tok)
+- `listmonk-ses-esp.md` (~736 tok)
 - `MEMORY.md` (~39 tok)
 
 ## ../launch-icerik/araclar/
@@ -39,6 +42,8 @@
 - `eoq-nedir.md` — Blog: EOQ Nedir? (~1589 tok)
 - `stok-devir-hizi-BRIEF.md` — İçerik Brief — Stok Devir Hızı (yazı + görsel planı) (~1345 tok)
 - `stok-devir-hizi-nedir.md` — Blog: Stok Devir Hızı Nedir? (~1967 tok)
+- `stok-nedir-BRIEF.md` — İçerik Brief'i — "Stok Nedir?" (Pillar / Cluster Hub Yazısı) (~2591 tok)
+- `stok-nedir.md` — Blog: Stok Nedir? (~2552 tok)
 - `yeniden-siparis-noktasi-nedir.md` — Blog: Yeniden Sipariş Noktası Nedir? (~2961 tok)
 
 ## ./
@@ -49,9 +54,10 @@
 - `.gitignore` — Git ignore rules (~142 tok)
 - `.prettierrc.json` — Prettier configuration (~31 tok)
 - `Caddyfile` — Opsiyonel reverse proxy (proxy profili). Demo için zorunlu değildir. (~68 tok)
-- `CLAUDE.md` — OpenWolf (~3223 tok)
-- `docker-compose.prod.yml` — Stokoloji — PRODUCTION compose (Coolify hedefli). (~1701 tok)
+- `CLAUDE.md` — OpenWolf (~4074 tok)
+- `docker-compose.prod.yml` — Stokoloji — PRODUCTION compose (Coolify hedefli). (~1678 tok)
 - `docker-compose.yml` — Docker Compose services (~1933 tok)
+- `icerik-uretim-kurallari.md` — İçerik Üretim Kuralları (Blog + Tool Sayfaları) (~1034 tok)
 - `package.json` — Node.js package manifest (~185 tok)
 - `pnpm-lock.yaml` — pnpm lock file (~171281 tok)
 - `pnpm-workspace.yaml` (~12 tok)
@@ -65,6 +71,10 @@
 ## .claude/rules/
 
 - `openwolf.md` (~313 tok)
+
+## .github/workflows/
+
+- `build-push.yml` — CI: Build & Push (GHCR) (~880 tok)
 
 ## Sözlük (terimler sözlüğü) — 2026-06-17
 
@@ -100,7 +110,7 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~4100 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~2955 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
@@ -136,7 +146,7 @@
 
 ## apps/cms/src/api/blog/content-types/blog/
 
-- `schema.json` (~370 tok)
+- `schema.json` (~371 tok)
 
 ## apps/cms/src/api/blog/controllers/
 
@@ -200,7 +210,7 @@
 
 ## apps/cms/src/api/tool/content-types/tool/
 
-- `schema.json` (~329 tok)
+- `schema.json` (~330 tok)
 
 ## apps/cms/src/api/tool/controllers/
 
@@ -242,7 +252,8 @@
 
 ## apps/cms/src/seed/
 
-- `index.ts` — Exports BLOG_SSS (~22858 tok)
+- `blocksToMarkdown.ts` — Satır-içi node dizisini (text/link + bold/italic/code) Markdown'a çevirir. (~1886 tok)
+- `index.ts` — Exports BLOG_SSS (~29255 tok)
 - `sozluk-blocks.ts` — Sözlük seed'i için blocks yardımcıları + veri tipi. (~708 tok)
 - `sozluk-data.ts` — Exports SOZLUK_TERIMLERI (~26813 tok)
 - `sozluk.ts` — Sözlük terimlerini idempotent şekilde seed eder. (~553 tok)
@@ -303,7 +314,7 @@
 
 ## apps/web/src/app/(site)/icerik/[slug]/
 
-- `page.tsx` — revalidate (~1767 tok)
+- `page.tsx` — revalidate (~1768 tok)
 - `page.tsx` — revalidate (~1568 tok)
 
 ## apps/web/src/app/(site)/rehber/
@@ -327,7 +338,7 @@
 - `AuthorBox.tsx` — E-E-A-T yazar kutusu. (~290 tok)
 - `BlocksRenderer.tsx` — Minimal Strapi "blocks" zengin metin renderer'ı. `code` bloğu = formül: backslash içeriyorsa KaTeX display (`.formula-block`), düz metinse şık metin kartı (`.formula-block--text`); inline `$...$` → KaTeX inline. (~2400 tok)
 - `Breadcrumb.tsx` — Breadcrumb gezinme (görsel). JSON-LD ayrıca BreadcrumbList ile basılır. (~261 tok)
-- `CalculatorCard.tsx` — Sticky, ön-doldurulmuş hesap kartı (tasarım: ornek/EOQ Hesaplayıcı.html calc-card). (~1344 tok)
+- `CalculatorCard.tsx` — Sticky, ön-doldurulmuş hesap kartı (tasarım: ornek/EOQ Hesaplayıcı.html calc-card). (~1510 tok)
 - `CalloutBox.tsx` — Zoho "points to remember" tarzı vurgulu kutu. (~260 tok)
 - `FAQAccordion.tsx` — Açılır SSS listesi. FAQPage JSON-LD ayrıca sayfada basılır. (~326 tok)
 - `FormulaCard.tsx` — Sol accent bordürlü, monospace formül kartı. (~108 tok)
@@ -336,12 +347,13 @@
 - `LeadMagnetForm.tsx` — Anasayfa lead magnet formu (Excel şablonu). Bölüm görünür olunca (~434 tok)
 - `lib/katex.test.ts` — katex helper unit testleri (Vitest, 6 test). (~350 tok)
 - `lib/katex.ts` — Server-side KaTeX helper'ı: `renderMath(latex, displayMode)` + `splitInlineMath(text)`. SSR/build'de HTML üretir, client JS yok. (~400 tok)
+- `MarkdownContent.tsx` — Markdown gövde renderer'ı (blog `icerik` + tool `formulAciklamasi`). (~1304 tok)
 - `NewsletterForm.tsx` — Tek reusable abonelik formu. Tüm e-posta toplama noktaları bunu kullanır (~856 tok)
 - `RandomPostLink.tsx` — 404 sayfasında "rastgele yazı" CTA'sı. Tıklamada slug listesinden rastgele (~223 tok)
 - `RelatedToolsGrid.tsx` — İç link cluster'ı — ilgili tool/yazı kartları. (~295 tok)
 - `ResultDisplay.tsx` — Büyük monospace sonuç + kısa yorum + ek satırlar. (~308 tok)
-- `TOCSidebar.tsx` — Blog için sticky "Bu yazıda" içindekiler. (~216 tok)
-- `ToolPageTemplate.tsx` — TEK tool sayfası şablonu (tasarım: ornek/EOQ Hesaplayıcı.html). (~1662 tok)
+- `TOCSidebar.tsx` — 2 = ana bölüm, 3 = alt başlık (girintili). Eski çağrılar için opsiyonel. (~276 tok)
+- `ToolPageTemplate.tsx` — TEK tool sayfası şablonu (tasarım: ornek/EOQ Hesaplayıcı.html). (~1664 tok)
 
 ## apps/web/src/components/analytics/
 
@@ -373,7 +385,7 @@
 
 - `banners.test.ts` — Declares baseMeta (~810 tok)
 - `banners.ts` — Banner → carousel slide çözümleme. (~577 tok)
-- `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~561 tok)
+- `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~1070 tok)
 - `format.ts` — Türkçe sayı/para formatlayıcıları (sonuç gösterimi için). (~234 tok)
 - `home.ts` — Blog yazılarını kategorilerine göre gruplar. Kategorisi olmayan yazılar (~247 tok)
 - `katex.test.ts` — Declares html (~397 tok)
@@ -413,7 +425,7 @@
 - `emniyet-stogu.ts` — Emniyet Stoğu — SAF hesaplama mantığı. (~996 tok)
 - `eoq.test.ts` — Declares result (~377 tok)
 - `eoq.ts` — EOQ (Ekonomik Sipariş Miktarı) — SAF hesaplama mantığı. (~411 tok)
-- `registry.ts` — Hesaplayıcı kayıt defteri (registry). (~1641 tok)
+- `registry.ts` — Hesaplayıcı kayıt defteri (registry). (~1801 tok)
 - `rop.test.ts` — Declares r (~429 tok)
 - `rop.ts` — Yeniden Sipariş Noktası (ROP) — SAF hesaplama mantığı. (~587 tok)
 - `stok-devir-hizi.test.ts` — Declares r (~391 tok)
@@ -426,6 +438,15 @@
 - `emniyet-stogu.ts` — Emniyet stoğu saf hesap: SS=Z×σ_d×√L, Z ters normal (Acklam inverseNormal) (~350 tok)
 - `rop.test.ts` — yeniden sipariş noktası unit testleri (5) (~200 tok)
 - `rop.ts` — ROP saf hesap: ROP=(günlük talep×tedarik süresi)+emniyet stoğu; tedarikSuresiTalebi + yuvarlı (~280 tok)
+
+## deploy/postiz/
+
+- `docker-compose.yaml` — Postiz — self-hosted (Stokoloji sosyal otomasyon) (~1535 tok)
+- `README.md` — Project documentation (~803 tok)
+
+## deploy/postiz/dynamicconfig/
+
+- `development-sql.yaml` — Temporal dynamic config — LEAN/postgres visibility (Elasticsearch yok). (~144 tok)
 
 ## ornek/
 
@@ -444,7 +465,7 @@
 ## packages/api-client/src/
 
 - `index.ts` — Exports StrapiClientOptions, FetchOptions, TR_ALPHABET, harfToSlug + 3 more (~2695 tok)
-- `types.ts` — Strapi 5 REST response tipleri. (~1280 tok)
+- `types.ts` — Strapi 5 REST response tipleri. (~1335 tok)
 
 ## packages/ui/
 
