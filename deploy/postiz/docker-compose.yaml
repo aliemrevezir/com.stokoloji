@@ -21,7 +21,6 @@ services:
     image: ghcr.io/gitroomhq/postiz-app:latest
     container_name: postiz
     restart: always
-    mem_limit: 1500m
     environment:
       # === Zorunlu cekirdek ===
       MAIN_URL: "${POSTIZ_MAIN_URL}"
@@ -76,7 +75,6 @@ services:
     image: postgres:17-alpine
     container_name: postiz-postgres
     restart: always
-    mem_limit: 256m
     environment:
       POSTGRES_USER: postiz-user
       POSTGRES_PASSWORD: "${POSTIZ_DB_PASSWORD}"
@@ -96,7 +94,6 @@ services:
     image: redis:7.2-alpine
     container_name: postiz-redis
     restart: always
-    mem_limit: 128m
     command: ["redis-server", "--maxmemory", "96mb", "--maxmemory-policy", "allkeys-lru"]
     volumes:
       - postiz-redis-data:/data
@@ -114,7 +111,6 @@ services:
     image: postgres:16-alpine
     container_name: temporal-postgresql
     restart: always
-    mem_limit: 256m
     environment:
       POSTGRES_USER: temporal
       POSTGRES_PASSWORD: "${TEMPORAL_DB_PASSWORD}"
@@ -133,14 +129,15 @@ services:
     image: temporalio/auto-setup:1.28.1
     container_name: temporal
     restart: always
-    mem_limit: 512m
     environment:
       - DB=postgres12
       - DB_PORT=5432
       - POSTGRES_USER=temporal
       - POSTGRES_PWD=${TEMPORAL_DB_PASSWORD}
       - POSTGRES_SEEDS=temporal-postgresql
+      - TEMPORAL_NAMESPACE=default
       # ES yok -> standart (postgres) visibility; dynamic config dosyasi ile.
+      - ENABLE_ES=false
       - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
     volumes:
       - ./dynamicconfig:/etc/temporal/config/dynamicconfig
@@ -153,8 +150,8 @@ services:
       test: ["CMD", "temporal", "operator", "cluster", "health", "--address", "temporal:7233"]
       interval: 10s
       timeout: 5s
-      retries: 10
-      start_period: 40s
+      retries: 20
+      start_period: 120s
 
 volumes:
   postiz-postgres-data:
