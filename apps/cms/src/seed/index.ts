@@ -667,6 +667,347 @@ export async function seedStokDevirHizi(strapi: Core.Strapi): Promise<void> {
   strapi.log.info('[seed] Stok devir hızı içeriği başarıyla oluşturuldu.');
 }
 
+/* --------------------------------- stok nedir (pillar) --------------------------------- */
+
+export const STOK_NEDIR_BLOG = [
+  pr(
+    b('Stok'),
+    t(
+      ', bir işletmenin üretim, satış veya hizmet süreçlerinde ileride kullanmak üzere elinde tuttuğu fiziksel değerlerin tümüdür. Peki tam olarak stok nedir, hangi çeşitleri vardır ve neden doğru seviyede tutmak bu kadar önemlidir? Türkçe kaynaklarda konu çoğunlukla yalnızca muhasebe açısından anlatılıyor; biz bu rehberde stoğu üretim ve operasyon gözüyle, gerçek sektör örnekleriyle ele alıyoruz. Stok yönetiminin temel kavramlarını öğrendikten sonra hesaplama araçlarımızla kendi rakamlarına uygulayabilirsin.',
+    ),
+  ),
+
+  h(2, 'Stok nedir?'),
+  p(
+    'Stok, bir işletmenin üretim, satış veya hizmet sunumunda kullanmak için elinde bulundurduğu fiziksel varlıklardır: hammadde, yarı mamul, mamul ve yardımcı malzemeler. Bir başka deyişle stok, henüz kullanılmamış ya da satılmamış kaynakların elde tutulan kısmıdır. Stok hem sermaye bağlar hem de talebi karşılamayı güvence altına alır; iyi yönetimin amacı bu iki yön arasındaki dengeyi kurmaktır.',
+  ),
+  pr(
+    t('"Stok ne demek" sorusunun kısa cevabı budur. Kavramın tüm tanımlarını ve ilişkili terimleri '),
+    a('stok terimleri sözlüğünde', '/sozluk'),
+    t(' bir arada bulabilirsin.'),
+  ),
+
+  h(2, 'Stok farklı sektörlerde ne anlama gelir?'),
+  p(
+    'Stok her sektörde "elde tutulan değer" demektir ama bu değerin somut hali işten işe değişir. Bir fabrikadaki hammadde ile bir eczanedeki ilaç, aynı kavramın çok farklı görünümleridir. Aşağıdaki tablo üç temel sektörde stoğun ne anlama geldiğini ve hangi riski taşıdığını özetliyor.',
+  ),
+  table(
+    ['Sektör', 'Tipik stok kalemi', 'Ana risk'],
+    [
+      ['Üretim / imalat', 'Hammadde, yarı mamul (WIP), mamul', 'Hat durması, sermaye bağlanması'],
+      ['Perakende / e-ticaret', 'Satışa hazır ürün, sezonluk stok', 'Stockout (kaçan satış), fazla stok'],
+      ['Sağlık / eczane / lojistik', 'İlaç, kritik malzeme, dağıtım stoğu', 'Son kullanma tarihi, kritik stok bitmesi'],
+    ],
+  ),
+
+  h(3, 'Üretim ve imalatta stok'),
+  p(
+    'Üretimde stok üç aşamada görünür: hammadde, yarı mamul (work in process) ve mamul. Bu stokların temel işlevlerinden biri süreç adımlarını birbirinden bağımsızlaştırmaktır. Bir tezgah arızalansa bile yarı mamul stoğu sayesinde sonraki istasyon çalışmaya devam edebilir. Bu nedenle üretim planlamada stok, "atıl para" değil, hattı ayakta tutan bir tampon olarak düşünülür.',
+  ),
+
+  h(3, 'Perakende ve e-ticarette stok'),
+  p(
+    'Perakende ve e-ticarette stok, doğrudan satışa hazır üründür. Burada en kritik kavram sezonluk stok ve raf bulunabilirliğidir. Müşteri aradığı ürünü bulamazsa satış kaçar; buna stockout denir. Öte yandan satılmayan sezon ürünü depoda eriyen bir maliyettir. Bu yüzden perakendede stok yönetimi, doğru ürünü doğru miktarda doğru zamanda rafta tutma sanatıdır.',
+  ),
+
+  h(3, 'Sağlık, eczane ve lojistikte stok'),
+  p(
+    'Sağlık ve eczane tarafında stoğun ayırt edici özelliği son kullanma tarihidir. Bir ilaç ne kadar değerli olursa olsun, süresi geçtiğinde sıfır değere düşer. Lojistik ve dağıtımda ise stok, doğru noktada doğru anda hazır bulunma meselesidir; kritik bir yedek parçanın deposunun boş çıkması, koca bir operasyonu durdurabilir.',
+  ),
+  p(
+    'Sahada gözlemlediğim ortak nokta şudur: işletmeler stoğu çoğu zaman yalnızca bir muhasebe kalemi olarak görür. Oysa stoğun gerçek anlamı operasyonda saklıdır; bir üretim hattının neden durduğunu araştırdığınızda sonunda neredeyse her zaman bir stok kararına dayandığını görürsünüz.',
+  ),
+
+  h(2, 'Stok çeşitleri nelerdir?'),
+  p(
+    'Stok türleri nelerdir sorusuna iki açıdan bakmak gerekir: ürünün üretim aşamasına göre ve stoğun işlevine göre.',
+  ),
+
+  h(3, 'Üretim aşamasına göre stok çeşitleri'),
+  ul([
+    'Hammadde stoğu: üretime girecek temel malzemeler (örneğin mobilyacı için ahşap).',
+    'Yarı mamul stoğu (WIP): üretime başlamış ama henüz tamamlanmamış ürünler.',
+    'Mamul stoğu: satışa hazır, tamamlanmış ürünler.',
+    'Yardımcı malzeme: üretimi destekleyen sarf malzemeler.',
+  ]),
+
+  h(3, 'İşleve göre stok çeşitleri'),
+  pr(
+    t(
+      'İşlevine göre bakıldığında stok, neden tutulduğuna göre sınıflandırılır. En önemli tür, talep ve tedarik belirsizliğine karşı tutulan tampondur; buna ',
+    ),
+    a('emniyet stoğu', '/icerik/emniyet-stogu-nedir'),
+    t(
+      ' denir. Diğerleri ise çevrim stoğu (normal sipariş döngüsü), sezonluk stok (talep zirvesine hazırlık), spekülatif stok (fiyat artışı beklentisiyle alınan) ve hareketsiz kalan ölü/atıl stoktur.',
+    ),
+  ),
+  p(
+    'Özetle stok hem fiziksel haline (hammadde, yarı mamul, mamul) hem de amacına (emniyet, çevrim, sezonluk) göre sınıflandırılır. Doğru yönetim, her türü kendi mantığıyla ele almayı gerektirir.',
+  ),
+
+  h(2, 'Neden stok tutulur? Doğru stok tutmanın faydaları'),
+  p(
+    'Stok ilk bakışta yalnızca bir maliyet kalemi gibi görünür; para depoya bağlanır, raf işgal edilir. Oysa doğru seviyede tutulduğunda stok, çok yönlü değer üreten bir kaldıraçtır. Doğru stok tutmanın başlıca faydaları şunlardır:',
+  ),
+  {
+    type: 'list',
+    format: 'unordered',
+    children: [
+      {
+        type: 'list-item',
+        children: [
+          b('Müşteri ve servis seviyesi: '),
+          t(
+            'yeterli stok, talep geldiğinde ürünün hazır olmasını sağlar. Stockout önlenir, kaçan satış (lost sales) azalır ve müşteri memnuniyeti, yani servis seviyesi yükselir.',
+          ),
+        ],
+      },
+      {
+        type: 'list-item',
+        children: [
+          b('Maliyet dengesi: '),
+          t(
+            'doğru sipariş büyüklüğü, taşıma maliyeti (depolama, bağlanan sermaye, sigorta, eskime) ile sipariş maliyeti arasındaki dengeyi optimize eder. Bu dengeyi sayısal olarak kuran yöntem ',
+          ),
+          a('ekonomik sipariş miktarıdır (EOQ)', '/icerik/eoq-nedir'),
+          t('.'),
+        ],
+      },
+      {
+        type: 'list-item',
+        children: [
+          b('Operasyonel süreklilik: '),
+          t(
+            'hammadde ve yarı mamul stoğu, tedarik veya üretim aksamalarını absorbe eder. Süreç adımları birbirinden bağımsızlaşır ve makineler boşta kalmaz.',
+          ),
+        ],
+      },
+      {
+        type: 'list-item',
+        children: [
+          b('Belirsizliğe karşı tampon: '),
+          t(
+            'talep dalgalanması ve tedarik süresindeki gecikmeler kaçınılmazdır. ',
+          ),
+          a('Emniyet stoğu', '/icerik/emniyet-stogu-nedir'),
+          t(' bu belirsizliği soğurarak ani talep artışlarında bile stoksuz kalmayı önler.'),
+        ],
+      },
+      {
+        type: 'list-item',
+        children: [
+          b('Finansal sağlık: '),
+          t(
+            'doğru stok seviyesi daha iyi nakit akışı ve işletme sermayesi anlamına gelir. Stok hızla devrettiğinde sermaye verimliliği artar; bunu ',
+          ),
+          a('stok devir hızı', '/icerik/stok-devir-hizi-nedir'),
+          t(' ile ölçersin.'),
+        ],
+      },
+      {
+        type: 'list-item',
+        children: [
+          b('Ekonomik avantaj: '),
+          t(
+            'toplu alımda miktar iskontosu yakalanır, yaklaşan fiyat artışlarına karşı hedge yapılır ve sezonsal talebe önceden hazırlanılır.',
+          ),
+        ],
+      },
+    ],
+  },
+  img(
+    '/uploads/stok-nedir-envanter-dengeleme.jpg',
+    'Envanter dengeleme: az stok stoksuzluk riski (kaçırılan satışlar, müşteri memnuniyetsizliği), çok stok elde tutma maliyeti (depolama, sermaye, sigorta); ortadaki optimal stok seviyesi vurgulu',
+    'Doğru stok ne fazla ne eksiktir: optimal seviye hem stoksuzluk riskini hem elde tutma maliyetini dengeler.',
+  ),
+  p(
+    'Görüleceği üzere stok ne fazla ne eksik tutulduğunda fayda üretir; mesele her zaman doğru seviyeyi bulmaktır.',
+  ),
+
+  h(2, 'Stok seviyesi nasıl belirlenir?'),
+  p(
+    '"Ne kadar ve ne zaman sipariş vermeliyim" sorusu, stok yönetiminin kalbidir ve üç temel kavramla çözülür.',
+  ),
+
+  img(
+    '/uploads/stok-nedir-seviye-grafigi.jpg',
+    'Stok düzeyi zaman grafiği: testere dişi stok eğrisi, yeniden sipariş noktası çizgisi, alttaki emniyet stoğu bandı ve tedarik süresi',
+    'Stok zamanla düşer; yeniden sipariş noktasına gelince sipariş verilir, emniyet stoğu tedarik süresindeki belirsizliği karşılar.',
+  ),
+  h(3, 'Emniyet stoğu nedir ve neden gerekir?'),
+  pr(
+    t(
+      'Emniyet stoğu, talep ve tedarik süresindeki belirsizliğe karşı tutulan tampon stoktur. Amacı, beklenmedik talep sıçramalarında veya tedarikçi gecikmelerinde stoksuz kalmayı önlemektir. Hedeflediğin servis seviyesine göre ',
+    ),
+    a('emniyet stoğunu hesaplayabilirsin', '/araclar/emniyet-stogu-hesaplama'),
+    t('.'),
+  ),
+
+  h(3, 'Yeniden sipariş noktası (ROP) nedir?'),
+  pr(
+    a('Yeniden sipariş noktası', '/icerik/yeniden-siparis-noktasi-nedir'),
+    t(
+      ', yeni siparişin verilmesi gereken kritik stok seviyesidir. Stok bu seviyeye düştüğünde sipariş tetiklenir, böylece yeni mal gelene kadar emniyet stoğu tükenmez.',
+    ),
+  ),
+
+  h(3, 'Ekonomik sipariş miktarı (EOQ) nedir?'),
+  pr(
+    t(
+      'EOQ, sipariş ve taşıma maliyetlerinin toplamını en aza indiren optimum sipariş büyüklüğüdür. Yani "ne kadar" sorusunun matematiksel cevabıdır. Kendi rakamlarınla denemek için ',
+    ),
+    a('EOQ hesaplama aracını', '/araclar/eoq-hesaplama'),
+    t(' kullanabilirsin.'),
+  ),
+  p(
+    'Bu üç kavram birlikte çalışır: EOQ ne kadar, ROP ne zaman, emniyet stoğu ise belirsizliğe karşı ne kadar tampon sorusuna cevap verir.',
+  ),
+
+  h(2, 'Stok performansını nasıl ölçersin?'),
+  pr(
+    t(
+      'Stok kararlarını verdikten sonra, sistemin sağlıklı çalışıp çalışmadığını ölçmen gerekir. Bunun en yaygın göstergesi stok devir hızıdır: satılan malın maliyetinin ortalama stoğa oranı, stoğun bir dönemde kaç kez yenilendiğini gösterir. Çoğu sektörde 4-6 aralığı sağlıklı kabul edilir; çok düşük devir atıl sermayeye, çok yüksek devir ise sık sık stoksuz kalmaya işaret eder. Kendi oranını ölçmek için ',
+    ),
+    a('stok devir hızı hesaplama aracını', '/araclar/stok-devir-hizi-hesaplama'),
+    t(', sonucu nasıl yorumlayacağını '),
+    a('stok devir hızı nedir', '/icerik/stok-devir-hizi-nedir'),
+    t(' yazısından öğrenebilirsin.'),
+  ),
+
+  h(2, 'Stokla ilgili temel terimler'),
+  pr(
+    t(
+      'Stok yönetiminde sık geçen birkaç temel terim şunlardır: stok yönetimi (doğru ürünü doğru miktarda tutma süreci), stok kontrolü (mevcut seviyeyi izleme), ortalama stok (dönem boyunca tipik seviye), stoksuzluk maliyeti (stok bittiğinde kaybedilen satış), sipariş maliyeti (bir siparişi vermenin sabit maliyeti), konsinye stok (tedarikçiye ait ama işletmede duran mal) ve ölü stok (uzun süre hareket görmeyen ürün). Bu kavramların tam tanımlarına ',
+    ),
+    a('stok terimleri sözlüğünden', '/sozluk'),
+    t(' ulaşabilirsin.'),
+  ),
+  pr(
+    t('Kaynak: '),
+    a(
+      'TÜBİTAK Ansiklopedi, "Stok Yönetimi" maddesi',
+      'https://ansiklopedi.tubitak.gov.tr/ansiklopedi/stok_yonetimi',
+    ),
+    t('.'),
+  ),
+];
+
+export const STOK_NEDIR_SSS = [
+  {
+    soru: 'Stok ile envanter aynı şey mi?',
+    cevap:
+      'Günlük kullanımda çoğu zaman eş anlamlı kullanılır. İkisi de işletmenin elinde tuttuğu mal varlığını ifade eder; envanter bazen sayım ve kayıt sürecini de kapsayacak şekilde daha geniş anlamda kullanılır.',
+  },
+  {
+    soru: 'Stok çeşitleri kaça ayrılır?',
+    cevap:
+      'Üretim aşamasına göre üç temel türe ayrılır: hammadde, yarı mamul ve mamul. İşlevine göre ise emniyet stoğu, çevrim stoğu, sezonluk stok, spekülatif stok ve ölü stok gibi türler vardır.',
+  },
+  {
+    soru: 'Net stok ne demek?',
+    cevap:
+      'Net stok, eldeki fiziksel stoğa bekleyen siparişlerin eklenip karşılanmamış taleplerin çıkarılmasıyla bulunan, gerçekte kullanılabilir stok miktarıdır.',
+  },
+  {
+    soru: 'İşletme neden stok tutar, stoksuz çalışılabilir mi?',
+    cevap:
+      'İşletmeler talebi kesintisiz karşılamak, üretimi sürdürmek ve belirsizliğe karşı korunmak için stok tutar. Tam stoksuz (just-in-time) çalışmak mümkündür ama çok güvenilir bir tedarik zinciri ve disiplin gerektirir.',
+  },
+  {
+    soru: 'Çok stok tutmak neden risklidir?',
+    cevap:
+      'Fazla stok sermayeyi bağlar, depo maliyetini artırır ve ürünün eskime, fire ya da son kullanma tarihini geçirme riskini yükseltir. Bu yüzden amaç en çok değil, en doğru seviyede stok tutmaktır.',
+  },
+];
+
+/**
+ * "Stok nedir" pillar (hub) blog yazısını seed'ler (idempotent — kendi slug'ına
+ * guard'lı). Tool'a bağlı değildir; cluster'ın merkez yazısıdır. Mevcut "Stok
+ * Yönetimi" kategorisi ile editör yazarını yeniden kullanır; yoksa oluşturur.
+ */
+export async function seedStokNedir(strapi: Core.Strapi): Promise<void> {
+  const existing = await strapi.documents('api::blog.blog').findFirst({
+    filters: { slug: 'stok-nedir' },
+    populate: ['kapakGorseli'],
+  });
+
+  const kategori =
+    (await strapi.documents('api::kategori.kategori').findFirst({
+      filters: { slug: 'stok-yonetimi' },
+    })) ??
+    (await strapi.documents('api::kategori.kategori').create({
+      data: { ad: 'Stok Yönetimi', slug: 'stok-yonetimi' },
+      status: 'published',
+    }));
+
+  const yazar =
+    (await strapi.documents('api::yazar.yazar').findFirst()) ??
+    (await strapi.documents('api::yazar.yazar').create({
+      data: {
+        ad: 'Stokoloji Editör Ekibi',
+        unvan: 'Stok & Tedarik Zinciri',
+        bio: 'Stok yönetimi ve operasyon araçları üzerine içerik üreten editör ekibi.',
+      },
+      status: 'published',
+    }));
+
+  // Kapak görseli (container public/uploads'taki dosyaya bağlı plugin::upload.file).
+  const kapakId = await ensureLocalFile(strapi, {
+    url: '/uploads/stok-nedir-kapak.jpg',
+    name: 'stok-nedir-kapak.jpg',
+    alt: 'Stok çeşitleri şeması: hammadde, yarı mamul ve mamul stoğunun üretim akışındaki yeri',
+    hash: 'stok_nedir_kapak_seed',
+    size: 184,
+    width: 1600,
+    height: 845,
+  });
+
+  if (!existing) {
+    strapi.log.info('[seed] Stok nedir içeriği oluşturuluyor...');
+    await strapi.documents('api::blog.blog').create({
+      data: {
+        baslik: 'Stok Nedir? Çeşitleri ve Doğru Stok Tutmanın Faydaları',
+        slug: 'stok-nedir',
+        icerik: STOK_NEDIR_BLOG,
+        ...(kapakId ? { kapakGorseli: kapakId } : {}),
+        seo: {
+          title: 'Stok Nedir? Çeşitleri ve Neden Önemli? [2026]',
+          description:
+            'Stok nedir, hangi çeşitleri var ve doğru stok tutmak ne kazandırır? Üretimden perakendeye örneklerle anlatıp hesaplama araçlarına yönlendiriyoruz.',
+        },
+        kategori: kategori.documentId,
+        yazar: yazar.documentId,
+        sss: STOK_NEDIR_SSS,
+        yayinTarihi: '2026-06-19T09:00:00.000Z',
+        guncellemeTarihi: '2026-06-19T09:00:00.000Z',
+      },
+      status: 'published',
+    });
+    strapi.log.info('[seed] Stok nedir içeriği başarıyla oluşturuldu.');
+    return;
+  }
+
+  // Mevcut kayıt: gövdeyi canonical ile senkronla (görsel node'ları dahil) ve
+  // kapak eksikse bağla. Yalnız değişiklik varsa yaz (gereksiz write yok).
+  const data: Record<string, unknown> = {};
+  if (JSON.stringify(existing.icerik ?? null) !== JSON.stringify(STOK_NEDIR_BLOG)) {
+    data.icerik = STOK_NEDIR_BLOG;
+  }
+  if (!existing.kapakGorseli && kapakId) {
+    data.kapakGorseli = kapakId;
+  }
+  if (Object.keys(data).length === 0) {
+    strapi.log.info('[seed] Stok nedir içeriği güncel, atlanıyor.');
+    return;
+  }
+  await strapi.documents('api::blog.blog').update({
+    documentId: existing.documentId,
+    data,
+    status: 'published',
+  });
+  strapi.log.info(`[seed] Stok nedir içeriği güncellendi (${Object.keys(data).join(', ')}).`);
+}
+
 /* ------------------------------- emniyet stoğu ------------------------------ */
 
 const EMNIYET_BLOG = [

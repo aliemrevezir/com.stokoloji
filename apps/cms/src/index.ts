@@ -14,6 +14,7 @@ import {
   seedHomepage,
   seedRop,
   seedStokDevirHizi,
+  seedStokNedir,
 } from './seed';
 import { seedSozluk } from './seed/sozluk';
 
@@ -404,6 +405,7 @@ export default {
     await setPublicReadPermissions(strapi);
     await seedDemoContent(strapi);
     await seedStokDevirHizi(strapi);
+    await seedStokNedir(strapi);
     await seedEmniyetStogu(strapi);
     await seedRop(strapi);
     await seedHomepage(strapi);
