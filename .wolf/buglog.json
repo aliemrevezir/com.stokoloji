@@ -1034,5 +1034,24 @@
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-20T00:00:00Z"
+  },
+  {
+    "id": "bug-061",
+    "timestamp": "2026-06-21T00:00:00.000Z",
+    "error_message": "temporal container Restarting loop, exit=1 oom=false: 'Unable to create dynamic config client ... config/dynamicconfig/development-sql.yaml: no such file or directory'",
+    "file": "deploy/postiz/docker-compose.yaml",
+    "root_cause": "Coolify git-compose kaynaginda relative bind-mount './dynamicconfig:/etc/temporal/config/dynamicconfig' host'a inmiyordu; klasor container'da bos -> temporal dynamic config dosyasini bulamayip restart loop. RAM 16GB'a cikinca eski OOM imzasi kapandi, altta yatan bu config hatasi yuzeye cikti.",
+    "fix": "Bind-mount kaldirildi; YAML icerigi compose top-level 'configs:' (inline content) ile gomuldu ve temporal servisinde 'configs: [source: temporal-dynamicconfig, target: /etc/temporal/config/dynamicconfig/development-sql.yaml]' ile mount edildi. DYNAMIC_CONFIG_FILE_PATH ayni. Host dosyasina bagimlilik bitti.",
+    "tags": [
+      "coolify",
+      "postiz",
+      "temporal",
+      "bind-mount",
+      "docker-compose-configs",
+      "deploy"
+    ],
+    "related_bugs": [],
+    "occurrences": 1,
+    "last_seen": "2026-06-21T00:00:00.000Z"
   }
 ]

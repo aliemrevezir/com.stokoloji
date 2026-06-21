@@ -139,8 +139,12 @@ services:
       # ES yok -> standart (postgres) visibility; dynamic config dosyasi ile.
       - ENABLE_ES=false
       - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
-    volumes:
-      - ./dynamicconfig:/etc/temporal/config/dynamicconfig
+    # NOT: dynamic config bind-mount DEGIL, compose `configs:` ile inline gomulu.
+    # Coolify git-compose kaynaginda relative bind-mount'lar (./dynamicconfig) host'a
+    # guvenilir inmiyordu -> "no such file or directory" + temporal restart loop.
+    configs:
+      - source: temporal-dynamicconfig
+        target: /etc/temporal/config/dynamicconfig/development-sql.yaml
     networks:
       - temporal-network
     depends_on:
@@ -159,6 +163,18 @@ volumes:
   postiz-config:
   postiz-uploads:
   temporal-postgres-data:
+
+# Temporal dynamic config — inline (bind-mount yerine). Icerik dynamicconfig/development-sql.yaml
+# ile ayni; tek dogruluk kaynagi olarak burayi duzenle. Coolify bind-mount sorununu bypass eder.
+configs:
+  temporal-dynamicconfig:
+    content: |
+      limit.maxIDLength:
+        - value: 255
+          constraints: {}
+      system.forceSearchAttributesCacheRefreshOnRead:
+        - value: true
+          constraints: {}
 
 networks:
   postiz-network:

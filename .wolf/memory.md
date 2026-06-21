@@ -950,3 +950,14 @@ Kod yok; strateji/içerik oturumu. Kısa video (Shorts/TikTok/Reels) ile araç/y
 
 ## Oturum özeti (2026-06-20)
 Postiz self-host kurulumu başlatıldı. deploy/postiz/ lean paketi (ES'siz Temporal) yazıldı, Coolify'a ayrı resource olarak deploy denendi. 2 deploy tuzağı çözüldü: image extract timeout (cache'le geçti) + temporal mem_limit OOM (mem_limit'ler kaldırıldı, commit 4cca8f3). BLOKER: VPS 16GB yükseltmesi sağlayıcıda VM'e inmedi (free -h hâlâ 5.8GB), provider ticket bekliyor. Yarın: RAM doğrula → redeploy → admin/OAuth/API key → sonra pipeline (apps/cms lifecycle). Pipeline kararı: ayrı worker yok, Strapi lifecycle, postlar draft. İçerik planı: ../sosyal-video-segment-matrisi.xlsx (parent git'te değil). Commits: 68b356e (paket), 4cca8f3 (mem_limit fix). CLAUDE.md "Postiz DEVAM EDİYOR" bölümü eklendi.
+| 00:42 | Session end: 11 writes across 5 files (README.md, blocksToMarkdown.ts, gen_matrix.py, docker-compose.yaml, CLAUDE.md) | 1 reads | ~8121 tok |
+
+## Session: 2026-06-20 01:31
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 02:57 | Edited deploy/postiz/docker-compose.yaml | 6→10 lines | ~162 |
+| 02:57 | Edited deploy/postiz/docker-compose.yaml | expanded (+12 lines) | ~156 |
+| 02:58 | Edited deploy/postiz/README.md | 2→5 lines | ~110 |
+| 02:58 | temporal restart loop tanı: dynamicconfig bind-mount Coolify'de host'a inmiyor (oom=false, exit=1, no such file). Fix: compose configs inline content | deploy/postiz/docker-compose.yaml, README, buglog bug-061 | düzeltildi, deploy bekliyor | ~9k |
+| 02:59 | Session end: 3 writes across 2 files (docker-compose.yaml, README.md) | 2 reads | ~3363 tok |

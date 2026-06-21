@@ -32,8 +32,11 @@ DNS: Coolify VPS IP'sine `postiz.stokoloji.com` için **A kaydı** ekle.
 
 1. Yeni Resource → **Docker Compose** (Stokoloji projesiyle aynı sunucuda).
 2. Kaynak olarak bu repo + `deploy/postiz/docker-compose.yaml` yolunu göster
-   (veya compose içeriğini panele yapıştır). `dynamicconfig/` klasörünün de gelmesi gerekir;
-   repo bağlama yöntemi bunu otomatik taşır, yapıştırma yönteminde dynamicconfig'i ayrıca ekle.
+   (veya compose içeriğini panele yapıştır). NOT: temporal dynamic config artık compose
+   içine `configs:` (inline content) ile gömülü; ayrı dosya/bind-mount'a gerek YOK.
+   `dynamicconfig/development-sql.yaml` referans olarak duruyor ama container ona bağımlı
+   değil (Coolify git-compose'da relative bind-mount host'a inmiyor, temporal "no such file"
+   ile restart loop'a giriyordu — bkz. buglog bug-061).
 3. **Environment Variables** sekmesine `.env.example`'daki değişkenleri gir (üretilen secret'larla).
 4. `postiz` servisine **domain** ata: `https://postiz.stokoloji.com`, **port 5000**.
    (compose'da `4007:5000` var; Coolify Traefik 5000'e proxy'ler, SSL otomatik.)
