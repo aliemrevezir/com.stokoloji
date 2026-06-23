@@ -961,3 +961,22 @@ Postiz self-host kurulumu başlatıldı. deploy/postiz/ lean paketi (ES'siz Temp
 | 02:58 | Edited deploy/postiz/README.md | 2→5 lines | ~110 |
 | 02:58 | temporal restart loop tanı: dynamicconfig bind-mount Coolify'de host'a inmiyor (oom=false, exit=1, no such file). Fix: compose configs inline content | deploy/postiz/docker-compose.yaml, README, buglog bug-061 | düzeltildi, deploy bekliyor | ~9k |
 | 02:59 | Session end: 3 writes across 2 files (docker-compose.yaml, README.md) | 2 reads | ~3363 tok |
+| 03:00 | Session end: 3 writes across 2 files (docker-compose.yaml, README.md) | 2 reads | ~3363 tok |
+| 03:51 | Session end: 3 writes across 2 files (docker-compose.yaml, README.md) | 2 reads | ~3363 tok |
+
+## Session: 2026-06-23 20:56
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:06 | Created ../../../../.claude/plans/stokoloji-com-performance-on-search-202-abstract-unicorn.md | — | ~2107 |
+| 21:07 | Created apps/web/src/lib/tools/oee.ts | — | ~929 |
+| 21:07 | Created apps/web/src/lib/tools/oee.test.ts | — | ~639 |
+| 21:08 | Created apps/web/src/lib/tools/fire-orani.ts | — | ~464 |
+| 21:08 | Created apps/web/src/lib/tools/fire-orani.test.ts | — | ~343 |
+| 21:08 | Edited apps/web/src/lib/format.ts | modified formatCurrency() | ~97 |
+| 21:08 | Edited apps/web/src/lib/tools/registry.ts | added 2 import(s) | ~86 |
+| 21:08 | Edited apps/web/src/lib/tools/registry.ts | expanded (+60 lines) | ~755 |
+| 21:09 | Edited apps/web/src/lib/tools/oee.test.ts | 5→5 lines | ~89 |
+| 21:12 | Edited apps/cms/src/seed/index.ts | added 3 condition(s) | ~5734 |
+| 21:13 | Edited apps/cms/src/index.ts | 5→8 lines | ~35 |
+| 21:13 | Edited apps/cms/src/index.ts | 2→5 lines | ~42 |

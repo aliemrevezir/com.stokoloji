@@ -81,7 +81,8 @@ export interface Tool extends StrapiEntityMeta {
   slug: string;
   kisaAciklama?: string | null;
   kapakGorseli?: StrapiMedia | null;
-  formulAciklamasi?: BlocksContent | null;
+  /** Markdown gövde (richtext). Geçiş döneminde eski kayıt blocks dizisi olabilir. */
+  formulAciklamasi?: string | BlocksContent | null;
   seo?: SeoMeta | null;
   kategori?: Kategori | null;
   sss?: Sss[] | null;
@@ -91,7 +92,8 @@ export interface Tool extends StrapiEntityMeta {
 export interface Blog extends StrapiEntityMeta {
   baslik: string;
   slug: string;
-  icerik?: BlocksContent | null;
+  /** Markdown gövde (richtext). Geçiş döneminde eski kayıt blocks dizisi olabilir. */
+  icerik?: string | BlocksContent | null;
   kapakGorseli?: StrapiMedia | null;
   seo?: SeoMeta | null;
   kategori?: Kategori | null;

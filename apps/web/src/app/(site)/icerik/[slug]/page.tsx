@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { strapi, mediaUrl } from '@/lib/strapi';
 import { Breadcrumb } from '@/components/Breadcrumb';
-import { BlocksRenderer } from '@/components/BlocksRenderer';
+import { MarkdownContent } from '@/components/MarkdownContent';
 import { TOCSidebar } from '@/components/TOCSidebar';
 import { AuthorBox } from '@/components/AuthorBox';
 import { JsonLd } from '@/components/JsonLd';
@@ -116,7 +116,7 @@ export default async function BlogPostPage({
           )}
 
           <div className="prose" style={{ marginTop: 'var(--s-5)' }}>
-            <BlocksRenderer content={post.icerik} />
+            <MarkdownContent markdown={post.icerik} />
           </div>
 
           {/* Sıkça sorulan sorular — `sss` alanı hem JSON-LD hem görünür FAQ'ı besler */}

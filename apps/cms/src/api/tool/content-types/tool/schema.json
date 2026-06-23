@@ -29,7 +29,7 @@
       "allowedTypes": ["images"]
     },
     "formulAciklamasi": {
-      "type": "json"
+      "type": "richtext"
     },
     "seo": {
       "type": "component",
