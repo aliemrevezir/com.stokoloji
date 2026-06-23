@@ -32,6 +32,9 @@ services:
     # Image GHCR'dan çekilir (CI build eder; VPS'te build YOK).
     # Yerel build için: docker compose -f docker-compose.prod.yml build cms
     image: ${CMS_IMAGE:-ghcr.io/aliemrevezir/stokoloji-cms:latest}
+    # :latest tag sabit kaldığı için Docker cache'deki eski image'ı kullanmasın;
+    # her deploy'da GHCR'dan yeniden çek (Coolify "force pull" gereğini ortadan kaldırır).
+    pull_policy: always
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -73,6 +76,8 @@ services:
     # Image GHCR'dan çekilir (CI build eder; NEXT_PUBLIC_* CI'da build-time gömülür).
     # Yerel build için: docker compose -f docker-compose.prod.yml build web
     image: ${WEB_IMAGE:-ghcr.io/aliemrevezir/stokoloji-web:latest}
+    # :latest sabit kaldığından her deploy'da GHCR'dan yeniden çek.
+    pull_policy: always
     restart: unless-stopped
     environment:
       NODE_ENV: production
