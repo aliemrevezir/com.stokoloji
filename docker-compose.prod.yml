@@ -69,8 +69,11 @@ services:
         - node -e "fetch('http://localhost:1337/_health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
       interval: 10s
       timeout: 5s
-      retries: 20
-      start_period: 120s
+      # GEÇİCİ (teşhis): ilk boot'ta şema cast + içerik migrasyonu + seed ağır
+      # olabilir; healthcheck'e bol süre tanı (yavaşlık mı yoksa gerçek crash mi
+      # ayırt etmek için). Sorun çözülünce 20/120s'e geri al.
+      retries: 40
+      start_period: 300s
 
   web:
     # Image GHCR'dan çekilir (CI build eder; NEXT_PUBLIC_* CI'da build-time gömülür).
@@ -102,8 +105,11 @@ services:
     # ports:
     #   - "3000:3000"
     depends_on:
+      # GEÇİCİ (teşhis): service_healthy yerine service_started — cms unhealthy olsa
+      # bile stack ayakta kalsın ki cms container'ı silinmesin ve log'u okunabilsin.
+      # Sorun çözülünce service_healthy'ye geri al.
       cms:
-        condition: service_healthy
+        condition: service_started
     healthcheck:
       test:
         - CMD-SHELL
