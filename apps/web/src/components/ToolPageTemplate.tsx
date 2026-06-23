@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Tool } from '@stokoloji/api-client';
 import { CalculatorCard } from './CalculatorCard';
-import { BlocksRenderer } from './BlocksRenderer';
+import { MarkdownContent } from './MarkdownContent';
 import { JsonLd } from './JsonLd';
 import { ScrollDepthTracker } from './analytics/ScrollDepthTracker';
 import { getCalculator } from '@/lib/tools/registry';
@@ -76,7 +76,7 @@ export function ToolPageTemplate({ tool, siteUrl }: { tool: Tool; siteUrl: strin
             {tool.formulAciklamasi && (
               <section className="def-block prose" style={{ marginTop: 'var(--s-6)' }}>
                 <h2 className="h3">Nasıl çalışır?</h2>
-                <BlocksRenderer content={tool.formulAciklamasi} />
+                <MarkdownContent markdown={tool.formulAciklamasi} />
               </section>
             )}
 

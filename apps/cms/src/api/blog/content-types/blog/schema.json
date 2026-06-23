@@ -21,7 +21,7 @@
       "required": true
     },
     "icerik": {
-      "type": "json"
+      "type": "richtext"
     },
     "kapakGorseli": {
       "type": "media",

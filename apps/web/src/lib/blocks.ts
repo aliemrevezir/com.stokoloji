@@ -30,15 +30,42 @@ export interface TocEntry {
   level: number;
 }
 
+/** Satır-içi Markdown işaretlerini sökerek düz metin verir (TOC etiketi + özet için). */
+function stripInlineMd(text: string): string {
+  return text
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '') // görsel
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // link → metin
+    .replace(/`([^`]*)`/g, '$1') // inline code
+    .replace(/\*\*([^*]+)\*\*/g, '$1') // bold
+    .replace(/\*([^*]+)\*/g, '$1') // italic
+    .replace(/\$([^$]+)\$/g, '$1') // inline math
+    .trim();
+}
+
+const FAQ_HEADING_RE = /^s[ıi]k(ça)?\s+sorulan\s+sorular$/i;
+
 /** İlk paragraf(lar)dan meta description için özet üretir (varsayılan 160 karakter). */
 export function excerptFromBlocks(content: unknown, maxLen = 160): string | undefined {
-  if (!Array.isArray(content)) return undefined;
   let text = '';
-  for (const block of content as { type?: string; children?: unknown }[]) {
-    if (block.type === 'paragraph') {
-      const part = inlineText(block.children);
+  if (typeof content === 'string') {
+    let inFence = false;
+    for (const rawLine of content.split('\n')) {
+      const line = rawLine.trim();
+      if (line.startsWith('```')) { inFence = !inFence; continue; }
+      if (inFence) continue;
+      // başlık / tablo / liste / alıntı / görsel / boş satır = paragraf değil
+      if (!line || /^[#>|-]/.test(line) || /^\d+\.\s/.test(line) || line.startsWith('![')) continue;
+      const part = stripInlineMd(line);
       if (part) text += (text ? ' ' : '') + part;
       if (text.length >= maxLen) break;
+    }
+  } else if (Array.isArray(content)) {
+    for (const block of content as { type?: string; children?: unknown }[]) {
+      if (block.type === 'paragraph') {
+        const part = inlineText(block.children);
+        if (part) text += (text ? ' ' : '') + part;
+        if (text.length >= maxLen) break;
+      }
     }
   }
   text = text.trim();
@@ -51,8 +78,22 @@ export function excerptFromBlocks(content: unknown, maxLen = 160): string | unde
 
 /** İçerikteki H2 + H3 başlıklardan içindekiler (TOC) listesi üretir (H3 girintili). */
 export function extractToc(content: unknown): TocEntry[] {
-  if (!Array.isArray(content)) return [];
   const toc: TocEntry[] = [];
+  if (typeof content === 'string') {
+    let inFence = false;
+    for (const rawLine of content.split('\n')) {
+      const line = rawLine.trim();
+      if (line.startsWith('```')) { inFence = !inFence; continue; }
+      if (inFence) continue;
+      const m = /^(#{2,3})\s+(.+?)\s*#*$/.exec(line);
+      if (!m) continue;
+      const label = stripInlineMd(m[2] ?? '');
+      if (!label || FAQ_HEADING_RE.test(label)) continue;
+      toc.push({ id: slugify(label), label, level: (m[1] ?? '').length });
+    }
+    return toc;
+  }
+  if (!Array.isArray(content)) return [];
   for (const block of content as { type?: string; level?: number; children?: unknown }[]) {
     if (block.type === 'heading' && (block.level === 2 || block.level === 3)) {
       const label = inlineText(block.children);
