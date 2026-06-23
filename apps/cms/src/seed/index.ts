@@ -1,4 +1,5 @@
 import type { Core } from '@strapi/strapi';
+import { blocksToMarkdown } from './blocksToMarkdown';
 
 /* ----------------------------- blocks yardımcıları -----------------------------
  * Strapi 'blocks' alanı runtime'da düz JSON node dizisidir; generated tipler
@@ -277,7 +278,7 @@ export async function seedDemoContent(strapi: Core.Strapi): Promise<void> {
       slug: 'eoq-hesaplama',
       kisaAciklama:
         'Yıllık talebini, sipariş başına maliyetini ve birim taşıma maliyetini gir; EOQ hesaplama aracı toplam stok maliyetini en aza indiren optimum sipariş miktarını anında versin.',
-      formulAciklamasi: FORMUL_ACIKLAMASI,
+      formulAciklamasi: blocksToMarkdown(FORMUL_ACIKLAMASI),
       seo: {
         title: 'EOQ Hesaplama Aracı: Ekonomik Sipariş Miktarı [2026]',
         description:
@@ -293,7 +294,7 @@ export async function seedDemoContent(strapi: Core.Strapi): Promise<void> {
     data: {
       baslik: 'EOQ Nedir? Ekonomik Sipariş Miktarı Formülü ve Hesaplama [2026]',
       slug: 'eoq-nedir',
-      icerik: BLOG_ICERIK,
+      icerik: blocksToMarkdown(BLOG_ICERIK),
       seo: {
         title: 'EOQ Nedir? Ekonomik Sipariş Miktarı Formülü [2026]',
         description:
@@ -627,7 +628,7 @@ export async function seedStokDevirHizi(strapi: Core.Strapi): Promise<void> {
       slug: 'stok-devir-hizi-hesaplama',
       kisaAciklama:
         'Stok devir hızını saniyeler içinde hesaplayın: SMM, dönem başı ve dönem sonu stoğunu girin, stoğunuzu dönemde kaç kez döndürdüğünüzü ve stokta kalma süresini öğrenin.',
-      formulAciklamasi: SDH_FORMUL,
+      formulAciklamasi: blocksToMarkdown(SDH_FORMUL),
       seo: {
         title: 'Stok Devir Hızı Hesaplama Aracı | Stokoloji',
         description:
@@ -643,7 +644,7 @@ export async function seedStokDevirHizi(strapi: Core.Strapi): Promise<void> {
     data: {
       baslik: 'Stok Devir Hızı Nedir? Formülü, Hesaplama ve Kaç Olmalı',
       slug: 'stok-devir-hizi-nedir',
-      icerik: SDH_BLOG,
+      icerik: blocksToMarkdown(SDH_BLOG),
       seo: {
         title: 'Stok Devir Hızı Nedir? Formülü, Hesaplama ve Kaç Olmalı',
         description:
@@ -968,7 +969,7 @@ export async function seedStokNedir(strapi: Core.Strapi): Promise<void> {
       data: {
         baslik: 'Stok Nedir? Çeşitleri ve Doğru Stok Tutmanın Faydaları',
         slug: 'stok-nedir',
-        icerik: STOK_NEDIR_BLOG,
+        icerik: blocksToMarkdown(STOK_NEDIR_BLOG),
         ...(kapakId ? { kapakGorseli: kapakId } : {}),
         seo: {
           title: 'Stok Nedir? Çeşitleri ve Neden Önemli? [2026]',
@@ -1408,7 +1409,7 @@ export async function seedEmniyetStogu(strapi: Core.Strapi): Promise<void> {
         slug: 'emniyet-stogu-hesaplama',
         kisaAciklama:
           'Talep dalgalanmanı, tedarik süreni ve hedef servis seviyeni gir; emniyet stoğu hesaplama aracı stoksuz kalmamak için tutman gereken tampon stoğu Z-skoru yöntemiyle versin.',
-        formulAciklamasi: EMNIYET_TOOL_FORMUL,
+        formulAciklamasi: blocksToMarkdown(EMNIYET_TOOL_FORMUL),
         ...(toolKapakId ? { kapakGorseli: toolKapakId } : {}),
         seo: {
           title: 'Emniyet Stoğu Hesaplama: Servis Seviyeli Araç [2026]',
@@ -1437,7 +1438,7 @@ export async function seedEmniyetStogu(strapi: Core.Strapi): Promise<void> {
       data: {
         baslik: 'Emniyet Stoğu Nedir? Formülü, Servis Seviyesi ve Hesaplama Rehberi [2026]',
         slug: 'emniyet-stogu-nedir',
-        icerik: EMNIYET_BLOG,
+        icerik: blocksToMarkdown(EMNIYET_BLOG),
         ...(kapakId ? { kapakGorseli: kapakId } : {}),
         iliskiliTool: tool.documentId,
         seo: {
@@ -1795,7 +1796,7 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
         slug: 'yeniden-siparis-noktasi-hesaplama',
         kisaAciklama:
           'Ortalama günlük talebini, tedarik süreni ve emniyet stoğunu gir; yeniden sipariş noktası hesaplama aracı stoğun hangi seviyeye düşünce yeni sipariş vermen gerektiğini söylesin.',
-        formulAciklamasi: ROP_TOOL_FORMUL,
+        formulAciklamasi: blocksToMarkdown(ROP_TOOL_FORMUL),
         ...(toolKapakId ? { kapakGorseli: toolKapakId } : {}),
         seo: {
           title: 'Yeniden Sipariş Noktası Hesaplama (ROP) Aracı [2026]',
@@ -1834,7 +1835,7 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
       data: {
         baslik: 'Yeniden Sipariş Noktası (ROP) Nedir? Formülü ve Hesaplama Rehberi [2026]',
         slug: 'yeniden-siparis-noktasi-nedir',
-        icerik: ROP_BLOG,
+        icerik: blocksToMarkdown(ROP_BLOG),
         ...(kapakId ? { kapakGorseli: kapakId } : {}),
         iliskiliTool: tool.documentId,
         seo: {
@@ -1856,7 +1857,7 @@ export async function seedRop(strapi: Core.Strapi): Promise<void> {
     await strapi.documents('api::blog.blog').update({
       documentId: blog.documentId,
       data: {
-        icerik: ROP_BLOG,
+        icerik: blocksToMarkdown(ROP_BLOG),
         ...(kapakId ? { kapakGorseli: kapakId } : {}),
         iliskiliTool: tool.documentId,
       },
@@ -1988,4 +1989,447 @@ export async function seedDuyuru(strapi: Core.Strapi): Promise<void> {
   });
 
   strapi.log.info('[seed] Duyuru kaydı başarıyla oluşturuldu.');
+}
+
+/* ============================ ÜRETİM YÖNETİMİ CLUSTER ============================
+ * OEE (tool + blog), Fire Oranı (tool), MRP (blog). İlk üretim-yönetimi içerik
+ * dalgası. Kategori: "Üretim Yönetimi" (uretim-yonetimi). Hesaplama mantığı
+ * apps/web/src/lib/tools/{oee,fire-orani}.ts içinde yaşar (mimari kural 1). */
+
+/** "Üretim Yönetimi" kategorisini bulur ya da oluşturur. */
+async function ensureUretimKategori(strapi: Core.Strapi) {
+  return (
+    (await strapi.documents('api::kategori.kategori').findFirst({
+      filters: { slug: 'uretim-yonetimi' },
+    })) ??
+    (await strapi.documents('api::kategori.kategori').create({
+      data: { ad: 'Üretim Yönetimi', slug: 'uretim-yonetimi' },
+      status: 'published',
+    }))
+  );
+}
+
+/** Ortak editör yazarını bulur ya da oluşturur. */
+async function ensureYazar(strapi: Core.Strapi) {
+  return (
+    (await strapi.documents('api::yazar.yazar').findFirst()) ??
+    (await strapi.documents('api::yazar.yazar').create({
+      data: {
+        ad: 'Stokoloji Editör Ekibi',
+        unvan: 'Stok & Üretim Yönetimi',
+        bio: 'Stok ve üretim yönetimi araçları üzerine içerik üreten editör ekibi.',
+      },
+      status: 'published',
+    }))
+  );
+}
+
+/* --------------------------------- OEE --------------------------------- */
+
+const OEE_FORMUL = [
+  pr(
+    b('OEE hesaplama'),
+    t(
+      ', bir makine veya üretim hattının kapasitesini ne kadar verimli kullandığını tek bir yüzdeyle gösteren standart bir üretim metriğidir. OEE (Overall Equipment Effectiveness, Türkçesiyle Toplam Ekipman Etkinliği), üç kaybı tek çatı altında toplar: duruşlar, yavaş çalışma ve kusurlu üretim. Bu araç beş değeri girmenle anında OEE skorunu ve üç bileşenini hesaplar.',
+    ),
+  ),
+  h(2, 'OEE formülü nedir?'),
+  p('OEE üç oranın çarpımıdır:'),
+  fx('OEE = Kullanılabilirlik × Performans × Kalite'),
+  p(
+    'Kullanılabilirlik, planlanan sürenin ne kadarında gerçekten ürettiğini; Performans, çalıştığın sürede ideal hıza ne kadar yaklaştığını; Kalite ise üretilenin ne kadarının sağlam çıktığını ölçer. Üçü de yüzde olduğundan OEE de bir yüzdedir.',
+  ),
+  h(2, 'Aracı nasıl kullanırım?'),
+  p('Beş değeri gir, sonuç sağda anında güncellensin:'),
+  ol([
+    'Planlanan üretim süresi (dakika): vardiya süresinden planlı molaları çıkar.',
+    'Plansız duruş süresi (dakika): arıza, ayar, malzeme bekleme gibi beklenmeyen duruşlar.',
+    'İdeal çevrim süresi (saniye/adet): bir parçanın teorik en hızlı üretim süresi.',
+    'Toplam üretim (adet): sağlam ve kusurlu dahil tüm çıktı.',
+    'Kusurlu adet: ıskartaya çıkan veya yeniden işlenen parçalar.',
+  ]),
+  h(2, 'İyi bir OEE değeri kaç olmalı?'),
+  p('Üretim literatüründe yaygın kabul gören referans aralıkları şöyledir:'),
+  table(
+    ['OEE skoru', 'Yorum'],
+    [
+      ['%85 ve üzeri', 'Dünya-class; kesikli üretimde uzun vadeli hedef'],
+      ['%60 civarı', 'Tipik üretici; ciddi iyileştirme alanı var'],
+      ['%40 ve altı', 'Düşük; yeni başlayan tesislerde sık görülür, hızlı kazanç fırsatı'],
+    ],
+  ),
+  pr(
+    t('Skoru düşüren bileşeni gördükten sonra '),
+    a('fire oranı hesaplama', '/araclar/fire-orani-hesaplama'),
+    t(' aracıyla kalite kaybını ayrıştırabilir, '),
+    a('OEE nedir yazımızdan', '/icerik/oee-nedir'),
+    t(' altı büyük kayıp ve iyileştirme yöntemlerini öğrenebilirsin.'),
+  ),
+];
+
+const OEE_SSS = [
+  {
+    soru: 'OEE nasıl hesaplanır?',
+    cevap:
+      'OEE, kullanılabilirlik, performans ve kalite oranlarının çarpımıdır. Kullanılabilirlik = çalışma süresi / planlanan süre; Performans = (ideal çevrim süresi × toplam üretim) / çalışma süresi; Kalite = sağlam adet / toplam üretim.',
+  },
+  {
+    soru: 'OEE ile verimlilik aynı şey mi?',
+    cevap:
+      'Hayır. Verimlilik genelde tek bir boyuta (örneğin işgücü ya da hız) bakar; OEE ise duruş, hız ve kalite kayıplarını birlikte ölçtüğü için ekipman etkinliğinin bütününü gösterir.',
+  },
+  {
+    soru: 'OEE %100 olabilir mi?',
+    cevap:
+      'Teorik olarak evet ama pratikte ulaşılamaz. %100 OEE; hiç duruş olmadan, ideal hızda ve sıfır kusurla üretim demektir. Gerçekçi hedef, kesikli üretimde %85 dünya-class seviyesidir.',
+  },
+];
+
+export async function seedOee(strapi: Core.Strapi): Promise<void> {
+  const existing = await strapi.documents('api::tool.tool').findFirst({
+    filters: { slug: 'oee-hesaplama' },
+  });
+  if (existing) {
+    strapi.log.info('[seed] OEE içeriği zaten mevcut, atlanıyor.');
+    return;
+  }
+
+  strapi.log.info('[seed] OEE içeriği oluşturuluyor...');
+
+  const kategori = await ensureUretimKategori(strapi);
+  const yazar = await ensureYazar(strapi);
+
+  const tool = await strapi.documents('api::tool.tool').create({
+    data: {
+      ad: 'OEE Hesaplama',
+      slug: 'oee-hesaplama',
+      kisaAciklama:
+        'OEE (Toplam Ekipman Etkinliği) skorunu saniyeler içinde hesaplayın: planlanan süre, duruş, ideal çevrim süresi ve üretim adetlerini girin; kullanılabilirlik, performans ve kalite kayıplarını ayrı ayrı görün.',
+      formulAciklamasi: blocksToMarkdown(OEE_FORMUL),
+      seo: {
+        title: 'OEE Hesaplama Aracı: Toplam Ekipman Etkinliği | Stokoloji',
+        description:
+          'Ücretsiz OEE hesaplama aracı. Kullanılabilirlik, performans ve kalite kayıplarını girin; toplam ekipman etkinliği skorunuzu anında hesaplayın.',
+      },
+      kategori: kategori.documentId,
+      sss: OEE_SSS,
+    },
+    status: 'published',
+  });
+
+  const blog = await strapi.documents('api::blog.blog').create({
+    data: {
+      baslik: 'OEE Nedir? Formülü, Hesaplama ve İdeal Değer',
+      slug: 'oee-nedir',
+      icerik: blocksToMarkdown(OEE_BLOG),
+      seo: {
+        title: 'OEE Nedir? Formülü, Hesaplama ve İdeal Değer [2026]',
+        description:
+          'OEE nedir, nasıl hesaplanır, ideal değer kaçtır ve nasıl iyileştirilir? Kullanılabilirlik, performans, kalite bileşenleri, altı büyük kayıp ve işlenmiş örnek.',
+      },
+      kategori: kategori.documentId,
+      yazar: yazar.documentId,
+      iliskiliTool: tool.documentId,
+      sss: OEE_SSS,
+      yayinTarihi: '2026-06-23T09:00:00.000Z',
+      guncellemeTarihi: '2026-06-23T09:00:00.000Z',
+    },
+    status: 'published',
+  });
+
+  await strapi.documents('api::tool.tool').update({
+    documentId: tool.documentId,
+    data: { iliskiliYazilar: [blog.documentId] },
+    status: 'published',
+  });
+
+  strapi.log.info('[seed] OEE içeriği başarıyla oluşturuldu.');
+}
+
+export const OEE_BLOG = [
+  pr(
+    b('OEE'),
+    t(
+      ' (Overall Equipment Effectiveness, Türkçesiyle Toplam Ekipman Etkinliği), bir makinenin veya üretim hattının mevcut kapasitesini ne kadar verimli kullandığını tek bir yüzdeyle özetleyen üretim metriğidir. OEE; duruşları, yavaş çalışmayı ve kusurlu üretimi tek skorda birleştirdiği için yalın üretim ve sürekli iyileştirme çalışmalarının ortak dili olmuştur. Bu yazıda OEE nedir, formülü nasıl uygulanır, ideal değeri kaçtır ve nasıl iyileştirilir sorularını işlenmiş örnekle yanıtlıyoruz.',
+    ),
+  ),
+  h(2, 'OEE nedir?'),
+  p(
+    'OEE, planlanan üretim süresinde tam hızda ve sıfır kusurla üretilebilecek miktarın ne kadarının gerçekten sağlam olarak üretildiğini gösteren orandır. %100 OEE; hiç durmadan, ideal hızda ve hatasız üretim demektir. Skor, üç bileşenin çarpımı olduğu için hangi kaybın baskın olduğunu da görünür kılar.',
+  ),
+  h(2, 'OEE nasıl hesaplanır?'),
+  p('OEE üç oranın çarpımıdır ve formülü şudur:'),
+  fx('OEE = Kullanılabilirlik × Performans × Kalite'),
+  h(3, 'Kullanılabilirlik'),
+  p(
+    'Planlanan sürenin ne kadarında gerçekten ürettiğini ölçer. Çalışma süresi, planlanan süreden plansız duruşların (arıza, ayar, malzeme bekleme) çıkarılmasıyla bulunur: Kullanılabilirlik = Çalışma Süresi / Planlanan Süre.',
+  ),
+  h(3, 'Performans'),
+  p(
+    'Çalıştığın sürede ideal hıza ne kadar yaklaştığını ölçer. Küçük duruşlar ve hız kayıpları bu bileşeni düşürür: Performans = (İdeal Çevrim Süresi × Toplam Üretim) / Çalışma Süresi.',
+  ),
+  h(3, 'Kalite'),
+  p(
+    'Üretilen toplam adedin ne kadarının sağlam çıktığını ölçer. Iskarta ve yeniden işleme bu oranı düşürür: Kalite = Sağlam Adet / Toplam Üretim.',
+  ),
+  h(2, 'İşlenmiş bir OEE örneği'),
+  p(
+    '480 dakikalık vardiyada 60 dakika plansız duruş yaşandığını, ideal çevrim süresinin 1 saniye olduğunu, 19.271 adet üretildiğini ve bunun 423 adedinin kusurlu olduğunu varsayalım:',
+  ),
+  ul([
+    'Kullanılabilirlik = (480 - 60) / 480 = %87,5',
+    'Performans = (1 sn × 19.271) / (420 dk × 60 sn) = %76,5',
+    'Kalite = (19.271 - 423) / 19.271 = %97,8',
+    'OEE = 0,875 × 0,765 × 0,978 = %65,4',
+  ]),
+  pr(
+    t('Bu hesabı kendi verinle saniyeler içinde yapmak için '),
+    a('OEE hesaplama aracını', '/araclar/oee-hesaplama'),
+    t(' kullanabilirsin.'),
+  ),
+  h(2, 'İyi bir OEE değeri kaç olmalı?'),
+  p('Kesikli (discrete) üretim için yaygın kabul gören referans aralıkları şunlardır:'),
+  table(
+    ['OEE skoru', 'Anlamı'],
+    [
+      ['%85 ve üzeri', 'Dünya-class; çoğu tesis için uzun vadeli hedef'],
+      ['%60 civarı', 'Tipik üretici; iyileştirmeye açık geniş alan var'],
+      ['%40 ve altı', 'Düşük; ölçmeye yeni başlayan tesislerde olağan, hızlı kazanç mümkün'],
+    ],
+  ),
+  p(
+    'Mutlak skordan çok trendi takip etmek daha sağlıklıdır. Aynı hattın haftadan haftaya OEE değişimi, yapılan iyileştirmenin işe yarayıp yaramadığını gösterir.',
+  ),
+  h(2, 'OEE nasıl iyileştirilir?'),
+  p(
+    'OEE kayıpları geleneksel olarak altı büyük kayıp başlığında toplanır: arızalar ve ayar/kurulum kayıpları (kullanılabilirlik), küçük duruşlar ve hız kayıpları (performans), başlangıç fireleri ve süreç kusurları (kalite). İyileştirme için önce en düşük bileşene odaklan; çünkü çarpım yapısı nedeniyle en zayıf halka skoru aşağı çeker.',
+  ),
+  pr(
+    b('Saha notu: '),
+    t(
+      'Birçok tesiste OEE ilk ölçüldüğünde performans bileşeni beklenenden düşük çıkar; çünkü operatörler kısa duruşları (birkaç dakikalık sıkışma, küçük ayar) raporlamaz. Duruşları otomatik saymaya başladığımız bir hatta, görünmeyen küçük duruşların tek başına performansı yaklaşık 10 puan düşürdüğünü gördük. Bu yüzden veri toplama disiplini, çoğu zaman yeni makineden daha hızlı kazanç sağlar.',
+    ),
+  ),
+  h(2, 'OEE ve diğer üretim metrikleri'),
+  pr(
+    t('OEE; kalite tarafında '),
+    a('fire oranı', '/araclar/fire-orani-hesaplama'),
+    t(' ile, planlama tarafında ise '),
+    a('MRP (malzeme ihtiyaç planlaması)', '/icerik/mrp-nedir'),
+    t(
+      ' ile birlikte okunduğunda anlam kazanır. Malzeme zamanında gelmezse kullanılabilirlik, kalite sorunluysa kalite bileşeni düşer. Stok tarafında ise ',
+    ),
+    a('stok devir hızı', '/icerik/stok-devir-hizi-nedir'),
+    t(' operasyonun ne kadar hızlı döndüğünü tamamlayıcı bir açıdan gösterir.'),
+  ),
+];
+
+/* --------------------------------- FİRE ORANI --------------------------------- */
+
+const FIRE_FORMUL = [
+  pr(
+    b('Fire oranı hesaplama'),
+    t(
+      ', bir üretim ya da satın alma sürecinde girdinin ne kadarının kullanılamaz hale geldiğini (fire, hurda, ıskarta) yüzde olarak bulan basit ama kritik bir araçtır. Fire oranı yükseldikçe maliyet artar, verim düşer; bu yüzden hem üretimde hem gıda, tekstil ve perakendede yakından izlenir.',
+    ),
+  ),
+  h(2, 'Fire oranı formülü nedir?'),
+  p('Fire oranı, fire miktarının toplam giren miktara bölünmesiyle bulunur:'),
+  fx('Fire Oranı (%) = (Fire Miktarı / Toplam Giren) × 100'),
+  p(
+    'Sağlam miktar, toplam girenden fireyi çıkararak bulunur; verim ise yüzde 100 eksi fire oranıdır. Giren ve fire aynı birimde olmalıdır (adet, kilogram, metre).',
+  ),
+  h(2, 'Aracı nasıl kullanırım?'),
+  ol([
+    'Toplam giren miktarı gir (üretime giren ya da satın alınan toplam).',
+    'Fire/hurda miktarını gir (kullanılamaz hale gelen kısım).',
+    'Fire oranını, verimi ve sağlam miktarı anında gör.',
+  ]),
+  h(2, 'Fire oranı kaç olmalı?'),
+  p(
+    'Kabul edilebilir fire oranı sektöre göre değişir: hassas metal işlemede yüzde 1-2 hedeflenirken, taze gıdada yüzde 5-10 olağan olabilir. Önemli olan tek bir ölçüm değil, oranın zaman içinde düşürülmesi ve bütçelenen fire ile karşılaştırılmasıdır.',
+  ),
+  pr(
+    t('Fire, kalite kaybı olarak '),
+    a('OEE skorunun', '/icerik/oee-nedir'),
+    t(' kalite bileşenini de doğrudan etkiler.'),
+  ),
+];
+
+const FIRE_SSS = [
+  {
+    soru: 'Fire oranı nasıl hesaplanır?',
+    cevap:
+      'Fire miktarı toplam giren miktara bölünüp 100 ile çarpılır: Fire Oranı (%) = (Fire Miktarı / Toplam Giren) × 100. Verim ise 100 eksi fire oranıdır.',
+  },
+  {
+    soru: 'Fire oranı ile verim arasındaki fark nedir?',
+    cevap:
+      'İkisi birbirini tamamlar. Fire oranı kaybedilen kısmı, verim ise kullanılabilir kalan kısmı gösterir. Fire oranı %5 ise verim %95 olur.',
+  },
+  {
+    soru: 'Fire oranını nasıl düşürürüm?',
+    cevap:
+      'Kök neden analizi yapın: hatalı ölçü, makine ayarı, hammadde kalitesi veya operatör eğitimi sık görülen nedenlerdir. Fireyi süreç adımına göre ayrı ölçmek, hangi adımın sorunlu olduğunu gösterir.',
+  },
+];
+
+export async function seedFireOrani(strapi: Core.Strapi): Promise<void> {
+  const existing = await strapi.documents('api::tool.tool').findFirst({
+    filters: { slug: 'fire-orani-hesaplama' },
+  });
+  if (existing) {
+    strapi.log.info('[seed] Fire oranı içeriği zaten mevcut, atlanıyor.');
+    return;
+  }
+
+  strapi.log.info('[seed] Fire oranı içeriği oluşturuluyor...');
+
+  const kategori = await ensureUretimKategori(strapi);
+
+  const oeeBlog = await strapi.documents('api::blog.blog').findFirst({
+    filters: { slug: 'oee-nedir' },
+  });
+
+  const tool = await strapi.documents('api::tool.tool').create({
+    data: {
+      ad: 'Fire Oranı Hesaplama',
+      slug: 'fire-orani-hesaplama',
+      kisaAciklama:
+        'Fire (hurda/ıskarta) oranını anında hesaplayın: toplam giren miktar ile fire miktarını girin; fire oranını, verimi ve sağlam miktarı görün.',
+      formulAciklamasi: blocksToMarkdown(FIRE_FORMUL),
+      seo: {
+        title: 'Fire Oranı Hesaplama Aracı: Formül ve Örnek | Stokoloji',
+        description:
+          'Ücretsiz fire oranı hesaplama aracı. Toplam giren ve fire miktarını girin; fire oranını, verimi ve sağlam miktarı saniyeler içinde hesaplayın.',
+      },
+      kategori: kategori.documentId,
+      sss: FIRE_SSS,
+      ...(oeeBlog ? { iliskiliYazilar: [oeeBlog.documentId] } : {}),
+    },
+    status: 'published',
+  });
+
+  strapi.log.info(`[seed] Fire oranı tool oluşturuldu (${tool.slug}).`);
+}
+
+/* --------------------------------- MRP (pillar blog) --------------------------------- */
+
+export const MRP_BLOG = [
+  pr(
+    b('MRP'),
+    t(
+      ' (Material Requirements Planning, Türkçesiyle malzeme ihtiyaç planlaması), bir ürünü üretmek için hangi malzemeden ne kadar ve ne zaman gerektiğini hesaplayan üretim planlama yöntemidir. MRP; talep tahminini, ürün ağacını ve eldeki stoğu birleştirerek satın alma ve üretim emirlerini otomatik üretir. Bu yazıda MRP nedir, nasıl çalışır, girdileri nelerdir ve MRP ile MRP II ve ERP arasındaki fark nedir sorularını yanıtlıyoruz.',
+    ),
+  ),
+  h(2, 'MRP nedir?'),
+  p(
+    'MRP, bitmiş ürün talebini parça ve hammadde ihtiyacına çeviren bir hesaplama mantığıdır. Temel mantığı şudur: ne kadar bitmiş ürüne ihtiyaç var, bunun için hangi alt parçalardan kaç adet gerekir, elimizde ne var ve eksiği ne zaman sipariş etmeliyiz. Böylece ne erken (fazla stok) ne de geç (üretim durması) sipariş verilir.',
+  ),
+  h(2, 'MRP nasıl çalışır?'),
+  p('MRP üç ana girdiyi alır ve iki ana çıktı üretir. Girdi ve çıktılar şöyledir:'),
+  table(
+    ['Girdi', 'Çıktı'],
+    [
+      ['Ana Üretim Çizelgesi (MPS): ne, ne zaman, ne kadar üretilecek', 'Planlı satın alma emirleri'],
+      ['Ürün Ağacı (BOM): her ürün hangi parçalardan oluşur', 'Planlı üretim/iş emirleri'],
+      ['Stok kayıtları: eldeki ve sipariş edilmiş miktarlar', 'Yeniden çizelgeleme uyarıları'],
+    ],
+  ),
+  p(
+    'MRP bu girdileri kullanarak brüt ihtiyaçtan eldeki stoğu ve gelen siparişleri düşer; kalan net ihtiyacı, tedarik süresini geriye sayarak doğru tarihe yerleştirir. Bu işleme "lead time offsetting" (tedarik süresi kaydırma) denir.',
+  ),
+  h(2, 'MRP girdileri neden doğru olmalı?'),
+  p(
+    'MRP, girdilerine tamamen bağımlıdır; yanlış stok kaydı ya da eksik ürün ağacı, tüm planı bozar. "Çöp girer, çöp çıkar" ilkesi MRP için fazlasıyla geçerlidir. Bu yüzden MRP kurmadan önce stok doğruluğu ve BOM bütünlüğü sağlanmalıdır.',
+  ),
+  pr(
+    b('Saha notu: '),
+    t(
+      'Bir KOBİ üretiminde MRP devreye alındığında ilk haftalarda planın tutmadığını görmüştük; sorun yazılımda değil, sayım disiplinindeydi. Stok doğruluğu yüzde 70 seviyesindeyken MRP sürekli yanlış sipariş öneriyordu. Önce ',
+    ),
+    a('stok devir hızını', '/icerik/stok-devir-hizi-nedir'),
+    t(
+      ' ve sayım doğruluğunu düzelttik; MRP ancak ondan sonra güvenilir hale geldi. Yani MRP bir yazılım kararından önce bir veri disiplini projesidir.',
+    ),
+  ),
+  h(2, 'MRP, MRP II ve ERP arasındaki fark nedir?'),
+  ul([
+    'MRP: yalnız malzeme ihtiyacını planlar (ne, ne kadar, ne zaman).',
+    'MRP II (Manufacturing Resource Planning): malzemeye ek olarak kapasite, işgücü ve makine planlamasını da kapsar.',
+    'ERP: MRP II üzerine finans, satış, insan kaynakları gibi tüm işletme fonksiyonlarını tek sistemde birleştirir.',
+  ]),
+  h(2, 'MRP ile stok yönetimi nasıl birleşir?'),
+  pr(
+    t('MRP, bağımlı talebi (parçalar) planlarken; bağımsız talep kalemlerinde klasik stok yöntemleri devreye girer. '),
+    a('Ekonomik sipariş miktarı (EOQ)', '/icerik/eoq-nedir'),
+    t(' sipariş büyüklüğünü, '),
+    a('emniyet stoğu', '/icerik/emniyet-stogu-nedir'),
+    t(' belirsizliğe karşı tamponu, '),
+    a('yeniden sipariş noktası', '/icerik/yeniden-siparis-noktasi-nedir'),
+    t(
+      ' ise sipariş zamanını belirler. MRP bu kavramların yerini almaz; onları bir üretim çizelgesiyle ilişkilendirir. Üretim verimliliğini ölçmek için ise ',
+    ),
+    a('OEE', '/icerik/oee-nedir'),
+    t(' metriğine bakılır.'),
+  ),
+  pr(
+    t('Stok yönetiminin temel kavramlarını topluca görmek için '),
+    a('stok nedir rehberimize', '/icerik/stok-nedir'),
+    t(' göz atabilirsin.'),
+  ),
+];
+
+const MRP_SSS = [
+  {
+    soru: 'MRP ne işe yarar?',
+    cevap:
+      'MRP, bitmiş ürün talebine göre hangi malzemeden ne kadar ve ne zaman gerektiğini hesaplar; satın alma ve üretim emirlerini doğru zamanda üreterek hem stok fazlasını hem de üretim duruşunu önler.',
+  },
+  {
+    soru: 'MRP ve ERP aynı şey mi?',
+    cevap:
+      'Hayır. MRP yalnız malzeme planlamasını kapsar; ERP ise finans, satış ve insan kaynakları dahil tüm işletme süreçlerini tek sistemde birleştirir. MRP, ERP içindeki modüllerden biridir.',
+  },
+  {
+    soru: 'MRP için hangi veriler gerekir?',
+    cevap:
+      'Üç temel girdi gerekir: ana üretim çizelgesi (MPS), ürün ağacı (BOM) ve güncel stok kayıtları. Bu verilerin doğruluğu, planın güvenilirliğini doğrudan belirler.',
+  },
+];
+
+export async function seedMrp(strapi: Core.Strapi): Promise<void> {
+  const existing = await strapi.documents('api::blog.blog').findFirst({
+    filters: { slug: 'mrp-nedir' },
+  });
+  if (existing) {
+    strapi.log.info('[seed] MRP içeriği zaten mevcut, atlanıyor.');
+    return;
+  }
+
+  strapi.log.info('[seed] MRP içeriği oluşturuluyor...');
+
+  const kategori = await ensureUretimKategori(strapi);
+  const yazar = await ensureYazar(strapi);
+
+  await strapi.documents('api::blog.blog').create({
+    data: {
+      baslik: 'MRP Nedir? Malzeme İhtiyaç Planlaması Rehberi',
+      slug: 'mrp-nedir',
+      icerik: blocksToMarkdown(MRP_BLOG),
+      seo: {
+        title: 'MRP Nedir? Malzeme İhtiyaç Planlaması Rehberi [2026]',
+        description:
+          'MRP nedir, nasıl çalışır, girdileri nelerdir ve MRP, MRP II ile ERP farkı nedir? Ana üretim çizelgesi, ürün ağacı ve stok kayıtlarıyla adım adım rehber.',
+      },
+      kategori: kategori.documentId,
+      yazar: yazar.documentId,
+      sss: MRP_SSS,
+      yayinTarihi: '2026-06-23T09:00:00.000Z',
+      guncellemeTarihi: '2026-06-23T09:00:00.000Z',
+    },
+    status: 'published',
+  });
+
+  strapi.log.info('[seed] MRP içeriği başarıyla oluşturuldu.');
 }

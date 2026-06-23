@@ -12,7 +12,9 @@ import { eoq } from './eoq';
 import { stokDevirHizi } from './stok-devir-hizi';
 import { emniyetStogu } from './emniyet-stogu';
 import { rop } from './rop';
-import { formatNumber, formatCurrency } from '../format';
+import { oee } from './oee';
+import { fireOrani } from './fire-orani';
+import { formatNumber, formatCurrency, formatPercent } from '../format';
 
 export interface CalculatorField {
   name: string;
@@ -159,11 +161,71 @@ const ropDef: CalculatorDef = {
   },
 };
 
+const oeeDef: CalculatorDef = {
+  slug: 'oee-hesaplama',
+  fields: [
+    { name: 'planlananSure', label: 'Planlanan Üretim Süresi', suffix: 'dk', defaultValue: 480, min: 1, step: 1 },
+    { name: 'durusSuresi', label: 'Plansız Duruş Süresi', suffix: 'dk', defaultValue: 60, min: 0, step: 1 },
+    { name: 'idealCevrimSuresi', label: 'İdeal Çevrim Süresi', suffix: 'sn/adet', defaultValue: 1, min: 0.01, step: 0.01 },
+    { name: 'toplamUretim', label: 'Toplam Üretim', suffix: 'adet', defaultValue: 19271, min: 1, step: 1 },
+    { name: 'kusurluAdet', label: 'Kusurlu Adet', suffix: 'adet', defaultValue: 423, min: 0, step: 1 },
+  ],
+  compute: (inputs) => {
+    const r = oee({
+      planlananSure: inputs.planlananSure!,
+      durusSuresi: inputs.durusSuresi!,
+      idealCevrimSuresi: inputs.idealCevrimSuresi!,
+      toplamUretim: inputs.toplamUretim!,
+      kusurluAdet: inputs.kusurluAdet!,
+    });
+    return {
+      value: formatPercent(r.oee),
+      unit: 'OEE',
+      summary: `OEE = ${formatPercent(r.oee)} · Kullanılabilirlik ${formatPercent(
+        r.kullanilabilirlik,
+      )} × Performans ${formatPercent(r.performans)} × Kalite ${formatPercent(r.kalite)}`,
+      rows: [
+        { label: 'Kullanılabilirlik', value: formatPercent(r.kullanilabilirlik) },
+        { label: 'Performans', value: formatPercent(r.performans) },
+        { label: 'Kalite', value: formatPercent(r.kalite) },
+        { label: 'Sağlam üretim', value: `${formatNumber(r.saglamAdet)} adet` },
+      ],
+    };
+  },
+};
+
+const fireOraniDef: CalculatorDef = {
+  slug: 'fire-orani-hesaplama',
+  fields: [
+    { name: 'toplamGiren', label: 'Toplam Giren Miktar', suffix: 'adet', defaultValue: 1000, min: 0.01, step: 1 },
+    { name: 'fireMiktari', label: 'Fire / Hurda Miktarı', suffix: 'adet', defaultValue: 50, min: 0, step: 1 },
+  ],
+  compute: (inputs) => {
+    const r = fireOrani({
+      toplamGiren: inputs.toplamGiren!,
+      fireMiktari: inputs.fireMiktari!,
+    });
+    return {
+      value: formatPercent(r.fireOrani),
+      unit: 'fire',
+      summary: `Fire oranı = ${formatPercent(r.fireOrani)} · verim ${formatPercent(
+        r.verim,
+      )} · sağlam ${formatNumber(r.saglamMiktar)} birim`,
+      rows: [
+        { label: 'Verim (sağlam oranı)', value: formatPercent(r.verim) },
+        { label: 'Sağlam miktar', value: `${formatNumber(r.saglamMiktar)} birim` },
+      ],
+    };
+  },
+};
+
 const REGISTRY: Record<string, CalculatorDef> = {
   [eoqDef.slug]: eoqDef,
   [stokDevirHiziDef.slug]: stokDevirHiziDef,
   [emniyetStoguDef.slug]: emniyetStoguDef,
   [ropDef.slug]: ropDef,
+  [oeeDef.slug]: oeeDef,
+  [fireOraniDef.slug]: fireOraniDef,
 };
 
 export function getCalculator(slug: string): CalculatorDef | null {

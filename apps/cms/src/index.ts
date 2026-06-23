@@ -5,18 +5,21 @@ import {
   BLOG_SSS,
   EMNIYET_SSS,
   ROP_SSS,
-  SDH_BLOG,
   SDH_SSS,
   seedBanners,
   seedDemoContent,
   seedDuyuru,
   seedEmniyetStogu,
+  seedFireOrani,
   seedHomepage,
+  seedMrp,
+  seedOee,
   seedRop,
   seedStokDevirHizi,
   seedStokNedir,
 } from './seed';
 import { seedSozluk } from './seed/sozluk';
+import { contentToMarkdown } from './seed/blocksToMarkdown';
 
 /**
  * Public role'e içerik okuma izni ver (idempotent).
@@ -113,143 +116,11 @@ async function setAnasayfaFieldHints(strapi: Core.Strapi): Promise<void> {
   }
 }
 
-/**
- * Mevcut blog/tool içeriğindeki "tek başına formül" paragraflarını (inline `code`
- * text node) blok düzeyi `code` node'una çevirir → web'de KaTeX/şık formül kartı
- * olarak render edilir (BlocksRenderer `case 'code'`). Sembolik formüller LaTeX'e
- * maplenir; kelimeli formüller metin kartı olur. Idempotent: dönüştürülen node artık
- * `paragraph` değil `code` olduğundan tekrar çalıştırınca atlanır. Yeni seed `fx()`
- * kullanır; bu migration ESKİ DB kayıtlarını (idempotent seed atladığı için) düzeltir.
- * Hata boot'u BOZMAMALI (try/catch).
- */
-async function migrateFormulaBlocks(strapi: Core.Strapi): Promise<void> {
-  // Eski (inline code) formül metni → yeni (code block) LaTeX. Map'te olmayan
-  // tek-code paragraflar (kelimeli formüller) metni aynen taşınır → metin kartı.
-  const LATEX: Record<string, string> = {
-    'EOQ = √(2 × D × S / H)': 'EOQ = \\sqrt{\\dfrac{2 \\times D \\times S}{H}}',
-    'Emniyet Stoğu = Z × σ_d × √L': 'SS = Z \\times \\sigma_d \\times \\sqrt{L}',
-    'Emniyet Stoğu = Z × σ_L × D_ort': 'SS = Z \\times \\sigma_L \\times D_{ort}',
-    'Emniyet Stoğu = Z × √[ (L × σ_d²) + (σ_L × D_ort)² ]':
-      'SS = Z \\times \\sqrt{(L \\times \\sigma_d^2) + (\\sigma_L \\times D_{ort})^2}',
-    'Emniyet Stoğu = 1,65 × 20 × √9 = 1,65 × 20 × 3 = 99 adet':
-      'SS = 1{,}65 \\times 20 \\times \\sqrt{9} = 1{,}65 \\times 20 \\times 3 = 99 \\text{ adet}',
-  };
-
-  // Yalnız "tek bir inline code text node içeren paragraf" formül satırı sayılır
-  // (içinde STDEV gibi karışık prose'da code geçen paragraflar çok-çocukludur, atlanır).
-  const convert = (nodes: any[]): { out: any[]; changed: boolean } => {
-    let changed = false;
-    const out = nodes.map((node) => {
-      if (
-        node?.type === 'paragraph' &&
-        Array.isArray(node.children) &&
-        node.children.length === 1 &&
-        node.children[0]?.type === 'text' &&
-        node.children[0]?.code === true &&
-        typeof node.children[0]?.text === 'string'
-      ) {
-        changed = true;
-        const raw = node.children[0].text.trim();
-        return { type: 'code', children: [{ type: 'text', text: LATEX[raw] ?? raw }] };
-      }
-      return node;
-    });
-    return { out, changed };
-  };
-
-  try {
-    const blogs: any[] = await strapi.documents('api::blog.blog').findMany({ status: 'published' });
-    for (const b of blogs) {
-      if (!Array.isArray(b.icerik)) continue;
-      const { out, changed } = convert(b.icerik);
-      if (changed) {
-        await strapi.documents('api::blog.blog').update({
-          documentId: b.documentId,
-          data: { icerik: out },
-          status: 'published',
-        });
-        strapi.log.info(`[migrate-formul] blog güncellendi: ${b.slug}`);
-      }
-    }
-
-    const tools: any[] = await strapi.documents('api::tool.tool').findMany({ status: 'published' });
-    for (const tl of tools) {
-      if (!Array.isArray(tl.formulAciklamasi)) continue;
-      const { out, changed } = convert(tl.formulAciklamasi);
-      if (changed) {
-        await strapi.documents('api::tool.tool').update({
-          documentId: tl.documentId,
-          data: { formulAciklamasi: out },
-          status: 'published',
-        });
-        strapi.log.info(`[migrate-formul] tool güncellendi: ${tl.slug}`);
-      }
-    }
-  } catch (err) {
-    strapi.log.warn(`[migrate-formul] atlandı: ${(err as Error).message}`);
-  }
-}
-
-/**
- * İç link migration (idempotent): blocks içindeki link node'larında `/blog/<slug>`
- * URL'lerini canlı blog route'una (`/icerik/<slug>`) çevirir. Eski seed kayıtları
- * `/blog/` yazdığı ve canlı route `/icerik/` olduğu için kırık linkleri onarır.
- */
-async function migrateInternalLinks(strapi: Core.Strapi): Promise<void> {
-  // Bir blocks ağacını dolaşır; type:'link' node'larının url'sini düzeltir.
-  const fix = (node: any): boolean => {
-    let changed = false;
-    if (node?.type === 'link' && typeof node.url === 'string' && node.url.startsWith('/blog/')) {
-      node.url = node.url.replace(/^\/blog\//, '/icerik/');
-      changed = true;
-    }
-    if (Array.isArray(node?.children)) {
-      for (const child of node.children) {
-        if (fix(child)) changed = true;
-      }
-    }
-    return changed;
-  };
-  const convert = (nodes: any[]): { out: any[]; changed: boolean } => {
-    let changed = false;
-    for (const node of nodes) {
-      if (fix(node)) changed = true;
-    }
-    return { out: nodes, changed };
-  };
-
-  try {
-    const blogs: any[] = await strapi.documents('api::blog.blog').findMany({ status: 'published' });
-    for (const b of blogs) {
-      if (!Array.isArray(b.icerik)) continue;
-      const { out, changed } = convert(b.icerik);
-      if (changed) {
-        await strapi.documents('api::blog.blog').update({
-          documentId: b.documentId,
-          data: { icerik: out },
-          status: 'published',
-        });
-        strapi.log.info(`[migrate-link] blog güncellendi: ${b.slug}`);
-      }
-    }
-
-    const tools: any[] = await strapi.documents('api::tool.tool').findMany({ status: 'published' });
-    for (const tl of tools) {
-      if (!Array.isArray(tl.formulAciklamasi)) continue;
-      const { out, changed } = convert(tl.formulAciklamasi);
-      if (changed) {
-        await strapi.documents('api::tool.tool').update({
-          documentId: tl.documentId,
-          data: { formulAciklamasi: out },
-          status: 'published',
-        });
-        strapi.log.info(`[migrate-link] tool güncellendi: ${tl.slug}`);
-      }
-    }
-  } catch (err) {
-    strapi.log.warn(`[migrate-link] atlandı: ${(err as Error).message}`);
-  }
-}
+/* NOT: `migrateFormulaBlocks` ve `migrateInternalLinks` (blocks-dizisi yazan eski
+ * migration'lar) FAZ 2'de KALDIRILDI. İçerik artık Markdown (richtext); alana dizi
+ * yazmak `ValidationError` verirdi. Link düzeltmesi (`/blog/→/icerik/`) ve formül
+ * dönüşümü artık `seed/blocksToMarkdown.ts` converter'ı içinde. Tek içerik yazıcısı
+ * `migrateContentToMarkdown`. */
 
 /**
  * Seed görsellerini (git'li `seed-assets/uploads/`) çalışma anında `public/uploads/`
@@ -306,16 +177,9 @@ async function syncBlogFaq(strapi: Core.Strapi): Promise<void> {
     'emniyet-stogu-nedir': EMNIYET_SSS,
     'yeniden-siparis-noktasi-nedir': ROP_SSS,
   };
-  // gövdeden silinecek artık FAQ başlığı (sorular ayrı alandan görünür basılıyor)
-  const isFaqHeading = (node: any): boolean =>
-    node?.type === 'heading' &&
-    typeof node?.children?.[0]?.text === 'string' &&
-    /^s[ıi]k(ça)?\s+sorulan\s+sorular$/i.test(node.children[0].text.trim());
-  const isFaqIntro = (node: any): boolean =>
-    node?.type === 'paragraph' &&
-    typeof node?.children?.[0]?.text === 'string' &&
-    /^aşağıda\b/i.test(node.children[0].text.trim());
-
+  // NOT: gövdeden FAQ başlığı temizliği FAZ 2'de buradan KALDIRILDI — artık
+  // `blocksToMarkdown` converter'ı FAQ başlığını atıyor. Bu fonksiyon yalnız `sss`
+  // (ayrı component alanı) senkronundan sorumlu; `icerik`'e DOKUNMAZ (Markdown).
   const sig = (items: { soru: string; cevap: string }[]): string =>
     items.map((q) => `${q.soru}::${q.cevap}`).join('||');
 
@@ -337,22 +201,6 @@ async function syncBlogFaq(strapi: Core.Strapi): Promise<void> {
         data.sss = faq;
       }
 
-      // 2) Gövdeden artık FAQ başlığı + giriş paragrafını temizle
-      if (Array.isArray(blog.icerik)) {
-        const out: any[] = [];
-        let changed = false;
-        for (let i = 0; i < blog.icerik.length; i++) {
-          const node = blog.icerik[i];
-          if (isFaqHeading(node)) {
-            changed = true;
-            if (isFaqIntro(blog.icerik[i + 1])) i += 1; // takip eden giriş paragrafını da atla
-            continue;
-          }
-          out.push(node);
-        }
-        if (changed) data.icerik = out;
-      }
-
       if (Object.keys(data).length > 0) {
         await strapi.documents('api::blog.blog').update({
           documentId: blog.documentId,
@@ -368,32 +216,46 @@ async function syncBlogFaq(strapi: Core.Strapi): Promise<void> {
 }
 
 /**
- * Stok devir hızı blog gövdesini (icerik) canonical SDH_BLOG ile senkronlar
- * (idempotent). seedStokDevirHizi CREATE-only olduğundan mevcut canlı kayıt
- * güncellenmez; bu migration, SEO için zenginleştirilen gövdeyi (yeni H2/H3
- * bölümleri: bilançodan hesaplama, dönem seçimi, hammadde/perakende/çoklu ürün
- * örnekleri, Excel) canlıya taşır. Yalnızca içerik imzası farklıysa yazar →
- * yakınsar. NOT: gövde seed-yönetimlidir; panelden elle düzenleme sonraki boot'ta
- * canonical ile geri yazılır (SDH_SSS ↔ syncBlogFaq ile aynı sözleşme).
+ * İçeriği (blog `icerik` + tool `formulAciklamasi`) BİR KEZ Markdown'a taşır.
+ *
+ * Alan tipi `json` → `richtext` (Markdown editörü) yapıldı; eski kayıtlar hâlâ
+ * blocks JSON tutuyor (ya da schema cast'inden gelen JSON-metni). Bu migration
+ * `contentToMarkdown` ile her kaydı normalize eder:
+ *   - blocks dizisi / JSON-metni  → Markdown string'e çevrilir, yazılır.
+ *   - zaten düz Markdown          → `null` döner, DOKUNULMAZ.
+ *
+ * Böylece dönüşüm idempotent + tek-seferliktir: bir kez Markdown'a döndükten
+ * sonra panelden yapılan düzenlemeler sonraki boot'larda EZİLMEZ (kullanıcının
+ * asıl hedefi). Hata boot'u BOZMAMALI (try/catch). syncBlogFaq'tan SONRA çalışır
+ * (FAQ gövdeden temizlendikten sonra çevirir; converter da FAQ başlığını atar).
  */
-async function migrateStokDevirHiziBody(strapi: Core.Strapi): Promise<void> {
+async function migrateContentToMarkdown(strapi: Core.Strapi): Promise<void> {
   try {
-    const blog: any = await strapi.documents('api::blog.blog').findFirst({
-      filters: { slug: 'stok-devir-hizi-nedir' },
-    });
-    if (!blog) return;
+    const blogs: any[] = await strapi.documents('api::blog.blog').findMany({ status: 'published' });
+    for (const b of blogs) {
+      const md = contentToMarkdown(b.icerik);
+      if (md == null) continue;
+      await strapi.documents('api::blog.blog').update({
+        documentId: b.documentId,
+        data: { icerik: md },
+        status: 'published',
+      });
+      strapi.log.info(`[migrate-md] blog Markdown'a taşındı: ${b.slug}`);
+    }
 
-    const sig = (icerik: unknown): string => JSON.stringify(icerik ?? null);
-    if (sig(blog.icerik) === sig(SDH_BLOG)) return;
-
-    await strapi.documents('api::blog.blog').update({
-      documentId: blog.documentId,
-      data: { icerik: SDH_BLOG },
-      status: 'published',
-    });
-    strapi.log.info('[migrate-sdh-body] stok-devir-hizi-nedir gövdesi güncellendi.');
+    const tools: any[] = await strapi.documents('api::tool.tool').findMany({ status: 'published' });
+    for (const tl of tools) {
+      const md = contentToMarkdown(tl.formulAciklamasi);
+      if (md == null) continue;
+      await strapi.documents('api::tool.tool').update({
+        documentId: tl.documentId,
+        data: { formulAciklamasi: md },
+        status: 'published',
+      });
+      strapi.log.info(`[migrate-md] tool Markdown'a taşındı: ${tl.slug}`);
+    }
   } catch (err) {
-    strapi.log.warn(`[migrate-sdh-body] atlandı: ${(err as Error).message}`);
+    strapi.log.warn(`[migrate-md] atlandı: ${(err as Error).message}`);
   }
 }
 
@@ -408,14 +270,15 @@ export default {
     await seedStokNedir(strapi);
     await seedEmniyetStogu(strapi);
     await seedRop(strapi);
+    await seedOee(strapi);
+    await seedFireOrani(strapi);
+    await seedMrp(strapi);
     await seedHomepage(strapi);
     await seedBanners(strapi);
     await seedDuyuru(strapi);
     await seedSozluk(strapi);
-    await migrateFormulaBlocks(strapi);
-    await migrateInternalLinks(strapi);
-    await migrateStokDevirHiziBody(strapi);
     await syncBlogFaq(strapi);
+    await migrateContentToMarkdown(strapi);
     await setAnasayfaFieldHints(strapi);
   },
 };

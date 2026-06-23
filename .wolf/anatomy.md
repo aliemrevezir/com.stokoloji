@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-19T21:42:04.192Z
-> Files: 216 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-23T18:13:06.357Z
+> Files: 221 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../
 
@@ -20,6 +20,7 @@
 - `kankam-imdi-canl-ya-kmadan-enumerated-pebble.md` — Stokoloji — Launch Öncesi SEO & İçerik Hazırlık Planı (~3660 tok)
 - `kankam-yeni-bir-sayfa-greedy-spindle.md` — Stokoloji — Sözlük (Terimler Sözlüğü) Sayfası (~2685 tok)
 - `stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md` — GHCR Deploy Pipeline + İçeriği Markdown'a Taşıma Planı (~1786 tok)
+- `stokoloji-com-performance-on-search-202-abstract-unicorn.md` — Stokoloji — Yeni İçerik Dalgası: Üretim Yönetimi Cluster'ı (OEE + Fire + MRP) (~1975 tok)
 - `stokoloji-com-un-anasayfas-ndaki-hero-se-zippy-coral.md` — Anasayfa Hero → Tam Genişlik Banner Carousel (Strapi-yönetilen) (~1963 tok)
 - `yeni-bir-blog-yaz-s-shimmying-marshmallow.md` — İçerik Brief'i — "Stok Nedir?" (Pillar / Cluster Hub Yazısı) (~2757 tok)
 
@@ -110,7 +111,7 @@
 
 ## apps/cms/src/
 
-- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~2955 tok)
+- `index.ts` — Public role'e içerik okuma izni ver (idempotent). (~2991 tok)
 
 ## apps/cms/src/api/anasayfa/content-types/anasayfa/
 
@@ -253,7 +254,7 @@
 ## apps/cms/src/seed/
 
 - `blocksToMarkdown.ts` — Satır-içi node dizisini (text/link + bold/italic/code) Markdown'a çevirir. (~1886 tok)
-- `index.ts` — Exports BLOG_SSS (~29255 tok)
+- `index.ts` — Exports BLOG_SSS (~34969 tok)
 - `sozluk-blocks.ts` — Sözlük seed'i için blocks yardımcıları + veri tipi. (~708 tok)
 - `sozluk-data.ts` — Exports SOZLUK_TERIMLERI (~26813 tok)
 - `sozluk.ts` — Sözlük terimlerini idempotent şekilde seed eder. (~553 tok)
@@ -386,7 +387,7 @@
 - `banners.test.ts` — Declares baseMeta (~810 tok)
 - `banners.ts` — Banner → carousel slide çözümleme. (~577 tok)
 - `blocks.ts` — Strapi blocks içeriğiyle ilgili saf yardımcılar. (~1070 tok)
-- `format.ts` — Türkçe sayı/para formatlayıcıları (sonuç gösterimi için). (~234 tok)
+- `format.ts` — Türkçe sayı/para formatlayıcıları (sonuç gösterimi için). (~307 tok)
 - `home.ts` — Blog yazılarını kategorilerine göre gruplar. Kategorisi olmayan yazılar (~247 tok)
 - `katex.test.ts` — Declares html (~397 tok)
 - `katex.ts` — KaTeX matematik dizgisi — SERVER-SIDE. (~472 tok)
@@ -425,7 +426,11 @@
 - `emniyet-stogu.ts` — Emniyet Stoğu — SAF hesaplama mantığı. (~996 tok)
 - `eoq.test.ts` — Declares result (~377 tok)
 - `eoq.ts` — EOQ (Ekonomik Sipariş Miktarı) — SAF hesaplama mantığı. (~411 tok)
-- `registry.ts` — Hesaplayıcı kayıt defteri (registry). (~1801 tok)
+- `fire-orani.test.ts` — Declares r (~343 tok)
+- `fire-orani.ts` — Fire Oranı (hurda/ıskarta oranı) — SAF hesaplama mantığı. (~464 tok)
+- `oee.test.ts` — Declares referans (~643 tok)
+- `oee.ts` — OEE (Toplam Ekipman Etkinliği) — SAF hesaplama mantığı. (~929 tok)
+- `registry.ts` — Hesaplayıcı kayıt defteri (registry). (~2526 tok)
 - `rop.test.ts` — Declares r (~429 tok)
 - `rop.ts` — Yeniden Sipariş Noktası (ROP) — SAF hesaplama mantığı. (~587 tok)
 - `stok-devir-hizi.test.ts` — Declares r (~391 tok)
@@ -441,8 +446,8 @@
 
 ## deploy/postiz/
 
-- `docker-compose.yaml` — Postiz — self-hosted (Stokoloji sosyal otomasyon) (~1535 tok)
-- `README.md` — Project documentation (~803 tok)
+- `docker-compose.yaml` — Postiz — self-hosted (Stokoloji sosyal otomasyon) (~1741 tok)
+- `README.md` — Project documentation (~859 tok)
 
 ## deploy/postiz/dynamicconfig/
 

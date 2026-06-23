@@ -15,6 +15,13 @@ export function formatCurrency(value: number): string {
   return cf.format(value);
 }
 
+const pf = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 1 });
+
+/** 0-1 aralığındaki oranı Türkçe yüzde gösterimine çevirir (0.875 → "%87,5"). */
+export function formatPercent(ratio: number): string {
+  return `%${pf.format(ratio * 100)}`;
+}
+
 const df = new Intl.DateTimeFormat('tr-TR', {
   day: 'numeric',
   month: 'long',
