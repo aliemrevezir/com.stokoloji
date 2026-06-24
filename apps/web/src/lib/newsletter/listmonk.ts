@@ -9,9 +9,11 @@
  * false döner ve `subscribe()` `disabled` durumuyla sessizce geçer — build/SSR
  * kırılmaz, geliştirme ortamında ESP olmadan da form çalışır gibi davranır.
  *
- * Çift opt-in (KVKK): `preconfirm_subscriptions` false bırakıldığı sürece,
- * double opt-in olarak işaretli Listmonk listesine eklenen abone onay e-postası
- * alır (Amazon SES SMTP relay üzerinden). Onay tıklanmadan listeye yazılmaz.
+ * Çift opt-in (KVKK): `preconfirm_subscriptions` false ile abone "unconfirmed"
+ * olarak eklenir. DİKKAT — Listmonk admin API'si (`POST /api/subscribers`) opt-in
+ * onay e-postasını OTOMATİK göndermez (yalnız public form gönderir). Bu yüzden
+ * kayıttan sonra onay e-postasını ayrı uçtan (`/optin`) biz tetikleriz; Listmonk
+ * onu Amazon SES SMTP relay üzerinden yollar. Onay tıklanmadan listeye yazılmaz.
  */
 
 export type SubscribeStatus =
@@ -72,8 +74,34 @@ function isValidEmail(email: string): boolean {
 }
 
 /**
- * Aboneyi Listmonk'a yazar. Çift opt-in liste ayarındaysa Listmonk onay
- * e-postasını kendi yollar; bu fonksiyon yalnız kaydı oluşturur.
+ * Yeni oluşturulan (unconfirmed) aboneye çift opt-in onay e-postasını
+ * tetikler. Admin API kaydı tek başına bu e-postayı GÖNDERMEZ; bu uç,
+ * panelin "Send opt-in campaign" eylemiyle aynı işi yapar. Hata
+ * durumunda abonelik akışını bozmaz, yalnız loglar (manuel resend mümkün).
+ */
+async function sendOptin(config: ListmonkConfig, subscriberId: number): Promise<void> {
+  try {
+    const res = await fetch(`${config.baseUrl}/api/subscribers/${subscriberId}/optin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `token ${config.user}:${config.token}`,
+      },
+      body: '{}',
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) {
+      const detail = await res.text().catch(() => '');
+      console.error(`[newsletter] opt-in e-postası gönderilemedi ${res.status}: ${detail.slice(0, 300)}`);
+    }
+  } catch (err) {
+    console.error('[newsletter] opt-in isteği başarısız:', err);
+  }
+}
+
+/**
+ * Aboneyi Listmonk'a yazar; double opt-in listede onay e-postasını da
+ * (`sendOptin`) tetikler. Onay tıklanana dek abone "unconfirmed" kalır.
  */
 export async function subscribe(input: SubscribeInput): Promise<SubscribeResult> {
   const config = readConfig();
@@ -111,7 +139,14 @@ export async function subscribe(input: SubscribeInput): Promise<SubscribeResult>
       signal: AbortSignal.timeout(8000),
     });
 
-    if (res.ok) return { status: 'subscribed' };
+    if (res.ok) {
+      // Abone oluştu; opt-in onay e-postasını ayrı uçtan tetikle (admin API
+      // otomatik göndermiyor). Yeni abonenin id'sini create yanıtından al.
+      const created = (await res.json().catch(() => null)) as { data?: { id?: number } } | null;
+      const id = created?.data?.id;
+      if (id) await sendOptin(config, id);
+      return { status: 'subscribed' };
+    }
 
     // Listmonk e-posta zaten varsa 409 döner — kullanıcı için bu da başarıdır.
     if (res.status === 409) return { status: 'already' };

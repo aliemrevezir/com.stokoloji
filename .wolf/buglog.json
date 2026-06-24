@@ -1053,5 +1053,49 @@
     "related_bugs": [],
     "occurrences": 1,
     "last_seen": "2026-06-21T00:00:00.000Z"
+  },
+  {
+    "id": "bug-062",
+    "timestamp": "2026-06-24T00:00:00.000Z",
+    "error_message": "Newsletter: abone Listmonk'a 'unconfirmed' düşüyor ama double opt-in onay e-postası gelmiyor; manuel 'Send opt-in campaign' ile gidiyor (SMTP/SES çalışıyor)",
+    "file": "apps/web/src/lib/newsletter/listmonk.ts",
+    "root_cause": "Kod Listmonk ADMIN API'sini (POST /api/subscribers) çağırıyordu. Admin API aboneyi oluşturur ama opt-in onay e-postasını OTOMATİK GÖNDERMEZ (yalnız public form / POST /api/public/subscription gönderir). Onay e-postası için ayrı uç gerekiyor: POST /api/subscribers/{id}/optin (panelin 'Send opt-in campaign' eyleminin yaptığı). SMTP/SES sağlamdı; eksik olan tetikleyiciydi.",
+    "fix": "subscribe()'a sendOptin(config, id) eklendi: create yanıtından data.id alınıp POST /api/subscribers/{id}/optin çağrılıyor. Hata abonelik akışını bozmaz, loglar. Not: canlı site formu ayrıca 'disabled' dönüyordu çünkü Coolify web servisinde LISTMONK_* env'leri boş (4 env girilip redeploy gerekiyor).",
+    "tags": [
+      "listmonk",
+      "newsletter",
+      "double-optin",
+      "ses",
+      "smtp",
+      "api",
+      "admin-vs-public"
+    ],
+    "related_bugs": [
+      "bug-055"
+    ],
+    "occurrences": 1,
+    "last_seen": "2026-06-24T00:00:00.000Z"
+  },
+  {
+    "id": "bug-063",
+    "timestamp": "2026-06-24T00:00:00.000Z",
+    "error_message": "Newsletter onay e-postasındaki confirmation butonu http://localhost:9000 adresine yönlendiriyor (kırık link)",
+    "file": "Listmonk admin Settings > General > Root URL (DB ayarı, repo dışı)",
+    "root_cause": "Listmonk 'Root URL' ayarı varsayılan http://localhost:9000 olarak kalmıştı. Opt-in/confirmation linkleri ({root_url}/subscription/optin/{uuid}) bu kökten üretildiği için maildeki buton localhost'a gidiyordu.",
+    "fix": "Listmonk admin > Settings > General > Root URL = https://list.stokoloji.com (public domain, sonda / YOK). Kaydet; yeni maillere hemen yansır, redeploy gerekmez. Public domain'in Coolify'da listmonk servisine map + SSL'li olması şart.",
+    "tags": [
+      "listmonk",
+      "newsletter",
+      "root-url",
+      "optin",
+      "confirmation-link",
+      "config",
+      "localhost"
+    ],
+    "related_bugs": [
+      "bug-062"
+    ],
+    "occurrences": 1,
+    "last_seen": "2026-06-24T00:00:00.000Z"
   }
 ]
