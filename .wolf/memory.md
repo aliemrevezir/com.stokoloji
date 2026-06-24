@@ -980,3 +980,42 @@ Postiz self-host kurulumu başlatıldı. deploy/postiz/ lean paketi (ES'siz Temp
 | 21:12 | Edited apps/cms/src/seed/index.ts | added 3 condition(s) | ~5734 |
 | 21:13 | Edited apps/cms/src/index.ts | 5→8 lines | ~35 |
 | 21:13 | Edited apps/cms/src/index.ts | 2→5 lines | ~42 |
+| 23:08 | Session end: 14 writes across 10 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 8 reads | ~49695 tok |
+| 01:52 | Session end: 14 writes across 10 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 8 reads | ~49695 tok |
+| 01:54 | Session end: 14 writes across 10 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 8 reads | ~49695 tok |
+| 02:34 | Edited docker-compose.prod.yml | 3→6 lines | ~88 |
+| 02:34 | Edited docker-compose.prod.yml | 3→5 lines | ~58 |
+| 02:35 | Session end: 16 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~51575 tok |
+| 02:43 | Session end: 16 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~51611 tok |
+| 02:45 | Session end: 16 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~51611 tok |
+| 02:50 | Edited docker-compose.prod.yml | 5→8 lines | ~120 |
+| 02:50 | Edited docker-compose.prod.yml | 7→10 lines | ~127 |
+| 02:52 | Session end: 18 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~51884 tok |
+| 02:57 | Session end: 18 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~51884 tok |
+| 02:59 | Edited apps/cms/src/seed/index.ts | modified NOT() | ~123 |
+| 03:02 | Session end: 19 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~57721 tok |
+| 03:03 | Session end: 19 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~57721 tok |
+| 03:08 | Session end: 19 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~57721 tok |
+| 03:10 | Session end: 19 writes across 11 files (stokoloji-com-performance-on-search-202-abstract-unicorn.md, oee.ts, oee.test.ts, fire-orani.ts, fire-orani.test.ts) | 9 reads | ~57721 tok |
+
+## Session: 2026-06-24 14:14
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-24 14:14
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-24 14:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:32 | Edited apps/web/src/lib/newsletter/listmonk.ts | modified in() | ~118 |
+| 15:33 | Edited apps/web/src/lib/newsletter/listmonk.ts | added error handling | ~346 |
+| 15:33 | Edited apps/web/src/lib/newsletter/listmonk.ts | added optional chaining | ~152 |
+| 15:34 | Newsletter opt-in fix: admin API otomatik onay maili göndermiyor → sendOptin(/api/subscribers/{id}/optin) eklendi | apps/web/src/lib/newsletter/listmonk.ts | typecheck temiz; canlı form hâlâ disabled (Coolify env eksik) | ~6k |
+| 15:34 | Edited ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/listmonk-ses-esp.md | modified zeltmesi() | ~326 |
+| 15:34 | Session end: 4 writes across 2 files (listmonk.ts, listmonk-ses-esp.md) | 5 reads | ~5406 tok |
+| 15:37 | Session end: 4 writes across 2 files (listmonk.ts, listmonk-ses-esp.md) | 5 reads | ~5406 tok |
