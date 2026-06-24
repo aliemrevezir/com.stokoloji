@@ -988,12 +988,12 @@ export async function seedStokNedir(strapi: Core.Strapi): Promise<void> {
     return;
   }
 
-  // Mevcut kayıt: gövdeyi canonical ile senkronla (görsel node'ları dahil) ve
-  // kapak eksikse bağla. Yalnız değişiklik varsa yaz (gereksiz write yok).
+  // Mevcut kayıt: yalnız kapak eksikse bağla.
+  // NOT (FAZ 2): `icerik` artık richtext (Markdown). Gövdeyi her boot'ta ham
+  // blocks ile EZME — bu hem richtext validation'ını patlatır (boot çöker) hem de
+  // panel düzenlemelerini ezer. Blocks→Markdown dönüşümünü `migrateContentToMarkdown`
+  // tek seferlik yapar; sonrası panele aittir.
   const data: Record<string, unknown> = {};
-  if (JSON.stringify(existing.icerik ?? null) !== JSON.stringify(STOK_NEDIR_BLOG)) {
-    data.icerik = STOK_NEDIR_BLOG;
-  }
   if (!existing.kapakGorseli && kapakId) {
     data.kapakGorseli = kapakId;
   }
