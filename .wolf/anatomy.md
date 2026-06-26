@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-23T18:13:06.357Z
-> Files: 221 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-26T00:54:46.133Z
+> Files: 228 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../
 
@@ -21,6 +21,7 @@
 - `kankam-yeni-bir-sayfa-greedy-spindle.md` — Stokoloji — Sözlük (Terimler Sözlüğü) Sayfası (~2685 tok)
 - `stok-devir-hizi-yazisini-iyile-tirelim-t-glowing-dijkstra.md` — GHCR Deploy Pipeline + İçeriği Markdown'a Taşıma Planı (~1786 tok)
 - `stokoloji-com-performance-on-search-202-abstract-unicorn.md` — Stokoloji — Yeni İçerik Dalgası: Üretim Yönetimi Cluster'ı (OEE + Fire + MRP) (~1975 tok)
+- `stokoloji-com-performance-on-search-202-reactive-llama.md` — Stokoloji — İçerik Dalgası 2 (GSC sinyaline göre yeni içerik) (~2327 tok)
 - `stokoloji-com-un-anasayfas-ndaki-hero-se-zippy-coral.md` — Anasayfa Hero → Tam Genişlik Banner Carousel (Strapi-yönetilen) (~1963 tok)
 - `yeni-bir-blog-yaz-s-shimmying-marshmallow.md` — İçerik Brief'i — "Stok Nedir?" (Pillar / Cluster Hub Yazısı) (~2757 tok)
 
@@ -39,12 +40,16 @@
 
 ## ../launch-icerik/blog/
 
+- `abc-analizi-nedir.md` — Blog: ABC Analizi Nedir? (~2049 tok)
 - `emniyet-stogu-nedir.md` — Blog: Emniyet Stoğu Nedir? (~3245 tok)
 - `eoq-nedir.md` — Blog: EOQ Nedir? (~1589 tok)
+- `fifo-nedir.md` — Blog: FIFO Nedir? (~2199 tok)
+- `olu-stok-nedir.md` — Blog: Ölü Stok Nedir? (~1701 tok)
 - `stok-devir-hizi-BRIEF.md` — İçerik Brief — Stok Devir Hızı (yazı + görsel planı) (~1345 tok)
 - `stok-devir-hizi-nedir.md` — Blog: Stok Devir Hızı Nedir? (~1967 tok)
 - `stok-nedir-BRIEF.md` — İçerik Brief'i — "Stok Nedir?" (Pillar / Cluster Hub Yazısı) (~2591 tok)
 - `stok-nedir.md` — Blog: Stok Nedir? (~2552 tok)
+- `stok-sayimi-nasil-yapilir.md` — Blog: Stok Sayımı Nasıl Yapılır? (~1960 tok)
 - `yeniden-siparis-noktasi-nedir.md` — Blog: Yeniden Sipariş Noktası Nedir? (~2961 tok)
 
 ## ./
@@ -428,14 +433,18 @@
 - `eoq.ts` — EOQ (Ekonomik Sipariş Miktarı) — SAF hesaplama mantığı. (~411 tok)
 - `fire-orani.test.ts` — Declares r (~343 tok)
 - `fire-orani.ts` — Fire Oranı (hurda/ıskarta oranı) — SAF hesaplama mantığı. (~464 tok)
+- `trendyol-komisyon.ts` — Trendyol komisyon & kâr — SAF hesaplama (KDV nötr model, başabaş). (~900 tok)
+- `trendyol-komisyon.test.ts` — trendyolKomisyon fixture testleri (haric/dahil taban, başabaş). (~550 tok)
 - `oee.test.ts` — Declares referans (~643 tok)
 - `oee.ts` — OEE (Toplam Ekipman Etkinliği) — SAF hesaplama mantığı. (~929 tok)
-- `registry.ts` — Hesaplayıcı kayıt defteri (registry). (~2526 tok)
+- `registry.ts` — Hesaplayıcı kayıt defteri (registry). (~3814 tok)
 - `rop.test.ts` — Declares r (~429 tok)
 - `rop.ts` — Yeniden Sipariş Noktası (ROP) — SAF hesaplama mantığı. (~587 tok)
 - `stok-devir-hizi.test.ts` — Declares r (~391 tok)
 - `stok-devir-hizi.ts` — Stok devir hızı SAF hesaplama (SDH = SMM / ort. stok). (~410 tok)
 - `stok-devir-hizi.ts` — Stok Devir Hızı — SAF hesaplama mantığı. (~516 tok)
+- `trendyol-komisyon.test.ts` — Declares temel (~602 tok)
+- `trendyol-komisyon.ts` — Trendyol Komisyon & Kâr — SAF hesaplama mantığı. (~933 tok)
 
 ## apps/web/src/lib/tools/ (eklenen)
 
