@@ -14,6 +14,7 @@ import { emniyetStogu } from './emniyet-stogu';
 import { rop } from './rop';
 import { oee } from './oee';
 import { fireOrani } from './fire-orani';
+import { trendyolKomisyon } from './trendyol-komisyon';
 import { formatNumber, formatCurrency, formatPercent } from '../format';
 
 export interface CalculatorField {
@@ -219,6 +220,110 @@ const fireOraniDef: CalculatorDef = {
   },
 };
 
+/**
+ * Kategori → temsili komisyon oranı (ondalık; aralığın ortası).
+ * Oranlar TAHMİNİDİR; bağlayıcı oran Trendyol Satıcı Panelindedir.
+ * Veri kaynağı: trendyol-komisyon-veri-paketi.md. Kitap & Kırtasiye için
+ * Trendyol'a özel net oran bulunamadığından listeye alınmadı.
+ */
+const trendyolKomisyonDef: CalculatorDef = {
+  slug: 'trendyol-komisyon-hesaplama',
+  fields: [
+    { name: 'satisFiyati', label: 'Satış Fiyatı (KDV dahil)', suffix: '₺', defaultValue: 600, min: 0, step: 0.01 },
+    { name: 'alisMaliyeti', label: 'Alış Maliyeti (KDV dahil)', suffix: '₺', defaultValue: 240, min: 0, step: 0.01 },
+    { name: 'kargo', label: 'Kargo Bedeli (KDV dahil)', suffix: '₺', defaultValue: 100, min: 0, step: 0.01 },
+    {
+      name: 'kategori',
+      label: 'Kategori (tahmini oran)',
+      defaultValue: 0.1918,
+      options: [
+        { label: 'Giyim (~%19,18)', value: 0.1918 },
+        { label: 'Ayakkabı (~%21,20)', value: 0.212 },
+        { label: 'Çanta & Aksesuar (~%21,67)', value: 0.2167 },
+        { label: 'Takı (~%21,87)', value: 0.2187 },
+        { label: 'Elektronik (~%17,50)', value: 0.175 },
+        { label: 'Bilgisayar & Tablet (~%11,50)', value: 0.115 },
+        { label: 'Telefon Aksesuar (~%21,00)', value: 0.21 },
+        { label: 'Kozmetik & Parfüm (~%14,75)', value: 0.1475 },
+        { label: 'Kişisel Bakım (~%17,14)', value: 0.1714 },
+        { label: 'Ev & Yaşam (~%16,18)', value: 0.1618 },
+        { label: 'Mutfak & Küçük Ev (~%15,16)', value: 0.1516 },
+        { label: 'Anne & Bebek (~%16,50)', value: 0.165 },
+        { label: 'Oyuncak & Hobi (~%16,50)', value: 0.165 },
+        { label: 'Spor & Outdoor (~%12,75)', value: 0.1275 },
+        { label: 'Bahçe & Yapı Market (~%16,50)', value: 0.165 },
+        { label: 'Gıda & İçecek (~%13,00)', value: 0.13 },
+        { label: 'Pet Shop (~%15,25)', value: 0.1525 },
+        { label: 'Otomotiv Aksesuar (~%16,50)', value: 0.165 },
+        { label: 'Sağlık & Wellness (~%17,29)', value: 0.1729 },
+      ],
+    },
+    { name: 'komisyonOrani', label: 'Komisyon Oranı (elle, 0 = kategoriyi kullan)', suffix: '%', defaultValue: 0, min: 0, step: 0.01 },
+    {
+      name: 'kdvOrani',
+      label: 'KDV Oranı',
+      defaultValue: 20,
+      options: [
+        { label: '%20', value: 20 },
+        { label: '%10', value: 10 },
+        { label: '%1', value: 1 },
+      ],
+    },
+    {
+      name: 'hizmetBedeli',
+      label: 'Platform Hizmet Bedeli (KDV hariç)',
+      defaultValue: 10.99,
+      options: [
+        { label: '10,99 ₺ (standart)', value: 10.99 },
+        { label: '6,99 ₺ (Bugün Kargoda)', value: 6.99 },
+      ],
+    },
+    {
+      name: 'komisyonTabani',
+      label: 'Komisyon Tabanı',
+      defaultValue: 0,
+      options: [
+        { label: 'KDV hariç (önerilen)', value: 0 },
+        { label: 'KDV dahil', value: 1 },
+      ],
+    },
+  ],
+  compute: (inputs) => {
+    const v = (inputs.kdvOrani ?? 20) / 100;
+    const elleOran = inputs.komisyonOrani ?? 0;
+    const komisyonOrani = elleOran > 0 ? elleOran / 100 : (inputs.kategori ?? 0);
+    const r = trendyolKomisyon({
+      satisFiyatiKdvDahil: inputs.satisFiyati ?? 0,
+      alisMaliyetiKdvDahil: inputs.alisMaliyeti ?? 0,
+      komisyonOrani,
+      kdvOrani: v,
+      kargoKdvDahil: inputs.kargo ?? 0,
+      hizmetBedeliKdvHaric: inputs.hizmetBedeli ?? 10.99,
+      komisyonTabani: inputs.komisyonTabani === 1 ? 'dahil' : 'haric',
+    });
+    const kargoHaric = (inputs.kargo ?? 0) > 0 ? (inputs.kargo ?? 0) / (1 + v) : 0;
+    const basabas = Number.isFinite(r.basabasFiyatKdvDahil)
+      ? formatCurrency(r.basabasFiyatKdvDahil)
+      : '—';
+    return {
+      value: formatCurrency(r.netKar),
+      unit: '₺ net kâr',
+      summary: `Marj %${formatNumber(r.karMarji)} · komisyon ${formatCurrency(
+        r.komisyonTutari,
+      )} · başabaş ${basabas}`,
+      rows: [
+        { label: 'KDV hariç satış', value: formatCurrency(r.kdvHaricSatis) },
+        { label: 'Komisyon tutarı', value: formatCurrency(r.komisyonTutari) },
+        { label: 'Platform hizmet bedeli', value: formatCurrency(inputs.hizmetBedeli ?? 10.99) },
+        { label: 'Kargo (KDV hariç)', value: formatCurrency(kargoHaric) },
+        { label: 'Toplam kesinti', value: formatCurrency(r.toplamKesinti) },
+        { label: 'Stopaj (bilgi: mahsup edilir)', value: formatCurrency(r.stopaj) },
+        { label: 'Başabaş fiyat (KDV dahil)', value: basabas },
+      ],
+    };
+  },
+};
+
 const REGISTRY: Record<string, CalculatorDef> = {
   [eoqDef.slug]: eoqDef,
   [stokDevirHiziDef.slug]: stokDevirHiziDef,
@@ -226,6 +331,7 @@ const REGISTRY: Record<string, CalculatorDef> = {
   [ropDef.slug]: ropDef,
   [oeeDef.slug]: oeeDef,
   [fireOraniDef.slug]: fireOraniDef,
+  [trendyolKomisyonDef.slug]: trendyolKomisyonDef,
 };
 
 export function getCalculator(slug: string): CalculatorDef | null {

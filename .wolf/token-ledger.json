@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-06-13T23:14:08.103Z",
   "lifetime": {
-    "total_tokens_estimated": 4637021,
-    "total_reads": 1488,
-    "total_writes": 1835,
-    "total_sessions": 49,
-    "anatomy_hits": 1181,
-    "anatomy_misses": 306,
+    "total_tokens_estimated": 4668161,
+    "total_reads": 1508,
+    "total_writes": 1854,
+    "total_sessions": 52,
+    "anatomy_hits": 1195,
+    "anatomy_misses": 312,
     "repeated_reads_blocked": 295,
-    "estimated_savings_vs_bare_cli": 2453038
+    "estimated_savings_vs_bare_cli": 2455838
   },
   "sessions": [
     {
@@ -21475,6 +21475,305 @@
         "writes_count": 10,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 0
+      }
+    },
+    {
+      "id": "session-2026-06-24-1434",
+      "started": "2026-06-24T11:34:51.119Z",
+      "ended": "2026-06-24T12:42:41.905Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/listmonk-ses-esp.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 1259,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/api/newsletter/route.ts",
+          "tokens_estimated": 438,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/NewsletterForm.tsx",
+          "tokens_estimated": 856,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1887,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 118,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 346,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 152,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/listmonk-ses-esp.md",
+          "tokens_estimated": 350,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 4440,
+        "output_tokens_estimated": 966,
+        "reads_count": 5,
+        "writes_count": 4,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 4
+      }
+    },
+    {
+      "id": "session-2026-06-24-1434",
+      "started": "2026-06-24T11:34:51.119Z",
+      "ended": "2026-06-24T18:25:56.465Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/listmonk-ses-esp.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 1259,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/app/api/newsletter/route.ts",
+          "tokens_estimated": 438,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/components/NewsletterForm.tsx",
+          "tokens_estimated": 856,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/docker-compose.prod.yml",
+          "tokens_estimated": 1887,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 118,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 346,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/newsletter/listmonk.ts",
+          "tokens_estimated": 152,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/listmonk-ses-esp.md",
+          "tokens_estimated": 350,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 4440,
+        "output_tokens_estimated": 966,
+        "reads_count": 5,
+        "writes_count": 4,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 4
+      }
+    },
+    {
+      "id": "session-2026-06-25-2052",
+      "started": "2026-06-25T17:52:17.732Z",
+      "ended": "2026-06-25T17:56:35.520Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/icerik-uretim-kurallari.md",
+          "tokens_estimated": 1034,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/kapak-gorseli-standardi.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 1034,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
+      }
+    },
+    {
+      "id": "session-2026-06-25-2052",
+      "started": "2026-06-25T17:52:17.732Z",
+      "ended": "2026-06-25T18:07:47.399Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/icerik-uretim-kurallari.md",
+          "tokens_estimated": 1034,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/kapak-gorseli-standardi.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/launch-icerik/blog/stok-devir-hizi-nedir.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/.claude/plans/stokoloji-com-performance-on-search-202-reactive-llama.md",
+          "tokens_estimated": 2659,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/launch-icerik/blog/fifo-nedir.md",
+          "tokens_estimated": 2513,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/launch-icerik/blog/abc-analizi-nedir.md",
+          "tokens_estimated": 2342,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/launch-icerik/blog/stok-sayimi-nasil-yapilir.md",
+          "tokens_estimated": 2237,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/launch-icerik/blog/olu-stok-nedir.md",
+          "tokens_estimated": 1944,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/launch-icerik/blog/stok-sayimi-nasil-yapilir.md",
+          "tokens_estimated": 47,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1034,
+        "output_tokens_estimated": 11742,
+        "reads_count": 3,
+        "writes_count": 6,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
+      }
+    },
+    {
+      "id": "session-2026-06-26-0351",
+      "started": "2026-06-26T00:51:10.908Z",
+      "ended": "2026-06-26T00:55:40.097Z",
+      "reads": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/eoq.ts",
+          "tokens_estimated": 411,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/eoq.test.ts",
+          "tokens_estimated": 377,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/registry.ts",
+          "tokens_estimated": 2526,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/trendyol-komisyon-veri-paketi.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/format.ts",
+          "tokens_estimated": 307,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/trendyol-komisyon.ts",
+          "tokens_estimated": 933,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/trendyol-komisyon.test.ts",
+          "tokens_estimated": 602,
+          "action": "create"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/registry.ts",
+          "tokens_estimated": 57,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/registry.ts",
+          "tokens_estimated": 1272,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/aliemrevezir/Documents/projects/seo-projects/com.stokoloji/apps/web/src/lib/tools/registry.ts",
+          "tokens_estimated": 33,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 3621,
+        "output_tokens_estimated": 2897,
+        "reads_count": 5,
+        "writes_count": 5,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 4
       }
     }
   ],

@@ -19,6 +19,7 @@ import {
   seedStokNedir,
 } from './seed';
 import { seedSozluk } from './seed/sozluk';
+import { seedTrendyolKomisyon } from './seed/trendyol-komisyon';
 import { contentToMarkdown } from './seed/blocksToMarkdown';
 
 /**
@@ -277,6 +278,7 @@ export default {
     await seedBanners(strapi);
     await seedDuyuru(strapi);
     await seedSozluk(strapi);
+    await seedTrendyolKomisyon(strapi);
     await syncBlogFaq(strapi);
     await migrateContentToMarkdown(strapi);
     await setAnasayfaFieldHints(strapi);

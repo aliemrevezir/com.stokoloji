@@ -1019,3 +1019,35 @@ Postiz self-host kurulumu başlatıldı. deploy/postiz/ lean paketi (ES'siz Temp
 | 15:34 | Edited ../../../../.claude/projects/-Users-aliemrevezir-Documents-projects-seo-projects-com-stokoloji/memory/listmonk-ses-esp.md | modified zeltmesi() | ~326 |
 | 15:34 | Session end: 4 writes across 2 files (listmonk.ts, listmonk-ses-esp.md) | 5 reads | ~5406 tok |
 | 15:37 | Session end: 4 writes across 2 files (listmonk.ts, listmonk-ses-esp.md) | 5 reads | ~5406 tok |
+| 15:42 | Session end: 4 writes across 2 files (listmonk.ts, listmonk-ses-esp.md) | 5 reads | ~5406 tok |
+| 21:25 | Session end: 4 writes across 2 files (listmonk.ts, listmonk-ses-esp.md) | 5 reads | ~5406 tok |
+
+## Session: 2026-06-25 20:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:01 | Created ../../../../.claude/plans/stokoloji-com-performance-on-search-202-reactive-llama.md | — | ~2482 |
+| 21:03 | Created ../launch-icerik/blog/fifo-nedir.md | — | ~2346 |
+| 21:04 | Created ../launch-icerik/blog/abc-analizi-nedir.md | — | ~2186 |
+| 21:05 | Created ../launch-icerik/blog/stok-sayimi-nasil-yapilir.md | — | ~2088 |
+| 21:06 | Created ../launch-icerik/blog/olu-stok-nedir.md | — | ~1814 |
+| 21:07 | Edited ../launch-icerik/blog/stok-sayimi-nasil-yapilir.md | inline fix | ~44 |
+| 21:07 | İçerik Dalgası 2: GSC sinyali + Semrush ile 4 yeni blog (fifo-nedir, abc-analizi-nedir, stok-sayimi-nasil-yapilir, olu-stok-nedir) yazıldı, Strapi elle giriş için | ../launch-icerik/blog/ | tamamlandı, em-dash 0, 946-1280 kelime, link slugları doğrulandı | ~18k |
+| 21:07 | Session end: 6 writes across 5 files (stokoloji-com-performance-on-search-202-reactive-llama.md, fifo-nedir.md, abc-analizi-nedir.md, stok-sayimi-nasil-yapilir.md, olu-stok-nedir.md) | 3 reads | ~12776 tok |
+
+## Session: 2026-06-26 03:50
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-26 03:51
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 03:53 | Created apps/web/src/lib/tools/trendyol-komisyon.ts | — | ~933 |
+| 03:53 | Created apps/web/src/lib/tools/trendyol-komisyon.test.ts | — | ~602 |
+| 03:54 | Edited apps/web/src/lib/tools/registry.ts | added 1 import(s) | ~57 |
+| 03:54 | Edited apps/web/src/lib/tools/registry.ts | added nullish coalescing | ~1272 |
+| 03:54 | Edited apps/web/src/lib/tools/registry.ts | 3→4 lines | ~33 |
+| 03:55 | Trendyol komisyon hesaplama motoru + registry kaydı (KDV nötr model, başabaş, kategori select) | lib/tools/trendyol-komisyon.ts(+test), registry.ts | 44 test yeşil, typecheck+lint temiz | ~6k |
+| 03:55 | Session end: 5 writes across 3 files (trendyol-komisyon.ts, trendyol-komisyon.test.ts, registry.ts) | 5 reads | ~6518 tok |
