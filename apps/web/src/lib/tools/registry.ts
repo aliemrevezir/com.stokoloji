@@ -293,8 +293,8 @@ const trendyolKomisyonDef: CalculatorDef = {
     const elleOran = inputs.komisyonOrani ?? 0;
     const komisyonOrani = elleOran > 0 ? elleOran / 100 : (inputs.kategori ?? 0);
     const r = trendyolKomisyon({
-      satisFiyatiKdvDahil: inputs.satisFiyati!,
-      alisMaliyetiKdvDahil: inputs.alisMaliyeti!,
+      satisFiyatiKdvDahil: inputs.satisFiyati ?? 0,
+      alisMaliyetiKdvDahil: inputs.alisMaliyeti ?? 0,
       komisyonOrani,
       kdvOrani: v,
       kargoKdvDahil: inputs.kargo ?? 0,

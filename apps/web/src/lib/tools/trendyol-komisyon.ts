@@ -58,13 +58,14 @@ export function trendyolKomisyon(input: TrendyolKomisyonInput): TrendyolKomisyon
   if (![Sd, Ad, k, v, Kd, hizmet].every(Number.isFinite)) {
     throw new RangeError('Trendyol komisyon girdileri sayısal olmalıdır.');
   }
-  if (v <= -1) {
-    throw new RangeError('KDV oranı -1 üzerinde olmalıdır.');
+  if (Sd < 0 || Ad < 0 || k < 0 || v < 0 || Kd < 0 || hizmet < 0) {
+    throw new RangeError('Trendyol komisyon girdileri negatif olamaz.');
   }
 
-  const Sh = Sd > 0 ? Sd / (1 + v) : 0;
-  const Ah = Ad > 0 ? Ad / (1 + v) : 0;
-  const kargoHaric = Kd > 0 ? Kd / (1 + v) : 0;
+  // v >= 0 doğrulandığından (1 + v) >= 1; bölme güvenli.
+  const Sh = Sd / (1 + v);
+  const Ah = Ad / (1 + v);
+  const kargoHaric = Kd / (1 + v);
 
   const komisyonTutari = komisyonTabani === 'haric' ? Sh * k : Sd * k;
   const stopaj = Sh * 0.01;

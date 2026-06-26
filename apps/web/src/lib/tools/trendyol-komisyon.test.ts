@@ -53,6 +53,12 @@ describe('trendyolKomisyon', () => {
     expect(Number.isFinite(r.netKar)).toBe(true);
   });
 
+  it('negatif girdilerde RangeError fırlatır', () => {
+    expect(() => trendyolKomisyon({ ...temel, satisFiyatiKdvDahil: -1 })).toThrow(RangeError);
+    expect(() => trendyolKomisyon({ ...temel, komisyonOrani: -0.1 })).toThrow(RangeError);
+    expect(() => trendyolKomisyon({ ...temel, kdvOrani: -0.2 })).toThrow(RangeError);
+  });
+
   it('komisyon oranı >= 1 (haric) ise başabaş Infinity döner', () => {
     const r = trendyolKomisyon({ ...temel, komisyonOrani: 1, komisyonTabani: 'haric' });
     expect(r.basabasFiyatKdvDahil).toBe(Infinity);
